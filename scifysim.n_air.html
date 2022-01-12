@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.n_air module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifysim.observatory module" href="scifysim.observatory.html" />
+    <link rel="prev" title="scifysim.mol_dens module" href="scifysim.mol_dens.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.n_air module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.n_air.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.n_air">
+<span id="scifysim-n-air-module"></span><h1>scifysim.n_air module<a class="headerlink" href="#module-scifysim.n_air" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.n_air.m2thz">
+<span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">m2thz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#m2thz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.m2thz" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.n_air.n_air">
+<span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">n_air</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">288.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">co2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">450.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph2o</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eso</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#n_air"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.n_air" title="Permalink to this definition">¶</a></dt>
+<dd><p>; DESCRIPTION
+;   Returns the phase refractive index (n-1) of air a function of (IR) wavelength (in m),
+;   and optionally, temperature (in K), pressure (in bar), relative humidity (%) and CO2 content (in ppm).
+;   Note that the used approximation for air applies in the range from 300 to 1690 nm,
+;   hence their use at much longer wavelengths should be done with caution.
+;   For wavelengths longer than 1.7 micron, use the Hill &amp; Lawrence approximation for water vapor,
+;   which has been verified with experimental data up to 15 micron.
+;
+; INPUT
+;   <a href="#id1"><span class="problematic" id="id2">lambda_</span></a> : wavelength vector in meters
+;
+; KEYWORDS
+;   temp   : air temperature [K]
+;   pres   : air pressure [mbar]
+;   rhum   : relative humidity of the air [%]
+;   co2    : CO2 content in the air [ppm]
+;   ph2o   : partial pressure of water vapour [in Pa = 0.01 mbar]
+;            if set, overrules RHUM – if not defined, partial pressure will be given on output
+;   eso    : set this keyword to use E. Marchetti’s moist air refractive index instead of Ciddor + Hill &amp; Lawrance
+;   column : set this keyword to convert to input into fs/(mopl/m²), instead of the standard unitless n-1 value
+;   nws    : on output, returns the refractive index of pure water vapour (unless ESO keyword is set)
+;
+; CALLS
+;   MOL_DENS
+;   N_H2O
+;
+; REFERENCE
+;   J.E. Decker et al. “Updates to the NRC gauge block interferometer”, NRC document 42753, 8 August 2000
+;   P.E. Ciddor, “The refractive index of air: new equations for the visible and near infrared”, Appl. Opt. 35 (9), 1566-1573
+;   J. Meisner &amp; R. Le Poole, “Dispersion affecting the VLTI and 10 micron interferometry using MIDI”, Proc. SPIE 4838
+;   <a class="reference external" href="http://www.eso.org/gen-fac/pubs/astclim/lasilla/diffrefr.html">http://www.eso.org/gen-fac/pubs/astclim/lasilla/diffrefr.html</a>
+;
+; MODIFICATION HISTORY
+;   Version 1.0, 17-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, <a class="reference external" href="mailto:rdhartog&#37;&#52;&#48;rssd&#46;esa&#46;int">rdhartog<span>&#64;</span>rssd<span>&#46;</span>esa<span>&#46;</span>int</a>
+;   Version 1.1, 09-OCT-2002, RdH: conversion to column densities (Meisner’s n^hat) implemented
+;   Version 1.2, 01-NOV-2002, RdH: water vapor index based on approximation also valid in the IR
+;   Version 1.3, 03-JUL-2003, OA:  PostScript output of test harness modified
+;   Version 1.4, 15-DEC-2009, OA:  Removed discontinuity at 1.7µm by using tabulated water vapour refraction index instead of models + improved header</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.n_air.n_h2o">
+<span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">n_h2o</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">co2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">450.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1013.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">296.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wda</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#n_h2o"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.n_h2o" title="Permalink to this definition">¶</a></dt>
+<dd><p>; PURPOSE:
+;   Returns the refractive index (n-1) of water vapor a function of (IR) wavelength (in m),
+;   in the range from 3.3 to 10.6 micron,
+;   and optionally, temperature (in K), and vapor density in (kg/m3)
+;
+; KEYWORDS:
+;   TEMP:   temperature in K
+;   PRES:   pressure in mbar
+;   RHUM:   relative humidity in %
+;   CO2:    CO2 fraction in ppm
+;   APPROX: if not set, the table from Mathar will be interpolated at the input wavelengths
+;           if set to 1, use approximate formula by Hill &amp; Lawrence
+;           if set to 2, use approximate formula by Ciddor
+;   TABLE:  set this keyword to use the full Mathar table – warning, this modifies the lambda array on output (ONLY FOR TEST PURPOSE)
+;   COLUMN: convert units to fs / (mol/m�), such that t_delay = n_H20 * column density
+;   RAD:    convert units to radians
+;   WDA:    the refraction index is given for water vapour displacing air instead of bare water vapour, in units of fs/(mol/m�)
+;
+; RESTRICTIONS:
+;   Does require a file ‘n_mathar.dat’ to be present in same directory
+;   The Mathar data table does not include wavelengths smaller than 1.819 �m.
+;   At wavelengths smaller than 1.819 �m, the Hill &amp; Lawrence approximation is used instead.
+;   This produces a discontinuity of N_H2O at 1.819 �m.
+;
+; CALLS:
+;   N_AIR
+;
+; REFERENCE:
+;   R.J. Hill, R.S. Lawrence, “Refractive index of water vapor in infrared windows”, Infrared Phys. 26, 371 - 376 (1986)
+;   P.E. Ciddor, “The refractive index of air: new equations for the visible and near infrared”, Appl. Opt. 35 (9), 1566-1573
+;   F. Hase, R.J. Mathar, “Water vapor dispersion in the atmospheric window at 10 um”, Preprint, 06-FEB-2002
+;
+; MODIFICATION HISTORY:
+;   Version 1.0, 13-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, <a class="reference external" href="mailto:rdhartog&#37;&#52;&#48;rssd&#46;esa&#46;int">rdhartog<span>&#64;</span>rssd<span>&#46;</span>esa<span>&#46;</span>int</a>
+;   Version 2.0, 09-OCT-2002, RdH: included tabulated data by R.J. Mathar (obtained via J. Meisner)
+;   Version 2.1, 29-OCT-2002, RdH: conversion to WDA implemented
+;   Version 2.2, 01-NOV-2002, RdH: Ciddor’s approximation implemented
+;   Version 2.3, 15-DEC-2009, OA:  Improved header
+;
+; TESTED
+;   13-SEP-2002, RdH: comparison with measurements by Hase and Mathar
+;   09-OCT-2002, RdH: direct comparison between Hill &amp; Lawrence’s approximation and Mathar’s data
+;   15-NOV-2004, RdH: implemented option to convert output directly into radians</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.n_air.set_logging_level">
+<span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">set_logging_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#set_logging_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.set_logging_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.n_air.test_air">
+<span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">test_air</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#test_air"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.test_air" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.n_air.test_h2o">
+<span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">test_h2o</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#test_h2o"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.test_h2o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.n_air.thz2m">
+<span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">thz2m</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#thz2m"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.thz2m" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.n_air.wet_atmo">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.n_air.</span></span><span class="sig-name descname"><span class="pre">wet_atmo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#wet_atmo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.wet_atmo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.n_air.wet_atmo.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.n_air',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">wet_atmo.__init__&gt;,</span> <span class="pre">'get_Nair':</span> <span class="pre">&lt;function</span> <span class="pre">wet_atmo.get_Nair&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'wet_atmo'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'wet_atmo'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.n_air.wet_atmo.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.n_air.wet_atmo.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#wet_atmo.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.wet_atmo.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.n_air.wet_atmo.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.n_air'</span></em><a class="headerlink" href="#scifysim.n_air.wet_atmo.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.n_air.wet_atmo.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.n_air.wet_atmo.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.n_air.wet_atmo.get_Nair">
+<span class="sig-name descname"><span class="pre">get_Nair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/n_air.html#wet_atmo.get_Nair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.n_air.wet_atmo.get_Nair" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.observatory.html" class="btn btn-neutral float-right" title="scifysim.observatory module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.mol_dens.html" class="btn btn-neutral float-left" title="scifysim.mol_dens module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

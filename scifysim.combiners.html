@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.combiners module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifysim.confconverter module" href="scifysim.confconverter.html" />
+    <link rel="prev" title="scifysim.combiner module" href="scifysim.combiner.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.combiners module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.combiners.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.combiners">
+<span id="scifysim-combiners-module"></span><h1>scifysim.combiners module<a class="headerlink" href="#module-scifysim.combiners" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.ABCD">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">ABCD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Matrix([[sqrt(2)</span> <span class="pre">/</span> <span class="pre">2,</span> <span class="pre">sqrt(2)</span> <span class="pre">/</span> <span class="pre">2],</span> <span class="pre">[-</span> <span class="pre">sqrt(2)</span> <span class="pre">*</span> <span class="pre">I</span> <span class="pre">/</span> <span class="pre">2,</span> <span class="pre">sqrt(2)</span> <span class="pre">*</span> <span class="pre">I</span> <span class="pre">/</span> <span class="pre">2]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph_shifter_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'achromatic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#ABCD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.ABCD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build an ABCD combiner.</p>
+<p>Returns: the sympy.Matrix of the combiner
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.GLINT">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">GLINT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_masks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tap_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#GLINT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.GLINT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a 4 input baseline-wise Bracewell combiner
+similar in principle to the one used in GLINT.</p>
+<p>Returns: the sympy.Matrix of the combiner
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.GRAVITY">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">GRAVITY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Matrix([[sqrt(2)</span> <span class="pre">/</span> <span class="pre">2,</span> <span class="pre">sqrt(2)</span> <span class="pre">/</span> <span class="pre">2],</span> <span class="pre">[-</span> <span class="pre">sqrt(2)</span> <span class="pre">*</span> <span class="pre">I</span> <span class="pre">/</span> <span class="pre">2,</span> <span class="pre">sqrt(2)</span> <span class="pre">*</span> <span class="pre">I</span> <span class="pre">/</span> <span class="pre">2]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph_shifter_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'achromatic'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#GRAVITY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.GRAVITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a 4 input baseline-wise ABCD combiner
+similar in principle to the one used in GRAVITY.
+E&#64;D&#64;C&#64;B&#64;A</p>
+<p>Returns: the sympy.Matrix of the combiner
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.VIKiNG">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">VIKiNG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph_shifters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_masks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tap_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#VIKiNG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.VIKiNG" title="Permalink to this definition">¶</a></dt>
+<dd><p>optional :
+ph_shifters : a list of phase shifters in between the 2 stages</p>
+<blockquote>
+<div><p>(eg: for kernel-nuller ph_shifters=[0, sp.pi/2])</p>
+</div></blockquote>
+<dl class="simple">
+<dt>include_masks: If true, the output will include bright, dark and photometric masks</dt><dd><p>selecting the relevant outputs</p>
+</dd>
+</dl>
+<p>in: 4
+out: 8 (ph0, ph1, bright0, dark0, dark1, bright1, ph2, ph3)
+symbols:</p>
+<blockquote>
+<div><p>sigma  : the photometric ratio (in intensity)
+phi_0   : the phase shifter1
+phi_1   : the phase shifter2</p>
+</div></blockquote>
+<p>Build a bracewell combiner with photometric outputs.</p>
+<p>Returns: the sympy.Matrix of the combiner
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.angel_woolf_ph">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">angel_woolf_ph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph_shifters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_masks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tap_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#angel_woolf_ph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.angel_woolf_ph" title="Permalink to this definition">¶</a></dt>
+<dd><p>optional :
+ph_shifters : a list of phase shifters in between the 2 stages</p>
+<blockquote>
+<div><p>(eg: for kernel-nuller ph_shifters=[0, sp.pi/2])</p>
+</div></blockquote>
+<dl class="simple">
+<dt>include_masks: If true, the output will include bright, dark and photometric masks</dt><dd><p>selecting the relevant outputs</p>
+</dd>
+</dl>
+<p>in: 4
+out: 8 (ph0, ph1, bright0, dark0, dark1, bright1, ph2, ph3)
+symbols:</p>
+<blockquote>
+<div><p>sigma  : the photometric ratio (in intensity)
+phi_0   : the phase shifter1
+phi_1   : the phase shifter2</p>
+</div></blockquote>
+<p>Build a bracewell combiner with photometric outputs.</p>
+<p>Returns: the sympy.Matrix of the combiner
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.angel_woolf_ph_chromatic">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">angel_woolf_ph_chromatic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ph_shifters=None,</span> <span class="pre">include_masks=False,</span> <span class="pre">offset=True,</span> <span class="pre">tap_ratio=None,</span> <span class="pre">Mc=Matrix([</span> <span class="pre">[</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">5.96043014685912e+35*sqrt(-3.11899173008594e-27*lambda</span> <span class="pre">+</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">-</span> <span class="pre">2.17053912230413e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">+</span> <span class="pre">1.9282898951409e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">-</span> <span class="pre">8.97370643504022e-16*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">+</span> <span class="pre">2.30849483140184e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">+</span> <span class="pre">1.49124427302617e-33)*sqrt(5.77997551361171e-27*lambda</span> <span class="pre">-</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">+</span> <span class="pre">2.40871778439492e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">-</span> <span class="pre">2.39874630703312e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">+</span> <span class="pre">1.26391490908348e-15*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">3.71594217139645e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">3.25387788553213e-33),</span> <span class="pre">-5.96043014685912e+35*sqrt(3.11899173008594e-27*lambda</span> <span class="pre">-</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">+</span> <span class="pre">2.17053912230413e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">-</span> <span class="pre">1.9282898951409e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">+</span> <span class="pre">8.97370643504022e-16*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">2.30849483140184e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">1.48545535819313e-33)*sqrt(5.77997551361171e-27*lambda</span> <span class="pre">-</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">+</span> <span class="pre">2.40871778439492e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">-</span> <span class="pre">2.39874630703312e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">+</span> <span class="pre">1.26391490908348e-15*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">3.71594217139645e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">3.25387788553213e-33)*exp(-I*(pi*(8385360298.472*lambda</span> <span class="pre">+</span> <span class="pre">1.2036866257e+36*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">-</span> <span class="pre">2.73368521128e+31*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">+</span> <span class="pre">2.003471800676e+26*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">-</span> <span class="pre">3.770537163354e+20*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">1.7476266395813e+15*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">8914.38427432924)/180</span> <span class="pre">-</span> <span class="pre">pi))],</span> <span class="pre">[5.96043014685912e+35*sqrt(3.11899173008594e-27*lambda</span> <span class="pre">-</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">+</span> <span class="pre">2.17053912230413e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">-</span> <span class="pre">1.9282898951409e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">+</span> <span class="pre">8.97370643504022e-16*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">2.30849483140184e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">1.48545535819313e-33)*sqrt(5.77997551361171e-27*lambda</span> <span class="pre">-</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">+</span> <span class="pre">2.40871778439492e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">-</span> <span class="pre">2.39874630703312e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">+</span> <span class="pre">1.26391490908348e-15*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">3.71594217139645e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">3.25387788553213e-33)*exp(I*(pi*(8385360298.472*lambda</span> <span class="pre">+</span> <span class="pre">1.2036866257e+36*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">-</span> <span class="pre">2.73368521128e+31*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">+</span> <span class="pre">2.003471800676e+26*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">-</span> <span class="pre">3.770537163354e+20*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">1.7476266395813e+15*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">8914.38427432924)/180</span> <span class="pre">-</span> <span class="pre">pi)),</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">5.96043014685912e+35*sqrt(-3.11899173008594e-27*lambda</span> <span class="pre">+</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">-</span> <span class="pre">2.17053912230413e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">+</span> <span class="pre">1.9282898951409e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">-</span> <span class="pre">8.97370643504022e-16*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">+</span> <span class="pre">2.30849483140184e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">+</span> <span class="pre">1.49124427302617e-33)*sqrt(5.77997551361171e-27*lambda</span> <span class="pre">-</span> <span class="pre">(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**6</span> <span class="pre">+</span> <span class="pre">2.40871778439492e-5*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**5</span> <span class="pre">-</span> <span class="pre">2.39874630703312e-10*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**4</span> <span class="pre">+</span> <span class="pre">1.26391490908348e-15*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**3</span> <span class="pre">-</span> <span class="pre">3.71594217139645e-21*(lambda</span> <span class="pre">+</span> <span class="pre">8.0e-8)**2</span> <span class="pre">-</span> <span class="pre">3.25387788553213e-33)]]),</span> <span class="pre">input_ph_shifters=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#angel_woolf_ph_chromatic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.angel_woolf_ph_chromatic" title="Permalink to this definition">¶</a></dt>
+<dd><p>optional :
+ph_shifters : a list of phase shifters in between the 2 stages</p>
+<blockquote>
+<div><p>(eg: for kernel-nuller ph_shifters=[0, sp.pi/2])</p>
+</div></blockquote>
+<dl class="simple">
+<dt>include_masks: If true, the output will include bright, dark and photometric masks</dt><dd><p>selecting the relevnant outputs</p>
+</dd>
+</dl>
+<p>Mc          : The chromatic combiner model default: M_KG</p>
+<p>in: 4
+out: 8 (ph0, ph1, bright0, dark0, dark1, bright1, ph2, ph3)
+symbols:</p>
+<blockquote>
+<div><p>sigma  : the photometric ratio (in intensity)
+phi_0   : the phase shifter1
+phi_1   : the phase shifter2</p>
+</div></blockquote>
+<p>Build a bracewell combiner with photometric outputs.</p>
+<p>Returns: the sympy.Matrix of the combiner
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.bracewell_ph">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">bracewell_ph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_masks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tap_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#bracewell_ph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.bracewell_ph" title="Permalink to this definition">¶</a></dt>
+<dd><p>in: 2
+out: 4 (ph0, bright, dark, ph1)
+symbols:</p>
+<blockquote>
+<div><p>sigma  : the photometric ratio (in intensity)</p>
+</div></blockquote>
+<p>Build a bracewell combiner with photometric outputs.</p>
+<p>Returns: the sympy.Matrix of the combiner M
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.four2six">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">four2six</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#four2six"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.four2six" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.four_photometric">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">four_photometric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tap_ratio</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#four_photometric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.four_photometric" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.geom_ph_shifter">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">geom_ph_shifter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#geom_ph_shifter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.geom_ph_shifter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.kernel_nuller_3T">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">kernel_nuller_3T</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_masks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tap_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#kernel_nuller_3T"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.kernel_nuller_3T" title="Permalink to this definition">¶</a></dt>
+<dd><p>optional :
+ph_shifters : a list of phase shifters in between the 2 stages</p>
+<blockquote>
+<div><p>(eg: for kernel-nuller ph_shifters=[0, sp.pi/2])</p>
+</div></blockquote>
+<dl class="simple">
+<dt>include_masks: If true, the output will include bright, dark and photometric masks</dt><dd><p>selecting the relevant outputs</p>
+</dd>
+</dl>
+<p>in: 4
+out: 8 (ph0, ph1, bright0, dark0, dark1, bright1, ph2, ph3)
+symbols:</p>
+<blockquote>
+<div><p>sigma  : the photometric ratio (in intensity)
+phi_0   : the phase shifter1
+phi_1   : the phase shifter2</p>
+</div></blockquote>
+<p>Build a bracewell combiner with photometric outputs.</p>
+<p>Returns: the sympy.Matrix of the combiner
+Free symbols can be retrieved in list(M.free_symbols)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.ph_shifter">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">ph_shifter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#ph_shifter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.ph_shifter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.piston2phase">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">piston2phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#piston2phase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.piston2phase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.combiners.test_combiners">
+<span class="sig-prename descclassname"><span class="pre">scifysim.combiners.</span></span><span class="sig-name descname"><span class="pre">test_combiners</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiners.html#test_combiners"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiners.test_combiners" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.confconverter.html" class="btn btn-neutral float-right" title="scifysim.confconverter module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.combiner.html" class="btn btn-neutral float-left" title="scifysim.combiner module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

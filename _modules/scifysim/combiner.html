@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scifysim.combiner &#8212; SCIFYsim 0.2.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.combiner</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scifysim.combiner</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scifysim</span> <span class="k">as</span> <span class="nn">sf</span>
+<span class="kn">import</span> <span class="nn">kernuller</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="combiner"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner">[docs]</a><span class="k">class</span> <span class="nc">combiner</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">expr</span><span class="p">,</span> <span class="n">thesubs</span><span class="p">,</span>
+                 <span class="n">mask_bright</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">mask_dark</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">mask_photometric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">lamb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">Na</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">expr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bright</span> <span class="o">=</span> <span class="n">mask_bright</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dark</span> <span class="o">=</span> <span class="n">mask_dark</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">photometric</span> <span class="o">=</span> <span class="n">mask_photometric</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseline_subs</span> <span class="o">=</span> <span class="n">thesubs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        
+        <span class="c1">#X = sp.MatrixSymbol(&#39;X&#39;, 2, 4)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;X:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Na</span><span class="p">),</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;Y:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Na</span><span class="p">),</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xm</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]])</span>
+
+        <span class="n">lamb</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;lambda&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">],</span>
+                       <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">]])</span>
+        <span class="c1"># The error phasor:</span>
+        <span class="c1"># Prone to change: vectorization of lambda would require e(lambda) in sympy!</span>
+        <span class="c1"># Will need to build that instead of the scipy.interp1D</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;e:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Na</span><span class="p">),</span> <span class="n">real</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">vec2diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="c1"># The source amplitude</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Source amplitude is not managed here</span>
+        <span class="n">thesubs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+
+
+        <span class="n">geomphaseterm</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">I</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Xm</span><span class="nd">@self</span><span class="o">.</span><span class="n">A</span>
+        <span class="c1"># The pointing matrix:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">term</span><span class="p">)</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">geomphaseterm</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">T_clean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="nd">@self</span><span class="o">.</span><span class="n">E</span><span class="o">@</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">T_subs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_clean</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">thesubs</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">encaps</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">ee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T_subs</span><span class="p">)</span>
+        <span class="c1"># Here, lambdifying for the parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encaps</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Xm</span> <span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">),</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numexpr&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># For the chromatic combiners</span>
+            
+<div class="viewcode-block" id="combiner.chromatic_matrix"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.chromatic_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">chromatic_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Work in progress. This helps define the chromatic behaviour of the combiner even</span>
+<span class="sd">        when it is define achromatic.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        * wl      : An array of wavelengths for which to compute the matrix</span>
+<span class="sd">        </span>
+<span class="sd">        Result:</span>
+<span class="sd">        -------</span>
+<span class="sd">        Several matrices are stored in `combiner`</span>
+<span class="sd">        * self.Mcs    : a symbolic formula for the combiner matrix (2D sympy array)</span>
+<span class="sd">                        as a function of the wavenumber k</span>
+<span class="sd">        * self.Mcl    : The matrix as a lambda-function of (k, 0) </span>
+<span class="sd">                            The extra 0 parameter passed helps to cast the correct shape</span>
+<span class="sd">        * self.Mcn    : The numpy ndarray of the matrix of interest</span>
+<span class="sd">                            shape is (n_wl, n_out, n_in)</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Defining a chromatic version of the matrix</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+        <span class="n">mysubs</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">k</span><span class="p">)]</span>
+        <span class="n">ks</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">wl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Mcs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">mysubs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">lambdifyz</span><span class="p">((</span><span class="n">k</span><span class="p">,),</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mcs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Mcn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Comuputed chromatic combiner matrix with the following shape:&quot;</span><span class="p">)</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcn</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="combiner.pseudo_chromatic_matrix"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.pseudo_chromatic_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">pseudo_chromatic_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Work in progress. This helps define the chromatic behaviour of the combiner even</span>
+<span class="sd">        when it is define achromatic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Defining a chromatic version of the matrix</span>
+        <span class="n">sigma</span><span class="p">,</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="o">.</span><span class="n">free_symbols</span>
+        <span class="n">lamb</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;lambda&quot;</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+        <span class="n">mysubs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">k</span><span class="p">)]</span>
+        <span class="n">ks</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">wl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Mcs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">mysubs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">lambdifyz</span><span class="p">((</span><span class="n">k</span><span class="p">,),</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mcs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Mcn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Comuputed chromatic combiner matrix with the following shape:&quot;</span><span class="p">)</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcn</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
+        
+        
+<div class="viewcode-block" id="combiner.refresh_array"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.refresh_array">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thearray</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method recomputes a disposable encapsulated function for the give pointing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">thesubs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xm</span><span class="p">,</span> <span class="n">thearray</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+            <span class="n">thesubs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">symbol</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">T_pointed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_subs</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">thesubs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointed_encaps</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">ee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T_pointed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointed_encaps</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">),</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numexpr&quot;</span><span class="p">)</span></div>
+        
+                
+<div class="viewcode-block" id="combiner.angel_woolf"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.angel_woolf">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">angel_woolf</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">ph_shifters</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)):</span>
+        
+        <span class="n">M</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dark</span><span class="p">,</span> <span class="n">photo</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">angel_woolf_ph</span><span class="p">(</span><span class="n">ph_shifters</span><span class="o">=</span><span class="n">ph_shifters</span><span class="p">,</span>
+                                                            <span class="n">include_masks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1">#Photometric tap</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Here, forced to assume I have only one symbol: sigma&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">M</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">:</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="n">symbol</span>
+        
+        <span class="n">thesigma</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;photometric_tap&quot;</span><span class="p">)</span>
+        <span class="n">thesubs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">thesigma</span><span class="p">)]</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">thesubs</span><span class="p">,</span>
+                  <span class="n">mask_bright</span><span class="o">=</span><span class="n">bright</span><span class="p">,</span>
+                  <span class="n">mask_dark</span><span class="o">=</span><span class="n">dark</span><span class="p">,</span>
+                  <span class="n">mask_photometric</span><span class="o">=</span><span class="n">photo</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span></div>
+<div class="viewcode-block" id="combiner.from_config"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.from_config">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">ph_shifters</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        - file         : The config file</span>
+<span class="sd">        - ph_shifters  : Phase shifters between first and second stage default: (0,0)</span>
+<span class="sd">                        These correspond to the &quot;internal modulation&quot;</span>
+
+<span class="sd">        Config keywords:</span>
+<span class="sd">        ----------------</span>
+
+<span class="sd">        * ``configuration.combiner`` 						Name of the combiner architecture</span>
+<span class="sd">        * ``configuration.photometric_tap`` 		Fraction of light (power) sent to the photometric channels</span>
+
+<span class="sd">        * ``configuration.input_phase_offset``	Additional phase offset as part of the design of the combiner</span>
+
+<span class="sd">        Accepted combiners:</span>
+<span class="sd">        -------------------</span>
+<span class="sd">        Managed by ``configuration.combiner``</span>
+
+<span class="sd">        - angel_woolf_ph,</span>
+<span class="sd">        - VIKiNG</span>
+<span class="sd">        - GLINT</span>
+<span class="sd">        - GRAVITY</span>
+<span class="sd">        - bracewell_ph</span>
+<span class="sd">        - bracewell</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hasph</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">lamb</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">thesubs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">combiner_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;combiner&quot;</span><span class="p">)</span>
+        <span class="n">tap_ratio</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;photometric_tap&quot;</span><span class="p">)</span>
+        <span class="n">phase_offset_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;input_phase_offset&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Type of input phase offset</span>
+        <span class="k">if</span> <span class="n">phase_offset_type</span> <span class="o">==</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
+            <span class="n">input_offset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">phase_offset_type</span> <span class="o">==</span> <span class="s2">&quot;achromatic&quot;</span><span class="p">:</span>
+            <span class="n">input_offset</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">phase_offset_type</span> <span class="o">==</span> <span class="s2">&quot;geometric&quot;</span><span class="p">:</span>
+            <span class="n">wavelength</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;photon&quot;</span><span class="p">,</span> <span class="s2">&quot;lambda_cen&quot;</span><span class="p">)</span>
+            <span class="n">piston</span> <span class="o">=</span> <span class="n">wavelength</span><span class="o">/</span><span class="mi">4</span> <span class="c1"># this gives pi/2 for the central wavelength</span>
+            <span class="n">p</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">aphi</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">lamb</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">aphi</span>
+            <span class="n">input_offset</span> <span class="o">=</span> <span class="n">aphi</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">p</span><span class="p">,</span> <span class="n">piston</span><span class="p">)])</span>
+            <span class="c1">#phase = sf.combiners.piston2phase(piston,lamb)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Phase shift type not recognized&quot;</span><span class="p">)</span>
+        
+        <span class="n">coupler_techno</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;coupler_techno&quot;</span><span class="p">)</span>
+        <span class="c1">#(KG_MMI, Sharma_asym, Tepper_direct)</span>
+        <span class="k">if</span> <span class="n">coupler_techno</span> <span class="o">==</span> <span class="s2">&quot;KG_MMI&quot;</span><span class="p">:</span>
+            <span class="n">Mc</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">M_KG</span>
+        <span class="k">elif</span> <span class="n">coupler_techno</span> <span class="o">==</span> <span class="s2">&quot;Sharma_asym&quot;</span><span class="p">:</span>
+            <span class="n">Mc</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">M_Sharma</span>
+        <span class="k">elif</span> <span class="n">coupler_techno</span> <span class="o">==</span> <span class="s2">&quot;Tepper_direct&quot;</span><span class="p">:</span>
+            <span class="n">Mc</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">M_Tepper</span>
+        <span class="k">elif</span> <span class="n">coupler_techno</span> <span class="o">==</span> <span class="s2">&quot;perfect&quot;</span><span class="p">:</span>
+            <span class="n">Mc</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">pcoupler</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;combiner type not understood&quot;</span><span class="p">)</span>
+        
+            
+        <span class="c1"># Switch on combiner type</span>
+        <span class="k">if</span> <span class="n">combiner_type</span> <span class="o">==</span> <span class="s2">&quot;angel_woolf_ph&quot;</span><span class="p">:</span>
+            <span class="n">hasph</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">M</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dark</span><span class="p">,</span> <span class="n">photo</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">angel_woolf_ph</span><span class="p">(</span><span class="n">ph_shifters</span><span class="o">=</span><span class="n">ph_shifters</span><span class="p">,</span>
+                                                            <span class="n">include_masks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tap_ratio</span><span class="o">=</span><span class="n">tap_ratio</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">combiner_type</span> <span class="o">==</span> <span class="s2">&quot;angel_woolf_ph_chromatic&quot;</span><span class="p">:</span>
+            <span class="n">hasph</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">M</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dark</span><span class="p">,</span> <span class="n">photo</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">angel_woolf_ph_chromatic</span><span class="p">(</span><span class="n">Mc</span><span class="o">=</span><span class="n">Mc</span><span class="p">,</span> <span class="n">ph_shifters</span><span class="o">=</span><span class="n">ph_shifters</span><span class="p">,</span>
+                                                            <span class="n">include_masks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tap_ratio</span><span class="o">=</span><span class="n">tap_ratio</span><span class="p">,</span>
+                                                            <span class="n">input_ph_shifters</span><span class="o">=</span><span class="n">input_offset</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">lamb</span><span class="p">,</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">free_symbols</span>
+        <span class="k">elif</span> <span class="n">combiner_type</span> <span class="o">==</span> <span class="s2">&quot;GLINT&quot;</span><span class="p">:</span>
+            <span class="n">hasph</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">M</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dark</span><span class="p">,</span> <span class="n">photo</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">GLINT</span><span class="p">(</span><span class="n">include_masks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                        <span class="n">tap_ratio</span><span class="o">=</span><span class="n">tap_ratio</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">combiner_type</span> <span class="o">==</span> <span class="s2">&quot;VIKiNG&quot;</span><span class="p">:</span>
+            <span class="n">hasph</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">M</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dark</span><span class="p">,</span> <span class="n">photo</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">VIKiNG</span><span class="p">(</span><span class="n">include_masks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                         <span class="n">tap_ratio</span><span class="o">=</span><span class="n">tap_ratio</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">combiner_type</span> <span class="o">==</span>  <span class="s2">&quot;bracewell_ph&quot;</span><span class="p">:</span>
+            <span class="n">hasph</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">M</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dark</span><span class="p">,</span> <span class="n">photo</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">bracewell_ph</span><span class="p">(</span><span class="n">ph_shifters</span><span class="o">=</span><span class="n">ph_shifters</span><span class="p">,</span>
+                                                            <span class="n">include_masks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">combiner_type</span> <span class="o">==</span> <span class="s2">&quot;bracewell&quot;</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Simple bracewell not implemented yet&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">combiner_type</span> <span class="o">==</span> <span class="s2">&quot;GRAVITY&quot;</span><span class="p">:</span>
+            <span class="n">hasph</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">M</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">GRAVITY</span><span class="p">(</span><span class="n">Mc</span><span class="o">=</span><span class="n">Mc</span><span class="p">,</span> <span class="n">ph_shifter_type</span><span class="o">=</span><span class="n">phase_offset_type</span><span class="p">,</span><span class="n">wl</span><span class="o">=</span><span class="n">wavelength</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">combiner_type</span> <span class="o">==</span> <span class="s2">&quot;KN_3T&quot;</span><span class="p">:</span>
+            <span class="n">hasph</span><span class="o">=</span><span class="kc">False</span>
+            <span class="n">M</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dark</span><span class="p">,</span> <span class="n">photometric</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiners</span><span class="o">.</span><span class="n">kernel_nuller_3T</span><span class="p">(</span><span class="n">include_masks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Nuller type not recognized&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Nuller type not found&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hasph</span><span class="p">:</span>
+            <span class="n">bright</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">dark</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">photo</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">thesubs</span><span class="p">,</span>
+                 <span class="n">mask_bright</span><span class="o">=</span><span class="n">bright</span><span class="p">,</span>
+                 <span class="n">mask_dark</span><span class="o">=</span><span class="n">dark</span><span class="p">,</span>
+                 <span class="n">mask_photometric</span><span class="o">=</span><span class="n">photo</span><span class="p">,</span>
+                 <span class="n">lamb</span><span class="o">=</span><span class="n">lamb</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span></div></div>
+<div class="viewcode-block" id="test_combiner"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.test_combiner">[docs]</a><span class="k">def</span> <span class="nf">test_combiner</span><span class="p">(</span><span class="n">combiner</span><span class="p">,</span> <span class="n">nwl</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">kernuller</span><span class="o">.</span><span class="n">mas2rad</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">hr</span><span class="p">,</span> <span class="n">hr</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">hr</span><span class="p">,</span> <span class="n">hr</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">combiner</span><span class="o">.</span><span class="n">Na</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">kernuller</span><span class="o">.</span><span class="n">VLTI</span>
+    <span class="k">elif</span> <span class="n">combiner</span><span class="o">.</span><span class="n">Na</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">kernuller</span><span class="o">.</span><span class="n">CHARA</span>
+        
+    <span class="c1">#Prone to change: wavelength vecorization incomplete</span>
+    <span class="n">es</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">combiner</span><span class="o">.</span><span class="n">Na</span><span class="p">)</span>
+    <span class="c1"># This one is for vectorized wavelength (only yet assumes no injection-wl dependency)</span>
+    <span class="c1">#amap = combiner.encaps(xx[:,:,None], yy[:,:,None], array.flatten(), 2*np.pi/3.5e-6*np.ones(10)[None,None,:],</span>
+    <span class="c1">#                      np.ones(combiner.Na))</span>
+    <span class="n">lambda_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">3.0e-6</span><span class="p">,</span> <span class="mf">4.2e-6</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">amap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">combiner</span><span class="o">.</span><span class="n">encaps</span><span class="p">(</span><span class="n">xx</span><span class="p">[:,:],</span> <span class="n">yy</span><span class="p">[:,:],</span> <span class="n">array</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">thelambda</span><span class="p">])[</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,:],</span>
+                          <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">combiner</span><span class="o">.</span><span class="n">Na</span><span class="p">))</span> <span class="k">for</span> <span class="n">thelambda</span> <span class="ow">in</span> <span class="n">lambda_range</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">amap</span></div>
+<div class="viewcode-block" id="test_angel_woolf"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.test_angel_woolf">[docs]</a><span class="k">def</span> <span class="nf">test_angel_woolf</span><span class="p">():</span>
+    <span class="n">fpath</span> <span class="o">=</span> <span class="s2">&quot;/home/rlaugier/Documents/hi5/SCIFYsim/scifysim/config/default_new_4T.ini&quot;</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Hard path here!&quot;</span><span class="p">)</span>
+    <span class="n">theconfig</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">parsefile</span><span class="o">.</span><span class="n">parse_file</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+    <span class="n">acombiner</span> <span class="o">=</span> <span class="n">combiner</span><span class="o">.</span><span class="n">angel_woolf</span><span class="p">(</span><span class="n">theconfig</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;free symbols initial&quot;</span><span class="p">,</span><span class="n">acombiner</span><span class="o">.</span><span class="n">T_clean</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;free symbols&quot;</span><span class="p">,</span><span class="n">acombiner</span><span class="o">.</span><span class="n">T_subs</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">)</span>
+    <span class="n">amap</span> <span class="o">=</span> <span class="n">test_combiner</span><span class="p">(</span><span class="n">acombiner</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">amap</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">amap</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.combiner</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Romain Laugier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

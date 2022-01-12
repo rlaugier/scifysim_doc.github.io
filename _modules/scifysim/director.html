@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scifysim.director &#8212; SCIFYsim 0.2.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.director</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scifysim.director</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">kernuller</span>
+<span class="kn">import</span> <span class="nn">scifysim</span> <span class="k">as</span> <span class="nn">sf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">kernuller</span> <span class="kn">import</span> <span class="n">mas2rad</span><span class="p">,</span> <span class="n">rad2mas</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">from</span> <span class="nn">pdb</span> <span class="kn">import</span> <span class="n">set_trace</span>
+
+<span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
+
+<span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="simulator"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator">[docs]</a><span class="k">class</span> <span class="nc">simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                 <span class="c1">#location=None, array=None,</span>
+                <span class="c1">#tarname=&quot;No name&quot;, tarpos=None, n_spec_ch=100):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The object meant to assemble and operate the simulator. Construct the injector object from a config file</span>
+<span class="sd">        file      : A pre-parsed config file</span>
+<span class="sd">        fpath     : The path to a config file</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">scifysim</span> <span class="kn">import</span> <span class="n">parsefile</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Need to read the file&quot;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">fpath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="p">,</span> <span class="s2">&quot;Need to proved at least</span><span class="se">\</span>
+<span class="s2">                                        a path to a config file&quot;</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Loading the parsefile module&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">parsefile</span><span class="o">.</span><span class="n">parse_file</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;file provided&quot;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">parsefile</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">),</span> \
+                             <span class="s2">&quot;The file must be a ConfigParser object&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">file</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">array_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;config&quot;</span><span class="p">)</span>
+        <span class="n">raw_array</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;kernuller.</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array_config</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;order&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">raw_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_spec_ch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;photon&quot;</span><span class="p">,</span> <span class="s2">&quot;n_spectral_science&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">multi_dish</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;multi_dish&quot;</span><span class="p">)</span>
+        
+
+        <span class="c1">#self.obs = sf.observatory.observatory(self.array, location=location)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="kc">None</span>
+        
+<div class="viewcode-block" id="simulator.prepare_observatory"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_observatory">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_observatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preprare the observatory object for the simulator.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">theconfig</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="k">elif</span> <span class="n">fpath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">theconfig</span> <span class="o">=</span> <span class="n">parsefile</span><span class="o">.</span><span class="n">parse_file</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Using the config file of the simulator for the observatory&quot;</span><span class="p">)</span>
+            <span class="n">theconfig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        
+        <span class="c1"># Defining the target</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tarname</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tarpos</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tarname</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">&quot;coords&quot;</span> <span class="ow">in</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tarname</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">)</span>
+            <span class="n">mycoords</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">SkyCoord</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tarname</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">units</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="p">(</span><span class="n">mycoords</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Did not understand the mode for target&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provide a valid mode for the target creation&quot;</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">observatory</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">theconfig</span><span class="p">)</span>
+        
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Undecided whether to store array in simulator or observatory&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">statlocs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">)</span></div>
+        
+
+    
+    
+    
+<div class="viewcode-block" id="simulator.prepare_injector"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_injector">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_injector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">ntelescopes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tt_correction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">no_piston</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lambda_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">NA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">ncore</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">focal_hrange</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">focal_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">pscale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">res</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+                 <span class="n">crop</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span>
+                 <span class="n">injector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Either: </span>
+<span class="sd">            * Provide all parameters</span>
+<span class="sd">            * Provide a config file</span>
+<span class="sd">            * provide the injector</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;tt_correction not implemented&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tt_correction</span> <span class="o">=</span> <span class="n">tt_correction</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;no_piston not implemented&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">no_piston</span> <span class="o">=</span> <span class="n">no_piston</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">injector</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">from_config_file</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="n">fpath</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+            <span class="c1"># Recovering some </span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">injector</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No file provided, please prepare injector manually&quot;</span><span class="p">)</span>
+                <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Then pass it as kwarg&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">injector</span> <span class="o">=</span> <span class="n">injector</span>
+
+        <span class="c1"># Recovering some high level parameters:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ntelescopes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">ntelescopes</span>
+        <span class="c1"># Preparing science spectral chanels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                               <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                               <span class="bp">self</span><span class="o">.</span><span class="n">n_spec_ch</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        
+        <span class="c1"># Peparing the vigneting function for the field of view and diffuse sources</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injection_vigneting</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">crop</span><span class="p">)</span>
+        
+        <span class="k">pass</span></div>
+    
+    
+<div class="viewcode-block" id="simulator.prepare_combiner"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_combiner">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_combiner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructs self.combiner</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">combiner_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span><span class="s2">&quot;combiner&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ph_tap</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;photometric_tap&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        
+        
+<div class="viewcode-block" id="simulator.prepare_fringe_tracker"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_fringe_tracker">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_fringe_tracker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fringe_tracker</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">fringe_tracker</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span></div>
+<div class="viewcode-block" id="simulator.prepare_sources"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_sources">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepares a src object containing star, planet, sky and UT.</span>
+<span class="sd">        file     : A parsed config file (default: None will reuse the config file in self.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">star_planet_target</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+<div class="viewcode-block" id="simulator.prepare_integrator"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_integrator">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_integrator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepall</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">n_sources</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">infinite_well</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepares the integraro object that rules the pixel properties</span>
+<span class="sd">        of the detector.</span>
+<span class="sd">        config    : A parsed config file (default: None will reuse the config file in self.)</span>
+<span class="sd">        keepall   : [boolean] Whether to keep each of the steps accumulated.</span>
+<span class="sd">                            False is recommended for faster computation and memory efficiency</span>
+<span class="sd">        n_sources : Number of sources sequencially accumulated. (deprecated, do not</span>
+<span class="sd">                            rely on this number)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">spectrograph</span><span class="o">.</span><span class="n">integrator</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+                                                     <span class="n">keepall</span><span class="o">=</span><span class="n">keepall</span><span class="p">,</span>
+                                                     <span class="n">n_sources</span><span class="o">=</span><span class="n">n_sources</span><span class="p">,</span>
+                                                     <span class="n">infinite_well</span><span class="o">=</span><span class="n">infinite_well</span><span class="p">)</span></div>
+        
+        
+<div class="viewcode-block" id="simulator.prepare_spectrograph"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_spectrograph">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_spectrograph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_chan</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepares the spectrograph object that maps the light over the detector.</span>
+<span class="sd">        file     : A parsed config file (default: None will reuse the config file in self.)</span>
+<span class="sd">        n_chan   : The number of outputs from the chip. If None: tries to get it from</span>
+<span class="sd">                 the shape of self.combiner.M</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="k">if</span> <span class="n">n_chan</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_chan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spectro</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">spectrograph</span><span class="o">.</span><span class="n">spectrograph</span><span class="p">(</span><span class="n">config</span><span class="p">,</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                                                 <span class="n">n_chan</span><span class="o">=</span><span class="n">n_chan</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="simulator.prepare_corrector"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_corrector">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_corrector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepare the corrector object for the simulator, based</span>
+<span class="sd">        on a config file.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        config   : Either:</span>
+<span class="sd">                    - None (default) to use the simulators config</span>
+<span class="sd">                    - A parsed config file</span>
+<span class="sd">        optimize : Boolean. If True, will optimize both depth and shape</span>
+<span class="sd">        apply    : Boolean. If True, apply the optimization </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">correctors</span><span class="o">.</span><span class="n">corrector</span><span class="p">(</span><span class="n">config</span><span class="p">,</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">optimize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">asol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">tune_static</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                                              <span class="n">combiner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="n">optimize</span><span class="p">)</span>
+            <span class="n">sol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">tune_static_shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                             <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="p">,</span>
+                             <span class="n">sync_params</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+                                         <span class="p">(</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">])],</span>
+                             <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        
+        
+
+
+<div class="viewcode-block" id="simulator.make_metrologic_exposure"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_metrologic_exposure">[docs]</a>    <span class="k">def</span> <span class="nf">make_metrologic_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span>
+                                 <span class="n">texp</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">t_co</span><span class="o">=</span><span class="mf">2.0e-3</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">monitor_phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+                                 <span class="n">perfect</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Warning: at the moment, this assumes pointing has already been performed.</span>
+<span class="sd">        </span>
+<span class="sd">        Simulate an exposure with source of interest and sources of noise</span>
+<span class="sd">        interest  : sf.sources.resolved_source object representing the source of intereest (planet)</span>
+<span class="sd">        star      : sf.sources.resolved_source object representing the star</span>
+<span class="sd">        diffuse   : a list of sf.transmission_emission objects linked in a chain.</span>
+<span class="sd">        texp      : Exposure time (seconds)</span>
+<span class="sd">        t_co      : Coherence time (seconds) </span>
+<span class="sd">        monitor_phase : If true, will also record values of phase errors from injection and fringe tracking</span>
+<span class="sd">        </span>
+<span class="sd">        Chained diffuse objects are used both for transmission and thermal background. </span>
+<span class="sd">        Result is returned as an integrator object. Currently the integrator object is only a</span>
+<span class="sd">        vessel for the individual subexposures, and not used to do the integration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t_co</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">screen</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">step_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">texp</span><span class="o">/</span><span class="n">t_co</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">n_subexps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span>
+        <span class="c1">#taraltaz = self.obs.observatory_location.altaz(time, target=self.target)</span>
+        <span class="c1">#taraltaz, tarPA = self.obs.get_position(self.target, time)</span>
+        
+        <span class="c1">#Pointing should be done already</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_xx_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">yy</span><span class="p">)</span>
+        <span class="c1">## Preparing the sources</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">diffuse</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;xx_r&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">asource</span> <span class="ow">in</span> <span class="n">diffuse</span><span class="p">:</span>
+                <span class="n">asource</span><span class="o">.</span><span class="n">xx_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_xx_r</span>
+                <span class="n">asource</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_yy_r</span>
+                <span class="n">aspectrum</span> <span class="o">=</span> <span class="n">asource</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> \
+                                <span class="o">*</span> <span class="n">asource</span><span class="o">.</span><span class="n">get_own_brightness</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span> \
+                <span class="c1"># Collecting surface appears here</span>
+                <span class="n">vigneted_spectrum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">vigneted_spectrum</span><span class="p">(</span><span class="n">aspectrum</span><span class="p">,</span>
+                                                                <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                                                                <span class="n">t_co</span><span class="p">)</span>
+                <span class="n">asource</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="n">vigneted_spectrum</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">perfect_injection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ntelescopes</span><span class="p">))</span>
+        <span class="n">dummy_collected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static</span> <span class="o">=</span>  <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">asource</span> <span class="ow">in</span> <span class="n">diffuse</span><span class="p">:</span>
+            <span class="c1"># vigneted_spectrum also handles the integration in time and space</span>
+            <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">asource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">dummy_collected</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">static_output</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asource</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                
+        
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Currently no vigneting (requires a normalization of vigneting)&quot;</span><span class="p">)</span>
+        <span class="n">filtered_starlight</span> <span class="o">=</span> <span class="n">diffuse</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="c1"># collected will convert from [ph / s /m^2] to [ph]</span>
+        <span class="n">collected</span> <span class="o">=</span> <span class="n">filtered_starlight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">collecting</span> <span class="o">*</span> <span class="n">t_co</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">planetlight</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Ugly management of injection/tracking&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span><span class="p">)):</span>
+            <span class="n">injected</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">get_efunc</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+            <span class="n">tracked</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fringe_tracker</span><span class="o">.</span><span class="n">phasor</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">perfect</span><span class="p">:</span>
+                <span class="n">injected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">best_injection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+                <span class="n">tracked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">tracked</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">monitor_phase</span><span class="p">:</span>
+                <span class="c1"># Here we take it only at the shortest wl</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">tracked</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">injected</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">injected</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">injected</span> <span class="o">=</span> <span class="p">(</span><span class="n">injected</span> <span class="o">*</span> <span class="n">tracked</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+            <span class="n">combined_starlight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">collected</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">combined_starlight</span><span class="p">)</span>
+            <span class="n">combined_planetlight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">interest</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">collected</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">planetlight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">combined_planetlight</span><span class="p">)</span>
+            
+            <span class="c1"># incoherently combining over sources</span>
+            <span class="c1"># Warning: modifying the array</span>
+            <span class="c1"># combined = np.sum(np.abs(combined*np.conjugate(combined)), axis=(2))</span>
+            <span class="c1"># integrator.accumulate(combined)</span>
+            
+        <span class="c1">#mean, std = self.integrator.compute_stats()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">planetlight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">planetlight</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">perfect</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Idealized injection&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;### WARNING: idealized injection used&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean phasor : &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">injected</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span></div>
+<div class="viewcode-block" id="simulator.combine_light"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_light">[docs]</a>    <span class="k">def</span> <span class="nf">combine_light</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asource</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">collected</span><span class="p">,</span>
+                      <span class="n">dosum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the combination for a discretized light source object </span>
+<span class="sd">        for all the wavelengths of interest.</span>
+<span class="sd">        Returns the intensity in all outputs at all wavelengths.</span>
+<span class="sd">        inputs:</span>
+<span class="sd">        asource     : Source object or transmission_emission object</span>
+<span class="sd">                        including ss and xx_r attributes</span>
+<span class="sd">        injected    : complex phasor for the instrumental errors</span>
+<span class="sd">        input_arra  : The projected geometric configuration of the array</span>
+<span class="sd">                        use observatory.get_projected_array()</span>
+<span class="sd">        collected   : The intensity across wavelength and the difference source origins</span>
+<span class="sd">        dtype       : The data type to use (use np.float32 for maps)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Ideally, this collected operation should be factorized over all subexps</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">asource</span><span class="o">.</span><span class="n">ss</span> <span class="o">*</span> <span class="n">collected</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">anamp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">asource</span><span class="o">.</span><span class="n">xx_r</span><span class="p">,</span> <span class="n">asource</span><span class="o">.</span><span class="n">yy_r</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+                <span class="n">geom_phasor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometric_phasor</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">input_array</span><span class="p">)</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">injected</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">anamp</span><span class="p">)</span>
+                <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">anamp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">asource</span><span class="o">.</span><span class="n">xx_r</span><span class="p">,</span> <span class="n">asource</span><span class="o">.</span><span class="n">yy_r</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+                <span class="n">geom_phasor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometric_phasor</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">input_array</span><span class="p">)</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_32</span><span class="p">(</span><span class="n">injected</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">anamp</span><span class="p">)</span>
+                <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dosum</span><span class="p">:</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#set_trace()</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">outputs</span></div>
+    
+<div class="viewcode-block" id="simulator.combine_light_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_light_dask">[docs]</a>    <span class="k">def</span> <span class="nf">combine_light_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asource</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">collected</span><span class="p">,</span>
+                      <span class="n">dosum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the combination for a discretized light source object </span>
+<span class="sd">        for all the wavelengths of interest. The computation is done </span>
+<span class="sd">        out of core using dask.</span>
+<span class="sd">        Returns the intensity in all outputs at all wavelengths.</span>
+<span class="sd">        inputs:</span>
+<span class="sd">        asource     : Source object or transmission_emission object</span>
+<span class="sd">                        including ss and xx_r attributes as dask arrays</span>
+<span class="sd">        injected    : complex phasor for the instrumental errors</span>
+<span class="sd">        input_array  : The projected geometric configuration of the array</span>
+<span class="sd">                        use observatory.get_projected_array()</span>
+<span class="sd">        collected   : Dask version of the intensity across wavelength</span>
+<span class="sd">                        and the difference source origins</span>
+<span class="sd">        map_index   : The index of the pointing in the sequence. Mostly use for numbering</span>
+<span class="sd">                        of the temporary disk file</span>
+<span class="sd">        </span>
+<span class="sd">        # Note that in &quot;dask&quot; mode the `collected` and `source.ss` are expected as dask arrays</span>
+<span class="sd">        # </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Ideally, this collected operation should be factorized over all subexps</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">asource</span><span class="o">.</span><span class="n">ss</span> <span class="o">*</span> <span class="n">collected</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1">#xx_r = da.from_array(asource.xx_r)</span>
+        <span class="c1">#yy_r = da.from_array(asource.yy_r)</span>
+        <span class="c1">#damplitude = da.from_array(amplitude)</span>
+        <span class="n">geometric_phasor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometric_phasor_dask</span><span class="p">(</span><span class="n">asource</span><span class="o">.</span><span class="n">xx_r</span><span class="p">,</span>
+                                                      <span class="n">asource</span><span class="o">.</span><span class="n">yy_r</span><span class="p">,</span>
+                                                      <span class="n">input_array</span><span class="p">)</span>
+        <span class="c1">#print(&quot;Computing and writing geometric_phasor&quot;, flush=True)</span>
+        <span class="n">da</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span><span class="n">geometric_phasor</span> <span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;/tmp/full_geometric_phasor_</span><span class="si">{</span><span class="n">map_index</span><span class="si">}</span><span class="s2">.zarr&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1">#print(&quot;Done&quot;, flush=True)</span>
+        <span class="c1">#print(&quot;Loading&quot;, flush=True)</span>
+        <span class="n">geometric_phasor</span> <span class="o">=</span>  <span class="n">da</span><span class="o">.</span><span class="n">from_zarr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/tmp/full_geometric_phasor_</span><span class="si">{</span><span class="n">map_index</span><span class="si">}</span><span class="s2">.zarr&quot;</span><span class="p">)</span>
+        <span class="c1">#print(&quot;Done&quot;, flush=True)</span>
+        <span class="n">myinput</span> <span class="o">=</span> <span class="n">injected</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:]</span> <span class="o">*</span> <span class="n">geometric_phasor</span>
+        <span class="n">myinput</span> <span class="o">=</span> <span class="n">myinput</span> <span class="o">*</span> <span class="n">amplitude</span><span class="o">.</span><span class="n">T</span><span class="p">[:,:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;w o i, f w i -&gt; f w o&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="p">,</span> <span class="n">myinput</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dosum</span><span class="p">:</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">outputs</span></div>
+
+<div class="viewcode-block" id="simulator.combine_32"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_32">[docs]</a>    <span class="k">def</span> <span class="nf">combine_32</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst_phasor</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="kc">None</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the output INTENSITY based on the input AMPLITUDE</span>
+<span class="sd">        This version provides a result in np.float32 format for smaller</span>
+<span class="sd">        memory footprint (for maps)</span>
+<span class="sd">        inst_phasor   : The instrumental phasor to apply to the inputs</span>
+<span class="sd">                        dimension (n_wl, n_input)</span>
+<span class="sd">        geom_phasor   : The geometric phasor due to source location</span>
+<span class="sd">                        dimension (n_wl, n_input)</span>
+<span class="sd">        amplitude     : Complex amplitude of the spectrum of the source</span>
+<span class="sd">                        dimension (n_wl, n_src)</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#from pdb import set_trace</span>
+        <span class="k">if</span> <span class="n">amplitude</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">myinput</span> <span class="o">=</span> <span class="n">inst_phasor</span><span class="o">*</span><span class="n">geom_phasor</span><span class="o">*</span><span class="n">amplitude</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">output_amps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk,ik-&gt;ij&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">),</span> <span class="n">myinput</span><span class="p">)</span>
+        <span class="c1">#set_trace()</span>
+        <span class="k">return</span> <span class="n">output_amps</span></div>
+<div class="viewcode-block" id="simulator.combine"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst_phasor</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the output INTENSITY based on the input AMPLITUDE</span>
+<span class="sd">        inst_phasor   : The instrumental phasor to apply to the inputs</span>
+<span class="sd">                        dimension (n_wl, n_input)</span>
+<span class="sd">        geom_phasor   : The geometric phasor due to source location</span>
+<span class="sd">                        dimension (n_wl, n_input)</span>
+<span class="sd">        amplitude     : Complex amplitude of the spectrum of the source</span>
+<span class="sd">                        dimension (n_wl, n_src)</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">amplitude</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">myinput</span> <span class="o">=</span> <span class="n">inst_phasor</span><span class="o">*</span><span class="n">geom_phasor</span><span class="o">*</span><span class="n">amplitude</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">output_amps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk,ik-&gt;ij&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="p">,</span> <span class="n">myinput</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_amps</span></div>
+<div class="viewcode-block" id="simulator.geometric_phasor"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.geometric_phasor">[docs]</a>    <span class="k">def</span> <span class="nf">geometric_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">anarray</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the complex phasor corresponding to the locations</span>
+<span class="sd">        of the family of sources</span>
+<span class="sd">        alpha         : The coordinate matched to X in the array geometry</span>
+<span class="sd">        beta          : The coordinate matched to Y in the array geometry</span>
+<span class="sd">        anarray       : The array geometry (n_input, 2)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">anarray</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">phi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">b</span></div>
+<div class="viewcode-block" id="simulator.geometric_phasor_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.geometric_phasor_dask">[docs]</a>    <span class="k">def</span> <span class="nf">geometric_phasor_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">betas</span><span class="p">,</span> <span class="n">anarray</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the complex phasor corresponding to the locations</span>
+<span class="sd">        of the family of sources</span>
+<span class="sd">        alpha         : The coordinate matched to X in the array geometry</span>
+<span class="sd">                        as a dask array (field positions)</span>
+<span class="sd">        beta          : The coordinate matched to Y in the array geometry</span>
+<span class="sd">                        as a dask array (field positions)</span>
+<span class="sd">        anarray       : The array geometry (n_input, 2)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># making a dask array of field positions (nfield, 2)</span>
+        <span class="n">alphabeta</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">((</span><span class="n">alphas</span><span class="p">,</span> <span class="n">betas</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">da</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span> <span class="s2">&quot;a d, f d -&gt; f a&quot;</span><span class="p">,</span>  <span class="n">anarray</span><span class="p">,</span> <span class="n">alphabeta</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">,:]</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">phi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">z</span></div>
+
+    
+<div class="viewcode-block" id="simulator.make_exposure"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_exposure">[docs]</a>    <span class="k">def</span> <span class="nf">make_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span>
+                                 <span class="n">texp</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">t_co</span><span class="o">=</span><span class="mf">2.0e-3</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">monitor_phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">use_tqdm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                 <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+                                 <span class="n">spectro</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Warning: at the moment, this assumes pointing has already been performed.</span>
+<span class="sd">        </span>
+<span class="sd">        Simulate an exposure with source of interest and sources of noise</span>
+<span class="sd">        interest  : sf.sources.resolved_source object representing the source of intereest (planet)</span>
+<span class="sd">        star      : sf.sources.resolved_source object representing the star</span>
+<span class="sd">        diffuse   : a list of sf.transmission_emission objects linked in a chain.</span>
+<span class="sd">        texp      : Exposure time (seconds)</span>
+<span class="sd">        t_co      : Coherence time (seconds) </span>
+<span class="sd">        monitor_phase : If true, will also record values of phase errors from injection and</span>
+<span class="sd">                        fringe tracking</span>
+<span class="sd">        dtype     : Data type to use for results</span>
+<span class="sd">        spectro   : spectrograph object to use. If None, the method will assume one pixel </span>
+<span class="sd">                        per output and per spectral channel</span>
+<span class="sd">        </span>
+<span class="sd">        Chained diffuse objects are used both for transmission and thermal background. </span>
+<span class="sd">        Result is returned as an integrator object. Currently the integrator object is only a</span>
+<span class="sd">        vessel for the individual subexposures, and not used to do the integration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t_co</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">screen</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">step_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">texp</span><span class="o">/</span><span class="n">t_co</span><span class="p">)</span>
+        
+        <span class="c1">#Pointing should be done already</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">computed_static_xx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">xx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">computed_static_yy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">yy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">n_subexps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span>
+        <span class="c1"># Check existence of pre-computed static signal: This part should remain static per pointing</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;computed_static&quot;</span><span class="p">):</span> <span class="c1"># Pointings should delete this attribute</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">diffuse</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;xx_r&quot;</span><span class="p">):</span>
+                <span class="c1"># Populate the source.xx_r, and source.ss attributes</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_xx_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">yy</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">asource</span> <span class="ow">in</span> <span class="n">diffuse</span><span class="p">:</span>
+                    <span class="n">asource</span><span class="o">.</span><span class="n">xx_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_xx_r</span>
+                    <span class="n">asource</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_yy_r</span>
+                    <span class="n">aspectrum</span> <span class="o">=</span> <span class="n">asource</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> \
+                                    <span class="o">*</span> <span class="n">asource</span><span class="o">.</span><span class="n">get_own_brightness</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span> \
+                    <span class="c1"># Collecting surface appears here</span>
+                    <span class="n">vigneted_spectrum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span><span class="o">.</span><span class="n">vigneted_spectrum</span><span class="p">(</span><span class="n">aspectrum</span><span class="p">,</span>
+                                                                    <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                                                                    <span class="n">t_co</span><span class="p">)</span>
+                    <span class="n">asource</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="n">vigneted_spectrum</span><span class="o">.</span><span class="n">T</span>
+                    
+            <span class="n">dummy_collected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">perfect_injection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ntelescopes</span><span class="p">))</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span> <span class="o">=</span>  <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">asource</span> <span class="ow">in</span> <span class="n">diffuse</span><span class="p">:</span>
+                <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">asource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">dummy_collected</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">static_output</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">planetlight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span><span class="p">)</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Currently no vigneting (requires a normalization of vigneting)&quot;</span><span class="p">)</span>
+        <span class="n">filtered_starlight</span> <span class="o">=</span> <span class="n">diffuse</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="c1"># collected will convert from [ph / s /m^2] to [ph]</span>
+        <span class="n">collected</span> <span class="o">=</span> <span class="n">filtered_starlight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">collecting</span> <span class="o">*</span> <span class="n">t_co</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Ugly management of injection/tracking&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">use_tqdm</span><span class="p">:</span>
+            <span class="n">it_subexp</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span><span class="p">))</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">it_subexp</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">it_subexp</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">exposure</span> <span class="o">+=</span> <span class="n">t_co</span>
+            <span class="n">injected</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">get_efunc</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+            <span class="n">tracked</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fringe_tracker</span><span class="o">.</span><span class="n">phasor</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">monitor_phase</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">tracked</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">injected</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">injected</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">injected</span> <span class="o">=</span> <span class="p">(</span><span class="n">injected</span> <span class="o">*</span> <span class="n">tracked</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+            <span class="c1"># lambdified argument order matters! This should remain synchronous</span>
+            <span class="c1"># with the lambdify call</span>
+            <span class="n">combined_starlight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">collected</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">spectro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">combined_starlight</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span> <span class="o">+=</span> <span class="n">combined_starlight</span>
+            
+            
+            <span class="n">combined_planetlight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">interest</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">collected</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">spectro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">combined_planetlight</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">planetlight</span> <span class="o">+=</span> <span class="n">combined_planetlight</span>
+            
+            <span class="c1"># incoherently combining over sources</span>
+            <span class="c1"># Warning: modifying the array</span>
+            <span class="c1"># combined = np.sum(np.abs(combined*np.conjugate(combined)), axis=(2))</span>
+            <span class="c1"># self.integrator.accumulate(combined)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">astatic</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">astatic</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">astatic</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">static_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">diffuse</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            
+        <span class="c1">#mean, std = self.integrator.compute_stats()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span></div>
+    
+<div class="viewcode-block" id="simulator.prepare_sequence"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepare an observing sequence</span>
+<span class="sd">        </span>
+<span class="sd">        coordinates  : read from file by default</span>
+<span class="sd">                        if skycoord object provided, then use that.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Building sequence from new config file&quot;</span><span class="p">)</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Building sequence from main config file&quot;</span><span class="p">)</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="k">if</span> <span class="n">coordinates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="s2">&quot;coords&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq_start_string</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;seq_start&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq_end_string</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;seq_end&quot;</span><span class="p">)</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;n_points&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">build_observing_sequence</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq_start_string</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq_end_string</span><span class="p">],</span>
+                            <span class="n">npoints</span><span class="o">=</span><span class="n">n_points</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="n">remove_daytime</span><span class="p">)</span>
+        <span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">coordinates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">coordinates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tarname</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">condition</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Forced to define target name and position. This should have been done by prepare_observatory.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tarname</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">&quot;coords&quot;</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tarname</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Did not understand the mode for target&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provide a valid mode for the target creation&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">SkyCoord</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tarnmae</span> <span class="o">=</span> <span class="s2">&quot;from_skycoord&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tarname</span> <span class="o">=</span> <span class="s2">&quot;from_string&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+        
+                
+            
+        <span class="k">pass</span></div>
+<div class="viewcode-block" id="simulator.make_sequence"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">make_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run an observing sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    
+<div class="viewcode-block" id="simulator.point"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Points the array towards the target. Updates the </span>
+<span class="sd">        time    : The time to make the observation</span>
+<span class="sd">        target  : The skycoord object to point</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_static</span><span class="p">()</span>
+        <span class="n">thearray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">refresh_array</span><span class="p">(</span><span class="n">thearray</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="simulator.build_all_maps"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.build_all_maps">[docs]</a>    <span class="k">def</span> <span class="nf">build_all_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapres</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mapcrop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                       <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds the transmission maps for the combiner for all the pointings</span>
+<span class="sd">        on self.target at the times of self.sequence</span>
+<span class="sd">        mapres        : The resolution of the map in pixels</span>
+<span class="sd">        mapcrop       : Adjusts the extent of the map</span>
+<span class="sd">        Returns (also stored in self.map) a transmission map of shape:</span>
+<span class="sd">        [n_sequence,</span>
+<span class="sd">        n_wl_chanels,</span>
+<span class="sd">        n_outputs,</span>
+<span class="sd">        mapres,</span>
+<span class="sd">        mapres]</span>
+<span class="sd">        </span>
+<span class="sd">        To get final flux of a point source :</span>
+<span class="sd">        Map/ds_sr * p.ss * DIT</span>
+<span class="sd">        ds_sr can be found in director.vigneting_map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">vigneting_map</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injection_vigneting</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">mapres</span><span class="p">,</span> <span class="n">mapcrop</span><span class="p">)</span>
+        <span class="c1"># Warning: this vigneting map for the maps are in the simulator.vigneting_map</span>
+        <span class="c1"># not to be confused with simulator.injector.vigneting</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span> <span class="o">=</span> <span class="n">vigneting_map</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">xx_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)</span>
+        <span class="n">maps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+            <span class="n">amap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_map</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="n">maps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">amap</span><span class="p">)</span>
+        <span class="n">maps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapshape</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="n">mapres</span><span class="p">,</span>
+                    <span class="n">mapres</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maps</span> <span class="o">=</span> <span class="n">maps</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapshape</span><span class="p">)</span>
+        <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_extent</span> <span class="o">=</span> <span class="n">extent</span></div>
+        
+        
+<div class="viewcode-block" id="simulator.build_all_maps_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.build_all_maps_dask">[docs]</a>    <span class="k">def</span> <span class="nf">build_all_maps_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapres</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mapcrop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                       <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds the transmission maps for the combiner for all the pointings</span>
+<span class="sd">        on self.target at the times of self.sequence.</span>
+<span class="sd">        Returns an uncomputed dask array referencing one input map per pointing</span>
+<span class="sd">        that are each stored to disk.</span>
+<span class="sd">        call self.maps[element indices].compute() to compute specific elements</span>
+<span class="sd">        without computing the whole map.</span>
+<span class="sd">        </span>
+<span class="sd">        mapres        : The resolution of the map in pixels</span>
+<span class="sd">        mapcrop       : Adjusts the extent of the map</span>
+<span class="sd">        Returns (also stored in self.map) a transmission map of shape:</span>
+<span class="sd">        [n_sequence,</span>
+<span class="sd">        n_wl_chanels,</span>
+<span class="sd">        n_outputs,</span>
+<span class="sd">        mapres,</span>
+<span class="sd">        mapres]</span>
+<span class="sd">        </span>
+<span class="sd">        To get final flux of a point source :</span>
+<span class="sd">        Map/ds_sr * p.ss * DIT</span>
+<span class="sd">        ds_sr is the scene surface element in steradian</span>
+<span class="sd">        and can be found in director.vigneting_map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">vigneting_map</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injection_vigneting</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">mapres</span><span class="p">,</span> <span class="n">mapcrop</span><span class="p">)</span>
+        <span class="c1"># Warning: this vigneting map for the maps are in the simulator.vigneting_map</span>
+        <span class="c1"># not to be confused with simulator.injector.vigneting</span>
+        <span class="c1">#set_trace()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span> <span class="o">=</span> <span class="n">vigneting_map</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">xx_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)</span>
+        <span class="n">maps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+            <span class="n">amap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_map_dask</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">maps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">amap</span><span class="p">)</span>
+        <span class="n">maps</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapshape</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="n">mapres</span><span class="p">,</span>
+                    <span class="n">mapres</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maps</span> <span class="o">=</span> <span class="n">maps</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapshape</span><span class="p">)</span>
+        <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_extent</span> <span class="o">=</span> <span class="n">extent</span></div>
+        <span class="c1">#self.maps = maps</span>
+        
+<div class="viewcode-block" id="simulator.persist_maps_to_disk"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.persist_maps_to_disk">[docs]</a>    <span class="k">def</span> <span class="nf">persist_maps_to_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;/tmp/full_maps.zarr&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes and stores the map to disk. The file is then loaded</span>
+<span class="sd">        out of core and is still accessible in the same way (but without</span>
+<span class="sd">        the computing times).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing and writing full map&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">da</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maps</span> <span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maps</span> <span class="o">=</span>  <span class="n">da</span><span class="o">.</span><span class="n">from_zarr</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/tmp/full_geometric_phasor_*.zarr&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The files </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2"> can be removed manually&quot;</span><span class="p">)</span></div>
+        
+        
+        
+<div class="viewcode-block" id="simulator.make_map_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask">[docs]</a>    <span class="k">def</span> <span class="nf">make_map_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
+<span class="sd">        To get final flux of a point source :</span>
+<span class="sd">        Map/ds_sr * p.ss * DIT</span>
+<span class="sd">        blockindex : The index in the observing sequence to create the map</span>
+<span class="sd">        vigneting_map : The vigneting map drawn used for resolution</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">blockindex</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        <span class="c1">#injected = self.injector.best_injection(self.lambda_science_range)</span>
+        <span class="n">vigneted_spectrum</span> <span class="o">=</span> \
+                <span class="n">vigneting_map</span><span class="o">.</span><span class="n">vigneted_spectrum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">),</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+        <span class="c1"># Caution: line is not idempotent!</span>
+        <span class="c1">#vigneted_spectrum = np.swapaxes(vigneted_spectrum, 0,1)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">vigneted_spectrum</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="c1">#self.mapsource.ss = vigneted_spectrum</span>
+        <span class="n">dummy_collected</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">perfect_injection</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ntelescopes</span><span class="p">))</span>\
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light_dask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span>
+                                           <span class="n">array</span><span class="p">,</span> <span class="n">dummy_collected</span><span class="p">,</span>
+                                           <span class="n">dosum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">map_index</span><span class="o">=</span><span class="n">map_index</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="n">static_output</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="n">static_output</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#static_output = static_output# * np.sqrt(vigneted_spectrum[:,None,:])</span>
+        <span class="c1"># lambdified argument order matters! This should remain synchronous</span>
+        <span class="c1"># with the lambdify call</span>
+        <span class="c1"># incoherently combining over sources</span>
+        <span class="c1"># Warning: modifying the array</span>
+        <span class="c1">#combined = np.abs(static_output*np.conjugate(static_output)).astype(np.float32)</span>
+        <span class="k">return</span> <span class="n">static_output</span></div>
+        
+        
+<div class="viewcode-block" id="simulator.make_map"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map">[docs]</a>    <span class="k">def</span> <span class="nf">make_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
+<span class="sd">        To get final flux of a point source :</span>
+<span class="sd">        Map/ds_sr * p.ss * DIT</span>
+<span class="sd">        blockindex : The index in the observing sequence to create the map</span>
+<span class="sd">        vigneting_map : The vigneting map drawn used for resolution</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">blockindex</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        <span class="c1">#injected = self.injector.best_injection(self.lambda_science_range)</span>
+        <span class="n">vigneted_spectrum</span> <span class="o">=</span> \
+                <span class="n">vigneting_map</span><span class="o">.</span><span class="n">vigneted_spectrum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">),</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+        <span class="c1"># Caution: line is not idempotent!</span>
+        <span class="c1">#vigneted_spectrum = np.swapaxes(vigneted_spectrum, 0,1)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="n">vigneted_spectrum</span><span class="o">.</span><span class="n">T</span>
+        <span class="c1">#self.mapsource.ss = vigneted_spectrum</span>
+        <span class="n">dummy_collected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">perfect_injection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ntelescopes</span><span class="p">))</span>\
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span>
+                                           <span class="n">array</span><span class="p">,</span> <span class="n">dummy_collected</span><span class="p">,</span>
+                                           <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                                           <span class="n">dosum</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="n">static_output</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="n">static_output</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#static_output = static_output# * np.sqrt(vigneted_spectrum[:,None,:])</span>
+        <span class="c1"># lambdified argument order matters! This should remain synchronous</span>
+        <span class="c1"># with the lambdify call</span>
+        <span class="c1"># incoherently combining over sources</span>
+        <span class="c1"># Warning: modifying the array</span>
+        <span class="c1">#combined = np.abs(static_output*np.conjugate(static_output)).astype(np.float32)</span>
+        <span class="k">return</span> <span class="n">static_output</span></div>
+        
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+<div class="viewcode-block" id="simulator.reset_static"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.reset_static">[docs]</a>    <span class="k">def</span> <span class="nf">reset_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;computed_static&quot;</span><span class="p">):</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span></div></div>
+    
+<div class="viewcode-block" id="test_director"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.test_director">[docs]</a><span class="k">def</span> <span class="nf">test_director</span><span class="p">():</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;hard path in the test&quot;</span><span class="p">)</span>
+    <span class="n">asim</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">fpath</span><span class="o">=</span><span class="s2">&quot;/home/rlaugier/Documents/hi5/SCIFYsim/scifysim/config/default_new_4T.ini&quot;</span><span class="p">)</span>
+    <span class="n">asim</span><span class="o">.</span><span class="n">prepare_injector</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">asim</span><span class="o">.</span><span class="n">prepare_combiner</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">)</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.director</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Romain Laugier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

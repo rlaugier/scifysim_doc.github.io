@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.bimorph module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifysim.combiner module" href="scifysim.combiner.html" />
+    <link rel="prev" title="scifysim.analysis module" href="scifysim.analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.bimorph module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.bimorph.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.bimorph">
+<span id="scifysim-bimorph-module"></span><h1>scifysim.bimorph module<a class="headerlink" href="#module-scifysim.bimorph" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.bimorph.bimorph">
+<span class="sig-prename descclassname"><span class="pre">scifysim.bimorph.</span></span><span class="sig-name descname"><span class="pre">bimorph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/bimorph.html#bimorph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.bimorph.bimorph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>DESCRIPTION</dt><dd><p>Returns the power in the residual piston, after the VLTI MACAO deformable bimorph mirror,
+as a function of frequency, in units of nm²/Hz, by interpolation of measured data,
+obtained by ESO over the capacitive sensor area of MACAO, for a 420 Hz control loop frequency.</p>
+</dd>
+<dt>INPUT</dt><dd><p>freq:  frequency array in Hz</p>
+</dd>
+<dt>OUTPUT:</dt><dd><p>psd:   power of bimorph piston in m²/Hz</p>
+</dd>
+<dt>REFERENCE:</dt><dd><p>Liviu Ivanescu, priv. comm. 28-JUN-2004, via Florence Puech.</p>
+</dd>
+<dt>MODIFICATION HISTORY:</dt><dd><p>Version 1.0, 30-JUN-2004, Roland den Hartog, ESA/ESTEC Genie team, <a class="reference external" href="mailto:rdhartog&#37;&#52;&#48;rssd&#46;esa&#46;int">rdhartog<span>&#64;</span>rssd<span>&#46;</span>esa<span>&#46;</span>int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.bimorph.set_logging_level">
+<span class="sig-prename descclassname"><span class="pre">scifysim.bimorph.</span></span><span class="sig-name descname"><span class="pre">set_logging_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/bimorph.html#set_logging_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.bimorph.set_logging_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.bimorph.test_bim">
+<span class="sig-prename descclassname"><span class="pre">scifysim.bimorph.</span></span><span class="sig-name descname"><span class="pre">test_bim</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/bimorph.html#test_bim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.bimorph.test_bim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.combiner.html" class="btn btn-neutral float-right" title="scifysim.combiner module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.analysis.html" class="btn btn-neutral float-left" title="scifysim.analysis module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

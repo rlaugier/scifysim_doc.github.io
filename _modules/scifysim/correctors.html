@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scifysim.correctors &#8212; SCIFYsim 0.2.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.correctors</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scifysim.correctors</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">sympy.functions.elementary.piecewise</span> <span class="kn">import</span> <span class="n">Piecewise</span>
+<span class="kn">from</span> <span class="nn">kernuller</span> <span class="kn">import</span> <span class="n">mas2rad</span><span class="p">,</span> <span class="n">rad2mas</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utilities</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">n_air</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">constants</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interp</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+
+<span class="n">parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+<span class="n">znse_file</span> <span class="o">=</span> <span class="n">parent</span><span class="o">/</span><span class="s2">&quot;data/znse_index.csv&quot;</span>
+
+<span class="c1"># Brute force test parameter to </span>
+<span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">comphasor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">thetas</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
+
+<span class="c1"># Utility functions for optimization</span>
+<span class="c1">##################################################</span>
+
+<span class="kn">from</span> <span class="nn">lmfit</span> <span class="kn">import</span> <span class="n">Parameters</span><span class="p">,</span> <span class="n">minimize</span>
+<div class="viewcode-block" id="extract_corrector_params"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.extract_corrector_params">[docs]</a><span class="k">def</span> <span class="nf">extract_corrector_params</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Utility function to reconstruct the *b* and *c*</span>
+<span class="sd">    vectors from the lmfit Parameters object.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    corrector : The corrector object</span>
+<span class="sd">    params   :  at lmfit Parameters object</span>
+<span class="sd">                containing b_i and c_i terms</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">ntel</span> <span class="o">=</span> <span class="n">corrector</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">bvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">corrector</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">cvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">corrector</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ntel</span><span class="p">):</span>
+        <span class="n">bvec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;b</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+        <span class="n">cvec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;c</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">bvec</span><span class="p">,</span><span class="n">cvec</span></div>
+
+
+<div class="viewcode-block" id="get_depth"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_depth">[docs]</a><span class="k">def</span> <span class="nf">get_depth</span><span class="p">(</span><span class="n">combiner</span><span class="p">,</span> <span class="n">Is</span><span class="p">,):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes a &quot;null depth&quot; analogue (dark/bright)</span>
+<span class="sd">    to be minimized by the tuning method.</span>
+<span class="sd">    The masks in the combiner definition</span>
+<span class="sd">    are used to determine the role of the different outputs.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    combiner : A combiner object.</span>
+<span class="sd">    Is       : An array of intensities</span>
+<span class="sd">    </span>
+<span class="sd">    Note: This definition might need some adjustments for</span>
+<span class="sd">    use in kernel-nullers?</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bright</span> <span class="o">=</span> <span class="n">Is</span><span class="p">[:,</span><span class="n">combiner</span><span class="o">.</span><span class="n">bright</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">dark</span> <span class="o">=</span> <span class="n">Is</span><span class="p">[:,</span><span class="n">combiner</span><span class="o">.</span><span class="n">dark</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">dark</span><span class="o">/</span><span class="n">bright</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="get_Is"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_Is">[docs]</a><span class="k">def</span> <span class="nf">get_Is</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns intensities at the combiners&#39; outputs</span>
+<span class="sd">    taking into account the corrections provided in</span>
+<span class="sd">    params.</span>
+<span class="sd">    </span>
+<span class="sd">    **dcomp is computed automatically be default.**</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    params   : either</span>
+<span class="sd">                - A Parameters object from the optimization</span>
+<span class="sd">                - A tuple of vectors bvec, cvec</span>
+<span class="sd">    combiner : A combiner object.</span>
+<span class="sd">    corrector : The corrector object</span>
+<span class="sd">    lambs    : The wavelengths considered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">):</span>
+        <span class="n">bvec</span><span class="p">,</span> <span class="n">cvec</span> <span class="o">=</span> <span class="n">extract_corrector_params</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">bvec</span><span class="p">,</span> <span class="n">cvec</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">phasor</span> <span class="o">=</span> <span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor_from_params</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> 
+                                             <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                             <span class="n">b</span><span class="o">=</span><span class="n">bvec</span><span class="p">,</span>
+                                             <span class="n">c</span><span class="o">=</span><span class="n">cvec</span><span class="p">)</span>
+    <span class="c1">#res = combiner.Mcn.dot(phasor)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ikj,ij-&gt;ik&quot;</span><span class="p">,</span> <span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="p">,</span> <span class="n">phasor</span><span class="p">)</span>
+    <span class="n">Is</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">Is</span></div>
+
+
+<div class="viewcode-block" id="get_contrast_res"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_contrast_res">[docs]</a><span class="k">def</span> <span class="nf">get_contrast_res</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Macro that gets the a residual from parameters </span>
+<span class="sd">    for minimizing method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Is</span> <span class="o">=</span> <span class="n">get_Is</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">get_depth</span><span class="p">(</span><span class="n">combiner</span><span class="p">,</span> <span class="n">Is</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span></div>
+
+
+<div class="viewcode-block" id="get_es"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_es">[docs]</a><span class="k">def</span> <span class="nf">get_es</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the enantiomorph excursion taking into account the corrections provided in</span>
+<span class="sd">    params.</span>
+<span class="sd">    **Currently works only for double-bracewell 3-4 architecures**</span>
+<span class="sd">        </span>
+<span class="sd">    **dcomp is computed automatically be default.**</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    params   : either</span>
+<span class="sd">                - A Parameters object from the optimization</span>
+<span class="sd">                - A tuple of vectors bvec, cvec</span>
+<span class="sd">    combiner : A combiner object.</span>
+<span class="sd">    corrector : The corrector object</span>
+<span class="sd">    lambs    : The wavelengths considered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">):</span>
+        <span class="n">bvec</span><span class="p">,</span> <span class="n">cvec</span> <span class="o">=</span> <span class="n">extract_corrector_params</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">bvec</span><span class="p">,</span> <span class="n">cvec</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">phasor</span> <span class="o">=</span> <span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor_from_params</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> 
+                                             <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                             <span class="n">b</span><span class="o">=</span><span class="n">bvec</span><span class="p">,</span>
+                                             <span class="n">c</span><span class="o">=</span><span class="n">cvec</span><span class="p">)</span>
+    <span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="n">comphasor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">thetas</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
+    <span class="n">amatcomp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, ik -&gt; ijk&quot;</span><span class="p">,</span> <span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="p">,</span> <span class="n">phasor</span><span class="p">)</span>
+    <span class="n">allcor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ik, mk -&gt; mik&quot;</span><span class="p">,</span> <span class="n">amatcomp</span><span class="p">[:,</span><span class="mi">3</span><span class="p">,:],</span> <span class="n">comphasor</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">amatcomp</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">,:])[</span><span class="kc">None</span><span class="p">,:,:]</span>
+    <span class="n">excursion</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">allcor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">excursion</span></div>
+<div class="viewcode-block" id="get_shape_res"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_shape_res">[docs]</a><span class="k">def</span> <span class="nf">get_shape_res</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Macro that gets the a residual from parameters </span>
+<span class="sd">    for minimizing method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">get_es</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span></div>
+
+
+<div class="viewcode-block" id="corrector"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector">[docs]</a><span class="k">class</span> <span class="nc">corrector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A module that provides beam adjustments</span>
+<span class="sd">        for the input. It contains amplitude *a*, geometric</span>
+<span class="sd">        piston *b* and ZnSe piston substitution *c*. Note that</span>
+<span class="sd">        the ZnSe length replaces some air length.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        config:     A parsed config file</span>
+<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">                    (At the __init__ stage, it is only used for</span>
+<span class="sd">                    the computation of a mean refractive index for</span>
+<span class="sd">                    the dispersive material)</span>
+<span class="sd">                    </span>
+<span class="sd">        Internal parameters:</span>
+<span class="sd">        --------------------</span>
+<span class="sd">        a     :     Vector of the amplitude term</span>
+<span class="sd">        b     :     Vetor of the geometric piston term [m]</span>
+<span class="sd">        c     :     Vetor of the dispersive piston term [m]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="n">nznse_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">znse_file</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nznse_file</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">nznse_file</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+                                     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span> <span class="p">)</span>
+        <span class="n">diams</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;diam&quot;</span><span class="p">)</span>
+        <span class="n">n_tel</span> <span class="o">=</span> <span class="n">diams</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># An amplitude factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+        
+    
+<div class="viewcode-block" id="corrector.get_phasor"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the complex phasor corresponding</span>
+<span class="sd">        to the current a, b, c, and dcomp phasors.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">alpha</span></div>
+<div class="viewcode-block" id="corrector.get_phasor_s"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_s">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deprecated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lamb</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">alpha</span></div>
+    
+<div class="viewcode-block" id="corrector.get_phasor_from_params"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_from_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor_from_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                               <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                               <span class="n">dcomp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Similar to get_phasor() but allows to provide the</span>
+<span class="sd">        parameters as arguments (slower).</span>
+<span class="sd">        </span>
+<span class="sd">        Returns the complex phasor corresponding</span>
+<span class="sd">        to the current a, b, c, and dcomp phasors.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        a     :     Vector of the amplitude term</span>
+<span class="sd">        b     :     Vetor of the geometric piston term [m]</span>
+<span class="sd">        c     :     Vetor of the dispersive piston term [m]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+        <span class="k">if</span> <span class="n">dcomp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">dcomp</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">+</span><span class="n">c</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">alpha</span></div>
+    
+<div class="viewcode-block" id="corrector.theoretical_phase"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.theoretical_phase">[docs]</a>    <span class="k">def</span> <span class="nf">theoretical_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span> <span class="n">proj_opds</span><span class="p">,</span> <span class="n">wet_atmo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the theoretical chromatic phase effect of the</span>
+<span class="sd">        array geometry projected on axis based on the wet atmosphere</span>
+<span class="sd">        model.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        proj_opds  : The projected piston obtained by projection</span>
+<span class="sd">                    (Get from simulator.obs.get_projected_geometric_pistons)</span>
+<span class="sd">        wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">phase</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="o">*</span><span class="n">nair</span><span class="o">*</span><span class="n">proj_opds</span>
+        <span class="k">return</span> <span class="n">phase</span></div>
+        
+<div class="viewcode-block" id="corrector.solve_air"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air">[docs]</a>    <span class="k">def</span> <span class="nf">solve_air</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">wet_atmo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes a least squares compensation model (see</span>
+<span class="sd">        Koresko et al. 2003 DOI: 10.1117/12.458032)</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">nair</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">ns</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span></div>
+    
+<div class="viewcode-block" id="corrector.tune_static"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.tune_static">[docs]</a>    <span class="k">def</span> <span class="nf">tune_static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">freeze_params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;b0&quot;</span><span class="p">,</span> <span class="s2">&quot;c0&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Optimize the compensator to correct chromatism in the </span>
+<span class="sd">        model of the combiner. Returns a lmfit solution object.</span>
+<span class="sd">        If &quot;apply&quot; is set to True, a, b, c, and dcomp are also</span>
+<span class="sd">        set to the best fit value.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        combiner :  A combiner object (chromatic)  </span>
+<span class="sd">        apply    :  Boolean deciding whether to set the local</span>
+<span class="sd">                    parameters to best fit value (default: True)</span>
+<span class="sd">        freeze_params : The name of parameters to be freezed.</span>
+<span class="sd">                    Should be used to account for the larger than</span>
+<span class="sd">                    necessary number of degrees of freedom.</span>
+<span class="sd">                    </span>
+<span class="sd">        Note: For obtaining a more practical direct results, some</span>
+<span class="sd">        more complicated balancing guidelines should be followed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;b</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">value</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="n">vary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;c</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">value</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="n">vary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;b0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">vary</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">vary</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;c2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">vary</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;b2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">vary</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">sol</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">get_contrast_res</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+               <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">combiner</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">),</span>
+               <span class="n">method</span><span class="o">=</span><span class="s2">&quot;leastsq&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">sol</span> <span class="o">=</span> <span class="n">sol</span>
+        <span class="k">if</span> <span class="n">apply</span><span class="p">:</span>
+            <span class="n">bvec</span><span class="p">,</span> <span class="n">cvec</span> <span class="o">=</span> <span class="n">extract_corrector_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">bvec</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">cvec</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+        <span class="k">return</span> <span class="n">sol</span></div>
+    
+<div class="viewcode-block" id="corrector.tune_static_shape"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.tune_static_shape">[docs]</a>    <span class="k">def</span> <span class="nf">tune_static_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">sync_params</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span>
+                                <span class="p">(</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)],</span>
+                    <span class="n">freeze_params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;b0&quot;</span><span class="p">,</span> <span class="s2">&quot;c0&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Optimize the compensator to correct chromatism in the </span>
+<span class="sd">        model of the combiner to obtain enantomporph combinations</span>
+<span class="sd">        at the outputs. Returns a lmfit solution object.</span>
+<span class="sd">        If &quot;apply&quot; is set to True, a, b, c, and dcomp are also</span>
+<span class="sd">        set to the best fit value.</span>
+<span class="sd">        </span>
+<span class="sd">        **Currently only works for double Bracewell 3-4 architectures.**</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        combiner :  A combiner object (chromatic)  </span>
+<span class="sd">        apply    :  Boolean deciding whether to set the local</span>
+<span class="sd">                    parameters to best fit value (default: True)</span>
+<span class="sd">        Note: For obtaining a more practical direct results, some</span>
+<span class="sd">        more complicated balancing guidelines should be followed.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">        --------</span>
+<span class="sd">        ```</span>
+<span class="sd">        sol = asim.corrector.tune_static_shape(asim.lambda_science_range,</span>
+<span class="sd">                             asim.combiner,</span>
+<span class="sd">                             sync_params=[(&quot;b3&quot;, &quot;b2&quot;, asim.corrector.b[3] - asim.corrector.b[2]),</span>
+<span class="sd">                                         (&quot;c3&quot;, &quot;c2&quot;, asim.corrector.c[3] - asim.corrector.c[2])],</span>
+<span class="sd">                             apply=True)</span>
+<span class="sd">        ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inside_tuning&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;b</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">min</span><span class="o">=-</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="n">vary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;c</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">min</span><span class="o">=-</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="n">vary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="c1"># Should do this in a loop for sync_params</span>
+        <span class="k">for</span> <span class="n">tosync</span> <span class="ow">in</span> <span class="n">sync_params</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="n">tosync</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="n">tosync</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;+ </span><span class="si">{</span><span class="n">tosync</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># If we have </span>
+        <span class="c1">#b23 = self.b[3]-self.b[2]</span>
+        <span class="c1">#c23 = self.c[3]-self.c[2]</span>
+        <span class="c1">#params[&quot;b3&quot;].set(expr=f&quot;b2 + {b23}&quot;)</span>
+        <span class="c1">#params[&quot;c3&quot;].set(expr=f&quot;c2 + {c23}&quot;)</span>
+        <span class="k">for</span> <span class="n">aparam</span> <span class="ow">in</span> <span class="n">freeze_params</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="n">aparam</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">vary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1">#display.display(params)</span>
+        <span class="n">sol</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">get_shape_res</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+               <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">combiner</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">),</span>
+               <span class="n">method</span><span class="o">=</span><span class="s2">&quot;leastsq&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">sol</span> <span class="o">=</span> <span class="n">sol</span>
+        <span class="k">if</span> <span class="n">apply</span><span class="p">:</span>
+            <span class="n">bvec</span><span class="p">,</span> <span class="n">cvec</span> <span class="o">=</span> <span class="n">extract_corrector_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">bvec</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">cvec</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+        <span class="k">return</span> <span class="n">sol</span></div>
+    
+    
+    
+<div class="viewcode-block" id="corrector.plot_tuning"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.plot_tuning">[docs]</a>    <span class="k">def</span> <span class="nf">plot_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span>  <span class="n">npoints</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">kernuller.diagrams</span> <span class="kn">import</span> <span class="n">plot_chromatic_matrix</span> <span class="k">as</span> <span class="n">cmpc</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        
+        <span class="n">pltlambrange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lambs</span><span class="p">),</span>
+                                   <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lambs</span><span class="p">),</span>
+                                   <span class="mi">20</span><span class="p">)</span>
+        <span class="n">init_phasor</span> <span class="o">=</span> <span class="n">cor</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="n">pltlambrange</span><span class="p">)</span>
+        
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">cmpc</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">M</span><span class="p">,</span><span class="n">asim</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">lamb</span><span class="p">,</span> <span class="n">pltlambrange</span><span class="p">,</span>
+        <span class="n">plotout</span><span class="o">=</span><span class="n">cor</span><span class="o">.</span><span class="n">get_phasor_from_params</span><span class="p">(</span><span class="n">pltlambrange</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">cor</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cor</span><span class="o">.</span><span class="n">c</span><span class="p">),</span> <span class="n">minfrac</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span></div></div>
+        
+        
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.correctors</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Romain Laugier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

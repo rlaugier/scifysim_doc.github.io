@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.spectrograph module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifysim.utilities module" href="scifysim.utilities.html" />
+    <link rel="prev" title="scifysim.sources module" href="scifysim.sources.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.spectrograph module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.spectrograph.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.spectrograph">
+<span id="scifysim-spectrograph-module"></span><h1>scifysim.spectrograph module<a class="headerlink" href="#module-scifysim.spectrograph" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.spectrograph.</span></span><span class="sig-name descname"><span class="pre">basic_integrator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keepall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#basic_integrator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.basic_integrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.spectrograph',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">basic_integrator.__init__&gt;,</span> <span class="pre">'accumulate':</span> <span class="pre">&lt;function</span> <span class="pre">basic_integrator.accumulate&gt;,</span> <span class="pre">'compute_stats':</span> <span class="pre">&lt;function</span> <span class="pre">basic_integrator.compute_stats&gt;,</span> <span class="pre">'compute_noised':</span> <span class="pre">&lt;function</span> <span class="pre">basic_integrator.compute_noised&gt;,</span> <span class="pre">'get_total':</span> <span class="pre">&lt;function</span> <span class="pre">basic_integrator.get_total&gt;,</span> <span class="pre">'reset':</span> <span class="pre">&lt;function</span> <span class="pre">basic_integrator.reset&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'basic_integrator'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'basic_integrator'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keepall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#basic_integrator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.spectrograph'</span></em><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.accumulate">
+<span class="sig-name descname"><span class="pre">accumulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#basic_integrator.accumulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.accumulate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.compute_noised">
+<span class="sig-name descname"><span class="pre">compute_noised</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#basic_integrator.compute_noised"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.compute_noised" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.compute_stats">
+<span class="sig-name descname"><span class="pre">compute_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#basic_integrator.compute_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.compute_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.get_total">
+<span class="sig-name descname"><span class="pre">get_total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#basic_integrator.get_total"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.get_total" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.basic_integrator.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#basic_integrator.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.basic_integrator.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.spectrograph.</span></span><span class="sig-name descname"><span class="pre">integrator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infinite_well</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.spectrograph',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.__init__&gt;,</span> <span class="pre">'accumulate':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.accumulate&gt;,</span> <span class="pre">'compute_stats':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.compute_stats&gt;,</span> <span class="pre">'compute_noised':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.compute_noised&gt;,</span> <span class="pre">'get_total':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.get_total&gt;,</span> <span class="pre">'get_static':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.get_static&gt;,</span> <span class="pre">'get_starlight':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.get_starlight&gt;,</span> <span class="pre">'get_planetlight':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.get_planetlight&gt;,</span> <span class="pre">'reset':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.reset&gt;,</span> <span class="pre">'prepare_t_exp_base':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.prepare_t_exp_base&gt;,</span> <span class="pre">'consolidate_metrologic':</span> <span class="pre">&lt;function</span> <span class="pre">integrator.consolidate_metrologic&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'integrator'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'integrator'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.spectrograph.integrator.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infinite_well</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the pixel model of the detector.
+Currently it does not implement a system gain (1ADU = 1photoelectron)</p>
+<p>keepall    : [boolean] Whether to keep each of the steps accumulated
+eta        :            The quantum efficiency
+ron        : [photoelectrons] The read-out noise
+ENF        :            The Excess Noise Factor 1 if not applicable
+mgain      :            The amplification gain (for EMCCDs or APD/eAPD sensors)
+well       : [photelectrons] The well depth
+n_sources  :            The number of different sources propagated through the instrument</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.spectrograph'</span></em><a class="headerlink" href="#scifysim.spectrograph.integrator.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.spectrograph.integrator.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.accumulate">
+<span class="sig-name descname"><span class="pre">accumulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.accumulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.accumulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accumulates some signal.</p>
+<p>value   : The signals to accumulate</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.compute_noised">
+<span class="sig-name descname"><span class="pre">compute_noised</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.compute_noised"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.compute_noised" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.compute_stats">
+<span class="sig-name descname"><span class="pre">compute_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.compute_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.compute_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.consolidate_metrologic">
+<span class="sig-name descname"><span class="pre">consolidate_metrologic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.consolidate_metrologic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.consolidate_metrologic" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Compiles the results of metrologic exposure.
+Paramters compiled:
+——————-
+self.nsamples    : The number of integration steps
+self.summed_signal : The total integration of</p>
+<blockquote>
+<div><p>all sources throughout the time steps</p>
+</div></blockquote>
+<dl class="simple">
+<dt>self.total_summed_signal<span class="classifier">The total integration over</span></dt><dd><p>both sources and time steps</p>
+</dd>
+<dt>self.sums<span class="classifier">The list of signals from each of the sources</span></dt><dd><p>summed over the time steps</p>
+</dd>
+</dl>
+<p>self.source_labels : The labels of the sources corresIFEST.in</p>
+</div></blockquote>
+<dl class="option-list">
+<dt><kbd><span class="option">-r<var>wxrwx–x</var></span></kbd></dt>
+<dd><p>1 rlaugier rlaugier 1,1K mai   27 14:50 REAponding to
+sums.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.get_planetlight">
+<span class="sig-name descname"><span class="pre">get_planetlight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.get_planetlight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.get_planetlight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.get_starlight">
+<span class="sig-name descname"><span class="pre">get_starlight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.get_starlight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.get_starlight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.get_static">
+<span class="sig-name descname"><span class="pre">get_static</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.get_static"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.get_static" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total value of integrated light from static sources.
+Not affected by noises</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.get_total">
+<span class="sig-name descname"><span class="pre">get_total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectrograph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_exp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_pixsplit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.get_total"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.get_total" title="Permalink to this definition">¶</a></dt>
+<dd><p>Made a little bit complicated by the ability to simulate CRED1 camera</p>
+<dl class="simple">
+<dt>spectrograph<span class="classifier">A spectrograph object to map the spectra on</span></dt><dd><p>a 2D detector</p>
+</dd>
+<dt>t_exp<span class="classifier">[s]  Integration time to take into account dark current</span></dt><dd><p>This is only used if self.exposure is close to 0. (if
+the )</p>
+</dd>
+</dl>
+<p>n_pixsplit    : The number of pixels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.prepare_t_exp_base">
+<span class="sig-name descname"><span class="pre">prepare_t_exp_base</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.prepare_t_exp_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.prepare_t_exp_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes some basic laws regarding exposure times
+for the current configuration:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>self.expr_snr_t<span class="classifier">expression of SNR as function of time</span></dt><dd><p>which also gets printed</p>
+</dd>
+</dl>
+</li>
+<li><p>self.expr_t_for_snr   : time to get a given SNR</p></li>
+<li><p>self.expr_well_fraction : Fraction of well filled by the number of Ph considered</p></li>
+<li><p>self.expr_t_max       : Maximum exposure time to fill the well</p></li>
+<li><p>self.t_exp_base       : lambdified version of expr_t_for_snr</p></li>
+<li><p>self.snr_t            : lambdified version of expr_sr_t</p></li>
+<li><p>self.well_fraction    : lambdified version of expr_well_faction</p></li>
+<li><p>self.t_exp_max        : lambdified version of expr_t_max</p></li>
+</ul>
+<p>eta, f_planet, n_pix, f_tot, ron, =  sp.symbols(“eta, f_{planet}, n_p, f_{tot}, ron”, real=True)
+n_planet, n_tot, t_exp0, t_exp = sp.symbols(“n_{planet}, n_{tot}, t_{esxp0}, t_{exp}”, real=True)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.integrator.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the values of the accumulation of signal in the detector.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.spectrograph.spectrograph">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.spectrograph.</span></span><span class="sig-name descname"><span class="pre">spectrograph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aconfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_chan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#spectrograph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.spectrograph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.spectrograph.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.spectrograph',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">spectrograph.__init__&gt;,</span> <span class="pre">'get_spectrum_image':</span> <span class="pre">&lt;function</span> <span class="pre">spectrograph.get_spectrum_image&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'spectrograph'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'spectrograph'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.spectrograph.spectrograph.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.spectrograph.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aconfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_chan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#spectrograph.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.spectrograph.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class describres the behaviour of a simple spectrograph.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.spectrograph.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.spectrograph'</span></em><a class="headerlink" href="#scifysim.spectrograph.spectrograph.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.spectrograph.spectrograph.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.spectrograph.spectrograph.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.spectrograph.spectrograph.get_spectrum_image">
+<span class="sig-name descname"><span class="pre">get_spectrum_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#spectrograph.get_spectrum_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.spectrograph.get_spectrum_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.utilities.html" class="btn btn-neutral float-right" title="scifysim.utilities module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.sources.html" class="btn btn-neutral float-left" title="scifysim.sources module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.confconverter module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifysim.control_loop module" href="scifysim.control_loop.html" />
+    <link rel="prev" title="scifysim.combiners module" href="scifysim.combiners.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.confconverter module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.confconverter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.confconverter">
+<span id="scifysim-confconverter-module"></span><h1>scifysim.confconverter module<a class="headerlink" href="#module-scifysim.confconverter" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.confconverter.convert_config_file">
+<span class="sig-prename descclassname"><span class="pre">scifysim.confconverter.</span></span><span class="sig-name descname"><span class="pre">convert_config_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/confconverter.html#convert_config_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.confconverter.convert_config_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple routine to convert .prm config file to .ini config files</p>
+<p>file_in    : the complet path of the file to convert
+path_out   : the destination directory (not including file name)
+new_name   : the new name to give the file (if None: change only extension)
+test       : If True, only print the result</p>
+<p>example : convert_config_file(“../../geniesim/examples/tau_Boo_89m.prm”, “examples/”, test=False)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.confconverter.set_logging_level">
+<span class="sig-prename descclassname"><span class="pre">scifysim.confconverter.</span></span><span class="sig-name descname"><span class="pre">set_logging_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/confconverter.html#set_logging_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.confconverter.set_logging_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.control_loop.html" class="btn btn-neutral float-right" title="scifysim.control_loop module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.combiners.html" class="btn btn-neutral float-left" title="scifysim.combiners module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

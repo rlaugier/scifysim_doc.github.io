@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scifysim.mol_dens &#8212; SCIFYsim 0.2.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.mol_dens</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scifysim.mol_dens</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<div class="viewcode-block" id="set_logging_level"><a class="viewcode-back" href="../../scifysim.mol_dens.html#scifysim.mol_dens.set_logging_level">[docs]</a><span class="k">def</span> <span class="nf">set_logging_level</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">):</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Setting the logging level to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">level</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="mol_dens"><a class="viewcode-back" href="../../scifysim.mol_dens.html#scifysim.mol_dens.mol_dens">[docs]</a><span class="k">def</span> <span class="nf">mol_dens</span><span class="p">(</span> <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">wvdens</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ; PURPOSE:</span>
+<span class="sd">    ;   Returns the molair density of air and watervapor as a function temperature (in K), pressure (in mbar), relative humidity (%) and CO2 content (in ppm).</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; REFERENCE:</span>
+<span class="sd">    ;   P.E. Ciddor, &quot;The refractive index of air: new equations for the visible and near infrared&quot;, Appl. Opt. 35 (9), 1566-1573</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; MODIFICATION HISTORY:</span>
+<span class="sd">    ;   Version 1.0, 09-OCT-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, rdhartog@rssd.esa.int</span>
+<span class="sd">    </span>
+<span class="sd">    # !RL ???? :</span>
+<span class="sd">    ON_ERROR,2</span>
+<span class="sd">    ptot=pres*100.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    
+    <span class="n">ptot</span><span class="o">=</span><span class="n">pres</span><span class="o">*</span><span class="mf">100.</span>
+    <span class="c1"># Compute the partial water vapour pressure</span>
+    <span class="k">if</span> <span class="n">ph2o</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="mf">1.2378847e-5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.9121316e-2</span><span class="p">,</span> <span class="mf">33.93711047e0</span> <span class="p">,</span> <span class="o">-</span><span class="mf">6.3431645e+3</span>
+        <span class="n">psvp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">temp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span> <span class="o">*</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">C</span> <span class="o">+</span> <span class="n">D</span> <span class="o">/</span> <span class="n">temp</span><span class="p">)</span>
+        <span class="n">ph2o</span> <span class="o">=</span> <span class="p">(</span><span class="n">rhum</span><span class="o">/</span><span class="mf">100.</span><span class="p">)</span> <span class="o">*</span> <span class="n">psvp</span>
+    
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="mf">1.00062</span><span class="p">,</span> <span class="mf">3.14e-8</span><span class="p">,</span> <span class="mf">5.6e-7</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span> <span class="o">*</span> <span class="n">ptot</span> <span class="o">+</span> <span class="n">C</span> <span class="o">*</span> <span class="n">temp</span><span class="o">**</span><span class="mi">2</span>
+    <span class="c1"># !RL this is a bit weird?</span>
+    <span class="n">xw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([(</span><span class="n">f</span> <span class="o">*</span> <span class="n">ph2o</span><span class="o">/</span><span class="n">ptot</span><span class="p">),</span> <span class="mf">1.</span><span class="p">])</span>
+    <span class="c1"># Compute the densities of air, standard dry air, water vapor and standard water vapor</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mf">8.314510</span>  <span class="c1"># J/mol/K</span>
+
+    <span class="n">a0</span> <span class="o">=</span> <span class="mf">1.58123e-6</span> <span class="c1"># K/Pa</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.9331e-8</span> <span class="c1"># 1/Pa</span>
+    <span class="n">a2</span> <span class="o">=</span> <span class="mf">1.1043e-10</span> <span class="c1"># 1/K/Pa</span>
+    <span class="n">b0</span> <span class="o">=</span> <span class="mf">5.707e-6</span>   <span class="c1"># K/Pa</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.051e-8</span>  <span class="c1"># 1/Pa</span>
+    <span class="n">c0</span> <span class="o">=</span> <span class="mf">1.9898e-4</span>  <span class="c1"># K/Pa</span>
+    <span class="n">c1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.376e-6</span>  <span class="c1"># 1/Pa</span>
+    <span class="n">d0</span> <span class="o">=</span> <span class="mf">1.83e-11</span>   <span class="c1"># K^2/Pa^2</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.765e-8</span>  <span class="c1"># K^2/Pa^2</span>
+
+    <span class="c1"># Density of dry air and water vapor</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="mf">1e0</span> <span class="o">-</span> <span class="p">(</span><span class="n">ptot</span><span class="o">/</span><span class="n">temp</span><span class="p">)</span> <span class="o">*</span>\
+            <span class="p">(</span><span class="n">a0</span> <span class="o">+</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">a2</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="p">(</span><span class="n">b0</span> <span class="o">+</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">xw</span> <span class="o">+</span> <span class="p">(</span><span class="n">c0</span> <span class="o">+</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">xw</span> <span class="o">*</span> <span class="n">xw</span> <span class="p">)</span> <span class="o">+</span>\
+            <span class="p">(</span><span class="n">ptot</span><span class="o">/</span><span class="n">temp</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">d0</span> <span class="o">+</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">xw</span> <span class="o">*</span> <span class="n">xw</span><span class="p">)</span>
+
+    <span class="n">dax</span> <span class="o">=</span> <span class="n">ptot</span> <span class="o">/</span> <span class="p">(</span><span class="n">Z</span> <span class="o">*</span> <span class="n">R</span> <span class="o">*</span> <span class="n">temp</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1e0</span> <span class="o">-</span> <span class="n">xw</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">wvdens</span><span class="p">:</span>
+        <span class="n">wvdens</span> <span class="o">=</span> <span class="n">ptot</span> <span class="o">/</span> <span class="p">(</span><span class="n">Z</span> <span class="o">*</span> <span class="n">R</span> <span class="o">*</span> <span class="n">temp</span><span class="p">)</span> <span class="o">*</span> <span class="n">xw</span>
+        <span class="k">return</span> <span class="n">dax</span><span class="p">,</span> <span class="n">wvdens</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dax</span></div>
+
+<div class="viewcode-block" id="test_mol"><a class="viewcode-back" href="../../scifysim.mol_dens.html#scifysim.mol_dens.test_mol">[docs]</a><span class="k">def</span> <span class="nf">test_mol</span><span class="p">():</span>
+    
+    <span class="c1">#wvdens = np.array([1.27])</span>
+    
+    <span class="n">temp</span> <span class="o">=</span> <span class="mf">288.15</span>
+    <span class="n">pres</span> <span class="o">=</span> <span class="mf">1013.25</span>
+    <span class="n">rhum</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">co2</span> <span class="o">=</span> <span class="mf">450.</span>
+    <span class="n">airdens</span><span class="p">,</span> <span class="n">wvdens</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="n">wvdens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">airdens</span><span class="p">,</span> <span class="n">wvdens</span><span class="p">)</span>
+    
+    
+    <span class="n">temp</span> <span class="o">=</span> <span class="mf">288.5</span>
+    <span class="n">pres</span> <span class="o">=</span> <span class="mi">743</span>
+    <span class="n">rhum</span> <span class="o">=</span> <span class="mf">33.</span>
+    <span class="n">cO2</span> <span class="o">=</span> <span class="mf">450.</span>
+    <span class="n">airdens</span><span class="p">,</span> <span class="n">wvdens</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="n">wvdens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">airdens</span><span class="p">,</span> <span class="n">wvdens</span><span class="p">)</span>
+    
+    <span class="n">temp</span> <span class="o">=</span> <span class="mf">293.15</span>
+    <span class="n">pres</span> <span class="o">=</span> <span class="mf">13.33</span>
+    <span class="n">rhum</span> <span class="o">=</span> <span class="mf">100.</span>
+    <span class="n">cO2</span> <span class="o">=</span> <span class="mf">450.</span>
+    <span class="n">airdens</span><span class="p">,</span> <span class="n">wvdens</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="n">wvdens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">airdens</span><span class="p">,</span> <span class="n">wvdens</span><span class="p">)</span></div>
+    <span class="c1"># !RL This last one returns 0, is that normal?</span>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.mol_dens</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Romain Laugier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scifysim.map_manager &#8212; SCIFYsim 0.2.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.map_manager</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scifysim.map_manager</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">astropy.io.fits</span> <span class="k">as</span> <span class="nn">fits</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Usage:</span>
+<span class="sd">------</span>
+
+<span class="sd">import map_manager</span>
+<span class="sd">themap = map_manager.map_meta(file=&quot;data/metamap_dec_XXXX.fits&quot;)</span>
+
+<span class="sd"># You can directly query the map like so:</span>
+<span class="sd">sensitivity = themap.get_value((10,14), 7.)</span>
+
+<span class="sd"># You may also plot the map</span>
+<span class="sd">fig = themap.plot_map(mag=8.)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+
+<div class="viewcode-block" id="map_meta"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta">[docs]</a><span class="k">class</span> <span class="nc">map_meta</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">starmags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">mgs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mgs_TNP</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create or load a meta map object:</span>
+<span class="sd">        </span>
+<span class="sd">        LOAD:</span>
+<span class="sd">        -----</span>
+<span class="sd">            Parameters:</span>
+<span class="sd">            -----------</span>
+<span class="sd">            file    :  The path to a fits file</span>
+<span class="sd">            </span>
+<span class="sd">        CREATE:</span>
+<span class="sd">        -------</span>
+<span class="sd">            Parameters:</span>
+<span class="sd">            -----------</span>
+<span class="sd">            asim    : Simulator object from which map parameters are taken</span>
+<span class="sd">            starmags : An array of star magnitudes</span>
+<span class="sd">            mgs     : The planet magnitude maps</span>
+<span class="sd">            mgs_TNP : The planet magnitude maps for the NeymanPearson test</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_fits</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_sim</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">starmags</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mgs</span> <span class="o">=</span> <span class="n">mgs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span> <span class="o">=</span> <span class="n">mgs_TNP</span>
+        
+        
+        
+<div class="viewcode-block" id="map_meta.from_sim"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.from_sim">[docs]</a>    <span class="k">def</span> <span class="nf">from_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">starmags</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds the meta map from simulator</span>
+<span class="sd">        </span>
+<span class="sd">        asim    : Simulator object from which map parameters are taken</span>
+<span class="sd">        starmags : An array of star magnitudes</span>
+<span class="sd">        mgs     : The planet magnitude maps</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">map_extent</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">map_extent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resx</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resx</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mags</span> <span class="o">=</span> <span class="n">starmags</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minmag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dec</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;DEC&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_order</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">order</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="map_meta.to_fits"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.to_fits">[docs]</a>    <span class="k">def</span> <span class="nf">to_fits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">hdr</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="p">()</span>
+        <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;MINX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="s2">&quot;Minimum value along x [mas]&quot;</span><span class="p">)</span>
+        <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;MAXX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxx</span><span class="p">,</span> <span class="s2">&quot;Maximum value along x [mas]&quot;</span><span class="p">)</span>
+        <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;RESX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resx</span><span class="p">,</span> <span class="s2">&quot;The resolution of the map [pixels]&quot;</span><span class="p">)</span>
+        <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;MINMAG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">minmag</span><span class="p">,</span> <span class="s2">&quot;The minimum of the range of star magnitudes [mag]&quot;</span><span class="p">)</span>
+        <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;MAXMAG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxmag</span><span class="p">,</span> <span class="s2">&quot;The maximum of the range of star magnitudes [mag]&quot;</span><span class="p">)</span>
+        <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;RESM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resm</span><span class="p">,</span> <span class="s2">&quot;The number of magnitudes evaluated&quot;</span><span class="p">)</span>
+        <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;INPUT_ODRDER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_order</span><span class="p">,</span> <span class="s2">&quot;The order in which telescopes are input on the combiner&quot;</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">hdr</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        
+        <span class="n">primary_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mgs</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">hdr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">TNP_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">ImageHDU</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MAGS_TNP&quot;</span><span class="p">)</span>
+        <span class="n">mags_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">ImageHDU</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MAGS&quot;</span><span class="p">)</span>
+        <span class="n">xs_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">ImageHDU</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;XS&quot;</span><span class="p">)</span>
+        <span class="n">ys_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">ImageHDU</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ys</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;YS&quot;</span><span class="p">)</span>
+        <span class="n">lhdus</span> <span class="o">=</span> <span class="p">[</span><span class="n">primary_hdu</span><span class="p">,</span> <span class="n">mags_hdu</span><span class="p">,</span> <span class="n">xs_hdu</span><span class="p">,</span> <span class="n">ys_hdu</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lhdus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TNP_hdu</span><span class="p">)</span>
+        <span class="n">hdul</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">HDUList</span><span class="p">(</span><span class="n">hdus</span><span class="o">=</span><span class="n">lhdus</span><span class="p">)</span>
+        <span class="n">hdul</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="map_meta.from_fits"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.from_fits">[docs]</a>    <span class="k">def</span> <span class="nf">from_fits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads meta map from file</span>
+<span class="sd">        </span>
+<span class="sd">        file    :  The path to a fits file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hdul</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;MINX&quot;</span><span class="p">],</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;MAXX&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resx</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;RESX&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ys</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="s2">&quot;XS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">hdul</span><span class="p">[</span><span class="s2">&quot;YS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mags</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="s2">&quot;MAGS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resm</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;RESM&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minmag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxmag</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;MINMAG&quot;</span><span class="p">],</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;MAXMAG&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mgs</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">try</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="s2">&quot;MAGS_TNP&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dec</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;DEC&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_order</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;HIERARCH INPUT_ODRDER&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">hdul</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+        
+        
+<div class="viewcode-block" id="map_meta.get_loc"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.get_loc">[docs]</a>    <span class="k">def</span> <span class="nf">get_loc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">mag</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the index location from a relative location and star magnitude. Returns </span>
+<span class="sd">        a tuple index to query self.mgs</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        loc      : 2-tuple Relative location on sky in the band of interest</span>
+<span class="sd">        mag      : Magnitude of the host star </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">magindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="o">-</span><span class="n">mag</span><span class="p">))</span>
+        <span class="n">xindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="o">-</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">yindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ys</span><span class="o">-</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">magindex</span><span class="p">,</span> <span class="n">yindex</span><span class="p">,</span> <span class="n">xindex</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="map_meta.get_value"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.get_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">detector</span><span class="o">=</span><span class="s2">&quot;E&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the limiting magnitude for a planet at the relative location **loc**</span>
+<span class="sd">        around a star of magnitude **mag**.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        loc      : 2-tuple Relative location on sky in the band of interest</span>
+<span class="sd">        mag      : Magnitude of the host star </span>
+<span class="sd">        detector   : The type of detector test: &quot;E&quot; for energy detector</span>
+<span class="sd">                                                &quot;N&quot; for Neyman-Pearson</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Examples:</span>
+<span class="sd">        --------</span>
+<span class="sd">        pmag_limit = mymap.get_value((5.2, 4.8), 4.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;E&quot;</span> <span class="ow">in</span> <span class="n">detector</span><span class="p">:</span>
+            <span class="n">mag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">mag</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="s2">&quot;N&quot;</span> <span class="ow">in</span> <span class="n">detector</span><span class="p">:</span>
+            <span class="n">mag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">mag</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">mag</span></div>
+    
+<div class="viewcode-block" id="map_meta.plot_map"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.plot_map">[docs]</a>    <span class="k">def</span> <span class="nf">plot_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detector</span><span class="o">=</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Uses matplotlib to show a map at a given star magnitude.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        mag      : The star magnitude</span>
+<span class="sd">        cmap       : The colormap to use</span>
+<span class="sd">        detector   : The type of detector test: &quot;E&quot; for energy detector</span>
+<span class="sd">                                                &quot;N&quot; for Neyman-Pearson</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        **kwargs : Keyword arguments to pass to plt.figure()</span>
+<span class="sd">        Returns the figure object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">magindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="o">-</span><span class="n">mag</span><span class="p">))</span>
+        <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;E&quot;</span> <span class="ow">in</span> <span class="n">detector</span><span class="p">:</span>
+            <span class="n">themap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgs</span><span class="p">[</span><span class="n">magindex</span><span class="p">]</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Planet mag for $T_E$ dec=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dec</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m_star=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="p">[</span><span class="n">magindex</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="s2">&quot;N&quot;</span> <span class="ow">in</span> <span class="n">detector</span><span class="p">:</span>
+            <span class="n">themap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span><span class="p">[</span><span class="n">magindex</span><span class="p">]</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Planet mag for $T_</span><span class="se">{{</span><span class="s2">NP</span><span class="se">}}</span><span class="s2">$ dec=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dec</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m_star=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="p">[</span><span class="n">magindex</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">themap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Relative position [mas]&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">fig</span></div></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.map_manager</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Romain Laugier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

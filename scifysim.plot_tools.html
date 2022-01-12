@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.plot_tools module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifysim.sources module" href="scifysim.sources.html" />
+    <link rel="prev" title="scifysim.parsefile module" href="scifysim.parsefile.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.plot_tools module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.plot_tools.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.plot_tools">
+<span id="scifysim-plot-tools-module"></span><h1>scifysim.plot_tools module<a class="headerlink" href="#module-scifysim.plot_tools" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.getcolor">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">getcolor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracelength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#getcolor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.getcolor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an index to one of the basic colors of matplotlib</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.getcolortrace">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">getcolortrace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#getcolortrace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.getcolortrace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.piston2size">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">piston2size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">piston</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#piston2size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.piston2size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pretty visualization of projected array: Emulates perspective
+dist  : The distance of the observer to the array
+psz   : The diameters of the pupils
+usize : A scaling parameter default = 150</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_corrector_tuning_angel_woolf">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_corrector_tuning_angel_woolf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_corrector_tuning_angel_woolf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_corrector_tuning_angel_woolf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots some information on the tuning of the combiner using geometric piston
+and chromatic corrector plates.
+Plots:
+——
+- Nulling contrast (before and after correction)
+- The corrected matrix matrix plot
+- The length of correction, compensation, and offset
+- Shape excursion (before and after correction)</p>
+<p>Currently works only with lambda_science_range</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_injection">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_injection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theinjector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_injection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_injection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a view of the injector status.
+Plots the phase screen for each pupil.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_opds">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_opds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_opds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_opds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the phase error information collected by
+the integrator object.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_phasescreen">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_phasescreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theinjector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_phasescreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_phasescreen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_projected_pupil">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_projected_pupil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_projected_pupil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_projected_pupil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Designed as a wrapper around plot_pupil that also handles
+additional illustration.
+As a contrast to plot_pupil, plot_projected_pupil takes in a
+simulator object.
+The plots are made of the array as seen from the target in meters
+projected to RA-Dec coordinates.</p>
+<p>asim    : Simulator object
+seq_index: The index in the observing sequence (This feature may evolve)
+grid    : Whether to plot a grid of ground position
+grid_res: The number of lines in the grid for each direction
+compass : Whether to plot a little North and East symbol for direction
+compoass_length: In meters the length of the compass needles.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_projected_uv">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_projected_uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_projected_uv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_projected_uv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Designed as a wrapper around plot_pupil that also handles
+additional illustration.
+As a contrast to plot_pupil, plot_projected_pupil takes in a
+simulator object.
+The plots are made of the array as seen from the target in meters
+projected to RA-Dec coordinates.</p>
+<p>asim    : Simulator object
+seq_indices: The index in the observing sequence (This feature may evolve)</p>
+<blockquote>
+<div><p>if None: the whole sequence is mapped</p>
+</div></blockquote>
+<p>grid    : Whether to plot a grid of ground position
+grid_res: The number of lines in the grid for each direction
+compass : Whether to plot a little North and East symbol for direction
+compoass_length: In meters the length of the compass needles.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_pupil">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_pupil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thearray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thepistons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_pupil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_pupil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the projected
+dist  : The distance of the observer to the array
+psz   : The diameters of the pupils
+usize : A scaling parameter default = 150
+perspective: whether to simulate an effect of perspective</p>
+<blockquote>
+<div><p>with the size of the markers</p>
+</div></blockquote>
+<dl class="simple">
+<dt>compass: A pair of positions indicating the direction of North and East</dt><dd><p>after transformation by the same projection as the array
+[North_vector[e,n], East_vector[e,n]]</p>
+</dd>
+<dt>grid<span class="classifier">Similar to the compass but for a bunch of parallels and meridians</span></dt><dd><dl class="simple">
+<dt>[parallels[[e0,n0], [e1, n1], … ],</dt><dd><p>meridians[[e0,n0], [e1, n1], …]]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Returns:
+fig   : The figure</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_response_map">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_response_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_response_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_response_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the response map of the instrument for the target and sequence
+wavelength   : np.ndarray containing wl indices (if None: use all the wavelength channels)
+sequence_index : The indices of the sequence to plot
+show         : Whether to call plt.show() for each plot
+save         : either False or a string containing the root of a path like “maps/<a href="#id3"><span class="problematic" id="id4">figures_</span></a>”
+figsize      : 2 tuple to pass to plt.figure()
+dpi          : The dpi for the maps
+<a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs     : Additional kwargs to pass to imshow
+add_central_marker: Add a marker at the 0,0 location
+central_marker_size: The size parameter to give the central marker
+central_marker_type: The type of marker to use</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.sources.html" class="btn btn-neutral float-right" title="scifysim.sources module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.parsefile.html" class="btn btn-neutral float-left" title="scifysim.parsefile module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

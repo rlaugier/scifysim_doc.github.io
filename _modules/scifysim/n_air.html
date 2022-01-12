@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scifysim.n_air &#8212; SCIFYsim 0.2.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.n_air</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scifysim.n_air</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">mol_dens</span>
+<span class="kn">from</span> <span class="nn">.mol_dens</span> <span class="kn">import</span> <span class="n">mol_dens</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<div class="viewcode-block" id="set_logging_level"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.set_logging_level">[docs]</a><span class="k">def</span> <span class="nf">set_logging_level</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">):</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Setting the logging level to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">level</span><span class="p">))</span></div>
+    
+    
+<div class="viewcode-block" id="wet_atmo"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo">[docs]</a><span class="k">class</span> <span class="nc">wet_atmo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pres</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;pres&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">co2</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rhum</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;rhum&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;vlti&quot;</span><span class="p">,</span> <span class="s2">&quot;T_vlti&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="viewcode-block" id="wet_atmo.get_Nair"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span>
+                         <span class="n">pres</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pres</span><span class="p">,</span>
+                         <span class="n">rhum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rhum</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span></div></div>
+    
+
+<div class="viewcode-block" id="n_air"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.n_air">[docs]</a><span class="k">def</span> <span class="nf">n_air</span><span class="p">(</span><span class="n">lambda_</span> <span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mf">273.15</span><span class="o">+</span><span class="mf">15.</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="mf">1000.</span><span class="p">,</span>
+         <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="mf">450.</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eso</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+         <span class="n">column</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nws</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ; DESCRIPTION</span>
+<span class="sd">    ;   Returns the phase refractive index (n-1) of air a function of (IR) wavelength (in m),</span>
+<span class="sd">    ;   and optionally, temperature (in K), pressure (in bar), relative humidity (%) and CO2 content (in ppm).</span>
+<span class="sd">    ;   Note that the used approximation for air applies in the range from 300 to 1690 nm,</span>
+<span class="sd">    ;   hence their use at much longer wavelengths should be done with caution.</span>
+<span class="sd">    ;   For wavelengths longer than 1.7 micron, use the Hill &amp; Lawrence approximation for water vapor,</span>
+<span class="sd">    ;   which has been verified with experimental data up to 15 micron.</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; INPUT</span>
+<span class="sd">    ;   lambda_ : wavelength vector in meters</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; KEYWORDS</span>
+<span class="sd">    ;   temp   : air temperature [K]</span>
+<span class="sd">    ;   pres   : air pressure [mbar]</span>
+<span class="sd">    ;   rhum   : relative humidity of the air [%]</span>
+<span class="sd">    ;   co2    : CO2 content in the air [ppm]</span>
+<span class="sd">    ;   ph2o   : partial pressure of water vapour [in Pa = 0.01 mbar]</span>
+<span class="sd">    ;            if set, overrules RHUM -- if not defined, partial pressure will be given on output</span>
+<span class="sd">    ;   eso    : set this keyword to use E. Marchetti&#39;s moist air refractive index instead of Ciddor + Hill &amp; Lawrance</span>
+<span class="sd">    ;   column : set this keyword to convert to input into fs/(mopl/m²), instead of the standard unitless n-1 value</span>
+<span class="sd">    ;   nws    : on output, returns the refractive index of pure water vapour (unless ESO keyword is set)</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; CALLS</span>
+<span class="sd">    ;   MOL_DENS</span>
+<span class="sd">    ;   N_H2O</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; REFERENCE</span>
+<span class="sd">    ;   J.E. Decker et al. &quot;Updates to the NRC gauge block interferometer&quot;, NRC document 42753, 8 August 2000</span>
+<span class="sd">    ;   P.E. Ciddor, &quot;The refractive index of air: new equations for the visible and near infrared&quot;, Appl. Opt. 35 (9), 1566-1573</span>
+<span class="sd">    ;   J. Meisner &amp; R. Le Poole, &quot;Dispersion affecting the VLTI and 10 micron interferometry using MIDI&quot;, Proc. SPIE 4838</span>
+<span class="sd">    ;   http://www.eso.org/gen-fac/pubs/astclim/lasilla/diffrefr.html</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; MODIFICATION HISTORY</span>
+<span class="sd">    ;   Version 1.0, 17-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, rdhartog@rssd.esa.int</span>
+<span class="sd">    ;   Version 1.1, 09-OCT-2002, RdH: conversion to column densities (Meisner&#39;s n^hat) implemented</span>
+<span class="sd">    ;   Version 1.2, 01-NOV-2002, RdH: water vapor index based on approximation also valid in the IR</span>
+<span class="sd">    ;   Version 1.3, 03-JUL-2003, OA:  PostScript output of test harness modified</span>
+<span class="sd">    ;   Version 1.4, 15-DEC-2009, OA:  Removed discontinuity at 1.7µm by using tabulated water vapour refraction index instead of models + improved header</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">cvac</span> <span class="o">=</span> <span class="mf">299792458.</span>
+    <span class="n">dax</span><span class="p">,</span> <span class="n">dw</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">wvdens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Compute the refractive index of moist air...</span>
+    <span class="k">if</span> <span class="n">eso</span><span class="p">:</span>
+        <span class="c1">#</span>
+        <span class="n">PS</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10474.0</span> <span class="o">+</span> <span class="mf">116.43</span><span class="o">*</span><span class="n">temp</span> <span class="o">-</span> <span class="mf">0.43284</span><span class="o">*</span><span class="n">temp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.00053840</span><span class="o">*</span><span class="n">temp</span><span class="o">**</span><span class="mi">3</span>
+        <span class="n">P2</span> <span class="o">=</span> <span class="n">rhum</span><span class="o">/</span><span class="mf">100.0</span> <span class="o">*</span> <span class="n">PS</span>
+        <span class="n">P1</span> <span class="o">=</span> <span class="n">pres</span> <span class="o">-</span> <span class="n">P2</span>
+        <span class="n">D1</span> <span class="o">=</span> <span class="n">P1</span><span class="o">/</span><span class="n">temp</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">P1</span><span class="o">*</span><span class="p">(</span><span class="mf">57.90</span><span class="o">*</span><span class="mf">1.0e-8</span><span class="o">-</span><span class="p">(</span><span class="mf">9.3250</span> <span class="o">*</span> <span class="mf">1.0e-4</span><span class="o">/</span><span class="n">temp</span><span class="p">)</span> \
+                                  <span class="o">+</span> <span class="p">(</span><span class="mf">0.25844</span><span class="o">/</span><span class="n">temp</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="n">D2</span> <span class="o">=</span> <span class="n">P2</span><span class="o">/</span><span class="n">temp</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">P2</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">3.7e-4</span><span class="o">*</span><span class="n">P2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.37321e-3</span> <span class="o">+</span> <span class="p">(</span><span class="mf">2.23366</span><span class="o">/</span><span class="n">temp</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">710.792</span><span class="o">/</span><span class="n">temp</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">7.75141e4</span><span class="o">/</span><span class="n">temp</span><span class="o">**</span><span class="mi">3</span><span class="p">)))</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="mf">1e-6</span> <span class="o">/</span> <span class="n">lambda_</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="mf">1.0e-8</span><span class="o">*</span><span class="p">((</span><span class="mf">2371.34</span> <span class="o">+</span> <span class="mf">683939.7</span><span class="o">/</span><span class="p">(</span><span class="mi">130</span><span class="o">-</span><span class="n">S</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">4547.3</span><span class="o">/</span><span class="p">(</span><span class="mf">38.9</span> <span class="o">-</span> <span class="n">S</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">D1</span> \
+                       <span class="o">+</span> <span class="p">(</span><span class="mf">6487.31</span> <span class="o">+</span> <span class="mf">58.058</span><span class="o">*</span><span class="n">S</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.71150</span><span class="o">*</span><span class="n">S</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">0.08851</span><span class="o">*</span><span class="n">S</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">D2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1">#... or Ciddor</span>
+        <span class="c1"># Refractive index of pure air...</span>
+        <span class="n">k0</span><span class="p">,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span> <span class="o">=</span> <span class="mf">238.0185</span><span class="p">,</span> <span class="mf">5792105.</span><span class="p">,</span> <span class="mf">57.362</span> <span class="p">,</span> <span class="mf">167917.</span>       <span class="c1"># um^-2</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">/</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">*</span> <span class="mf">1e+6</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>                                  <span class="c1"># um^-2</span>
+        <span class="n">naxs</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="o">/</span><span class="p">(</span><span class="n">k0</span> <span class="o">-</span> <span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="n">k3</span><span class="o">/</span><span class="p">(</span><span class="n">k2</span> <span class="o">-</span> <span class="n">s2</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="mf">0.534e-6</span><span class="o">*</span><span class="p">(</span><span class="n">co2</span> <span class="o">-</span> <span class="mf">450.</span><span class="p">))</span> <span class="c1"># in reality this is n-1</span>
+
+        <span class="c1"># and pure water vapor, using the Hill &amp; Lawrence approximation in IR, Ciddor in VIS</span>
+        <span class="c1">#n=N_ELEMENTS(lambda) &amp; nws=FLTARR(n)</span>
+        <span class="c1">#w=WHERE(lambda GT 1.7D-6, c) &amp; IF c GT 0 THEN nws[w]=N_H2O(lambda[w], APPROX=1, CO2=co2, PRES=pres, RHUM=rhum, TEMP=temp) # Hill &amp; Lawrence</span>
+        <span class="c1">#w=WHERE(lambda LE 1.7D-6, c) &amp; IF c GT 0 THEN nws[w]=N_H2O(lambda[w], APPROX=2, CO2=co2, PRES=pres, RHUM=rhum, TEMP=temp) # Ciddor</span>
+        <span class="n">nws</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)</span> <span class="c1"># returns the water vapour refractive index (n-1) as tabulated by Mathar </span>
+        <span class="c1">#nws = N_H2O(lambda, APPROX=2, CO2=co2, PRES=pres, RHUM=rhum, TEMP=temp) # Ciddor</span>
+
+        <span class="c1"># Compute the densities of air, standard dry air, water vapor and standard water vapor</span>
+        <span class="n">daxs</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="mf">288.15</span><span class="p">,</span> <span class="mf">1013.25</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">450.</span><span class="p">)</span><span class="c1"># !RL Added the CO2 value. Bug?</span>
+        <span class="n">dummy</span><span class="p">,</span> <span class="n">dws</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="mf">293.15</span><span class="p">,</span> <span class="mf">13.33</span><span class="p">,</span> <span class="mf">100.</span><span class="p">,</span> <span class="mf">450.</span><span class="p">,</span> <span class="n">wvdens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Compute the phase index</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="p">(</span><span class="n">dax</span><span class="o">/</span><span class="n">daxs</span><span class="p">)</span><span class="o">*</span><span class="n">naxs</span> <span class="o">+</span> <span class="p">(</span><span class="n">dw</span><span class="o">/</span><span class="n">dws</span><span class="p">)</span><span class="o">*</span><span class="n">nws</span>
+    
+    <span class="c1"># Convert units to fs/(mol/m2)</span>
+    <span class="k">if</span> <span class="n">column</span><span class="p">:</span>
+        <span class="n">rhoc</span> <span class="o">=</span> <span class="n">cvac</span><span class="o">*</span><span class="n">dax</span><span class="o">*</span><span class="mf">1e-15</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="n">nair</span><span class="o">/</span><span class="n">rhoc</span>
+    
+    <span class="k">return</span> <span class="n">nair</span></div>
+
+<span class="c1"># Test harness</span>
+<div class="viewcode-block" id="test_air"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.test_air">[docs]</a><span class="k">def</span> <span class="nf">test_air</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    
+    <span class="c1"># Comparison with Meisner&#39;s figure</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">166.</span><span class="p">,</span> <span class="mi">1460</span><span class="p">)</span> <span class="c1"># THz (very similar to &quot;np.arange(1460)/10.+20.&quot;)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mf">2.997925e+8</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">c</span> <span class="o">/</span> <span class="n">freq</span> <span class="o">/</span> <span class="mf">1e+12</span>
+
+    <span class="n">temp</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="mf">15.</span>
+    <span class="n">co2</span> <span class="o">=</span> <span class="mf">350.</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">nwv</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">nwda</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wda</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency [Thz]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac{n-1}{c.\rho}$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Refractive index of dry air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda_</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n_air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda_</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">nwv</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n_h2o&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Refractive index of water vapor vs. dry air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac{n-1}{c.\rho}$ [$fs/mol/m^2$]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;wavelength [$\mu m$]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="n">nda</span> <span class="o">=</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Min and max: of nda&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">nda</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">nda</span><span class="p">))</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">nwv</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Humid air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">nda</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dry air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Refractive index of water vapor vs. dry air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac{n-1}{c.\rho}$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency [Thz]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">nwda</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Refractive index of water vapor vs. dry air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac{n-1}{c.\rho} $&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency [Thz]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="c1"># The following figure shows the wavelength-dependence of OPD</span>
+    <span class="n">opd_air</span> <span class="o">=</span> <span class="mf">1e-15</span> <span class="o">*</span> <span class="mf">1e6</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">nda</span> <span class="o">*</span> <span class="mf">1.5</span>  <span class="c1"># differential column density = 1.5 mol/m², opd_air in µm</span>
+    <span class="n">opd_wda</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e-15</span> <span class="o">*</span> <span class="mf">1e6</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">nwda</span> <span class="o">*</span> <span class="mf">1.5</span>  <span class="c1"># differential column density = -1.5 mol/m², opd_wda in µm</span>
+    <span class="n">opd_tot</span> <span class="o">=</span> <span class="n">opd_air</span> <span class="o">+</span> <span class="n">opd_wda</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda_</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">opd_air</span> <span class="o">+</span> <span class="n">opd_wda</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n_air&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Differential OPD&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;OPD [$\mu m$]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;wavelength [$\mu m$]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c1">#return model, freq</span>
+    
+    <span class="c1"># Air: comparison with tables in Ciddor paper:</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="mf">633e-9</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Table 1 for dry air from P. Ciddor, Appl. Opt. 35, 1566 (1996)&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; Temperature [C]    Pressure [Pa]   (n-1)*1E-8&#39;</span><span class="p">)</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">80e+3</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">100e+3</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">120e+3</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">100e+3</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">30.</span><span class="p">,</span> <span class="mf">100e+3</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Table 2 for moist air from P. Ciddor, Appl. Opt. 35, 1566 (1996)&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; Temperature [C]   Pressure [Pa]   H2O pres.   CO2 [ppm]     (n-1)*1E-8&#39;</span><span class="p">)</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.526</span><span class="p">,</span>  <span class="mf">102094.8</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">1065.</span><span class="p">,</span>  <span class="mf">510.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.517</span><span class="p">,</span>  <span class="mf">102096.8</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">1065.</span><span class="p">,</span>  <span class="mf">510.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.173</span><span class="p">,</span>  <span class="mf">102993.0</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">641.</span><span class="p">,</span>  <span class="mf">450.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.173</span><span class="p">,</span>  <span class="mf">103006.0</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">642.</span><span class="p">,</span>  <span class="mf">440.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.188</span><span class="p">,</span>  <span class="mf">102918.8</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">706.</span><span class="p">,</span>  <span class="mf">450.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.189</span><span class="p">,</span>  <span class="mf">102927.8</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">708.</span><span class="p">,</span>  <span class="mf">440.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.532</span><span class="p">,</span>  <span class="mf">103603.2</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">986.</span><span class="p">,</span>  <span class="mf">600.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.534</span><span class="p">,</span>  <span class="mf">103596.2</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">962.</span><span class="p">,</span>  <span class="mf">600.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">19.534</span><span class="p">,</span>  <span class="mf">103599.2</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">951.</span><span class="p">,</span>  <span class="mf">610.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="n">ph2o</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="n">co2</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Table 3 for moist air from P. Ciddor, Appl. Opt. 35, 1566 (1996)&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; Temperature [C]  Pressure [Pa]  Humidity [%]    (n-1)*1E-8&#39;</span><span class="p">)</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">20.</span><span class="p">,</span>  <span class="mf">80e+3</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">75.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">20.</span><span class="p">,</span>  <span class="mf">120e+3</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">75.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">40.</span><span class="p">,</span>  <span class="mf">80e+3</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">75.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">40.</span><span class="p">,</span>  <span class="mf">120e+3</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">75.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">50.</span><span class="p">,</span>  <span class="mf">80e+3</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">)))</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mf">50.</span><span class="p">,</span>  <span class="mf">120e+3</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span>  <span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span><span class="mf">273.15</span><span class="p">,</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="mf">1e8</span><span class="o">*</span><span class="p">(</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">()</span></div>
+
+
+<span class="c1">####################################################################################</span>
+
+    
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interp</span>
+
+
+<div class="viewcode-block" id="n_h2o"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.n_h2o">[docs]</a><span class="k">def</span> <span class="nf">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">approx</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">co2</span><span class="o">=</span><span class="mf">450.</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="mf">1013.25</span><span class="p">,</span> <span class="n">rad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+            <span class="n">table</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mf">296.15</span><span class="p">,</span> <span class="n">wda</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ; PURPOSE:</span>
+<span class="sd">    ;   Returns the refractive index (n-1) of water vapor a function of (IR) wavelength (in m),</span>
+<span class="sd">    ;   in the range from 3.3 to 10.6 micron,</span>
+<span class="sd">    ;   and optionally, temperature (in K), and vapor density in (kg/m3)</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; KEYWORDS:</span>
+<span class="sd">    ;   TEMP:   temperature in K</span>
+<span class="sd">    ;   PRES:   pressure in mbar</span>
+<span class="sd">    ;   RHUM:   relative humidity in %</span>
+<span class="sd">    ;   CO2:    CO2 fraction in ppm</span>
+<span class="sd">    ;   APPROX: if not set, the table from Mathar will be interpolated at the input wavelengths</span>
+<span class="sd">    ;           if set to 1, use approximate formula by Hill &amp; Lawrence</span>
+<span class="sd">    ;           if set to 2, use approximate formula by Ciddor</span>
+<span class="sd">    ;   TABLE:  set this keyword to use the full Mathar table -- warning, this modifies the lambda array on output (ONLY FOR TEST PURPOSE)</span>
+<span class="sd">    ;   COLUMN: convert units to fs / (mol/m�), such that t_delay = n_H20 * column density</span>
+<span class="sd">    ;   RAD:    convert units to radians</span>
+<span class="sd">    ;   WDA:    the refraction index is given for water vapour displacing air instead of bare water vapour, in units of fs/(mol/m�)</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; RESTRICTIONS:</span>
+<span class="sd">    ;   Does require a file &#39;n_mathar.dat&#39; to be present in same directory</span>
+<span class="sd">    ;   The Mathar data table does not include wavelengths smaller than 1.819 �m.</span>
+<span class="sd">    ;   At wavelengths smaller than 1.819 �m, the Hill &amp; Lawrence approximation is used instead.</span>
+<span class="sd">    ;   This produces a discontinuity of N_H2O at 1.819 �m.</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; CALLS:</span>
+<span class="sd">    ;   N_AIR</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; REFERENCE:</span>
+<span class="sd">    ;   R.J. Hill, R.S. Lawrence, &quot;Refractive index of water vapor in infrared windows&quot;, Infrared Phys. 26, 371 - 376 (1986)</span>
+<span class="sd">    ;   P.E. Ciddor, &quot;The refractive index of air: new equations for the visible and near infrared&quot;, Appl. Opt. 35 (9), 1566-1573</span>
+<span class="sd">    ;   F. Hase, R.J. Mathar, &quot;Water vapor dispersion in the atmospheric window at 10 um&quot;, Preprint, 06-FEB-2002</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; MODIFICATION HISTORY:</span>
+<span class="sd">    ;   Version 1.0, 13-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, rdhartog@rssd.esa.int</span>
+<span class="sd">    ;   Version 2.0, 09-OCT-2002, RdH: included tabulated data by R.J. Mathar (obtained via J. Meisner)</span>
+<span class="sd">    ;   Version 2.1, 29-OCT-2002, RdH: conversion to WDA implemented</span>
+<span class="sd">    ;   Version 2.2, 01-NOV-2002, RdH: Ciddor&#39;s approximation implemented</span>
+<span class="sd">    ;   Version 2.3, 15-DEC-2009, OA:  Improved header</span>
+<span class="sd">    ;</span>
+<span class="sd">    ; TESTED</span>
+<span class="sd">    ;   13-SEP-2002, RdH: comparison with measurements by Hase and Mathar</span>
+<span class="sd">    ;   09-OCT-2002, RdH: direct comparison between Hill &amp; Lawrence&#39;s approximation and Mathar&#39;s data</span>
+<span class="sd">    ;   15-NOV-2004, RdH: implemented option to convert output directly into radians</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cvac</span> <span class="o">=</span> <span class="mf">299792458.</span>
+    <span class="c1"># !RL we need to do something for global variables</span>
+    <span class="k">global</span> <span class="n">nh2o</span><span class="p">,</span> <span class="n">freqM</span><span class="p">,</span> <span class="n">nh2oM</span>
+    <span class="k">if</span> <span class="n">rad</span> <span class="p">:</span>
+        <span class="n">column</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="n">airdens</span><span class="p">,</span> <span class="n">wvdens</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span> <span class="n">wvdens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#mol/m3</span>
+    <span class="n">rhoc</span> <span class="o">=</span> <span class="n">wvdens</span> <span class="o">*</span> <span class="n">cvac</span> <span class="o">*</span> <span class="mf">1e-15</span> <span class="c1"># converts n-1 into units of fs / mol / m2</span>
+    
+    <span class="c1"># The Mathar data table does not include wavelengths smaller than 1.819 µm.</span>
+    <span class="c1"># At wavelengths smaller than 1.819 µm, use the Hill &amp; Lawrence approximation instead</span>
+    <span class="n">separate</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">approx</span><span class="p">:</span>
+        <span class="n">w1</span> <span class="o">=</span> <span class="n">lambda_</span> <span class="o">&lt;</span> <span class="mf">1.819e-6</span> 
+        <span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
+        <span class="n">w2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">c1</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">c2</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">separate</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">lam1</span> <span class="o">=</span> <span class="n">lambda_</span><span class="p">[</span><span class="n">w1</span><span class="p">]</span>
+            <span class="c1"># the Hill &amp; Lawrence approximation will be used on this part of the spectrum</span>
+            <span class="n">lam2</span> <span class="o">=</span> <span class="n">lambda_</span><span class="p">[</span><span class="n">w2</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">c1</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">c2</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">approx</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">approx</span> <span class="ow">or</span> <span class="n">separate</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">separate</span><span class="p">:</span>
+            <span class="n">lam1</span> <span class="o">=</span> <span class="n">lambda_</span>
+        <span class="n">freq1</span> <span class="o">=</span> <span class="n">m2thz</span><span class="p">(</span><span class="n">lam1</span><span class="p">)</span> <span class="c1"># Frequencies in THz</span>
+        <span class="k">if</span> <span class="n">approx</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span> <span class="c1"># !RL need to check that call!</span>
+            <span class="n">s1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">lam1</span><span class="o">*</span><span class="mf">1e6</span><span class="p">)</span>
+            <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="c1">#(lam1*1e6)**2 # um^-2</span>
+            <span class="n">cf</span><span class="p">,</span> <span class="n">w0</span> <span class="o">=</span> <span class="mf">1.022</span><span class="p">,</span> <span class="mf">295.235</span>
+            <span class="n">w1</span> <span class="o">=</span> <span class="mf">2.6422</span>    <span class="c1"># um^-2</span>
+            <span class="n">w2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.032380</span> <span class="c1"># um^-4</span>
+            <span class="n">w3</span> <span class="o">=</span> <span class="mf">0.004028</span>  <span class="c1"># um^-6</span>
+            <span class="n">s4</span> <span class="o">=</span> <span class="n">s1</span><span class="o">**</span><span class="mi">4</span> <span class="c1"># !RL How about that?</span>
+            <span class="n">s6</span> <span class="o">=</span> <span class="n">s1</span><span class="o">**</span><span class="mi">6</span>
+            <span class="n">nh2o1</span> <span class="o">=</span> <span class="mf">1e-8</span> <span class="o">*</span> <span class="n">cf</span> <span class="o">*</span> <span class="p">(</span><span class="n">w0</span> <span class="o">+</span> <span class="n">w1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="n">w2</span><span class="o">*</span><span class="n">s4</span> <span class="o">+</span> <span class="n">w3</span><span class="o">*</span><span class="n">s6</span><span class="p">)</span>  <span class="c1"># in reality this is n-1</span>
+            <span class="c1">#print(&quot;nh2o1 (n-1)&quot;, nh2o1)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">tt</span><span class="o">=</span><span class="n">temp</span><span class="o">/</span><span class="mf">273.16</span>
+            <span class="n">x</span><span class="o">=</span><span class="mf">1e-5</span><span class="o">/</span><span class="n">lam1</span>
+            <span class="n">Q</span><span class="o">=</span><span class="mf">18.015</span><span class="o">*</span><span class="n">wvdens</span>  <span class="c1"># go from mol / m3 to g / m3</span>
+            <span class="n">nh2o1</span> <span class="o">=</span> <span class="mf">1e-6</span> <span class="o">*</span> <span class="n">Q</span> <span class="o">*</span> \
+                    <span class="p">(</span> <span class="p">(</span><span class="mf">0.957</span> <span class="o">-</span> <span class="mf">0.928</span><span class="o">*</span><span class="p">(</span><span class="n">tt</span><span class="o">**</span><span class="mf">0.4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">))</span> \
+                    <span class="o">/</span><span class="p">(</span><span class="mf">1.03</span><span class="o">*</span><span class="p">(</span><span class="n">tt</span><span class="o">**</span><span class="mf">0.17</span><span class="p">)</span> <span class="o">-</span> <span class="mf">19.8</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">8.1</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.7</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">8</span><span class="p">))</span> \
+                        <span class="o">+</span> <span class="mf">3747.</span><span class="o">/</span><span class="p">(</span><span class="mf">12449.</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="p">)</span>
+            <span class="c1">#HELP, tt, x, q, nh2o1</span>
+            <span class="c1">#PRINT, MIN(tt), MAX(tt), MIN(x), MAX(x), MIN(q), MAX(q), MIN(nh2o1), MAX(nh2o1)</span>
+        <span class="k">if</span> <span class="n">column</span> <span class="ow">or</span> <span class="n">wda</span> <span class="p">:</span>
+            <span class="n">nh2o1</span> <span class="o">=</span> <span class="n">nh2o1</span><span class="o">/</span><span class="n">rhoc</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">approx</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">separate</span><span class="p">:</span>
+            <span class="n">lam2</span> <span class="o">=</span> <span class="n">lambda_</span>
+        <span class="c1">#if nh2oM.shape[0] &lt; 2: # !RL Should probably cleanup this condition</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+        <span class="n">n_mathar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="s2">&quot;data/n_mathar.dat&quot;</span><span class="p">)</span>
+        <span class="n">freqM</span> <span class="o">=</span> <span class="n">n_mathar</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">nh2oM</span> <span class="o">=</span> <span class="n">n_mathar</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># Interpolate</span>
+        <span class="k">if</span> <span class="n">lam2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">table</span><span class="p">:</span>
+            <span class="c1">#lam2 = cvac/freqM/1e+12 </span>
+            <span class="n">lam2</span> <span class="o">=</span> <span class="n">thz2m</span><span class="p">(</span><span class="n">freqM</span><span class="p">)</span>
+            <span class="n">freq2</span> <span class="o">=</span> <span class="n">freqM</span>
+            <span class="n">nh2o2</span> <span class="o">=</span> <span class="n">nh2oM</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">freq2</span> <span class="o">=</span> <span class="n">m2thz</span><span class="p">(</span><span class="n">lam2</span><span class="p">)</span> <span class="c1"># THz</span>
+            <span class="n">spline</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">splrep</span><span class="p">(</span><span class="n">freqM</span><span class="p">,</span> <span class="n">nh2oM</span><span class="p">)</span>
+            <span class="n">nh2o2</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">splev</span><span class="p">(</span><span class="n">freq2</span><span class="p">,</span> <span class="n">spline</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># Conversion </span>
+        <span class="n">nh2o2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">9.05e-7</span> <span class="o">+</span> <span class="n">nh2o2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">6.022</span> <span class="o">*</span> <span class="mf">3335000.</span><span class="p">)</span> <span class="c1"># fs /mol /m2</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">column</span> <span class="ow">or</span> <span class="n">wda</span><span class="p">)</span> <span class="p">:</span>
+            <span class="n">nh2o2</span> <span class="o">=</span> <span class="n">nh2o2</span> <span class="o">*</span> <span class="n">rhoc</span> <span class="c1"># convert to dimensionless n-1</span>
+    <span class="c1"># Reform the arrays if they were separated</span>
+    <span class="k">if</span> <span class="n">approx</span><span class="p">:</span>
+        <span class="n">freqs</span> <span class="o">=</span> <span class="n">freq1</span>
+        <span class="n">nh2o</span> <span class="o">=</span> <span class="n">nh2o1</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="k">if</span> <span class="n">separate</span><span class="p">:</span>
+            <span class="n">lambda_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">lam1</span><span class="p">,</span> <span class="n">lam2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">freq1</span><span class="p">,</span> <span class="n">freq2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">nh2o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">nh2o1</span><span class="p">,</span> <span class="n">nh2o2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">lambda_</span> <span class="o">=</span> <span class="n">lam2</span>
+            <span class="n">freqs</span> <span class="o">=</span> <span class="n">freq2</span>
+            <span class="n">nh2o</span> <span class="o">=</span> <span class="n">nh2o2</span>
+    
+    <span class="k">if</span> <span class="n">wda</span> <span class="p">:</span>
+        <span class="n">nh2o</span> <span class="o">=</span> <span class="n">nh2o</span> <span class="o">-</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span>
+                            <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rad</span> <span class="p">:</span>
+        <span class="n">nh2o</span> <span class="o">=</span> <span class="n">nh2o</span> <span class="o">*</span> <span class="mf">1e15</span> <span class="o">*</span> <span class="n">cvac</span> <span class="o">*</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">lambda_</span>
+    <span class="k">if</span> <span class="n">freq</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">nh2o</span><span class="p">,</span> <span class="n">freqs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">nh2o</span></div>
+<div class="viewcode-block" id="m2thz"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.m2thz">[docs]</a><span class="k">def</span> <span class="nf">m2thz</span><span class="p">(</span><span class="n">lambda_</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">299792458.</span><span class="o">*</span> <span class="mf">1e-12</span><span class="o">/</span><span class="n">lambda_</span> </div>
+<div class="viewcode-block" id="thz2m"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.thz2m">[docs]</a><span class="k">def</span> <span class="nf">thz2m</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">299792458.</span><span class="o">/</span> <span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="mf">1e12</span><span class="p">)</span></div>
+
+<span class="c1"># Test harness</span>
+<div class="viewcode-block" id="test_h2o"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.test_h2o">[docs]</a><span class="k">def</span> <span class="nf">test_h2o</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.368</span><span class="p">,</span> <span class="mf">3.392</span><span class="p">,</span> <span class="mf">3.508</span><span class="p">,</span> <span class="mf">10.246</span><span class="p">,</span> <span class="mf">10.571</span><span class="p">,</span>
+                        <span class="mf">10.591</span><span class="p">,</span> <span class="mf">10.611</span><span class="p">,</span> <span class="mf">10.632</span><span class="p">,</span> <span class="mf">10.653</span><span class="p">])</span><span class="o">*</span><span class="mf">1e-6</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frequencies: &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="mf">299792458.</span><span class="o">/</span><span class="n">lambda_</span> <span class="o">*</span> <span class="mf">1e-12</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="mf">20.</span>
+    <span class="n">pres</span> <span class="o">=</span> <span class="mf">743.</span>
+    <span class="n">rhum</span> <span class="o">=</span> <span class="mf">99.</span>
+    <span class="n">approx</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span> <span class="n">approx</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mathar</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">)</span>
+    <span class="n">appcol</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span> <span class="n">approx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">matcol</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;                      (n-1) * 1E+6                    (n-1)/rho/c&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  lambda      Hill &amp; Lawrence     Mathar      Hill &amp; Lawrence     Mathar&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">lambda_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">approx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">mathar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">appcol</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">matcol</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">temp</span><span class="o">=</span><span class="mf">273.15</span><span class="o">+</span><span class="mf">23.</span>
+    <span class="n">rhum</span><span class="o">=</span><span class="mf">42.3</span>
+    
+    <span class="n">mathar</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span>
+                         <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># !RL Non-idempotent code ahead!</span>
+    <span class="c1">#lambda_ = lambda_*1e6</span>
+    <span class="c1">#n = mathar.shape[0]</span>
+    <span class="n">dr</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mathar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">mathar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ar</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">mathar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">mathar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">mathar</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mathar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">mathar</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mathar&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Refractive index of H2O vapor&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency [THz]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$n-1$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="c1"># Hill and Lawrence approximation</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.e-6</span><span class="p">,</span> <span class="mf">10.6e-6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">approx_hl</span><span class="p">,</span> <span class="n">freq2</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span>
+                   <span class="n">approx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Ciddor approximation </span>
+    <span class="n">approx_c</span><span class="p">,</span> <span class="n">freq2</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span>
+                   <span class="n">approx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">mathar</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mathar&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq2</span><span class="p">,</span> <span class="n">approx_hl</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Hill and Lawrence approx.&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq2</span><span class="p">,</span> <span class="n">approx_c</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ciddor approx.&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency [THz]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Refractive index of H2O vapor&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thz2m</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">mathar</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mathar&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thz2m</span><span class="p">(</span><span class="n">freq2</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">approx_hl</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Hill and Lawrence approx.&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thz2m</span><span class="p">(</span><span class="n">freq2</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">approx_c</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ciddor approx.&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Wavelength [$\mu m$]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Refractive index of H2O vapor&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="c1"># WDA</span>
+    <span class="n">mathar</span><span class="p">,</span> <span class="n">freq2</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span> <span class="n">wda</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.n_air</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Romain Laugier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

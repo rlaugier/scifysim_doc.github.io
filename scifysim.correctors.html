@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.correctors module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifysim.director module" href="scifysim.director.html" />
+    <link rel="prev" title="scifysim.control_loop module" href="scifysim.control_loop.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.correctors module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.correctors.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.correctors">
+<span id="scifysim-correctors-module"></span><h1>scifysim.correctors module<a class="headerlink" href="#module-scifysim.correctors" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">corrector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.correctors',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.__init__&gt;,</span> <span class="pre">'get_phasor':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor&gt;,</span> <span class="pre">'get_phasor_s':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor_s&gt;,</span> <span class="pre">'get_phasor_from_params':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor_from_params&gt;,</span> <span class="pre">'theoretical_phase':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.theoretical_phase&gt;,</span> <span class="pre">'solve_air':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.solve_air&gt;,</span> <span class="pre">'tune_static':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.tune_static&gt;,</span> <span class="pre">'tune_static_shape':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.tune_static_shape&gt;,</span> <span class="pre">'plot_tuning':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.plot_tuning&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'corrector'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'corrector'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.correctors.corrector.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>A module that provides beam adjustments
+for the input. It contains amplitude <em>a</em>, geometric
+piston <em>b</em> and ZnSe piston substitution <em>c</em>. Note that
+the ZnSe length replaces some air length.</p>
+<p>config:     A parsed config file
+lambs :     The wavelength channels to consider [m]</p>
+<blockquote>
+<div><p>(At the __init__ stage, it is only used for
+the computation of a mean refractive index for
+the dispersive material)</p>
+</div></blockquote>
+<p>a     :     Vector of the amplitude term
+b     :     Vetor of the geometric piston term [m]
+c     :     Vetor of the dispersive piston term [m]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.correctors'</span></em><a class="headerlink" href="#scifysim.correctors.corrector.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.correctors.corrector.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.get_phasor">
+<span class="sig-name descname"><span class="pre">get_phasor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.get_phasor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.get_phasor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the complex phasor corresponding
+to the current a, b, c, and dcomp phasors.</p>
+<p>lambs :     The wavelength channels to consider [m]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.get_phasor_from_params">
+<span class="sig-name descname"><span class="pre">get_phasor_from_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dcomp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.get_phasor_from_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.get_phasor_from_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to get_phasor() but allows to provide the
+parameters as arguments (slower).</p>
+<p>Returns the complex phasor corresponding
+to the current a, b, c, and dcomp phasors.</p>
+<p>lambs :     The wavelength channels to consider [m]
+a     :     Vector of the amplitude term
+b     :     Vetor of the geometric piston term [m]
+c     :     Vetor of the dispersive piston term [m]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.get_phasor_s">
+<span class="sig-name descname"><span class="pre">get_phasor_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.get_phasor_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.get_phasor_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.plot_tuning">
+<span class="sig-name descname"><span class="pre">plot_tuning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.plot_tuning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.plot_tuning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.solve_air">
+<span class="sig-name descname"><span class="pre">solve_air</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wet_atmo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.solve_air"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.solve_air" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a least squares compensation model (see
+Koresko et al. 2003 DOI: 10.1117/12.458032)</p>
+<p>lambs :     The wavelength channels to consider [m]
+wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.theoretical_phase">
+<span class="sig-name descname"><span class="pre">theoretical_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj_opds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wet_atmo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.theoretical_phase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.theoretical_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the theoretical chromatic phase effect of the
+array geometry projected on axis based on the wet atmosphere
+model.</p>
+<p>lambs :     The wavelength channels to consider [m]
+proj_opds  : The projected piston obtained by projection</p>
+<blockquote>
+<div><p>(Get from simulator.obs.get_projected_geometric_pistons)</p>
+</div></blockquote>
+<p>wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.tune_static">
+<span class="sig-name descname"><span class="pre">tune_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['b0',</span> <span class="pre">'c0',</span> <span class="pre">'b2',</span> <span class="pre">'c2']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.tune_static"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.tune_static" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize the compensator to correct chromatism in the
+model of the combiner. Returns a lmfit solution object.
+If “apply” is set to True, a, b, c, and dcomp are also
+set to the best fit value.</p>
+<p>lambs :     The wavelength channels to consider [m]
+combiner :  A combiner object (chromatic)
+apply    :  Boolean deciding whether to set the local</p>
+<blockquote>
+<div><p>parameters to best fit value (default: True)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>freeze_params<span class="classifier">The name of parameters to be freezed.</span></dt><dd><p>Should be used to account for the larger than
+necessary number of degrees of freedom.</p>
+</dd>
+</dl>
+<p>Note: For obtaining a more practical direct results, some
+more complicated balancing guidelines should be followed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.tune_static_shape">
+<span class="sig-name descname"><span class="pre">tune_static_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[('b3',</span> <span class="pre">'b2',</span> <span class="pre">0.0),</span> <span class="pre">('c3',</span> <span class="pre">'c2',</span> <span class="pre">0.0)]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['b0',</span> <span class="pre">'c0',</span> <span class="pre">'b1',</span> <span class="pre">'c1']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.tune_static_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.tune_static_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize the compensator to correct chromatism in the
+model of the combiner to obtain enantomporph combinations
+at the outputs. Returns a lmfit solution object.
+If “apply” is set to True, a, b, c, and dcomp are also
+set to the best fit value.</p>
+<p><strong>Currently only works for double Bracewell 3-4 architectures.</strong></p>
+<p>lambs :     The wavelength channels to consider [m]
+combiner :  A combiner object (chromatic)
+apply    :  Boolean deciding whether to set the local</p>
+<blockquote>
+<div><p>parameters to best fit value (default: True)</p>
+</div></blockquote>
+<p>Note: For obtaining a more practical direct results, some
+more complicated balancing guidelines should be followed.</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+sol = asim.corrector.tune_static_shape(asim.lambda_science_range,</p>
+<blockquote>
+<div><p>asim.combiner,
+sync_params=[(“b3”, “b2”, asim.corrector.b[3] - asim.corrector.b[2]),</p>
+<blockquote>
+<div><p>(“c3”, “c2”, asim.corrector.c[3] - asim.corrector.c[2])],</p>
+</div></blockquote>
+<p>apply=True)</p>
+</div></blockquote>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.correctors.extract_corrector_params">
+<span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">extract_corrector_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#extract_corrector_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.extract_corrector_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function to reconstruct the <em>b</em> and <em>c</em>
+vectors from the lmfit Parameters object.</p>
+<p>corrector : The corrector object
+params   :  at lmfit Parameters object</p>
+<blockquote>
+<div><p>containing b_i and c_i terms</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.correctors.get_Is">
+<span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_Is</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_Is"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_Is" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns intensities at the combiners’ outputs
+taking into account the corrections provided in
+params.</p>
+<p><strong>dcomp is computed automatically be default.</strong></p>
+<dl class="simple">
+<dt>params<span class="classifier">either</span></dt><dd><ul class="simple">
+<li><p>A Parameters object from the optimization</p></li>
+<li><p>A tuple of vectors bvec, cvec</p></li>
+</ul>
+</dd>
+</dl>
+<p>combiner : A combiner object.
+corrector : The corrector object
+lambs    : The wavelengths considered.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.correctors.get_contrast_res">
+<span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_contrast_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_contrast_res"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_contrast_res" title="Permalink to this definition">¶</a></dt>
+<dd><p>Macro that gets the a residual from parameters
+for minimizing method.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.correctors.get_depth">
+<span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Is</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a “null depth” analogue (dark/bright)
+to be minimized by the tuning method.
+The masks in the combiner definition
+are used to determine the role of the different outputs.</p>
+<p>combiner : A combiner object.
+Is       : An array of intensities</p>
+<p>Note: This definition might need some adjustments for
+use in kernel-nullers?</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.correctors.get_es">
+<span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_es</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_es"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_es" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the enantiomorph excursion taking into account the corrections provided in
+params.
+<strong>Currently works only for double-bracewell 3-4 architecures</strong></p>
+<p><strong>dcomp is computed automatically be default.</strong></p>
+<dl class="simple">
+<dt>params<span class="classifier">either</span></dt><dd><ul class="simple">
+<li><p>A Parameters object from the optimization</p></li>
+<li><p>A tuple of vectors bvec, cvec</p></li>
+</ul>
+</dd>
+</dl>
+<p>combiner : A combiner object.
+corrector : The corrector object
+lambs    : The wavelengths considered.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.correctors.get_shape_res">
+<span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_shape_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_shape_res"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_shape_res" title="Permalink to this definition">¶</a></dt>
+<dd><p>Macro that gets the a residual from parameters
+for minimizing method.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.director.html" class="btn btn-neutral float-right" title="scifysim.director module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.control_loop.html" class="btn btn-neutral float-left" title="scifysim.control_loop module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

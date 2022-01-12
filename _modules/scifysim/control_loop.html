@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scifysim.control_loop &#8212; SCIFYsim 0.2.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.control_loop</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scifysim.control_loop</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">lmfit</span> <span class="kn">import</span> <span class="n">Parameters</span><span class="p">,</span> <span class="n">minimize</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<div class="viewcode-block" id="set_logging_level"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.set_logging_level">[docs]</a><span class="k">def</span> <span class="nf">set_logging_level</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">):</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Setting the logging level to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">level</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="control_loop"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.control_loop">[docs]</a><span class="k">class</span> <span class="nc">control_loop</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">suffix</span><span class="p">,</span> <span class="n">f_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">5e+4</span><span class="p">),</span>
+                 <span class="n">n_dif</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_sens</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">act_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_late</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_dac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">ctrl_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        PURPOSE:</span>
+<span class="sd">        ;   General routine for emulating a classical, continuous closed feedback control loop,</span>
+<span class="sd">        ;   taking into account the noise from the sensor and the actuator,</span>
+<span class="sd">        ;   and effects from latency and digital-to-analog conversion.</span>
+<span class="sd">        ;   The controller is modelled as a cascade of PID stages, defined by the keyword PID</span>
+<span class="sd">        ;</span>
+<span class="sd">        ; INPUTS:</span>
+<span class="sd">        ;   freq: array with frequencies on which the input powerspectrum,</span>
+<span class="sd">        ;   psd :  is defined</span>
+<span class="sd">        ;</span>
+<span class="sd">        ; OUTPUT:</span>
+<span class="sd">        ;   The corrected psd, filter by the closed loop transfer function</span>
+<span class="sd">        ;</span>
+<span class="sd">        ; KEYWORDS:</span>
+<span class="sd">        ;   config:    the parsefile config object used mostly to recover the PID parameters</span>
+<span class="sd">        ;   section:   the section of the config object containing the controler parameters</span>
+<span class="sd">        ;   suffix:    the suffix used in the parameter names in this section </span>
+<span class="sd">                       (Must be the same for the whole section)</span>
+<span class="sd">        ;   act_name:  the name of the function used to compute the transfer function of the actuator</span>
+<span class="sd">        ;   AFTER:     if set, enter the actuator noise at the output. Default is the input.</span>
+<span class="sd">        ;   BUTTER:    parameters that define the Butterworth filter to suppress known resonances</span>
+<span class="sd">        ;              for each resonance two parameters are specified: a center frequency f and a quality factor q,</span>
+<span class="sd">        ;              such that on input BUTTER is a 2N array [f1, q1, f2, q2, ..., fN, qN]</span>
+<span class="sd">        ;   CALIBRATE: automatic gain calibration so as to obtain a 30� margin (ensuring optimum performance of the loop)</span>
+<span class="sd">        ;              when CALIBRATE is set, the optimum PID parameters are passed on output through the parameter PID</span>
+<span class="sd">        ;   CTRL_NAME: the name of the function that describes the open loop tranfer function of the controller</span>
+<span class="sd">        ;   f_range:   set this keyword to [f_min, f_max] to set the frequency range inside which the PID settings should be calibrated</span>
+<span class="sd">        ;   INFO:      set this keyword to a value &gt; 2 to print detailed info to the screen</span>
+<span class="sd">        ;   P_ACT:     noise spectrum of the actuator at frequencies &#39;freq&#39;</span>
+<span class="sd">        ;   F_CUT:     cut-off frequency of the actuator</span>
+<span class="sd">        ;   P_SENS:    noise spectrum of the sensor at frequencies &#39;freq&#39;</span>
+<span class="sd">        ;   PID:       On input: scalar or a 3 x N array that defines the transfer function (TF) of the controller as a cascade of PID stages</span>
+<span class="sd">        ;              If scalar, it contains only a proportional gain</span>
+<span class="sd">        ;              If 3-element array, it defines the TF as TF(s)=PID[0]+PID[1]/s+PID[2]*s</span>
+<span class="sd">        ;              If a 3 x N array, TF(s)=(PID[0,0]+PID[1,0]/s+PID[2,0]*s) * (PID[0,1]+PID[1,1]/s+PID[2,1]*s) * ... * (PID[0,N]+PID[1,N]/s+PID[2,N]*s)</span>
+<span class="sd">        ;              On output, if CALIBRATE is set: optimum PID parameters for the loop</span>
+<span class="sd">        ;   n_dif      If set, the differential term of the PID part is modified to PID[2]*s / (1D0 + (PID[2]*s)/(N_DIF*PID[0]))</span>
+<span class="sd">        ;   PLOT:      set this keyword to plot the transfer functions of the sensor, controller, actuator and of the open loop</span>
+<span class="sd">        ;   t_dac:     hold time for the DA converter</span>
+<span class="sd">        ;   t_late:    time constant for the latency, the time delay between the controller and the actuator</span>
+<span class="sd">        ;   t_sens:    time constant for the sensor (previously called the repetition time)</span>
+<span class="sd">        ;   TF_ACT:    on output: closed-loop transfer function for the actuator noise</span>
+<span class="sd">        ;   TF_SENS:   on output: closed-loop transfer function for the sensor noise</span>
+<span class="sd">        ;   TF_CL:     on output: closed-loop transfer function of the whole servo loop</span>
+<span class="sd">        ;</span>
+<span class="sd">        ; MODIFICATION HISTORY:</span>
+<span class="sd">        ;   Version 1.0,  26-NOV-2003, Roland den Hartog, ESA/ESTEC Genie team, rdhartog@rssd.esa.int</span>
+<span class="sd">        ;   Version 1.1,  04-DEC-2003, OA:  avoid division by 0 for frequency = 0</span>
+<span class="sd">        ;   Version 1.2,  22-DEC-2003, OA:  implemented gain optimization</span>
+<span class="sd">        ;   Version 1.3,  15-JAN-2003, OA:  updated parameters for intensity matching loop</span>
+<span class="sd">        ;   Version 1.4,  08-MAR-2004, OA:  Compensation of VLTI DL resonance peaks implemented (keyword COMP_RES)</span>
+<span class="sd">        ;   Version 1.5,  22-APR-2004, OA:  New parameter F_CUT for actuator cut-off frequency</span>
+<span class="sd">        ;   Version 1.6,  17-MAY-2004, RdH: General controller definition allowed</span>
+<span class="sd">        ;   Version 1.7,  02-JUN-2004, RdH: Corrected the transfer function for the actuator noise. Removed bug.</span>
+<span class="sd">        ;   Version 1.8,  07-JUN-2004, RdH: Implemented option between applying actuator noise at input of output. Default is input.</span>
+<span class="sd">        ;   Version 1.9,  09-JUN-2004, RdH: Frequency range for PID calibration can now be entered via a keyword</span>
+<span class="sd">        ;   Version 1.10, 14-JUN-2004, OA:  Butterworth filtering removed from calibration part</span>
+<span class="sd">        ;   Version 1.11, 01-JUL-2004, RdH: Give MARGINS several chances to come up with a stability criterion</span>
+<span class="sd">        ;   Version 1.12, 19-AUG-2004, RdH: Small error in line 259, pointed out by Oswald Wallner, corrected</span>
+<span class="sd">        ;   Version 1.13, 10-NOV-2004, OA:  DAC term corrected.</span>
+<span class="sd">        ;   Version 1.14, 21-DEC-2004, RdH: Modified differential term in PID cf. PF&#39;s criticism</span>
+<span class="sd">        ;   Version 1.15, 05-MAR-2005, RdH: Implemented test output for PF&#39;s control loop assessment</span>
+<span class="sd">        ;   Version 1.16, 06-OCT-2009, OA:  Avoid foating underflows</span>
+<span class="sd">        ;</span>
+<span class="sd">        ; TESTING:</span>
+<span class="sd">        ;   22-DEC-2003, OA:  Tested through VLTI_OPD, GENIE_OPD and GENIE_DISP. Frequency range and sampling still to be optimized.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_amargin</span> <span class="o">=</span> <span class="mf">45.</span> <span class="c1"># Minimum phase margin: 45 deg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_pmargin</span> <span class="o">=</span> <span class="mf">12.</span> <span class="c1"># Minimum gain margin: 12 dB</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_range</span> <span class="o">=</span> <span class="n">f_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_margins</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span> <span class="c1">#Doing loops to extend the frequency range</span>
+            <span class="c1"># !RL range loop TBD</span>
+            <span class="k">if</span> <span class="n">no_margins</span><span class="p">:</span> <span class="c1"># If the no_margin condition was returned last call, increase range</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">f_range</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">f_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">f_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="c1">#Sampling on an exponential distribution</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">self_range</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">sel</span><span class="o">.</span><span class="n">f_range</span><span class="p">),</span> <span class="mi">10000</span><span class="p">)</span>
+
+            <span class="c1"># Laplace variable</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_array</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s2">&quot;pid&quot;</span><span class="o">+</span><span class="n">suffix</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR - PID must be a 3 x N array (for optimization)&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">n_dif</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Testing for the n_dif modifier</span>
+                <span class="c1"># start atomic</span>
+                <span class="n">H_ctrl</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">PID</span> <span class="ow">in</span> <span class="n">pid</span><span class="p">:</span> <span class="c1"># Looping for all the PID controllers</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">):</span> <span class="c1"># Separating the Kp=0 to not divide by 0</span>
+                        <span class="n">H</span> <span class="o">=</span> <span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">s</span> \
+                                     <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">s</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n_dif</span><span class="p">)))</span>
+
+                    <span class="k">else</span><span class="p">:</span> <span class="c1"># case where Kp=0: normal PID</span>
+                        <span class="n">H</span> <span class="o">=</span> <span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">s</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+                    <span class="n">H_ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+                <span class="n">H_ctrl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">H_ctrl</span><span class="p">)</span>
+                <span class="c1"># Associate the controllers in a chain</span>
+                <span class="n">H_ctrl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">H_ctrl</span><span class="p">)</span>
+
+            <span class="k">else</span> <span class="p">:</span> <span class="c1"># Case with n_dif not set: normal PID</span>
+                <span class="n">H_ctrl</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">PID</span> <span class="ow">in</span> <span class="n">pid</span><span class="p">:</span>
+                    <span class="n">H</span> <span class="o">=</span> <span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">s</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+                    <span class="n">H_ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+                <span class="n">H_ctrl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">H_ctrl</span><span class="p">)</span>
+                <span class="c1"># Associate the controllers in a chain</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H_ctrl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">H_ctrl</span><span class="p">)</span>
+                <span class="c1"># !RL Here, it looked like the sourde code did the same thing twice?</span>
+            <span class="c1"># !RL For the normalization: you end up normalizing by integral gain of the 1st loop???</span>
+            <span class="c1"># !RL I don&#39;t know how IDL manages PID[1] when PID has dimension 2</span>
+            <span class="c1"># Storing the Transfer Function</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_ctrl</span> <span class="o">=</span> <span class="n">H_ctrl</span> <span class="o">/</span> <span class="n">pid</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> 
+            <span class="k">del</span> <span class="n">H_ctrl</span> <span class="c1">#Just to make sure no one uses it.</span>
+
+
+            <span class="k">if</span> <span class="n">t_sens</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H_sens</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t_sens</span><span class="o">*</span><span class="n">s</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">t_sens</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="n">H_sens</span> <span class="o">=</span> <span class="mf">1.</span>
+            <span class="k">if</span> <span class="n">act_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H_act</span> <span class="o">=</span> <span class="n">act_name</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="c1"># !RL Needs a check for the setup of the relevant function</span>
+            <span class="k">else</span><span class="p">:</span> <span class="n">H_act</span> <span class="o">=</span> <span class="mf">1.</span>
+            <span class="k">if</span> <span class="n">t_late</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H_late</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="n">H_late</span> <span class="o">=</span> <span class="mf">1.</span>
+            <span class="k">if</span> <span class="n">t_dac</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H_dac</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t_dac</span><span class="o">*</span><span class="n">s</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">t_sens</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="n">H_dac</span> <span class="o">=</span> <span class="mf">1.</span>
+
+
+            <span class="c1"># Compute the open-loop tranfer function (with unitary integrator gain)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">TF_openloop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_ctrl</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_dac</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_act</span><span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_sens</span>  <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_late</span> 
+            <span class="c1"># Avoid too low values for open loop transfer function (can happen due to SINC functions)</span>
+            <span class="n">toolow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TF_openloop</span><span class="p">))</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">30</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">toolow</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">TF_openloop</span><span class="p">[</span><span class="n">toolow</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_openloop</span><span class="p">[</span><span class="n">toolow</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e-30</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TF_openloop</span><span class="p">[</span><span class="n">toolow</span><span class="p">])</span>
+            <span class="c1">#Do a few bode plots for test:</span>
+            <span class="c1">#allH = np.array([H_ctrl, H_sens, H_act, self.TF_openloop])</span>
+            <span class="c1">#bode(self.fallH, labels=[&quot;Control&quot;, &quot;Sensor&quot;, &quot;Actuator&quot;, &quot;Open loop&quot;])</span>
+
+            <span class="c1"># Initializing the optimization</span>
+
+
+            <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">()</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;gain&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">t_sens</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">1e-2</span><span class="o">/</span><span class="n">t_sens</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1e2</span><span class="o">/</span><span class="n">t_sens</span><span class="p">)</span>
+
+            <span class="n">sol</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">margins</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nelder&quot;</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-3</span><span class="p">)</span>
+            <span class="c1">#Tolerence of 5e-3 was deemed a good compromise in the original method</span>
+            <span class="n">best_gain</span>  <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;gain&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># End of loops to extend the frequency range</span>
+        
+        <span class="c1"># Computing the closed-loop transfer functio</span>
+        <span class="c1"># re-define the Laplace Variable</span>
+        
+        <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span>
+        <span class="c1">#This parameter is used to collect the 1/s terms for the controller (to avoid division by 0 for s=0)</span>
+        <span class="n">one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ctrl_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">H_ctrl</span> <span class="o">=</span> <span class="n">ctrl_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span> <span class="n">pid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Several PID terms&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pid</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span><span class="c1"># This is normally satisfied, even for single PID loops</span>
+                <span class="k">for</span> <span class="n">PID</span> <span class="ow">in</span> <span class="n">pid</span><span class="p">:</span>
+                    <span class="n">H</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">):</span> <span class="c1"># Separating the Kp=0 to not divide by 0</span>
+                        <span class="n">H</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">s</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n_dif</span><span class="p">)))</span>
+                    <span class="k">else</span><span class="p">:</span> <span class="c1"># case where Kp=0: normal PID</span>
+                        <span class="n">H</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">PID</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">s</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">PID</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+                <span class="n">one</span> <span class="o">=</span> <span class="n">one</span><span class="o">*</span><span class="n">s</span>
+                
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;That is where the scifysim code ends&quot;</span><span class="p">)</span>
+            
+        
+        
+<div class="viewcode-block" id="control_loop.getplots"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.control_loop.getplots">[docs]</a>    <span class="k">def</span> <span class="nf">getplots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plottype</span><span class="o">=</span><span class="s2">&quot;bode&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes a few nice plots of for the controler</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tfs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">H_act</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_dac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_sens</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_late</span><span class="p">]</span>
+        <span class="n">tflabels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;self.H_act&quot;</span><span class="p">,</span> <span class="s2">&quot;self.H_dac&quot;</span><span class="p">,</span> <span class="s2">&quot;self.H_sens&quot;</span><span class="p">,</span> <span class="s2">&quot;self.H_late&quot;</span><span class="p">]</span>
+        <span class="n">ploted</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">tf</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tfs</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ploted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="p">)</span>
+                <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tflabels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">except</span> <span class="n">nameError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tf not found&quot;</span><span class="p">)</span>
+        
+        <span class="n">ploted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ploted</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;bode&quot;</span> <span class="ow">in</span> <span class="n">plottype</span><span class="p">:</span>
+            <span class="n">bode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">ploted</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;nyquist&quot;</span> <span class="ow">in</span> <span class="n">plottype</span><span class="p">:</span>
+            <span class="n">nyquist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">ploted</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span></div>
+        
+        
+<div class="viewcode-block" id="control_loop.cleanup"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.control_loop.cleanup">[docs]</a>    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Can use this method to remove unnecessary memory usage.</span>
+<span class="sd">        Will remove self.H_sens,  self.H_act, self.H_late, self.H_dac</span>
+<span class="sd">        and leave only self.H_ctrl and self.TF_openloop</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_act</span>
+        <span class="k">except</span> <span class="n">nameError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;act not found&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_dac</span>
+        <span class="k">except</span> <span class="n">nameError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dac not found&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_sens</span>
+        <span class="k">except</span> <span class="n">nameError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sens not found&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_late</span>
+        <span class="k">except</span> <span class="n">nameError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;late not found&quot;</span><span class="p">)</span></div>
+        
+        
+<div class="viewcode-block" id="control_loop.margins"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.control_loop.margins">[docs]</a>    <span class="k">def</span> <span class="nf">margins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gain</span><span class="p">):</span>
+        
+        
+        <span class="n">abs_tf_dB</span> <span class="o">=</span> <span class="n">amp2dB</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gain</span> <span class="o">*</span> <span class="n">TF_openloop</span><span class="p">))</span>
+        <span class="n">arg_tf_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">TF_openloop</span><span class="p">)</span>
+        <span class="c1"># np.angle gives a rad angle between -pi and pi</span>
+        <span class="n">arg_tf_deg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">arg_tf_rad</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">no_amar</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">no_pmar</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        
+        <span class="c1"># !RL Trying to fix the phase problem by a floor divide? (If there is even a problem)</span>
+        <span class="c1"># !RL Check if there was a problem in the first place.</span>
+        <span class="n">jump</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">arg_tf_deg</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">arg_tf_deg</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># With this method there is </span>
+        <span class="c1">#always the jump at the begining or end of the series</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">jump</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There were&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">jump</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;to account for&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Looking for the critical point in gain</span>
+        <span class="n">cross</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">abs_tf_dB</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">abs_tf_dB</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cross</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#With this method there is an artefact on the first term</span>
+        <span class="c1">#Compute the (most defavorable) phase margin at 0 dB with respect to -180�</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">cross</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pmargin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">arg_tf_deg</span><span class="p">[</span><span class="n">cross</span><span class="p">])</span> <span class="o">+</span> <span class="mi">180</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">no_pmar</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="c1"># Looking for the critical point in phase</span>
+        <span class="c1"># !RL Double check that we are getting the most relevant crossing</span>
+        <span class="n">cross</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">arg_tf_deg</span> <span class="o">+</span> <span class="mf">180.</span> <span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">arg_tf_deg</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">180</span><span class="p">)</span>
+        <span class="n">cross</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#With this method there is an artefact on the first term</span>
+        <span class="c1"># Compute the (most defavorable) amplitude margin at -180� with respect to 0 dB</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">cross</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">amargin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">abs_tf_dB</span><span class="p">[</span><span class="n">cross</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">no_amar</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_amar</span> <span class="o">=</span> <span class="n">no_amar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_pmar</span> <span class="o">=</span> <span class="n">no_pmar</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_amar</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_pmar</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">no_margins</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">no_margins</span> <span class="o">=</span> <span class="kc">False</span>
+            
+        <span class="k">if</span> <span class="n">no_amar</span> <span class="ow">and</span> <span class="n">no_pmar</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WARNING - The frequency domain is too narrow to assess control loop stability:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span>\
+                 <span class="s2">&quot;          the magnitude of the open loop TF does not cross the 0 dB line</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span>\
+                 <span class="s2">&quot;          and its phase does not cross the -180� line within the frequency range,</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span>\
+                 <span class="s2">&quot;          Proceeding with the default control loop parameters...&quot;</span><span class="p">)</span>
+        
+        <span class="c1">#perror = float(not no_pmar)*np.abs(pmargin - 45.)/45.*(-np.sign(pmargin-45.) + 1.01)*100.</span>
+        <span class="c1">#aerror = float(not no_amar)*np.abs(amargin + 12.)/12.*(np.sign(amargin+12.) + 1.01)*100.</span>
+        <span class="c1">#error = perror + aerror</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">get_error_from_margins</span><span class="p">(</span><span class="n">amargin</span><span class="p">,</span> <span class="n">pmargin</span><span class="p">,</span> <span class="n">no_pmar</span><span class="o">=</span><span class="n">no_pmar</span><span class="p">,</span> <span class="n">no_amar</span><span class="o">=</span><span class="n">no_amar</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">error</span></div></div>
+
+<div class="viewcode-block" id="amp2dB"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.amp2dB">[docs]</a><span class="k">def</span> <span class="nf">amp2dB</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">20.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+<div class="viewcode-block" id="dB2amp"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.dB2amp">[docs]</a><span class="k">def</span> <span class="nf">dB2amp</span><span class="p">(</span><span class="n">gain</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">gain</span><span class="o">/</span><span class="mf">20.</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bode"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.bode">[docs]</a><span class="k">def</span> <span class="nf">bode</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">getfig</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Just a shortcut to plot a bunch of Bode plots easily</span>
+<span class="sd">    f     : Hz n_samples np.array The frequency samples</span>
+<span class="sd">    H     :    array-like containing either:</span>
+<span class="sd">            One array of amplitudes</span>
+<span class="sd">            n_series x n_samples (2D array)</span>
+<span class="sd">    Plots the Bode plot</span>
+<span class="sd">    </span>
+<span class="sd">    Note: future improvements: option to save the plots or return the figure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting an array of </span><span class="si">%d</span><span class="s2"> amplitudes&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">myH</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">H</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">myH</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting only one TF (amplitude)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Bode plot&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting an array of </span><span class="si">%d</span><span class="s2"> phases&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">myH</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">H</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">myH</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting only one TF (phase)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">H</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Phase [rad]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Hz)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">getfig</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
+
+<div class="viewcode-block" id="Nyquist"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.Nyquist">[docs]</a><span class="k">def</span> <span class="nf">Nyquist</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">getfig</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;polar&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting an array of </span><span class="si">%d</span><span class="s2"> amplitudes&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">myH</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">H</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">myH</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">myH</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting only one TF (amplitude)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">myH</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Nyquist plot&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">getfig</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
+    
+    
+    
+<div class="viewcode-block" id="get_error_from_margins"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.get_error_from_margins">[docs]</a><span class="k">def</span> <span class="nf">get_error_from_margins</span><span class="p">(</span><span class="n">amargin</span><span class="p">,</span> <span class="n">pmargin</span><span class="p">,</span> <span class="n">no_pmar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_amar</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1">#amargin = -12.</span>
+    <span class="c1">#pmargin = 46.</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;amargin </span><span class="si">%f</span><span class="s2">.2f, pmargin</span><span class="si">%.1f</span><span class="s2">, no_pmar </span><span class="si">%r</span><span class="s2">, no_amar&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">amargin</span><span class="p">,</span> <span class="n">pmargin</span><span class="p">,</span> <span class="n">no_pmar</span><span class="p">,</span> <span class="n">no_amar</span><span class="p">))</span>
+    <span class="n">no_pmar</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">no_amar</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">perror</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="ow">not</span> <span class="n">no_pmar</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pmargin</span> <span class="o">-</span> <span class="mf">45.</span><span class="p">)</span><span class="o">/</span><span class="mf">45.</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">pmargin</span><span class="o">-</span><span class="mf">45.</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.01</span><span class="p">)</span><span class="o">*</span><span class="mf">100.</span>
+    <span class="n">aerror</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="ow">not</span> <span class="n">no_amar</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">amargin</span> <span class="o">+</span> <span class="mf">12.</span><span class="p">)</span><span class="o">/</span><span class="mf">12.</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">amargin</span><span class="o">+</span><span class="mf">12.</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.01</span><span class="p">)</span><span class="o">*</span><span class="mf">100.</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">perror</span><span class="o">+</span> <span class="n">aerror</span>
+    <span class="k">return</span> <span class="n">error</span></div>
+        
+<div class="viewcode-block" id="test_error_margins"><a class="viewcode-back" href="../../scifysim.control_loop.html#scifysim.control_loop.test_error_margins">[docs]</a><span class="k">def</span> <span class="nf">test_error_margins</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test harness for the margins cost function</span>
+<span class="sd">    Plots a map of the error returned by get_error_from_margins()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">aa</span><span class="p">,</span> <span class="n">pp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">60.</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+    <span class="n">errormap</span> <span class="o">=</span> <span class="n">get_error_from_margins</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">pp</span><span class="p">)</span>
+    <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">aa</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">aa</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pp</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pp</span><span class="p">)]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">errormap</span><span class="p">),</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+    <span class="c1">#plt.contour(aa, extent=extent)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$log_</span><span class="si">{10}</span><span class="s2">(error)$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;The gain margin [dB]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;The phase margin [deg]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+                
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scifysim.control_loop</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Romain Laugier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,643 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.utilities module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="scifysim.spectrograph module" href="scifysim.spectrograph.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.utilities module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifysim.utilities.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.utilities">
+<span id="scifysim-utilities-module"></span><h1>scifysim.utilities module<a class="headerlink" href="#module-scifysim.utilities" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.Gauss">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">Gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#Gauss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.Gauss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.coeff">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">coeff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lead_transmission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ds_sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#coeff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the coefficients including detector integration time,
+transmission, spectral channels, pixel solid angle, and quantum efficiency (default: 1.).</p>
+<ul class="simple">
+<li><p>dit     : detector integration time [s]</p></li>
+<li><dl class="simple">
+<dt>lead_transmission<span class="classifier">The transmission of the leading element (often sky) of the</span></dt><dd><p>transmission-emission chain</p>
+</dd>
+</dl>
+</li>
+<li><p>context : The spectral context of the instrument (defining the vega magnitudes)</p></li>
+<li><p>eta     : (default=1.) The quantum efficiency of the detector</p></li>
+<li><dl class="simple">
+<dt>spectrum<span class="classifier">The type of spectrum of the object defaults to flat as opposed to the</span></dt><dd><p>temperature of Vega.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ds_sr<span class="classifier">When working with a map the solid angle of a pixel [sr]</span></dt><dd><p>Can be found in <cite>simulator.vigneting_map.ds_sr</cite> after maps have been computed</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.utilities.ee">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">ee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#ee"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.ee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Additional functionnality needed:
+see comments starting 2021/02/24 <a class="reference external" href="https://github.com/sympy/sympy/issues/5642">https://github.com/sympy/sympy/issues/5642</a> .</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#ee.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.ee.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.utilities',</span> <span class="pre">'__doc__':</span> <span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Additional</span> <span class="pre">functionnality</span> <span class="pre">needed:\n</span>&#160;&#160;&#160; <span class="pre">see</span> <span class="pre">comments</span> <span class="pre">starting</span> <span class="pre">2021/02/24</span> <span class="pre">https://github.com/sympy/sympy/issues/5642</span> <span class="pre">.\n</span>&#160;&#160;&#160; <span class="pre">',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">ee.__init__&gt;,</span> <span class="pre">'lambdify':</span> <span class="pre">&lt;function</span> <span class="pre">ee.lambdify&gt;,</span> <span class="pre">'numexpr_call':</span> <span class="pre">&lt;function</span> <span class="pre">ee.numexpr_call&gt;,</span> <span class="pre">'numpy_call':</span> <span class="pre">&lt;function</span> <span class="pre">ee.numpy_call&gt;,</span> <span class="pre">'__call__':</span> <span class="pre">&lt;function</span> <span class="pre">ee.__call__&gt;,</span> <span class="pre">'fprint':</span> <span class="pre">&lt;function</span> <span class="pre">ee.fprint&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'ee'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'ee'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.utilities.ee.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#ee.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.ee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>ee is for Executable expression
+Encapsulates an expression for flexible lambda evaluation.
+expression  : a sympy expression to</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.utilities'</span></em><a class="headerlink" href="#scifysim.utilities.ee.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.utilities.ee.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.fprint">
+<span class="sig-name descname"><span class="pre">fprint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#ee.fprint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.ee.fprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.lambdify">
+<span class="sig-name descname"><span class="pre">lambdify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'numexpr'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#ee.lambdify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.ee.lambdify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the lambda function. Currently, lambdification to numexpr
+does not support multiple outputs, so we create a list of lambda functions.
+args    : a tuple of sympy for symbols to use as inputs
+modules : The module to use for computation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.numexpr_call">
+<span class="sig-name descname"><span class="pre">numexpr_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#ee.numexpr_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.ee.numexpr_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>The evaluation call for funcions for the numexpr case
+Evaluating the list of functions and returning it as an array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.utilities.ee.numpy_call">
+<span class="sig-name descname"><span class="pre">numpy_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#ee.numpy_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.ee.numpy_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just the normal call of the lambda function</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.eval_perf">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">eval_perf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">afile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_exp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thetarget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrumental_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compensate_chromatic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modificators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_tqdm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#eval_perf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.eval_perf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the noise profile for a given parameter file.
+Parameters:
+———–
+- afile      : Config file
+- t_exp      : Exposure time
+- n_frames   : The number of frames for MC simulation</p>
+<blockquote>
+<div><p>to evaluate the instrumental noise</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>instrumental_errors<span class="classifier">Bool. Whether to include instrumental</span></dt><dd><p>errors</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>seed<span class="classifier">seed to pass when generating the</span></dt><dd><p>time series of instrumental errors</p>
+</dd>
+</dl>
+</li>
+<li><p>crop       : factor to pass to the injector</p></li>
+<li><dl class="simple">
+<dt>target_coords<span class="classifier">Coordinates of the target</span></dt><dd><p>default:None : finds the target from catalog</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>compensate_chromatic<span class="classifier">Bool Whether to run the optimization</span></dt><dd><p>of the actuators to compensate for chromaticity
+in the combiner</p>
+</dd>
+</dl>
+</li>
+<li><p>plotall    : Whether to plot a bunch of charts</p></li>
+<li><dl class="simple">
+<dt>use_tqdm<span class="classifier">Whether tqdm should be used at the step of the</span></dt><dd><p>MC simulations. (use false for parameter exploration)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><p>asim       : The simulator object</p></li>
+<li><p>prof       : The noise profile object</p></li>
+<li><dl class="simple">
+<dt>characteristics<span class="classifier">A dictionary containing a collection of</span></dt><dd><p>performance statistics</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.extract_diffobs_map">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">extract_diffobs_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprod</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#extract_diffobs_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.extract_diffobs_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Here in photons per dit (default=1s)</p>
+<p>Parameters:
+* maps     : Transmission maps for 1 ph/s/m2</p>
+<blockquote>
+<div><p>at the entrance of atmo</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>simulator : a sumulator object (see comments below)</p></li>
+<li><p>dit      : Detector integration time [s]</p></li>
+<li><p>mag      : The magnitude of a source on the map</p></li>
+<li><p>postprod : A post-processing (whitening matrix)</p></li>
+<li><p>eta      : The quantum efficiency of the detector</p></li>
+<li><dl class="simple">
+<dt>K<span class="classifier">A matrix to extract the differential</span></dt><dd><p>observable quantities (kernel matrix).
+By default, the matrix is obtained from
+simulator.combiner.K</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Simulator object is used for
+* The head transmission (simulator.src.sky)
+* The solid angle of the pisel
+* The spectral context (for the spectral channels)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.find_best_night">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">find_best_night</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showplot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#find_best_night"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.find_best_night" title="Permalink to this definition">¶</a></dt>
+<dd><p>duration   [h] : duration of the observing run</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.get_header_bl_data">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">get_header_bl_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#get_header_bl_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.get_header_bl_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pulls the baseline infomation from the header</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.get_location">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">simple_map</span></em>, <em class="sig-param"><span class="pre">map_extent=None</span></em>, <em class="sig-param"><span class="pre">search_function=&lt;function</span> <span class="pre">argmax&gt;</span></em>, <em class="sig-param"><span class="pre">mode='polar'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#get_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.get_location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.get_star_params">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">get_star_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showtable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#get_star_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.get_star_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries GAIA DR2 catalog for distance, radius and
+temperature of star:
+star   : str   the name of the star
+verbose: Whether to print the details found</p>
+<p>returns:
+dist [pc]   : Distance
+T    [K]    : Effective temperature
+R    [Rsun] : Radius</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.get_star_params_GAIA_JMMC">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">get_star_params_GAIA_JMMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showtable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#get_star_params_GAIA_JMMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.get_star_params_GAIA_JMMC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries GAIA DR2 catalog for distance, radius and
+temperature of star:
+star   : str   the name of the star
+verbose: Whether to print the details found</p>
+<p>returns:
+dist [pc]   : Distance
+T    [K]    : Effective temperature
+R    [Rsun] : Radius</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.get_uv">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">get_uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">puparray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#get_uv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.get_uv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the uv baselines for a given pupil configuration.
+puparray    : An array representing the location of each pupil</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.lambdifyz">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">lambdifyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'numpy'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#lambdifyz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.lambdifyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Circumvents a bug in lambdify where silent
+variables will be simplified and therefore
+aren’t broadcasted. <a class="reference external" href="https://github.com/sympy/sympy/issues/5642">https://github.com/sympy/sympy/issues/5642</a>
+Use an extra argument = 0 when calling
+Please, keep the function synchronous with kernuller</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.loadGRA4MAT">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">loadGRA4MAT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#loadGRA4MAT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.loadGRA4MAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.mag2sig">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">mag2sig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lead_transmission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ds_sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#mag2sig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.mag2sig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the coefficients including object magnitude, detector integration time,
+transmission, spectral channels, pixel solid angle, and quantum efficiency (default: 1.).</p>
+<ul class="simple">
+<li><p>mag     : Magnitude of object (Vega)</p></li>
+<li><p>dit     : detector integration time [s]</p></li>
+<li><dl class="simple">
+<dt>lead_transmission<span class="classifier">The transmission of the leading element (often sky) of the</span></dt><dd><p>transmission-emission chain</p>
+</dd>
+</dl>
+</li>
+<li><p>context : The spectral context of the instrument (defining the vega magnitudes)</p></li>
+<li><p>eta     : (default=1.) The quantum efficiency of the detector</p></li>
+<li><dl class="simple">
+<dt>spectrum<span class="classifier">The type of spectrum of the object defaults to flat as opposed to the</span></dt><dd><p>temperature of Vega.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ds_sr<span class="classifier">When working with a map the solid angle of a pixel [sr]</span></dt><dd><p>Can be found in <cite>simulator.vigneting_map.ds_sr</cite> after maps have been computed</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.matchseries">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">matchseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmatch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#matchseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.matchseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matches series b with series a with the nmatch last samples of a and
+the nmatch first samples of b.
+Returns the concatenation.</p>
+<p>a        : 1D array the root of the series
+b        : 1D array the tail of the series
+nmatch   : integer  The number of samples used to match the mean</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.prepare_all">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">prepare_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">afile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thetarget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrumental_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compensate_chromatic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modificators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#prepare_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.prepare_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>A shortcut to prepare a simulator object
+Parameters:
+———–
+- afile      : Config file
+- thetarget  : target name to replace in config file
+- instrumental_errors : Bool. Whether to include instrumental</p>
+<blockquote>
+<div><p>errors</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>seed<span class="classifier">seed to pass when generating the</span></dt><dd><p>time series of instrumental errors</p>
+</dd>
+</dl>
+</li>
+<li><p>crop       : factor to pass to the injector</p></li>
+<li><dl class="simple">
+<dt>target_coords<span class="classifier">Coordinates of the target</span></dt><dd><p>default:None : finds the target from catalog</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>compensate_chromatic<span class="classifier">Bool Whether to run the optimization</span></dt><dd><p>of the actuators to compensate for chromaticity
+in the combiner</p>
+</dd>
+</dl>
+</li>
+<li><p>modificators : a dict of parameters to supersede the config file</p></li>
+</ul>
+<ul class="simple">
+<li><p>asim        : A simulator object</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.produce_maps">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">produce_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prof</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mypfa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mypdet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/R200_twinmaps_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starmags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([2.,</span> <span class="pre">2.42105263,</span> <span class="pre">2.84210526,</span> <span class="pre">3.26315789,</span> <span class="pre">3.68421053,</span> <span class="pre">4.10526316,</span> <span class="pre">4.52631579,</span> <span class="pre">4.94736842,</span> <span class="pre">5.36842105,</span> <span class="pre">5.78947368,</span> <span class="pre">6.21052632,</span> <span class="pre">6.63157895,</span> <span class="pre">7.05263158,</span> <span class="pre">7.47368421,</span> <span class="pre">7.89473684,</span> <span class="pre">8.31578947,</span> <span class="pre">8.73684211,</span> <span class="pre">9.15789474,</span> <span class="pre">9.57894737,</span> <span class="pre">10.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([-</span> <span class="pre">90.,</span> <span class="pre">-</span> <span class="pre">76.66666667,</span> <span class="pre">-</span> <span class="pre">63.33333333,</span> <span class="pre">-</span> <span class="pre">50.,</span> <span class="pre">-</span> <span class="pre">36.66666667,</span> <span class="pre">-</span> <span class="pre">23.33333333,</span> <span class="pre">-</span> <span class="pre">10.,</span> <span class="pre">3.33333333,</span> <span class="pre">16.66666667,</span> <span class="pre">30.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapcrop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#produce_maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.produce_maps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility macro that packages the production of multiple sensitivity
+maps for a given director object and noise profile
+Parameters:
+———–
+- asim     : Simulator director object
+- prof     : Noise profile</p>
+<ul class="simple">
+<li><p>metamap   : T</p></li>
+<li><p>themap    : The energy detector map in magnitude</p></li>
+<li><p>theNPmap  : The Neyman-Pearson detector map in magnitude</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.profileit">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">profileit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#profileit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.profileit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.random_series_fft">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">random_series_fft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matchto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matchlength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#random_series_fft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.random_series_fft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new series of data based on the provided power spectrum.
+If matchto is provided, the new series is adjusted for continuity
+to that data.
+Parameters:
+ps       : A power spectrum
+matchto  : np.ndarray of preceding series. The mean of the first</p>
+<blockquote>
+<div><p>n (matchlength) values of the new series are matched
+to the mean of the last n values of this array.</p>
+</div></blockquote>
+<p>matchlength : integer. The number of values to match
+keepall  : Boolean. If true, will return the concatenation of the</p>
+<blockquote>
+<div><p>new array with the old. If False, will return only the
+new array.</p>
+</div></blockquote>
+<p>output:
+a numpy ndarray of the time series</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.test_ex">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">test_ex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#test_ex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.test_ex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.test_maps">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">test_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'local_config/default_R200'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GJ</span> <span class="pre">86</span> <span class="pre">A'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#test_maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.test_maps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Testing and comparing the 2 approaches to build transmission maps.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.test_random_series">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">test_random_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#test_random_series"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.test_random_series" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.trois">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">trois</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#trois"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.trois" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.update_observing_night">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">update_observing_night</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#update_observing_night"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.update_observing_night" title="Permalink to this definition">¶</a></dt>
+<dd><p>config               The parsed config file to modify
+time      [fits format] (if None, will optimize for elevation)
+duration  [h]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.update_star_params">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">update_star_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#update_star_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.update_star_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.vec2diag">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">vec2diag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#vec2diag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.vec2diag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replictes in sympy the np.diag functionnality to create a
+diagonal matrix from a 1D vector</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifysim.spectrograph.html" class="btn btn-neutral float-left" title="scifysim.spectrograph module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
