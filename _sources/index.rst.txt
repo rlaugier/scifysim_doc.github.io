@@ -12,14 +12,6 @@ Welcome to SCIFYsim's documentation!
    setup
 
 
-Indices and tables
-------------------
-
-* :ref:`setup`
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
 Auotsummary:
 ------------
 
@@ -29,14 +21,6 @@ Auotsummary:
    :glob:
 
    scifysim.*
-
-.. currentmodule:: scifysim
-
-.. autosummary::
-   :glob:
-
-   scifysim.*
-   
 
 Quick start
 -----------
@@ -50,7 +34,18 @@ SCIFYsim does not have a GUI. You will have to interface with it through the API
 
 :ref:`More information here. <need-to-know>`
 
+
+
+Indices and tables
+------------------
+
+* :ref:`setup`
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
 Building this documentation
 ---------------------------
 
 Documentation is generated through sphinx. Intialization sequence follows this :ref:`recipe <docrecipe>`.
+
