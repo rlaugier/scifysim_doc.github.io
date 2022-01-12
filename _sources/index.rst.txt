@@ -11,10 +11,6 @@ Welcome to SCIFYsim's documentation!
    :caption: Contents:
    setup
 
-
-Auotsummary:
-------------
-
 .. toctree::
    :caption: Table of Contents
    :maxdepth: 4
