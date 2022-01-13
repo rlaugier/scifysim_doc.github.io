@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.observatory &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.observatory &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.observatory</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.observatory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.observatory</h1><div class="highlight"><pre>
 <span></span>
@@ -60,13 +204,15 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Basic usage:</span>
 
-<span class="sd">import kernuller.observatory</span>
-<span class="sd">myobs = kernuller.observatory.observatory(kernuller.VLTI)</span>
-<span class="sd">tarnames = &quot;Spica&quot;</span>
-<span class="sd">targets = [kernuller.observatory.astroplan.FixedTarget.from_name(tar) for tar in tarnames]</span>
-<span class="sd">obstimes = myobs.build_observing_sequence()</span>
-<span class="sd">target_positions = myobs.get_positions(targets[0], obstimes)</span>
-<span class="sd">newarray = myobs.get_projected_array(myobs.get_positions(targets, obstimes)[0,0])</span>
+<span class="sd">.. code-block::</span>
+
+<span class="sd">    import kernuller.observatory</span>
+<span class="sd">    myobs = kernuller.observatory.observatory(kernuller.VLTI)</span>
+<span class="sd">    tarnames = &quot;Spica&quot;</span>
+<span class="sd">    targets = [kernuller.observatory.astroplan.FixedTarget.from_name(tar) for tar in tarnames]</span>
+<span class="sd">    obstimes = myobs.build_observing_sequence()</span>
+<span class="sd">    target_positions = myobs.get_positions(targets[0], obstimes)</span>
+<span class="sd">    newarray = myobs.get_projected_array(myobs.get_positions(targets, obstimes)[0,0])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
@@ -74,19 +220,22 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class help define the properties of the observatory infrastructure, especially the uv coverage.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">multi_dish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="observatory.__init__"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">multi_dish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        statlocs : The station locations </span>
-<span class="sd">                    (east, north) for each aperture shape is (Na, 2)</span>
-<span class="sd">        location : An astropy.coordinatEarthLocation (default = Paranal)</span>
-<span class="sd">                    example: myloc = astroplan.Observer.at_site(&quot;Paranal&quot;, timezone=&quot;UTC&quot;)</span>
-<span class="sd">        multi_dish : When True, the geometry of the pupil varies depending on the relative position</span>
-<span class="sd">                        of the target, expecially in terms of projection of the pupil on the plane</span>
-<span class="sd">                        orthogonal to the line of sight.</span>
-<span class="sd">                        When False, (not implemented yet) the array is expected to be always facing</span>
-<span class="sd">                        the line of sight, as is the case for example with a systme like GLINT. </span>
-<span class="sd">        config    : A parsed config object.</span>
-<span class="sd">        verbose  : Activate verbosity in the log</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        </span>
+<span class="sd">        * statlocs : The station locations </span>
+<span class="sd">          (east, north) for each aperture shape is (Na, 2)</span>
+<span class="sd">        * location : An astropy.coordinatEarthLocation (default = Paranal)</span>
+<span class="sd">          example: myloc = astroplan.Observer.at_site(&quot;Paranal&quot;, timezone=&quot;UTC&quot;)</span>
+<span class="sd">        * multi_dish : When True, the geometry of the pupil varies depending on the relative position</span>
+<span class="sd">          of the target, expecially in terms of projection of the pupil on the plane</span>
+<span class="sd">          orthogonal to the line of sight.</span>
+<span class="sd">          When False, (not implemented yet) the array is expected to be always facing</span>
+<span class="sd">          the line of sight, as is the case for example with a systme like GLINT. </span>
+<span class="sd">        * config    : A parsed config object.</span>
+<span class="sd">        * verbose  : Activate verbosity in the log</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
@@ -114,17 +263,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ps</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
         <span class="c1">#C handles the piston due to elevation.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)]])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="observatory.point"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obstime</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Points the array towards the target, updating its position angle (PA) and altaz (used for airmass).</span>
 <span class="sd">        These are later used by other methods to compute the projection of the array.</span>
 <span class="sd">        </span>
-<span class="sd">        obstime   : The astropy.time.Time object corresponding to the moment of observation</span>
-<span class="sd">                    (usually picked from the sequence provided by self.build_observing_sequence())</span>
-<span class="sd">        target    : The astroplan.FixedTarget object of interest. Usually resolved in the </span>
-<span class="sd">                    self.build_observign_sequence() routine with astroplan.FixedTarget.from_name()</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * obstime   : The astropy.time.Time object corresponding to the moment of observation</span>
+<span class="sd">          (usually picked from the sequence provided by self.build_observing_sequence())</span>
+<span class="sd">        * target    : The astroplan.FixedTarget object of interest. Usually resolved in the </span>
+<span class="sd">          self.build_observign_sequence() routine with astroplan.FixedTarget.from_name()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">altaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">altaz</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
                                                    <span class="n">time</span><span class="o">=</span><span class="n">obstime</span><span class="p">)</span>
@@ -135,14 +286,18 @@
 <div class="viewcode-block" id="observatory.build_observing_sequence"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.build_observing_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">build_observing_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">npoints</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the series of obstimes needed to compute the altaz positions</span>
-<span class="sd">        times : a list of UTC time strings (&quot;2020-04-13T00:00:00&quot;)</span>
-<span class="sd">                that define an interval (if npoints is not None,</span>
-<span class="sd">                or the complete list of times (if npoints is None)</span>
-<span class="sd">        npoints : The number of samples to take on the interval</span>
-<span class="sd">                 None means that the times is the whole list</span>
-<span class="sd">                 </span>
-<span class="sd">        remove_daytime : Whether to remove the points that fall during the day</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * times : a list of UTC time strings (&quot;2020-04-13T00:00:00&quot;)</span>
+<span class="sd">          that define an interval (if npoints is not None,</span>
+<span class="sd">          or the complete list of times (if npoints is None)</span>
+<span class="sd">        * npoints : The number of samples to take on the interval</span>
+<span class="sd">          None means that the times is the whole list</span>
+<span class="sd">        * remove_daytime : Whether to remove the points that fall during the day</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the series of obstimes needed to compute the altaz positions</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">times</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2020-04-13T00:00:00&quot;</span><span class="p">,</span><span class="s2">&quot;2020-04-13T10:30:00&quot;</span><span class="p">]</span>
@@ -178,9 +333,12 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Deprecated</span>
 <span class="sd">        </span>
-<span class="sd">        Returns the astropy.coordinates.AltAz for a given target</span>
-<span class="sd">        targets: A list of SkyCoord objects </span>
-<span class="sd">        obstimes: A list of astropy.Times to make the observations</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * targets: A list of SkyCoord objects </span>
+<span class="sd">        * obstimes: A list of astropy.Times to make the observations</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the astropy.coordinates.AltAz for a given target</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">altaz</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span>
                                                    <span class="n">time</span><span class="o">=</span><span class="n">obstimes</span><span class="p">,</span>
@@ -189,10 +347,13 @@
         <span class="k">return</span> <span class="n">taraltaz</span><span class="c1">#, tarPA</span></div>
     
 <div class="viewcode-block" id="observatory.get_position"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the astropy.coordinates.AltAz for a given target</span>
-<span class="sd">        target:   one or a list of of targets</span>
-<span class="sd">        obstimes: one or a list of astropy.Times to make the observations</span>
+        <span class="sd">&quot;&quot;&quot;        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * target:   one or a list of of targets</span>
+<span class="sd">        * obstimes: one or a list of astropy.Times to make the observations</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the ``astropy.coordinates.AltAz`` for a given target</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">altaz</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
                                                       <span class="n">grid_times_targets</span><span class="o">=</span><span class="n">grid_times_targets</span><span class="p">)</span>
@@ -206,10 +367,13 @@
         
 <div class="viewcode-block" id="observatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the new coordinates for the projected array</span>
-<span class="sd">        taraltaz : the astropy.coordinates.AltAz of the target</span>
-<span class="sd">        PA       : parallactic angle to derotate </span>
-<span class="sd">        loc_array: the array of points to use (None: use self.statlocs)</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
+<span class="sd">        * PA       : parallactic angle to derotate </span>
+<span class="sd">        * loc_array: the array of points to use (None: use self.statlocs)</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the new coordinates for the projected array</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">loc_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">loc_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span>
@@ -231,9 +395,12 @@
         <span class="k">return</span> <span class="n">newarray</span></div>
 <div class="viewcode-block" id="observatory.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the geomtric piston resutling from the pointing</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the geomtric piston resutling from the pointing</span>
 <span class="sd">        of the array.</span>
-<span class="sd">        taraltaz : the astropy.coordinates.AltAz of the target</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">arrayaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">((</span><span class="mi">180</span> <span class="o">-</span> <span class="n">taraltaz</span><span class="o">.</span><span class="n">az</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="n">pistons</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">arrayaz</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -252,10 +419,13 @@
     
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Runs some test for the core functions of observatory</span>
-<span class="sd">    tarname    : The name of the target to use</span>
-<span class="sd">    startend   : A list or tuple of two time strings inspressed in UTC matching the format:</span>
-<span class="sd">                    &quot;2020-10-20T00:00:00&quot;</span>
-<span class="sd">    nblocs     : The number of observing blocs to compute</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * tarname    : The name of the target to use</span>
+<span class="sd">    * startend   : A list or tuple of two time strings inspressed in UTC matching the format:</span>
+<span class="sd">      &quot;2020-10-20T00:00:00&quot;</span>
+<span class="sd">    * nblocs     : The number of observing blocs to compute</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">kernuller</span> <span class="kn">import</span> <span class="n">VLTI</span>
     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">plot_tools</span> <span class="k">as</span> <span class="n">pt</span>
@@ -288,43 +458,47 @@
         
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.observatory</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

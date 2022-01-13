@@ -200,14 +200,22 @@
 <dt class="sig sig-object py" id="scifysim.map_manager.map_meta.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starmags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mgs_TNP</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/map_manager.html#map_meta.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.map_manager.map_meta.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create or load a meta map object:</p>
+<p><strong>LOAD:</strong></p>
 <blockquote>
-<div><p>file    :  The path to a fits file</p>
+<div><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>file    :  The path to a fits file</p></li>
+</ul>
 </div></blockquote>
+<p><strong>CREATE:</strong></p>
 <blockquote>
-<div><p>asim    : Simulator object from which map parameters are taken
-starmags : An array of star magnitudes
-mgs     : The planet magnitude maps
-mgs_TNP : The planet magnitude maps for the NeymanPearson test</p>
+<div><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>asim    : Simulator object from which map parameters are taken</p></li>
+<li><p>starmags : An array of star magnitudes</p></li>
+<li><p>mgs     : The planet magnitude maps</p></li>
+<li><p>mgs_TNP : The planet magnitude maps for the NeymanPearson test</p></li>
+</ul>
 </div></blockquote>
 </dd></dl>
 
@@ -226,25 +234,34 @@ mgs_TNP : The planet magnitude maps for the NeymanPearson test</p>
 <dt class="sig sig-object py" id="scifysim.map_manager.map_meta.from_fits">
 <span class="sig-name descname"><span class="pre">from_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/map_manager.html#map_meta.from_fits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.map_manager.map_meta.from_fits" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads meta map from file</p>
-<p>file    :  The path to a fits file</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>file    :  The path to a fits file</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.map_manager.map_meta.from_sim">
 <span class="sig-name descname"><span class="pre">from_sim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starmags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/map_manager.html#map_meta.from_sim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.map_manager.map_meta.from_sim" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds the meta map from simulator</p>
-<p>asim    : Simulator object from which map parameters are taken
-starmags : An array of star magnitudes
-mgs     : The planet magnitude maps</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>asim    : Simulator object from which map parameters are taken</p></li>
+<li><p>starmags : An array of star magnitudes</p></li>
+<li><p>mgs     : The planet magnitude maps</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.map_manager.map_meta.get_loc">
 <span class="sig-name descname"><span class="pre">get_loc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/map_manager.html#map_meta.get_loc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.map_manager.map_meta.get_loc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the index location from a relative location and star magnitude. Returns
-a tuple index to query self.mgs</p>
-<p>loc      : 2-tuple Relative location on sky in the band of interest
-mag      : Magnitude of the host star</p>
+<dd><p>Get the index location from a relative location and star magnitude. Returns 
+a tuple index to query <code class="docutils literal notranslate"><span class="pre">self.mgs</span></code></p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>loc      : 2-tuple Relative location on sky in the band of interest</p></li>
+<li><p>mag      : Magnitude of the host star</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
@@ -252,27 +269,32 @@ mag      : Magnitude of the host star</p>
 <span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'E'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/map_manager.html#map_meta.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.map_manager.map_meta.get_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the limiting magnitude for a planet at the relative location <strong>loc</strong>
 around a star of magnitude <strong>mag</strong>.</p>
-<p>loc      : 2-tuple Relative location on sky in the band of interest
-mag      : Magnitude of the host star
-detector   : The type of detector test: “E” for energy detector</p>
-<blockquote>
-<div><p>“N” for Neyman-Pearson</p>
-</div></blockquote>
-<p>pmag_limit = mymap.get_value((5.2, 4.8), 4.)</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>loc      : 2-tuple Relative location on sky in the band of interest</p></li>
+<li><p>mag      : Magnitude of the host star</p></li>
+<li><p>detector   : The type of detector test: “E” for energy detector
+“N” for Neyman-Pearson</p></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>pmag_limit = mymap.get_value((5.2, 4.8), 4.)</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.map_manager.map_meta.plot_map">
 <span class="sig-name descname"><span class="pre">plot_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'E'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/map_manager.html#map_meta.plot_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.map_manager.map_meta.plot_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses matplotlib to show a map at a given star magnitude.</p>
-<p>mag      : The star magnitude
-cmap       : The colormap to use
-detector   : The type of detector test: “E” for energy detector</p>
-<blockquote>
-<div><p>“N” for Neyman-Pearson</p>
-</div></blockquote>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs : Keyword arguments to pass to plt.figure()
-Returns the figure object</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>mag      : The star magnitude</p></li>
+<li><p>cmap       : The colormap to use</p></li>
+<li><p>detector   : The type of detector test: “E” for energy detector
+“N” for Neyman-Pearson</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs : Keyword arguments to pass to plt.figure()</p></li>
+</ul>
+<p><strong>Returns</strong> the figure object</p>
 </dd></dl>
 
 <dl class="py method">

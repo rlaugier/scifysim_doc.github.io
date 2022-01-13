@@ -261,7 +261,7 @@ class.</p>
 <li><p>lsz   : the screen linear size (in meters)</p></li>
 <li><p>r0    : the Fried parameter (in meters)</p></li>
 <li><p>L0    : the outer scale parameter (in meters)</p></li>
-<li><p>fc    : the cutoff frequency [lambda/D] defined by the
+<li><p>fc    : the cutoff frequency [lambda/D] defined by the 
 number of actuators</p></li>
 <li><p>correc : the correction factor to apply to controlled
 spatial frequencies.</p></li>
@@ -361,7 +361,7 @@ Must be striclty 0 =&lt; lo_excess &lt; 1.</p></li>
 <li><p>pdiam  : pupil diameter (in meters)</p></li>
 <li><p>seed   : random seed for the screen (default: None produces a new seed)</p></li>
 </ul>
-<p>Returns: two independent phase screens, available in the real and
+<p>Returns: two independent phase screens, available in the real and 
 imaginary part of the returned array.</p>
 <p><strong>Remarks:</strong></p>
 <p>If pdiam is not specified, the code assumes that the diameter of
@@ -439,7 +439,7 @@ with the application parameters:</p>
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.injection.</span></span><span class="sig-name descname"><span class="pre">focuser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SCExAO_chuck'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ysz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pupil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rm_inj_piston</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdiam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7.92</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.6e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/injection.html#focuser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.injection.focuser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generic monochoromatic camera class</p>
-<p>This class simulates focusing optics. It can simulate injection
+<p>This class simulates focusing optics. It can simulate injection 
 either:</p>
 <ul class="simple">
 <li><p>by computing the product of the image plane complex amplitude with
@@ -496,7 +496,7 @@ the conjugation of the fiber mode field.</p></li>
 <dt class="sig sig-object py" id="scifysim.injection.focuser.get_tilt">
 <span class="sig-name descname"><span class="pre">get_tilt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/injection.html#focuser.get_tilt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.injection.focuser.get_tilt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Measures the tip-tilt measurement corresponding to the wavefront
-provided. The tip-tilt is in a 2-array and the unit is lambda/D
+provided. The tip-tilt is in a 2-array and the unit is lambda/D 
 where D is the extent of the pupil mask.</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
@@ -767,7 +767,7 @@ res          :</p>
 <li><p>ntelescopes : The number of telescopes to inject</p></li>
 <li><p>pupil     : Apupil name or definition</p></li>
 <li><p>tt_correction : Amount of TT to correct (Not implemented yet)</p></li>
-<li><p>no_piston : Remove the effect of piston at the injection
+<li><p>no_piston : Remove the effect of piston at the injection 
 (So that it is handled only by the FT.)</p></li>
 <li><p>NA        : Then numerical aperture of the fiber</p></li>
 <li><p>a         : The radius of the core (m)</p></li>
@@ -792,6 +792,13 @@ For more information, look into the attributes.</p>
 <dt class="sig sig-object py" id="scifysim.injection.injector.__weakref__">
 <span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.injection.injector.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.injection.injector._setup">
+<span class="sig-name descname"><span class="pre">_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/injection.html#injector._setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.injection.injector._setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Common part of the setup
+Nota: the seed for creation of the screen is incremented by 1 between pupils</p>
 </dd></dl>
 
 <dl class="py method">
@@ -887,7 +894,7 @@ at the center of an array of size (n,m) with radius “radius”.</p>
 <p>This is an approximation to reduce number of parameters:
 offset an angle are approximated. See xaosim.pupil.VLT for original</p>
 <p>Parameters describing the pupil were deduced from a pupil mask
-description of the APLC coronograph of SPHERE, by Guerri et al,
+description of the APLC coronograph of SPHERE, by Guerri et al, 
 2011.</p>
 <p><a class="reference external" href="http://cdsads.u-strasbg.fr/abs/2011ExA....30...59G">http://cdsads.u-strasbg.fr/abs/2011ExA….30…59G</a></p>
 </dd></dl>
@@ -922,24 +929,23 @@ description of the APLC coronograph of SPHERE, by Guerri et al,
 <dt class="sig sig-object py" id="scifysim.injection.unsorted_interp2d.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/injection.html#unsorted_interp2d.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.injection.unsorted_interp2d.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interpolate the function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>1-D array</em>) – x-coordinates of the mesh on which to interpolate.</p></li>
-<li><p><strong>y</strong> (<em>1-D array</em>) – y-coordinates of the mesh on which to interpolate.</p></li>
-<li><p><strong>dx</strong> (<em>int &gt;= 0</em><em>, </em><em>&lt; kx</em>) – Order of partial derivatives in x.</p></li>
-<li><p><strong>dy</strong> (<em>int &gt;= 0</em><em>, </em><em>&lt; ky</em>) – Order of partial derivatives in y.</p></li>
-<li><p><strong>assume_sorted</strong> (<em>bool</em><em>, </em><em>optional</em>) – If False, values of <cite>x</cite> and <cite>y</cite> can be in any order and they are
+<dl class="simple">
+<dt>x<span class="classifier">1-D array</span></dt><dd><p>x-coordinates of the mesh on which to interpolate.</p>
+</dd>
+<dt>y<span class="classifier">1-D array</span></dt><dd><p>y-coordinates of the mesh on which to interpolate.</p>
+</dd>
+<dt>dx<span class="classifier">int &gt;= 0, &lt; kx</span></dt><dd><p>Order of partial derivatives in x.</p>
+</dd>
+<dt>dy<span class="classifier">int &gt;= 0, &lt; ky</span></dt><dd><p>Order of partial derivatives in y.</p>
+</dd>
+<dt>assume_sorted<span class="classifier">bool, optional</span></dt><dd><p>If False, values of <cite>x</cite> and <cite>y</cite> can be in any order and they are
 sorted first.
 If True, <cite>x</cite> and <cite>y</cite> have to be arrays of monotonically
-increasing values.</p></li>
-</ul>
+increasing values.</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>z</strong> – The interpolated values.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>2-D array with shape (len(y), len(x))</p>
+</dl>
+<dl class="simple">
+<dt>z<span class="classifier">2-D array with shape (len(y), len(x))</span></dt><dd><p>The interpolated values.</p>
 </dd>
 </dl>
 </dd></dl>

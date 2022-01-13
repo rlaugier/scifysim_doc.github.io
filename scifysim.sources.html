@@ -187,13 +187,94 @@
             
   <div class="section" id="module-scifysim.sources">
 <span id="scifysim-sources-module"></span><h1>scifysim.sources module<a class="headerlink" href="#module-scifysim.sources" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.sources._blackbody">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.sources.</span></span><span class="sig-name descname"><span class="pre">_blackbody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'numexpr'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#_blackbody"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources._blackbody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.sources._blackbody.Stefan_Boltzmann">
+<span class="sig-name descname"><span class="pre">Stefan_Boltzmann</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#_blackbody.Stefan_Boltzmann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources._blackbody.Stefan_Boltzmann" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quick utility function giving the Stefan-Boltzmann law</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.sources._blackbody.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.sources',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">_blackbody.__init__&gt;,</span> <span class="pre">'Stefan_Boltzmann':</span> <span class="pre">&lt;function</span> <span class="pre">_blackbody.Stefan_Boltzmann&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'_blackbody'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'_blackbody'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.sources._blackbody.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.sources._blackbody.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'numexpr'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#_blackbody.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources._blackbody.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the spectral radiance as a function of <img class="math" src="_images/math/e8dea8254118f111b5fb20895b03528c17566f06.png" alt="T"/> and <img class="math" src="_images/math/14eb89266154200b9c81dcfc3bd058638fa221bf.png" alt="\nu"/>, <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.png" alt="k"/>, and <img class="math" src="_images/math/cefc603e5658facb747581f9567192993f21c7ab.png" alt="\lambda"/></p>
+<p>Call <code class="docutils literal notranslate"><span class="pre">self.get_Bxxx</span></code> to get the function <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">f(lambda</span> <span class="pre">,</span> <span class="pre">T)</span></code></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 24%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>GENIEsim</p></th>
+<th class="head"><p>Attribute</p></th>
+<th class="head"><p>Results in</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>B_lamb_Jy</p></td>
+<td><ul class="simple">
+<li><p>Jy / sr</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>B_lamb_W</p></td>
+<td><ul class="simple">
+<li><p>W / m^2 / m / sr</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>B_lamb_ph</p></td>
+<td><ul class="simple">
+<li><p>ph / s / m^2 / m / sr</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>B_nu_ph</p></td>
+<td><ul class="simple">
+<li><p>ph / s / m^2 / Hz / sr</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.sources._blackbody.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.sources'</span></em><a class="headerlink" href="#scifysim.sources._blackbody.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.sources._blackbody.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.sources._blackbody.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.sources.chain">
 <span class="sig-prename descclassname"><span class="pre">scifysim.sources.</span></span><span class="sig-name descname"><span class="pre">chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.chain" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function helps define which occulting / emitting source
-is in front ro behind which.
-A       : An upstream transmission_emission object
-B       : A downstream transmission_emission object.</p>
+is in front ro behind which.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>A       : An upstream transmission_emission object</p></li>
+<li><p>B       : A downstream transmission_emission object.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
@@ -247,16 +328,19 @@ radius : Star radius [R_sun]</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.resolved_source.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radial_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolved</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#resolved_source.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.resolved_source.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>distance             : Distance of the source [pc]
-radius             : The radius of the source [R_sun]
-T                    : Blackbody temperature [K]
-angular_res          : Number of bins in position angle
-radial_res           : Number of bins in radius
-offset               : Offset of the source radial ([mas], [deg])
-build_map            : Whether to precompute a mapped spectrum
-resolved             : If false, computes a single point-source</p>
-<p>After building the map, self.ss (wl, pos_x, pos_y) contains the map
-of flux density corresponding to positions self.xx, self.yy</p>
+<dd><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>distance             : Distance of the source [pc]</p></li>
+<li><p>radius             : The radius of the source [R_sun]</p></li>
+<li><p>T                    : Blackbody temperature [K]</p></li>
+<li><p>angular_res          : Number of bins in position angle</p></li>
+<li><p>radial_res           : Number of bins in radius</p></li>
+<li><p>offset               : Offset of the source radial ([mas], [deg])</p></li>
+<li><p>build_map            : Whether to precompute a mapped spectrum</p></li>
+<li><p>resolved             : If false, computes a single point-source</p></li>
+</ul>
+<p>After building the map, <code class="docutils literal notranslate"><span class="pre">self.ss</span></code> (wl, pos_x, pos_y) contains the map
+of flux density corresponding to positions <code class="docutils literal notranslate"><span class="pre">self.xx</span></code>, <code class="docutils literal notranslate"><span class="pre">self.yy</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -273,16 +357,16 @@ of flux density corresponding to positions self.xx, self.yy</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.resolved_source.build_grid">
 <span class="sig-name descname"><span class="pre">build_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angular_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radial_res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#resolved_source.build_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.resolved_source.build_grid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Routine used to construct resolved source:
-Creates self.xx, self.yy, self.ds, self.theta, self.r</p>
+<dd><p>Routine used to construct resolved source:</p>
+<p><strong>Creates</strong> self.xx, self.yy, self.ds, self.theta, self.r</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.resolved_source.build_point">
 <span class="sig-name descname"><span class="pre">build_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#resolved_source.build_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.resolved_source.build_point" title="Permalink to this definition">¶</a></dt>
-<dd><p>Routine used to construct unresolved source:
-Creates self.xx, self.yy, self.ds, self.theta [rad], self.r [rad]
-Shapes of xx, yy are preserved, but they will contain a single element
+<dd><p>Routine used to construct unresolved source:</p>
+<p><strong>Creates</strong> <code class="docutils literal notranslate"><span class="pre">self.xx</span></code>, <code class="docutils literal notranslate"><span class="pre">self.yy</span></code>, <code class="docutils literal notranslate"><span class="pre">self.ds</span></code>, <code class="docutils literal notranslate"><span class="pre">self.theta</span></code> [rad], <code class="docutils literal notranslate"><span class="pre">self.r</span></code> [rad]
+Shapes of <code class="docutils literal notranslate"><span class="pre">xx</span></code>, <code class="docutils literal notranslate"><span class="pre">yy</span></code> are preserved, but they will contain a single element
 corresponding to the unresolved point source.</p>
 </dd></dl>
 
@@ -304,8 +388,8 @@ It is a total in ph/s/m2</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.resolved_source.get_spectrum_map">
 <span class="sig-name descname"><span class="pre">get_spectrum_map</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#resolved_source.get_spectrum_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.resolved_source.get_spectrum_map" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps self.total_flux_density
-This produces numerical integration over solid angle elements</p>
+<dd><p>Maps self.total_flux_density</p>
+<p>This <strong>produces</strong> numerical integration over solid angle elements</p>
 </dd></dl>
 
 </dd></dl>
@@ -452,13 +536,19 @@ fiber_vigneting    : whether to include fiber vigneting in the luminosity distri
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trans_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data/MK_trans_sfs.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">285</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">airmass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observatory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noname'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#transmission_emission.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.transmission_emission.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reproduces a basic behaviour in emission-transmission of a medium in the optical
 path. Inspired by the geniesim</p>
-<p>trans_file    : The path to a transmission data file
-T             : Temperature of the medium used for emission
-airmass       : When True, scales the effect with the airmass provided by the observatory object
-observatory   : The observatory object used to provided the airmass.</p>
-<p>WARNING: Unlike for astrophysical sources, when a transmission_emission
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>trans_file    : The path to a transmission data file</p></li>
+<li><p>T             : Temperature of the medium used for emission</p></li>
+<li><p>airmass       : When True, scales the effect with the airmass provided by the observatory object</p></li>
+<li><p>observatory   : The observatory object used to provided the airmass.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Unlike for astrophysical sources, when a transmission_emission
 object contains an ss attribute, it already
 takes into account the transmission through the insturment.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -476,22 +566,26 @@ takes into account the transmission through the insturment.</p>
 <dt class="sig sig-object py" id="scifysim.sources.transmission_emission.get_downstream_transmission">
 <span class="sig-name descname"><span class="pre">get_downstream_transmission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inclusive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#transmission_emission.get_downstream_transmission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.transmission_emission.get_downstream_transmission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used when chaining different media.
-Returns the total of the transmission function of the chain downstream of the object.
-wl   : The wavelengths to be computed
-inclusive: Whether to includ the transmission of the object itself</p>
+Returns the total of the transmission function of the chain downstream of the object.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>wl   : The wavelengths to be computed</p></li>
+<li><p>inclusive: Whether to includ the transmission of the object itself</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.transmission_emission.get_mean_trans_emit">
 <span class="sig-name descname"><span class="pre">get_mean_trans_emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bright</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sub</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#transmission_emission.get_mean_trans_emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.transmission_emission.get_mean_trans_emit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Similar begaviour as get_trans_emit() but averages the effect over each spectral channel.
-wl            : The center of each wavelength channel. If bandwidth is not provided</p>
-<blockquote>
-<div><p>(prefered situation) the width of each channel will be set as the spacing
-between them (through np.gradient())</p>
-</div></blockquote>
-<p>bandwidth     : (deprecated) array of floats providing the width of each spectral channe.
-n_sub         : The number of sub-channel to compute for the calculation. A minimum of 10 is recommended.</p>
+<dd><p>Similar begaviour as get_trans_emit() but averages the effect over each spectral channel.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>wl            : The center of each wavelength channel. If bandwidth is not provided
+(prefered situation) the width of each channel will be set as the spacing
+between them (through np.gradient())</p></li>
+<li><p>bandwidth     : (deprecated) array of floats providing the width of each spectral channe.</p></li>
+<li><p>n_sub         : The number of sub-channel to compute for the calculation. A minimum of 10 is recommended.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
@@ -520,12 +614,13 @@ object in each wl channel. [ph/s/m2/sr] downstream of the object (inclusively)</
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.transmission_emission.get_trans_emit">
 <span class="sig-name descname"><span class="pre">get_trans_emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bright</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#transmission_emission.get_trans_emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.transmission_emission.get_trans_emit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the transmission or brightness of the object depending on th bright keyword
-wl            : The wavelength channels to compute [m]
-bright        : If True: compute the brightness</p>
-<blockquote>
-<div><p>if False: compute the transmission</p>
-</div></blockquote>
+<dd><p>Return the transmission or brightness of the object depending on th bright keyword</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>wl            : The wavelength channels to compute [m]</p></li>
+<li><p>bright        : If True: compute the brightness
+if False: compute the transmission</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">

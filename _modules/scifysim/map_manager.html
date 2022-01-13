@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.map_manager &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.map_manager &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.map_manager</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.map_manager</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.map_manager</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -43,42 +187,47 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Usage:</span>
-<span class="sd">------</span>
+<span class="sd">** Usage:**</span>
 
 <span class="sd">import map_manager</span>
 <span class="sd">themap = map_manager.map_meta(file=&quot;data/metamap_dec_XXXX.fits&quot;)</span>
 
-<span class="sd"># You can directly query the map like so:</span>
-<span class="sd">sensitivity = themap.get_value((10,14), 7.)</span>
+<span class="sd">**You can directly query the map like so:**</span>
 
-<span class="sd"># You may also plot the map</span>
-<span class="sd">fig = themap.plot_map(mag=8.)</span>
+<span class="sd">.. code-blocks::</span>
+<span class="sd">    </span>
+<span class="sd">    sensitivity = themap.get_value((10,14), 7.)</span>
+
+<span class="sd">**You may also plot the map:**</span>
+
+<span class="sd">.. code-blocks::</span>
+
+<span class="sd">    fig = themap.plot_map(mag=8.)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
 
 <div class="viewcode-block" id="map_meta"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta">[docs]</a><span class="k">class</span> <span class="nc">map_meta</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">starmags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="map_meta.__init__"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">starmags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">mgs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mgs_TNP</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">metadata</span><span class="o">=</span><span class="p">{}):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create or load a meta map object:</span>
 <span class="sd">        </span>
-<span class="sd">        LOAD:</span>
-<span class="sd">        -----</span>
-<span class="sd">            Parameters:</span>
-<span class="sd">            -----------</span>
-<span class="sd">            file    :  The path to a fits file</span>
+<span class="sd">        **LOAD:**</span>
+<span class="sd">        </span>
+<span class="sd">            **Parameters:**</span>
 <span class="sd">            </span>
-<span class="sd">        CREATE:</span>
-<span class="sd">        -------</span>
-<span class="sd">            Parameters:</span>
-<span class="sd">            -----------</span>
-<span class="sd">            asim    : Simulator object from which map parameters are taken</span>
-<span class="sd">            starmags : An array of star magnitudes</span>
-<span class="sd">            mgs     : The planet magnitude maps</span>
-<span class="sd">            mgs_TNP : The planet magnitude maps for the NeymanPearson test</span>
+<span class="sd">            * file    :  The path to a fits file</span>
+<span class="sd">            </span>
+<span class="sd">        **CREATE:**</span>
+<span class="sd">        </span>
+<span class="sd">            **Parameters:**</span>
+<span class="sd">            </span>
+<span class="sd">            * asim    : Simulator object from which map parameters are taken</span>
+<span class="sd">            * starmags : An array of star magnitudes</span>
+<span class="sd">            * mgs     : The planet magnitude maps</span>
+<span class="sd">            * mgs_TNP : The planet magnitude maps for the NeymanPearson test</span>
 <span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -86,7 +235,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">from_sim</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">starmags</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mgs</span> <span class="o">=</span> <span class="n">mgs</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span> <span class="o">=</span> <span class="n">mgs_TNP</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mgs_TNP</span> <span class="o">=</span> <span class="n">mgs_TNP</span></div>
         
         
         
@@ -94,9 +243,11 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds the meta map from simulator</span>
 <span class="sd">        </span>
-<span class="sd">        asim    : Simulator object from which map parameters are taken</span>
-<span class="sd">        starmags : An array of star magnitudes</span>
-<span class="sd">        mgs     : The planet magnitude maps</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * asim    : Simulator object from which map parameters are taken</span>
+<span class="sd">        * starmags : An array of star magnitudes</span>
+<span class="sd">        * mgs     : The planet magnitude maps</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">map_extent</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">map_extent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resx</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -137,7 +288,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Loads meta map from file</span>
 <span class="sd">        </span>
-<span class="sd">        file    :  The path to a fits file</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * file    :  The path to a fits file</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">hdul</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxx</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;MINX&quot;</span><span class="p">],</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;MAXX&quot;</span><span class="p">]</span>
@@ -161,12 +314,12 @@
 <div class="viewcode-block" id="map_meta.get_loc"><a class="viewcode-back" href="../../scifysim.map_manager.html#scifysim.map_manager.map_meta.get_loc">[docs]</a>    <span class="k">def</span> <span class="nf">get_loc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">mag</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the index location from a relative location and star magnitude. Returns </span>
-<span class="sd">        a tuple index to query self.mgs</span>
+<span class="sd">        a tuple index to query ``self.mgs``</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        loc      : 2-tuple Relative location on sky in the band of interest</span>
-<span class="sd">        mag      : Magnitude of the host star </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * loc      : 2-tuple Relative location on sky in the band of interest</span>
+<span class="sd">        * mag      : Magnitude of the host star </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">magindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="o">-</span><span class="n">mag</span><span class="p">))</span>
         <span class="n">xindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="o">-</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
@@ -178,17 +331,17 @@
 <span class="sd">        Get the limiting magnitude for a planet at the relative location **loc**</span>
 <span class="sd">        around a star of magnitude **mag**.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        loc      : 2-tuple Relative location on sky in the band of interest</span>
-<span class="sd">        mag      : Magnitude of the host star </span>
-<span class="sd">        detector   : The type of detector test: &quot;E&quot; for energy detector</span>
-<span class="sd">                                                &quot;N&quot; for Neyman-Pearson</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * loc      : 2-tuple Relative location on sky in the band of interest</span>
+<span class="sd">        * mag      : Magnitude of the host star </span>
+<span class="sd">        * detector   : The type of detector test: &quot;E&quot; for energy detector</span>
+<span class="sd">          &quot;N&quot; for Neyman-Pearson</span>
 <span class="sd">        </span>
 <span class="sd">        </span>
-<span class="sd">        Examples:</span>
-<span class="sd">        --------</span>
-<span class="sd">        pmag_limit = mymap.get_value((5.2, 4.8), 4.)</span>
+<span class="sd">        **Examples:**</span>
+<span class="sd">        </span>
+<span class="sd">        * pmag_limit = mymap.get_value((5.2, 4.8), 4.)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="s2">&quot;E&quot;</span> <span class="ow">in</span> <span class="n">detector</span><span class="p">:</span>
             <span class="n">mag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">mag</span><span class="p">)]</span>
@@ -200,16 +353,15 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Uses matplotlib to show a map at a given star magnitude.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        mag      : The star magnitude</span>
-<span class="sd">        cmap       : The colormap to use</span>
-<span class="sd">        detector   : The type of detector test: &quot;E&quot; for energy detector</span>
-<span class="sd">                                                &quot;N&quot; for Neyman-Pearson</span>
+<span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
+<span class="sd">        * mag      : The star magnitude</span>
+<span class="sd">        * cmap       : The colormap to use</span>
+<span class="sd">        * detector   : The type of detector test: &quot;E&quot; for energy detector</span>
+<span class="sd">          &quot;N&quot; for Neyman-Pearson</span>
+<span class="sd">        * **kwargs : Keyword arguments to pass to plt.figure()</span>
 <span class="sd">        </span>
-<span class="sd">        **kwargs : Keyword arguments to pass to plt.figure()</span>
-<span class="sd">        Returns the figure object</span>
+<span class="sd">        **Returns** the figure object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="n">magindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mags</span><span class="o">-</span><span class="n">mag</span><span class="p">))</span>
@@ -231,43 +383,47 @@
         <span class="k">return</span> <span class="n">fig</span></div></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.map_manager</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

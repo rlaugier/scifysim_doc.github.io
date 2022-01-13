@@ -222,25 +222,18 @@
 <span class="sig-name descname"><span class="pre">chromatic_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wl</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiner.html#combiner.chromatic_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiner.combiner.chromatic_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Work in progress. This helps define the chromatic behaviour of the combiner even
 when it is define achromatic.</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>wl      : An array of wavelengths for which to compute the matrix</p></li>
 </ul>
-<p>Several matrices are stored in <cite>combiner</cite>
-* self.Mcs    : a symbolic formula for the combiner matrix (2D sympy array)</p>
-<blockquote>
-<div><p>as a function of the wavenumber k</p>
-</div></blockquote>
+<p><strong>Result:</strong> Several matrices are stored in <cite>combiner</cite></p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>self.Mcl<span class="classifier">The matrix as a lambda-function of (k, 0)</span></dt><dd><p>The extra 0 parameter passed helps to cast the correct shape</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>self.Mcn<span class="classifier">The numpy ndarray of the matrix of interest</span></dt><dd><p>shape is (n_wl, n_out, n_in)</p>
-</dd>
-</dl>
-</li>
+<li><p>self.Mcs    : a symbolic formula for the combiner matrix (2D sympy array)
+as a function of the wavenumber k</p></li>
+<li><p>self.Mcl    : The matrix as a lambda-function of (k, 0) 
+The extra 0 parameter passed helps to cast the correct shape</p></li>
+<li><p>self.Mcn    : The numpy ndarray of the matrix of interest
+shape is (n_wl, n_out, n_in)</p></li>
 </ul>
 </dd></dl>
 
@@ -248,6 +241,7 @@ when it is define achromatic.</p>
 <dt class="sig sig-object py" id="scifysim.combiner.combiner.from_config">
 <em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph_shifters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/combiner.html#combiner.from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.combiner.combiner.from_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>A</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>file         : The config file</p></li>
 <li><dl class="simple">
@@ -256,11 +250,13 @@ when it is define achromatic.</p>
 </dl>
 </li>
 </ul>
+<p><strong>Config keywords:</strong></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">configuration.combiner</span></code>                                            Name of the combiner architecture</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">configuration.photometric_tap</span></code>             Fraction of light (power) sent to the photometric channels</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">configuration.input_phase_offset</span></code>  Additional phase offset as part of the design of the combiner</p></li>
 </ul>
+<p><strong>Accepted combiners:</strong></p>
 <p>Managed by <code class="docutils literal notranslate"><span class="pre">configuration.combiner</span></code></p>
 <ul class="simple">
 <li><p>angel_woolf_ph,</p></li>

@@ -191,13 +191,15 @@
 <dt class="sig sig-object py" id="scifysim.observatory.logit">
 <span class="sig-prename descclassname"><span class="pre">scifysim.observatory.</span></span><span class="sig-name descname"><span class="pre">logit</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Logger</span> <span class="pre">scifysim.observatory</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#scifysim.observatory.logit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Basic usage:</p>
-<p>import kernuller.observatory
-myobs = kernuller.observatory.observatory(kernuller.VLTI)
-tarnames = “Spica”
-targets = [kernuller.observatory.astroplan.FixedTarget.from_name(tar) for tar in tarnames]
-obstimes = myobs.build_observing_sequence()
-target_positions = myobs.get_positions(targets[0], obstimes)
-newarray = myobs.get_projected_array(myobs.get_positions(targets, obstimes)[0,0])</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kernuller.observatory</span>
+<span class="n">myobs</span> <span class="o">=</span> <span class="n">kernuller</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">observatory</span><span class="p">(</span><span class="n">kernuller</span><span class="o">.</span><span class="n">VLTI</span><span class="p">)</span>
+<span class="n">tarnames</span> <span class="o">=</span> <span class="s2">&quot;Spica&quot;</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="p">[</span><span class="n">kernuller</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">astroplan</span><span class="o">.</span><span class="n">FixedTarget</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="n">tar</span><span class="p">)</span> <span class="k">for</span> <span class="n">tar</span> <span class="ow">in</span> <span class="n">tarnames</span><span class="p">]</span>
+<span class="n">obstimes</span> <span class="o">=</span> <span class="n">myobs</span><span class="o">.</span><span class="n">build_observing_sequence</span><span class="p">()</span>
+<span class="n">target_positions</span> <span class="o">=</span> <span class="n">myobs</span><span class="o">.</span><span class="n">get_positions</span><span class="p">(</span><span class="n">targets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">obstimes</span><span class="p">)</span>
+<span class="n">newarray</span> <span class="o">=</span> <span class="n">myobs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="n">myobs</span><span class="o">.</span><span class="n">get_positions</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">obstimes</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py class">
@@ -213,19 +215,20 @@ newarray = myobs.get_projected_array(myobs.get_positions(targets, obstimes)[0,0]
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.observatory.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statlocs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_dish</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#observatory.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.observatory.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>statlocs<span class="classifier">The station locations</span></dt><dd><p>(east, north) for each aperture shape is (Na, 2)</p>
-</dd>
-<dt>location<span class="classifier">An astropy.coordinatEarthLocation (default = Paranal)</span></dt><dd><p>example: myloc = astroplan.Observer.at_site(“Paranal”, timezone=”UTC”)</p>
-</dd>
-<dt>multi_dish<span class="classifier">When True, the geometry of the pupil varies depending on the relative position</span></dt><dd><p>of the target, expecially in terms of projection of the pupil on the plane
+<dd><p>Parameters:</p>
+<ul class="simple">
+<li><p>statlocs : The station locations 
+(east, north) for each aperture shape is (Na, 2)</p></li>
+<li><p>location : An astropy.coordinatEarthLocation (default = Paranal)
+example: myloc = astroplan.Observer.at_site(“Paranal”, timezone=”UTC”)</p></li>
+<li><p>multi_dish : When True, the geometry of the pupil varies depending on the relative position
+of the target, expecially in terms of projection of the pupil on the plane
 orthogonal to the line of sight.
 When False, (not implemented yet) the array is expected to be always facing
-the line of sight, as is the case for example with a systme like GLINT.</p>
-</dd>
-</dl>
-<p>config    : A parsed config object.
-verbose  : Activate verbosity in the log</p>
+the line of sight, as is the case for example with a systme like GLINT.</p></li>
+<li><p>config    : A parsed config object.</p></li>
+<li><p>verbose  : Activate verbosity in the log</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py attribute">
@@ -242,51 +245,62 @@ verbose  : Activate verbosity in the log</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.observatory.build_observing_sequence">
 <span class="sig-name descname"><span class="pre">build_observing_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_daytime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#observatory.build_observing_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.observatory.build_observing_sequence" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the series of obstimes needed to compute the altaz positions
-times : a list of UTC time strings (“2020-04-13T00:00:00”)</p>
-<blockquote>
-<div><p>that define an interval (if npoints is not None,
-or the complete list of times (if npoints is None)</p>
-</div></blockquote>
-<dl class="simple">
-<dt>npoints<span class="classifier">The number of samples to take on the interval</span></dt><dd><p>None means that the times is the whole list</p>
-</dd>
-</dl>
-<p>remove_daytime : Whether to remove the points that fall during the day</p>
+<dd><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>times : a list of UTC time strings (“2020-04-13T00:00:00”)
+that define an interval (if npoints is not None,
+or the complete list of times (if npoints is None)</p></li>
+<li><p>npoints : The number of samples to take on the interval
+None means that the times is the whole list</p></li>
+<li><p>remove_daytime : Whether to remove the points that fall during the day</p></li>
+</ul>
+<p><strong>Returns</strong> the series of obstimes needed to compute the altaz positions</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.observatory.get_position">
 <span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_times_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#observatory.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.observatory.get_position" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the astropy.coordinates.AltAz for a given target
-target:   one or a list of of targets
-obstimes: one or a list of astropy.Times to make the observations</p>
+<dd><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>target:   one or a list of of targets</p></li>
+<li><p>obstimes: one or a list of astropy.Times to make the observations</p></li>
+</ul>
+<p><strong>Returns</strong> the <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.AltAz</span></code> for a given target</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.observatory.get_positions">
 <span class="sig-name descname"><span class="pre">get_positions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstimes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#observatory.get_positions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.observatory.get_positions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deprecated</p>
-<p>Returns the astropy.coordinates.AltAz for a given target
-targets: A list of SkyCoord objects
-obstimes: A list of astropy.Times to make the observations</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>targets: A list of SkyCoord objects</p></li>
+<li><p>obstimes: A list of astropy.Times to make the observations</p></li>
+</ul>
+<p><strong>Returns</strong> the astropy.coordinates.AltAz for a given target</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.observatory.get_projected_array">
 <span class="sig-name descname"><span class="pre">get_projected_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taraltaz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#observatory.get_projected_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.observatory.get_projected_array" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the new coordinates for the projected array
-taraltaz : the astropy.coordinates.AltAz of the target
-PA       : parallactic angle to derotate
-loc_array: the array of points to use (None: use self.statlocs)</p>
+<dd><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>taraltaz : the astropy.coordinates.AltAz of the target</p></li>
+<li><p>PA       : parallactic angle to derotate</p></li>
+<li><p>loc_array: the array of points to use (None: use self.statlocs)</p></li>
+</ul>
+<p><strong>Returns</strong> the new coordinates for the projected array</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.observatory.get_projected_geometric_pistons">
 <span class="sig-name descname"><span class="pre">get_projected_geometric_pistons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taraltaz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#observatory.get_projected_geometric_pistons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.observatory.get_projected_geometric_pistons" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the geomtric piston resutling from the pointing
-of the array.
-taraltaz : the astropy.coordinates.AltAz of the target</p>
+<dd><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>taraltaz : the astropy.coordinates.AltAz of the target</p></li>
+</ul>
+<p><strong>Returns</strong> the geomtric piston resutling from the pointing
+of the array.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -294,12 +308,13 @@ taraltaz : the astropy.coordinates.AltAz of the target</p>
 <span class="sig-name descname"><span class="pre">point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obstime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#observatory.point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.observatory.point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Points the array towards the target, updating its position angle (PA) and altaz (used for airmass).
 These are later used by other methods to compute the projection of the array.</p>
-<dl class="simple">
-<dt>obstime<span class="classifier">The astropy.time.Time object corresponding to the moment of observation</span></dt><dd><p>(usually picked from the sequence provided by self.build_observing_sequence())</p>
-</dd>
-<dt>target<span class="classifier">The astroplan.FixedTarget object of interest. Usually resolved in the</span></dt><dd><p>self.build_observign_sequence() routine with astroplan.FixedTarget.from_name()</p>
-</dd>
-</dl>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>obstime   : The astropy.time.Time object corresponding to the moment of observation
+(usually picked from the sequence provided by self.build_observing_sequence())</p></li>
+<li><p>target    : The astroplan.FixedTarget object of interest. Usually resolved in the 
+self.build_observign_sequence() routine with astroplan.FixedTarget.from_name()</p></li>
+</ul>
 </dd></dl>
 
 </dd></dl>
@@ -307,13 +322,14 @@ These are later used by other methods to compute the projection of the array.</p
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.observatory.test_observatory">
 <span class="sig-prename descclassname"><span class="pre">scifysim.observatory.</span></span><span class="sig-name descname"><span class="pre">test_observatory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tarname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tau</span> <span class="pre">cet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['2020-10-20T00:00:00',</span> <span class="pre">'2020-10-20T10:00:00']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nblocs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#test_observatory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.test_observatory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runs some test for the core functions of observatory
-tarname    : The name of the target to use
-startend   : A list or tuple of two time strings inspressed in UTC matching the format:</p>
-<blockquote>
-<div><p>“2020-10-20T00:00:00”</p>
-</div></blockquote>
-<p>nblocs     : The number of observing blocs to compute</p>
+<dd><p>Runs some test for the core functions of observatory</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>tarname    : The name of the target to use</p></li>
+<li><p>startend   : A list or tuple of two time strings inspressed in UTC matching the format:
+“2020-10-20T00:00:00”</p></li>
+<li><p>nblocs     : The number of observing blocs to compute</p></li>
+</ul>
 </dd></dl>
 
 </div>

@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.n_air &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.n_air &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.n_air</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.n_air</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.n_air</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -51,12 +195,12 @@
     
     
 <div class="viewcode-block" id="wet_atmo"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo">[docs]</a><span class="k">class</span> <span class="nc">wet_atmo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<div class="viewcode-block" id="wet_atmo.__init__"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pres</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;pres&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">co2</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;co2&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rhum</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;rhum&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;vlti&quot;</span><span class="p">,</span> <span class="s2">&quot;T_vlti&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="kc">None</span></div>
 <div class="viewcode-block" id="wet_atmo.get_Nair"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span>
                          <span class="n">pres</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pres</span><span class="p">,</span>
@@ -68,44 +212,51 @@
          <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="mf">450.</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eso</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
          <span class="n">column</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nws</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ; DESCRIPTION</span>
-<span class="sd">    ;   Returns the phase refractive index (n-1) of air a function of (IR) wavelength (in m),</span>
-<span class="sd">    ;   and optionally, temperature (in K), pressure (in bar), relative humidity (%) and CO2 content (in ppm).</span>
-<span class="sd">    ;   Note that the used approximation for air applies in the range from 300 to 1690 nm,</span>
-<span class="sd">    ;   hence their use at much longer wavelengths should be done with caution.</span>
-<span class="sd">    ;   For wavelengths longer than 1.7 micron, use the Hill &amp; Lawrence approximation for water vapor,</span>
-<span class="sd">    ;   which has been verified with experimental data up to 15 micron.</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; INPUT</span>
-<span class="sd">    ;   lambda_ : wavelength vector in meters</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; KEYWORDS</span>
-<span class="sd">    ;   temp   : air temperature [K]</span>
-<span class="sd">    ;   pres   : air pressure [mbar]</span>
-<span class="sd">    ;   rhum   : relative humidity of the air [%]</span>
-<span class="sd">    ;   co2    : CO2 content in the air [ppm]</span>
-<span class="sd">    ;   ph2o   : partial pressure of water vapour [in Pa = 0.01 mbar]</span>
-<span class="sd">    ;            if set, overrules RHUM -- if not defined, partial pressure will be given on output</span>
-<span class="sd">    ;   eso    : set this keyword to use E. Marchetti&#39;s moist air refractive index instead of Ciddor + Hill &amp; Lawrance</span>
-<span class="sd">    ;   column : set this keyword to convert to input into fs/(mopl/m²), instead of the standard unitless n-1 value</span>
-<span class="sd">    ;   nws    : on output, returns the refractive index of pure water vapour (unless ESO keyword is set)</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; CALLS</span>
-<span class="sd">    ;   MOL_DENS</span>
-<span class="sd">    ;   N_H2O</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; REFERENCE</span>
-<span class="sd">    ;   J.E. Decker et al. &quot;Updates to the NRC gauge block interferometer&quot;, NRC document 42753, 8 August 2000</span>
-<span class="sd">    ;   P.E. Ciddor, &quot;The refractive index of air: new equations for the visible and near infrared&quot;, Appl. Opt. 35 (9), 1566-1573</span>
-<span class="sd">    ;   J. Meisner &amp; R. Le Poole, &quot;Dispersion affecting the VLTI and 10 micron interferometry using MIDI&quot;, Proc. SPIE 4838</span>
-<span class="sd">    ;   http://www.eso.org/gen-fac/pubs/astclim/lasilla/diffrefr.html</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; MODIFICATION HISTORY</span>
-<span class="sd">    ;   Version 1.0, 17-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, rdhartog@rssd.esa.int</span>
-<span class="sd">    ;   Version 1.1, 09-OCT-2002, RdH: conversion to column densities (Meisner&#39;s n^hat) implemented</span>
-<span class="sd">    ;   Version 1.2, 01-NOV-2002, RdH: water vapor index based on approximation also valid in the IR</span>
-<span class="sd">    ;   Version 1.3, 03-JUL-2003, OA:  PostScript output of test harness modified</span>
-<span class="sd">    ;   Version 1.4, 15-DEC-2009, OA:  Removed discontinuity at 1.7µm by using tabulated water vapour refraction index instead of models + improved header</span>
+<span class="sd">    This function is a translation of a function of GENIEsim.</span>
+<span class="sd">    </span>
+<span class="sd">    **DESCRIPTION**</span>
+<span class="sd">        Returns the phase refractive index (n-1) of air a function of (IR) wavelength (in m),</span>
+<span class="sd">        and optionally, temperature (in K), pressure (in bar), relative humidity (%) and CO2 content (in ppm).</span>
+<span class="sd">        Note that the used approximation for air applies in the range from 300 to 1690 nm,</span>
+<span class="sd">        hence their use at much longer wavelengths should be done with caution.</span>
+<span class="sd">        For wavelengths longer than 1.7 micron, use the Hill &amp; Lawrence approximation for water vapor,</span>
+<span class="sd">        which has been verified with experimental data up to 15 micron.</span>
+<span class="sd">    </span>
+<span class="sd">    **Argument**</span>
+<span class="sd">    </span>
+<span class="sd">    * lambda_ : wavelength vector in meters</span>
+<span class="sd">    </span>
+<span class="sd">    **Keyword arguments**</span>
+<span class="sd">    </span>
+<span class="sd">    * temp   : air temperature [K]</span>
+<span class="sd">    * pres   : air pressure [mbar]</span>
+<span class="sd">    * rhum   : relative humidity of the air [%]</span>
+<span class="sd">    * co2    : CO2 content in the air [ppm]</span>
+<span class="sd">    * ph2o   : partial pressure of water vapour [in Pa = 0.01 mbar]</span>
+<span class="sd">      if set, overrules RHUM -- if not defined, partial pressure will be given on output</span>
+<span class="sd">    * eso    : set this keyword to use E. Marchetti&#39;s moist air refractive index instead of Ciddor + Hill &amp; Lawrance</span>
+<span class="sd">    * column : set this keyword to convert to input into fs/(mopl/m²), instead of the standard unitless n-1 value</span>
+<span class="sd">    * nws    : on output, returns the refractive index of pure water vapour (unless ESO keyword is set)</span>
+<span class="sd">    </span>
+<span class="sd">    **CALLS**</span>
+<span class="sd">    </span>
+<span class="sd">    * MOL_DENS</span>
+<span class="sd">    * N_H2O</span>
+<span class="sd">    </span>
+<span class="sd">    **REFERENCE**</span>
+<span class="sd">    </span>
+<span class="sd">    * J.E. Decker et al. &quot;Updates to the NRC gauge block interferometer&quot;, NRC document 42753, 8 August 2000</span>
+<span class="sd">    * P.E. Ciddor, &quot;The refractive index of air: new equations for the visible and near infrared&quot;, Appl. Opt. 35 (9), 1566-1573</span>
+<span class="sd">    * J. Meisner &amp; R. Le Poole, &quot;Dispersion affecting the VLTI and 10 micron interferometry using MIDI&quot;, Proc. SPIE 4838</span>
+<span class="sd">    * `&lt;http://www.eso.org/gen-fac/pubs/astclim/lasilla/diffrefr.html&gt;`_</span>
+<span class="sd">    </span>
+<span class="sd">    **MODIFICATION HISTORY**</span>
+<span class="sd">    </span>
+<span class="sd">    * Version 1.0, 17-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, rdhartog@rssd.esa.int</span>
+<span class="sd">    * Version 1.1, 09-OCT-2002, RdH: conversion to column densities (Meisner&#39;s n^hat) implemented</span>
+<span class="sd">    * Version 1.2, 01-NOV-2002, RdH: water vapor index based on approximation also valid in the IR</span>
+<span class="sd">    * Version 1.3, 03-JUL-2003, OA:  PostScript output of test harness modified</span>
+<span class="sd">    * Version 1.4, 15-DEC-2009, OA:  Removed discontinuity at 1.7µm by using tabulated water vapour refraction index instead of models + improved header</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -280,49 +431,62 @@
             <span class="n">co2</span><span class="o">=</span><span class="mf">450.</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="mf">1013.25</span><span class="p">,</span> <span class="n">rad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
             <span class="n">table</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mf">296.15</span><span class="p">,</span> <span class="n">wda</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ; PURPOSE:</span>
-<span class="sd">    ;   Returns the refractive index (n-1) of water vapor a function of (IR) wavelength (in m),</span>
-<span class="sd">    ;   in the range from 3.3 to 10.6 micron,</span>
-<span class="sd">    ;   and optionally, temperature (in K), and vapor density in (kg/m3)</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; KEYWORDS:</span>
-<span class="sd">    ;   TEMP:   temperature in K</span>
-<span class="sd">    ;   PRES:   pressure in mbar</span>
-<span class="sd">    ;   RHUM:   relative humidity in %</span>
-<span class="sd">    ;   CO2:    CO2 fraction in ppm</span>
-<span class="sd">    ;   APPROX: if not set, the table from Mathar will be interpolated at the input wavelengths</span>
-<span class="sd">    ;           if set to 1, use approximate formula by Hill &amp; Lawrence</span>
-<span class="sd">    ;           if set to 2, use approximate formula by Ciddor</span>
-<span class="sd">    ;   TABLE:  set this keyword to use the full Mathar table -- warning, this modifies the lambda array on output (ONLY FOR TEST PURPOSE)</span>
-<span class="sd">    ;   COLUMN: convert units to fs / (mol/m�), such that t_delay = n_H20 * column density</span>
-<span class="sd">    ;   RAD:    convert units to radians</span>
-<span class="sd">    ;   WDA:    the refraction index is given for water vapour displacing air instead of bare water vapour, in units of fs/(mol/m�)</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; RESTRICTIONS:</span>
-<span class="sd">    ;   Does require a file &#39;n_mathar.dat&#39; to be present in same directory</span>
-<span class="sd">    ;   The Mathar data table does not include wavelengths smaller than 1.819 �m.</span>
-<span class="sd">    ;   At wavelengths smaller than 1.819 �m, the Hill &amp; Lawrence approximation is used instead.</span>
-<span class="sd">    ;   This produces a discontinuity of N_H2O at 1.819 �m.</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; CALLS:</span>
-<span class="sd">    ;   N_AIR</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; REFERENCE:</span>
-<span class="sd">    ;   R.J. Hill, R.S. Lawrence, &quot;Refractive index of water vapor in infrared windows&quot;, Infrared Phys. 26, 371 - 376 (1986)</span>
-<span class="sd">    ;   P.E. Ciddor, &quot;The refractive index of air: new equations for the visible and near infrared&quot;, Appl. Opt. 35 (9), 1566-1573</span>
-<span class="sd">    ;   F. Hase, R.J. Mathar, &quot;Water vapor dispersion in the atmospheric window at 10 um&quot;, Preprint, 06-FEB-2002</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; MODIFICATION HISTORY:</span>
-<span class="sd">    ;   Version 1.0, 13-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, rdhartog@rssd.esa.int</span>
-<span class="sd">    ;   Version 2.0, 09-OCT-2002, RdH: included tabulated data by R.J. Mathar (obtained via J. Meisner)</span>
-<span class="sd">    ;   Version 2.1, 29-OCT-2002, RdH: conversion to WDA implemented</span>
-<span class="sd">    ;   Version 2.2, 01-NOV-2002, RdH: Ciddor&#39;s approximation implemented</span>
-<span class="sd">    ;   Version 2.3, 15-DEC-2009, OA:  Improved header</span>
-<span class="sd">    ;</span>
-<span class="sd">    ; TESTED</span>
-<span class="sd">    ;   13-SEP-2002, RdH: comparison with measurements by Hase and Mathar</span>
-<span class="sd">    ;   09-OCT-2002, RdH: direct comparison between Hill &amp; Lawrence&#39;s approximation and Mathar&#39;s data</span>
-<span class="sd">    ;   15-NOV-2004, RdH: implemented option to convert output directly into radians</span>
+<span class="sd">    **PURPOSE:**</span>
+<span class="sd">    </span>
+<span class="sd">    Returns the refractive index (n-1) of water vapor a function of (IR) wavelength (in m),</span>
+<span class="sd">    in the range from 3.3 to 10.6 micron,</span>
+<span class="sd">    and optionally, temperature (in K), and vapor density in (kg/m3)</span>
+<span class="sd">        </span>
+<span class="sd">    **Argument**</span>
+<span class="sd">    </span>
+<span class="sd">    * lambda_ : wavelength vector in meters</span>
+<span class="sd">    </span>
+<span class="sd">    **Keyword arguments:**</span>
+<span class="sd">    </span>
+<span class="sd">    * temp:   temperature in K</span>
+<span class="sd">    * pres:   pressure in mbar</span>
+<span class="sd">    * rhum:   relative humidity in %</span>
+<span class="sd">    * co2:    CO2 fraction in ppm</span>
+<span class="sd">    * approx: </span>
+<span class="sd">    </span>
+<span class="sd">            - if not set, the table from Mathar will be interpolated at the input wavelengths</span>
+<span class="sd">            - if set to 1, use approximate formula by Hill &amp; Lawrence</span>
+<span class="sd">            - if set to 2, use approximate formula by Ciddor</span>
+<span class="sd">            </span>
+<span class="sd">    * table:  set this keyword to use the full Mathar table -- warning, this modifies the lambda array on output (ONLY FOR TEST PURPOSE)</span>
+<span class="sd">    * column: convert units to fs / (mol/m^2), such that t_delay = n_H20 * column density</span>
+<span class="sd">    * rad:    convert units to radians</span>
+<span class="sd">    * wda:    the refraction index is given for water vapour displacing air instead of bare water vapour, in units of fs/(mol/m^2)</span>
+<span class="sd">    </span>
+<span class="sd">    **RESTRICTIONS:**</span>
+<span class="sd">       Does require a file &#39;n_mathar.dat&#39; to be present in same directory</span>
+<span class="sd">       The Mathar data table does not include wavelengths smaller than 1.819 µm.</span>
+<span class="sd">       At wavelengths smaller than 1.819 µm, the Hill &amp; Lawrence approximation is used instead.</span>
+<span class="sd">       This produces a discontinuity of N_H2O at 1.819 µm.</span>
+<span class="sd">    </span>
+<span class="sd">    **CALLS:**</span>
+<span class="sd">    </span>
+<span class="sd">        * n_air</span>
+<span class="sd">    </span>
+<span class="sd">    **REFERENCE:**</span>
+<span class="sd">    </span>
+<span class="sd">    * R.J. Hill, R.S. Lawrence, &quot;Refractive index of water vapor in infrared windows&quot;, Infrared Phys. 26, 371 - 376 (1986)</span>
+<span class="sd">    * P.E. Ciddor, &quot;The refractive index of air: new equations for the visible and near infrared&quot;, Appl. Opt. 35 (9), 1566-1573</span>
+<span class="sd">    * F. Hase, R.J. Mathar, &quot;Water vapor dispersion in the atmospheric window at 10 um&quot;, Preprint, 06-FEB-2002</span>
+<span class="sd">    </span>
+<span class="sd">    **MODIFICATION HISTORY:**</span>
+<span class="sd">    </span>
+<span class="sd">    * Version 1.0, 13-SEP-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, rdhartog@rssd.esa.int</span>
+<span class="sd">    * Version 2.0, 09-OCT-2002, RdH: included tabulated data by R.J. Mathar (obtained via J. Meisner)</span>
+<span class="sd">    * Version 2.1, 29-OCT-2002, RdH: conversion to WDA implemented</span>
+<span class="sd">    * Version 2.2, 01-NOV-2002, RdH: Ciddor&#39;s approximation implemented</span>
+<span class="sd">    * Version 2.3, 15-DEC-2009, OA:  Improved header</span>
+<span class="sd">    </span>
+<span class="sd">    **TESTED**</span>
+<span class="sd">    </span>
+<span class="sd">    * 13-SEP-2002, RdH: comparison with measurements by Hase and Mathar</span>
+<span class="sd">    * 09-OCT-2002, RdH: direct comparison between Hill &amp; Lawrence&#39;s approximation and Mathar&#39;s data</span>
+<span class="sd">    * 15-NOV-2004, RdH: implemented option to convert output directly into radians</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cvac</span> <span class="o">=</span> <span class="mf">299792458.</span>
     <span class="c1"># !RL we need to do something for global variables</span>
@@ -493,43 +657,47 @@
     <span class="n">mathar</span><span class="p">,</span> <span class="n">freq2</span> <span class="o">=</span> <span class="n">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">rhum</span><span class="o">=</span><span class="n">rhum</span><span class="p">,</span> <span class="n">wda</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.n_air</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

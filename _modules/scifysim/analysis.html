@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.analysis &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.analysis &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.analysis</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.analysis</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -55,12 +199,12 @@
 
 
 <div class="viewcode-block" id="noiseprofile"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile">[docs]</a><span class="k">class</span> <span class="nc">noiseprofile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">diffobs_series</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_pixsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="noiseprofile.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">diffobs_series</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_pixsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        An object to dynamically compute a parametric noise floor</span>
 <span class="sd">        </span>
-<span class="sd">        Patameters:</span>
-<span class="sd">        -----------</span>
+<span class="sd">        **Patameters:**</span>
+<span class="sd">        </span>
 <span class="sd">        * integ     : An integrator object augmented by some mean</span>
 <span class="sd">                        and static measurements (see below)</span>
 <span class="sd">        * asim      : A simulator object (mostly used to get some combiner</span>
@@ -69,11 +213,11 @@
 <span class="sd">                        intensity (e.g. `diffobs = np.einsum(&quot;ij, mkj-&gt;mk&quot;,asim.combiner.K, dit_intensity)`)</span>
 <span class="sd">        </span>
 <span class="sd">        </span>
-<span class="sd">        Creation makes use of:</span>
-<span class="sd">        ----------------------</span>
-<span class="sd">        * integ.mean_starlight (run `integ.mean_starlight = np.mean(starlights, axis=0)`)</span>
-<span class="sd">        * integ.mean_planetlight (run `integ.mean_planetlight = np.mean(planetlights, axis=0)`)</span>
-<span class="sd">        * integ.get_static() (run `integ.static = asim.computed_static`)</span>
+<span class="sd">        **Creation makes use of:**</span>
+<span class="sd">        </span>
+<span class="sd">        * integ.mean_starlight (run ``integ.mean_starlight = np.mean(starlights, axis=0)``)</span>
+<span class="sd">        * integ.mean_planetlight (run ``integ.mean_planetlight = np.mean(planetlights, axis=0)``)</span>
+<span class="sd">        * integ.get_static() (run ``integ.static = asim.computed_static``)</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Read noise</span>
@@ -105,25 +249,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">k_phi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diff_std</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">F_0</span>
         <span class="c1"># For getting a covariance</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diff_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">diffobs_series</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">k_phi_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diff_cov</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">F_0</span><span class="o">**</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k_phi_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diff_cov</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">F_0</span><span class="o">**</span><span class="mi">2</span></div>
 
 
 <div class="viewcode-block" id="noiseprofile.get_noises"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.get_noises">[docs]</a>    <span class="k">def</span> <span class="nf">get_noises</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the different noises</span>
-<span class="sd">        WARNING: if matrix is True, then sigma_phi_d is</span>
-<span class="sd">        a covariance matrix (beware of variances on diagonal)</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
+<span class="sd">        .. admonition:: Warning!</span>
+<span class="sd">        </span>
+<span class="sd">            If matrix is True, then sigma_phi_d is a covariance matrix (beware of variances on diagonal)</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * m_star       : Magnitude of the star</span>
 <span class="sd">        * dit          : Detector integration time [s]</span>
 <span class="sd">        </span>
-<span class="sd">        Returns:</span>
-<span class="sd">        --------</span>
+<span class="sd">        **Returns:**</span>
 <span class="sd">        </span>
-<span class="sd">        `sigma_phot_d, sigma_phi_d` : standard deviation vectors (or</span>
-<span class="sd">        covariance matrix for sigma_phi_d)</span>
+<span class="sd">        ``sigma_phot_d, sigma_phi_d`` : standard deviation vectors (or</span>
+<span class="sd">        covariance matrix for ``sigma_phi_d``)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Fs</span> <span class="o">=</span> <span class="n">mag2F</span><span class="p">(</span><span class="n">m_star</span><span class="p">)</span>
         
@@ -149,17 +293,15 @@
 <span class="sd">        WARNING: if matrix is True, then the result is</span>
 <span class="sd">        a covariance matrix (beware of variances on diagonal)</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
+<span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * m_star       : Magnitude of the star</span>
 <span class="sd">        * dit          : Detector integration time [s]</span>
 <span class="sd">        </span>
-<span class="sd">        Returns:</span>
-<span class="sd">        --------</span>
+<span class="sd">        **Returns:**</span>
 <span class="sd">        </span>
-<span class="sd">        Either `sigma_tot_diff` or `cov_tot_diff` depending on</span>
-<span class="sd">        `matrix`.</span>
+<span class="sd">        Either ``sigma_tot_diff`` or ``cov_tot_diff`` depending on</span>
+<span class="sd">        ``matrix``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="c1">#print(self.sigma_ron_d.shape)</span>
@@ -231,19 +373,18 @@
         
 
 <div class="viewcode-block" id="spectral_context"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context">[docs]</a><span class="k">class</span> <span class="nc">spectral_context</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Spectral context for magnitude considerations</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
+<span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
-<span class="sd">        vegafile    : The configuration file for observation of Vega</span>
-<span class="sd">                        in the same spectral configuration</span>
+<span class="sd">        * vegafile    : The configuration file for observation of Vega</span>
+<span class="sd">          in the same spectral configuration</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">avega</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">prepare_all</span><span class="p">(</span><span class="n">vegafile</span><span class="p">,</span> <span class="n">update_params</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                             <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avega</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avega</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="spectral_context.sflux_from_vegamag"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.sflux_from_vegamag">[docs]</a>    <span class="k">def</span> <span class="nf">sflux_from_vegamag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amag</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;inverse of vegamag_from_ss()&quot;&quot;&quot;</span>
@@ -258,10 +399,10 @@
 <div class="viewcode-block" id="spectral_context.get_mags_of_sim"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_mags_of_sim">[docs]</a>    <span class="k">def</span> <span class="nf">get_mags_of_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Magnitudes of planet and star of a simulator object</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
+<span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
-<span class="sd">        asim     : A simulator object</span>
+<span class="sd">        * asim     : A simulator object</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ss_star</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">ss</span>
         <span class="n">ss_planet</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">planet</span><span class="o">.</span><span class="n">ss</span>
@@ -296,10 +437,13 @@
 <div class="viewcode-block" id="pdet_e"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.pdet_e">[docs]</a><span class="k">def</span> <span class="nf">pdet_e</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">rank</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the residual of Pdet</span>
-<span class="sd">    lamb     : The noncentrality parameter representing the feature</span>
-<span class="sd">    xsi      : The location of threshold</span>
-<span class="sd">    rank     : The rank of observable</span>
-<span class="sd">    Returns the Pdet difference</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * lamb     : The noncentrality parameter representing the feature</span>
+<span class="sd">    * xsi      : The location of threshold</span>
+<span class="sd">    * rank     : The rank of observable</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns** the Pdet difference</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">respdet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ncx2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xsi</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">lamb</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">respdet</span></div>
@@ -307,15 +451,14 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the residual of Pdet</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
+<span class="sd">    **Parameters:**</span>
 <span class="sd">    </span>
 <span class="sd">    * lamb     : The noncentrality parameter representing the feature</span>
 <span class="sd">    * targ     : The target Pdet to converge to</span>
 <span class="sd">    * xsi      : The location of threshold</span>
 <span class="sd">    * rank     : The rank of observable</span>
 <span class="sd">    </span>
-<span class="sd">    Returns the Pdet difference. See Ceau et al. 2019 for more information</span>
+<span class="sd">    **Returns** the Pdet difference. See *Ceau et al. 2019* for more information</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">respdet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ncx2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xsi</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">lamb</span><span class="p">)</span> <span class="o">-</span> <span class="n">targ</span>
     <span class="k">return</span> <span class="n">respdet</span></div>
@@ -326,6 +469,7 @@
 <span class="sd">    The throughput for the signal of interest is given by the map at a reference magnitude.</span>
 <span class="sd">    The effective noise floor is implicitly described by the whitening matrix.</span>
 <span class="sd">    </span>
+<span class="sd">    **Parameters**</span>
 <span class="sd">    </span>
 <span class="sd">    * maps       : Differential map for a given reference magnitude</span>
 <span class="sd">    * pfa        : The false alarm rate used to determine the threshold</span>
@@ -334,7 +478,13 @@
 <span class="sd">    * ref_mag    : The reference mag for the given map</span>
 <span class="sd">    * verbose    : Print some information along the way</span>
 <span class="sd">    </span>
-<span class="sd">     See Ceau et al. 2019 for more information</span>
+<span class="sd">     See *Ceau et al. 2019* for more information</span>
+<span class="sd">     </span>
+<span class="sd">    **Returns**</span>
+<span class="sd">    </span>
+<span class="sd">    * mags : The magnitude at which Te crosses the threshold</span>
+<span class="sd">    * fluxs: The fluxes at which Te crosses the threshold</span>
+<span class="sd">    * Tes  : The values of the test statistic on the map at the reference magnitude</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">W</span> <span class="o">=</span> <span class="n">postproc_mat</span>
@@ -408,14 +558,14 @@
 <div class="viewcode-block" id="residual_pdet_Tnp"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.residual_pdet_Tnp">[docs]</a><span class="k">def</span> <span class="nf">residual_pdet_Tnp</span><span class="p">(</span><span class="n">xTx</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the residual of Pdet in a NP test.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    ----------</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
 <span class="sd">    </span>
 <span class="sd">    * xTx     : The noncentrality parameter representing the feature</span>
 <span class="sd">    * targ     : The target Pdet to converge to</span>
 <span class="sd">    * xsi      : The location of threshold</span>
 <span class="sd">    </span>
-<span class="sd">    Returns the Pdet difference.</span>
+<span class="sd">    **Returns** the Pdet difference.</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -428,6 +578,7 @@
 <span class="sd">    The throughput for the signal of interest is given by the map at a reference magnitude.</span>
 <span class="sd">    The effective noise floor is implicitly described by the whitening matrix.</span>
 <span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
 <span class="sd">    </span>
 <span class="sd">    * maps       : Differential map for a given reference magnitude</span>
 <span class="sd">    * pfa        : The false alarm rate used to determine the threshold</span>
@@ -435,6 +586,8 @@
 <span class="sd">    * postproc_mat : The matrix of the whitening transformation ($\Sigma^{-1/2}$)</span>
 <span class="sd">    * ref_mag    : The reference mag for the given map</span>
 <span class="sd">    * verbose    : Print some information along the way</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns**: A magnitude map</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -481,13 +634,14 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the raw correlation map of a signal with a map.</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
+<span class="sd">    **Parameters:**</span>
 <span class="sd">    </span>
-<span class="sd">    signal      : The signal measured on sky shape:</span>
+<span class="sd">    * signal      : The signal measured on sky shape:</span>
 <span class="sd">                    (n_slots, n_wl, n_outputs)</span>
-<span class="sd">    maps        : The maps for comparison shape:</span>
+<span class="sd">    * maps        : The maps for comparison shape:</span>
 <span class="sd">                    (n_slots, n_wl, n_outputs, x_resolution, y_resolution)</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns** The correlation map</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;Input shape (slots, wavelengths, outputs)&quot;</span>
     <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;Maps shape (slots, wavelengths, outputs, position, position)&quot;</span>
@@ -512,43 +666,47 @@
     <span class="k">return</span> <span class="n">cmap1</span></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.analysis</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

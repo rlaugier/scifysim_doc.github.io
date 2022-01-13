@@ -196,12 +196,20 @@
 <dt class="sig sig-object py" id="scifysim.analysis.correlation_map">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">correlation_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postproc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_diffobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#correlation_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.correlation_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the raw correlation map of a signal with a map.</p>
-<dl class="simple">
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><dl class="simple">
 <dt>signal<span class="classifier">The signal measured on sky shape:</span></dt><dd><p>(n_slots, n_wl, n_outputs)</p>
 </dd>
+</dl>
+</li>
+<li><dl class="simple">
 <dt>maps<span class="classifier">The maps for comparison shape:</span></dt><dd><p>(n_slots, n_wl, n_outputs, x_resolution, y_resolution)</p>
 </dd>
 </dl>
+</li>
+</ul>
+<p><strong>Returns</strong> The correlation map</p>
 </dd></dl>
 
 <dl class="py function">
@@ -220,6 +228,7 @@
 <dd><p>Magnitude map at which a companion is detectable for a given map and whitening matrix.
 The throughput for the signal of interest is given by the map at a reference magnitude.
 The effective noise floor is implicitly described by the whitening matrix.</p>
+<p><strong>Parameters</strong></p>
 <ul class="simple">
 <li><p>maps       : Differential map for a given reference magnitude</p></li>
 <li><p>pfa        : The false alarm rate used to determine the threshold</p></li>
@@ -229,8 +238,14 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <li><p>verbose    : Print some information along the way</p></li>
 </ul>
 <blockquote>
-<div><p>See Ceau et al. 2019 for more information</p>
+<div><p>See <em>Ceau et al. 2019</em> for more information</p>
 </div></blockquote>
+<p><strong>Returns</strong></p>
+<ul class="simple">
+<li><p>mags : The magnitude at which Te crosses the threshold</p></li>
+<li><p>fluxs: The fluxes at which Te crosses the threshold</p></li>
+<li><p>Tes  : The values of the test statistic on the map at the reference magnitude</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
@@ -239,6 +254,7 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <dd><p>Magnitude map at which a companion is detectable for a given map and whitening matrix.
 The throughput for the signal of interest is given by the map at a reference magnitude.
 The effective noise floor is implicitly described by the whitening matrix.</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>maps       : Differential map for a given reference magnitude</p></li>
 <li><p>pfa        : The false alarm rate used to determine the threshold</p></li>
@@ -247,6 +263,7 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <li><p>ref_mag    : The reference mag for the given map</p></li>
 <li><p>verbose    : Print some information along the way</p></li>
 </ul>
+<p><strong>Returns</strong>: A magnitude map</p>
 </dd></dl>
 
 <dl class="py function">
@@ -267,6 +284,7 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <dt class="sig sig-object py" id="scifysim.analysis.noiseprofile.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffobs_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_pixsplit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#noiseprofile.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.noiseprofile.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object to dynamically compute a parametric noise floor</p>
+<p><strong>Patameters:</strong></p>
 <ul class="simple">
 <li><dl class="simple">
 <dt>integ<span class="classifier">An integrator object augmented by some mean</span></dt><dd><p>and static measurements (see below)</p>
@@ -284,10 +302,11 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 </dl>
 </li>
 </ul>
+<p><strong>Creation makes use of:</strong></p>
 <ul class="simple">
-<li><p>integ.mean_starlight (run <cite>integ.mean_starlight = np.mean(starlights, axis=0)</cite>)</p></li>
-<li><p>integ.mean_planetlight (run <cite>integ.mean_planetlight = np.mean(planetlights, axis=0)</cite>)</p></li>
-<li><p>integ.get_static() (run <cite>integ.static = asim.computed_static</cite>)</p></li>
+<li><p>integ.mean_starlight (run <code class="docutils literal notranslate"><span class="pre">integ.mean_starlight</span> <span class="pre">=</span> <span class="pre">np.mean(starlights,</span> <span class="pre">axis=0)</span></code>)</p></li>
+<li><p>integ.mean_planetlight (run <code class="docutils literal notranslate"><span class="pre">integ.mean_planetlight</span> <span class="pre">=</span> <span class="pre">np.mean(planetlights,</span> <span class="pre">axis=0)</span></code>)</p></li>
+<li><p>integ.get_static() (run <code class="docutils literal notranslate"><span class="pre">integ.static</span> <span class="pre">=</span> <span class="pre">asim.computed_static</span></code>)</p></li>
 </ul>
 </dd></dl>
 
@@ -308,26 +327,32 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <dd><p>Returns the compound noise floor
 WARNING: if matrix is True, then the result is
 a covariance matrix (beware of variances on diagonal)</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>m_star       : Magnitude of the star</p></li>
 <li><p>dit          : Detector integration time [s]</p></li>
 </ul>
-<p>Either <cite>sigma_tot_diff</cite> or <cite>cov_tot_diff</cite> depending on
-<cite>matrix</cite>.</p>
+<p><strong>Returns:</strong></p>
+<p>Either <code class="docutils literal notranslate"><span class="pre">sigma_tot_diff</span></code> or <code class="docutils literal notranslate"><span class="pre">cov_tot_diff</span></code> depending on
+<code class="docutils literal notranslate"><span class="pre">matrix</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.analysis.noiseprofile.get_noises">
 <span class="sig-name descname"><span class="pre">get_noises</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#noiseprofile.get_noises"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.noiseprofile.get_noises" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the different noises
-WARNING: if matrix is True, then sigma_phi_d is
-a covariance matrix (beware of variances on diagonal)</p>
+<dd><p>Returns the different noises</p>
+<div class="admonition-warning admonition">
+<p class="admonition-title">Warning!</p>
+<p>If matrix is True, then sigma_phi_d is a covariance matrix (beware of variances on diagonal)</p>
+</div>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>m_star       : Magnitude of the star</p></li>
 <li><p>dit          : Detector integration time [s]</p></li>
 </ul>
-<p><cite>sigma_phot_d, sigma_phi_d</cite> : standard deviation vectors (or
-covariance matrix for sigma_phi_d)</p>
+<p><strong>Returns:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">sigma_phot_d,</span> <span class="pre">sigma_phi_d</span></code> : standard deviation vectors (or
+covariance matrix for <code class="docutils literal notranslate"><span class="pre">sigma_phi_d</span></code>)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -346,37 +371,40 @@ covariance matrix for sigma_phi_d)</p>
 <dt class="sig sig-object py" id="scifysim.analysis.pdet_e">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">pdet_e</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#pdet_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.pdet_e" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the residual of Pdet
-lamb     : The noncentrality parameter representing the feature
-xsi      : The location of threshold
-rank     : The rank of observable
-Returns the Pdet difference</p>
+<strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>lamb     : The noncentrality parameter representing the feature</p></li>
+<li><p>xsi      : The location of threshold</p></li>
+<li><p>rank     : The rank of observable</p></li>
+</ul>
+<p><strong>Returns</strong> the Pdet difference</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.analysis.residual_pdet_Te">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">residual_pdet_Te</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#residual_pdet_Te"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.residual_pdet_Te" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the residual of Pdet</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>lamb     : The noncentrality parameter representing the feature</p></li>
 <li><p>targ     : The target Pdet to converge to</p></li>
 <li><p>xsi      : The location of threshold</p></li>
 <li><p>rank     : The rank of observable</p></li>
 </ul>
-<p>Returns the Pdet difference. See Ceau et al. 2019 for more information</p>
+<p><strong>Returns</strong> the Pdet difference. See <em>Ceau et al. 2019</em> for more information</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.analysis.residual_pdet_Tnp">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">residual_pdet_Tnp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xTx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#residual_pdet_Tnp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.residual_pdet_Tnp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the residual of Pdet in a NP test.
-Parameters:
-———-</p>
+<dd><p>Computes the residual of Pdet in a NP test.</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>xTx     : The noncentrality parameter representing the feature</p></li>
 <li><p>targ     : The target Pdet to converge to</p></li>
 <li><p>xsi      : The location of threshold</p></li>
 </ul>
-<p>Returns the Pdet difference.</p>
+<p><strong>Returns</strong> the Pdet difference.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -392,10 +420,11 @@ Parameters:
 <dt class="sig sig-object py" id="scifysim.analysis.spectral_context.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vegafile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'config/vega.ini'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#spectral_context.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.spectral_context.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spectral context for magnitude considerations</p>
-<dl class="simple">
-<dt>vegafile<span class="classifier">The configuration file for observation of Vega</span></dt><dd><p>in the same spectral configuration</p>
-</dd>
-</dl>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>vegafile    : The configuration file for observation of Vega
+in the same spectral configuration</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py attribute">
@@ -413,7 +442,10 @@ Parameters:
 <dt class="sig sig-object py" id="scifysim.analysis.spectral_context.get_mags_of_sim">
 <span class="sig-name descname"><span class="pre">get_mags_of_sim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#spectral_context.get_mags_of_sim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.spectral_context.get_mags_of_sim" title="Permalink to this definition">¶</a></dt>
 <dd><p>Magnitudes of planet and star of a simulator object</p>
-<p>asim     : A simulator object</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>asim     : A simulator object</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">

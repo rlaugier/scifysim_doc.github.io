@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.plot_tools &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.plot_tools &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.plot_tools</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.plot_tools</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.plot_tools</h1><div class="highlight"><pre>
 <span></span>
@@ -79,9 +223,12 @@
 <div class="viewcode-block" id="piston2size"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.piston2size">[docs]</a><span class="k">def</span> <span class="nf">piston2size</span><span class="p">(</span><span class="n">piston</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mf">140.</span><span class="p">,</span> <span class="n">psz</span><span class="o">=</span><span class="mf">8.</span><span class="p">,</span> <span class="n">usize</span><span class="o">=</span><span class="mf">150.</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Pretty visualization of projected array: Emulates perspective</span>
-<span class="sd">    dist  : The distance of the observer to the array</span>
-<span class="sd">    psz   : The diameters of the pupils</span>
-<span class="sd">    usize : A scaling parameter default = 150</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * dist  : The distance of the observer to the array</span>
+<span class="sd">    * psz   : The diameters of the pupils</span>
+<span class="sd">    * usize : A scaling parameter default = 150</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">+</span> <span class="n">piston</span>
     <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">psz</span><span class="o">/</span><span class="n">d</span><span class="p">)</span>
@@ -96,20 +243,25 @@
                <span class="n">compass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots the projected </span>
-<span class="sd">    dist  : The distance of the observer to the array</span>
-<span class="sd">    psz   : The diameters of the pupils</span>
-<span class="sd">    usize : A scaling parameter default = 150</span>
-<span class="sd">    perspective: whether to simulate an effect of perspective</span>
-<span class="sd">                with the size of the markers</span>
-<span class="sd">    compass: A pair of positions indicating the direction of North and East</span>
-<span class="sd">             after transformation by the same projection as the array</span>
-<span class="sd">             [North_vector[e,n], East_vector[e,n]]</span>
-<span class="sd">    grid   : Similar to the compass but for a bunch of parallels and meridians</span>
-<span class="sd">            [parallels[[e0,n0], [e1, n1], ... ],</span>
-<span class="sd">             meridians[[e0,n0], [e1, n1], ...]]</span>
 <span class="sd">    </span>
-<span class="sd">    Returns:</span>
-<span class="sd">    fig   : The figure </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * dist  : The distance of the observer to the array</span>
+<span class="sd">    * psz   : The diameters of the pupils</span>
+<span class="sd">    * usize : A scaling parameter default = 150</span>
+<span class="sd">    * perspective: whether to simulate an effect of perspective</span>
+<span class="sd">      with the size of the markers</span>
+<span class="sd">    * compass: A pair of positions indicating the direction of North and East</span>
+<span class="sd">      after transformation by the same projection as the array</span>
+<span class="sd">      [North_vector[e,n], East_vector[e,n]]</span>
+<span class="sd">    * grid   : Similar to the compass but for a bunch of parallels and meridians</span>
+<span class="sd">      [parallels[[e0,n0], [e1, n1], ... ],</span>
+<span class="sd">      meridians[[e0,n0], [e1, n1], ...]]</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns:**</span>
+<span class="sd">    </span>
+<span class="sd">    * fig   : The figure </span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Without piston information, impossible to plot the fake perspective</span>
     <span class="k">if</span> <span class="n">thepistons</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -168,12 +320,14 @@
 <span class="sd">    The plots are made of the array as seen from the target in meters </span>
 <span class="sd">    projected to RA-Dec coordinates.</span>
 <span class="sd">    </span>
-<span class="sd">    asim    : Simulator object</span>
-<span class="sd">    seq_index: The index in the observing sequence (This feature may evolve)</span>
-<span class="sd">    grid    : Whether to plot a grid of ground position</span>
-<span class="sd">    grid_res: The number of lines in the grid for each direction</span>
-<span class="sd">    compass : Whether to plot a little North and East symbol for direction</span>
-<span class="sd">    compoass_length: In meters the length of the compass needles.</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * asim    : Simulator object</span>
+<span class="sd">    * seq_index: The index in the observing sequence (This feature may evolve)</span>
+<span class="sd">    * grid    : Whether to plot a grid of ground position</span>
+<span class="sd">    * grid_res: The number of lines in the grid for each direction</span>
+<span class="sd">    * compass : Whether to plot a little North and East symbol for direction</span>
+<span class="sd">    * compoass_length: In meters the length of the compass needles.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">anarray</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">statlocs</span>
     
@@ -224,13 +378,15 @@
 <span class="sd">    The plots are made of the array as seen from the target in meters </span>
 <span class="sd">    projected to RA-Dec coordinates.</span>
 <span class="sd">    </span>
-<span class="sd">    asim    : Simulator object</span>
-<span class="sd">    seq_indices: The index in the observing sequence (This feature may evolve)</span>
-<span class="sd">                if None: the whole sequence is mapped</span>
-<span class="sd">    grid    : Whether to plot a grid of ground position</span>
-<span class="sd">    grid_res: The number of lines in the grid for each direction</span>
-<span class="sd">    compass : Whether to plot a little North and East symbol for direction</span>
-<span class="sd">    compoass_length: In meters the length of the compass needles.</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * asim    : Simulator object</span>
+<span class="sd">    * seq_indices: The index in the observing sequence (This feature may evolve)</span>
+<span class="sd">      if None: the whole sequence is mapped</span>
+<span class="sd">    * grid    : Whether to plot a grid of ground position</span>
+<span class="sd">    * grid_res: The number of lines in the grid for each direction</span>
+<span class="sd">    * compass : Whether to plot a little North and East symbol for direction</span>
+<span class="sd">    * compoass_length: In meters the length of the compass needles.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">anarray</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">statlocs</span>
     
@@ -285,8 +441,7 @@
 
 <div class="viewcode-block" id="plot_injection"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_injection">[docs]</a><span class="k">def</span> <span class="nf">plot_injection</span><span class="p">(</span><span class="n">theinjector</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Provides a view of the injector status.</span>
-<span class="sd">    Plots the phase screen for each pupil.</span>
+<span class="sd">    Provides a view of the injector status. Plots the phase screen for each pupil.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
     <span class="kn">import</span> <span class="nn">scifysim</span> <span class="k">as</span> <span class="nn">sf</span>
@@ -353,16 +508,19 @@
                       <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the response map of the instrument for the target and sequence</span>
-<span class="sd">    wavelength   : np.ndarray containing wl indices (if None: use all the wavelength channels)</span>
-<span class="sd">    sequence_index : The indices of the sequence to plot</span>
-<span class="sd">    show         : Whether to call plt.show() for each plot</span>
-<span class="sd">    save         : either False or a string containing the root of a path like &quot;maps/figures_&quot;</span>
-<span class="sd">    figsize      : 2 tuple to pass to plt.figure()</span>
-<span class="sd">    dpi          : The dpi for the maps</span>
-<span class="sd">    **kwargs     : Additional kwargs to pass to imshow</span>
-<span class="sd">    add_central_marker: Add a marker at the 0,0 location</span>
-<span class="sd">    central_marker_size: The size parameter to give the central marker</span>
-<span class="sd">    central_marker_type: The type of marker to use</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * wavelength   : np.ndarray containing wl indices (if None: use all the wavelength channels)</span>
+<span class="sd">    * sequence_index : The indices of the sequence to plot</span>
+<span class="sd">    * show         : Whether to call plt.show() for each plot</span>
+<span class="sd">    * save         : either False or a string containing the root of a path like &quot;maps/figures_&quot;</span>
+<span class="sd">    * figsize      : 2 tuple to pass to plt.figure()</span>
+<span class="sd">    * dpi          : The dpi for the maps</span>
+<span class="sd">    * **kwargs     : Additional kwargs to pass to imshow</span>
+<span class="sd">    * add_central_marker: Add a marker at the 0,0 location</span>
+<span class="sd">    * central_marker_size: The size parameter to give the central marker</span>
+<span class="sd">    * central_marker_type: The type of marker to use</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">base_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mf">10.</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s1">&#39;marker&#39;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
     <span class="k">if</span> <span class="n">central_marker</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
@@ -465,8 +623,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots some information on the tuning of the combiner using geometric piston</span>
 <span class="sd">    and chromatic corrector plates.</span>
-<span class="sd">    Plots:</span>
-<span class="sd">    ------</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * corrector : A corrector object</span>
+<span class="sd">    * lambs     : The wavelengths to plot [m]</span>
+<span class="sd">    * combiner  : A combiner object</span>
+<span class="sd">    * show      : Whether to call ``plt.show``</span>
+<span class="sd">    </span>
+<span class="sd">    **Plots:**</span>
+<span class="sd">    </span>
 <span class="sd">    - Nulling contrast (before and after correction)</span>
 <span class="sd">    - The corrected matrix matrix plot</span>
 <span class="sd">    - The length of correction, compensation, and offset</span>
@@ -550,43 +716,47 @@
     <span class="k">return</span> <span class="n">nul_plot</span><span class="p">,</span> <span class="n">cmp_plot</span><span class="p">,</span> <span class="n">bar_plot</span><span class="p">,</span> <span class="n">morph_plot</span></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.plot_tools</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

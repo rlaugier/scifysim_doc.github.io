@@ -253,13 +253,16 @@
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infinite_well</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains the pixel model of the detector.
 Currently it does not implement a system gain (1ADU = 1photoelectron)</p>
-<p>keepall    : [boolean] Whether to keep each of the steps accumulated
-eta        :            The quantum efficiency
-ron        : [photoelectrons] The read-out noise
-ENF        :            The Excess Noise Factor 1 if not applicable
-mgain      :            The amplification gain (for EMCCDs or APD/eAPD sensors)
-well       : [photelectrons] The well depth
-n_sources  :            The number of different sources propagated through the instrument</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>keepall    : [boolean] Whether to keep each of the steps accumulated</p></li>
+<li><p>eta        :            The quantum efficiency</p></li>
+<li><p>ron        : [photoelectrons] The read-out noise</p></li>
+<li><p>ENF        :            The Excess Noise Factor 1 if not applicable</p></li>
+<li><p>mgain      :            The amplification gain (for EMCCDs or APD/eAPD sensors)</p></li>
+<li><p>well       : [photelectrons] The well depth</p></li>
+<li><p>n_sources  :            The number of different sources propagated through the instrument</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py attribute">
@@ -277,7 +280,10 @@ n_sources  :            The number of different sources propagated through the i
 <dt class="sig sig-object py" id="scifysim.spectrograph.integrator.accumulate">
 <span class="sig-name descname"><span class="pre">accumulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.accumulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.accumulate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accumulates some signal.</p>
-<p>value   : The signals to accumulate</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>value   : The signals to accumulate</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
@@ -293,29 +299,19 @@ n_sources  :            The number of different sources propagated through the i
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.spectrograph.integrator.consolidate_metrologic">
 <span class="sig-name descname"><span class="pre">consolidate_metrologic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.consolidate_metrologic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.consolidate_metrologic" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Compiles the results of metrologic exposure.
-Paramters compiled:
-——————-
-self.nsamples    : The number of integration steps
-self.summed_signal : The total integration of</p>
-<blockquote>
-<div><p>all sources throughout the time steps</p>
-</div></blockquote>
-<dl class="simple">
-<dt>self.total_summed_signal<span class="classifier">The total integration over</span></dt><dd><p>both sources and time steps</p>
-</dd>
-<dt>self.sums<span class="classifier">The list of signals from each of the sources</span></dt><dd><p>summed over the time steps</p>
-</dd>
-</dl>
-<p>self.source_labels : The labels of the sources corresIFEST.in</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">-r<var>wxrwx–x</var></span></kbd></dt>
-<dd><p>1 rlaugier rlaugier 1,1K mai   27 14:50 REAponding to
-sums.</p>
-</dd>
-</dl>
+<dd><p>Compiles the results of metrologic exposure.</p>
+<p><strong>Paramters compiled:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self.nsamples</span></code>    : The number of integration steps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.summed_signal</span></code> : The total integration of 
+all sources throughout the time steps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.total_summed_signal</span></code> : The total integration over
+both sources and time steps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.sums</span></code>        : The list of signals from each of the sources
+summed over the time steps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.source_labels</span></code> : The labels of the sources
+corresponding to sums.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
@@ -339,14 +335,15 @@ Not affected by noises</p>
 <dt class="sig sig-object py" id="scifysim.spectrograph.integrator.get_total">
 <span class="sig-name descname"><span class="pre">get_total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectrograph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_exp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_pixsplit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.get_total"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.get_total" title="Permalink to this definition">¶</a></dt>
 <dd><p>Made a little bit complicated by the ability to simulate CRED1 camera</p>
-<dl class="simple">
-<dt>spectrograph<span class="classifier">A spectrograph object to map the spectra on</span></dt><dd><p>a 2D detector</p>
-</dd>
-<dt>t_exp<span class="classifier">[s]  Integration time to take into account dark current</span></dt><dd><p>This is only used if self.exposure is close to 0. (if
-the )</p>
-</dd>
-</dl>
-<p>n_pixsplit    : The number of pixels</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>spectrograph  : A spectrograph object to map the spectra on
+a 2D detector</p></li>
+<li><p>t_exp         : [s]  Integration time to take into account dark current
+This is only used if self.exposure is close to 0. (if 
+the )</p></li>
+<li><p>n_pixsplit    : The number of pixels</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
@@ -354,12 +351,10 @@ the )</p>
 <span class="sig-name descname"><span class="pre">prepare_t_exp_base</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.prepare_t_exp_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.prepare_t_exp_base" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes some basic laws regarding exposure times
 for the current configuration:</p>
+<p><strong>Parameters:</strong></p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>self.expr_snr_t<span class="classifier">expression of SNR as function of time</span></dt><dd><p>which also gets printed</p>
-</dd>
-</dl>
-</li>
+<li><p>self.expr_snr_t       : expression of SNR as function of time
+which also gets printed</p></li>
 <li><p>self.expr_t_for_snr   : time to get a given SNR</p></li>
 <li><p>self.expr_well_fraction : Fraction of well filled by the number of Ph considered</p></li>
 <li><p>self.expr_t_max       : Maximum exposure time to fill the well</p></li>
@@ -368,8 +363,10 @@ for the current configuration:</p>
 <li><p>self.well_fraction    : lambdified version of expr_well_faction</p></li>
 <li><p>self.t_exp_max        : lambdified version of expr_t_max</p></li>
 </ul>
-<p>eta, f_planet, n_pix, f_tot, ron, =  sp.symbols(“eta, f_{planet}, n_p, f_{tot}, ron”, real=True)
-n_planet, n_tot, t_exp0, t_exp = sp.symbols(“n_{planet}, n_{tot}, t_{esxp0}, t_{exp}”, real=True)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eta</span><span class="p">,</span> <span class="n">f_planet</span><span class="p">,</span> <span class="n">n_pix</span><span class="p">,</span> <span class="n">f_tot</span><span class="p">,</span> <span class="n">ron</span><span class="p">,</span> <span class="o">=</span>  <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;eta, f_</span><span class="si">{planet}</span><span class="s2">, n_p, f_</span><span class="si">{tot}</span><span class="s2">, ron&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">n_planet</span><span class="p">,</span> <span class="n">n_tot</span><span class="p">,</span> <span class="n">t_exp0</span><span class="p">,</span> <span class="n">t_exp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;n_</span><span class="si">{planet}</span><span class="s2">, n_</span><span class="si">{tot}</span><span class="s2">, t_</span><span class="si">{esxp0}</span><span class="s2">, t_</span><span class="si">{exp}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">

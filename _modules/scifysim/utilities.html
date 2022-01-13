@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.utilities &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.utilities &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.utilities</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.utilities</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.utilities</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -64,8 +208,10 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Circumvents a bug in lambdify where silent </span>
 <span class="sd">    variables will be simplified and therefore</span>
-<span class="sd">    aren&#39;t broadcasted. https://github.com/sympy/sympy/issues/5642</span>
+<span class="sd">    aren&#39;t broadcasted. `&lt;https://github.com/sympy/sympy/issues/5642&gt;`_</span>
+<span class="sd">    </span>
 <span class="sd">    Use an extra argument = 0 when calling</span>
+<span class="sd">    </span>
 <span class="sd">    Please, keep the function synchronous with kernuller</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">)</span>
@@ -81,13 +227,13 @@
 <div class="viewcode-block" id="ee"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.ee">[docs]</a><span class="k">class</span> <span class="nc">ee</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Additional functionnality needed:</span>
-<span class="sd">    see comments starting 2021/02/24 https://github.com/sympy/sympy/issues/5642 .</span>
+<span class="sd">    see comments starting 2021/02/24 `&lt;https://github.com/sympy/sympy/issues/5642&gt;`_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expression</span><span class="p">):</span>
+<div class="viewcode-block" id="ee.__init__"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.ee.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expression</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ee is for Executable expression</span>
 <span class="sd">        Encapsulates an expression for flexible lambda evaluation.</span>
-<span class="sd">        expression  : a sympy expression to </span>
+<span class="sd">        expression  : a sympy expression to lambdify</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">expr</span> <span class="o">=</span> <span class="n">expression</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="o">.</span><span class="n">is_Matrix</span><span class="p">:</span>
@@ -96,14 +242,17 @@
             <span class="c1">#self.callfunction = self.setup_matrixfunction()</span>
         <span class="k">else</span> <span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">outlen</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">outshape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outshape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="ee.lambdify"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.ee.lambdify">[docs]</a>    <span class="k">def</span> <span class="nf">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numexpr&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates the lambda function. Currently, lambdification to numexpr</span>
 <span class="sd">        does not support multiple outputs, so we create a list of lambda functions.</span>
-<span class="sd">        args    : a tuple of sympy for symbols to use as inputs</span>
-<span class="sd">        modules : The module to use for computation.</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * args    : a tuple of sympy for symbols to use as inputs</span>
+<span class="sd">        * modules : The module to use for computation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1">#Here, we have to decide if we need the function to all </span>
         <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;numexpr&quot;</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outlen</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
@@ -131,8 +280,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="c1"># Here, we flatten for consitency?</span></div>
     
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">callfunction</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<div class="viewcode-block" id="ee.__call__"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.ee.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">callfunction</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
 <div class="viewcode-block" id="ee.fprint"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.ee.fprint">[docs]</a>    <span class="k">def</span> <span class="nf">fprint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span></div></div>
     
@@ -144,24 +293,24 @@
                <span class="n">modificators</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A shortcut to prepare a simulator object</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
 <span class="sd">    - afile      : Config file </span>
 <span class="sd">    - thetarget  : target name to replace in config file</span>
 <span class="sd">    - instrumental_errors : Bool. Whether to include instrumental</span>
-<span class="sd">                    errors</span>
+<span class="sd">      errors</span>
 <span class="sd">    - seed       : seed to pass when generating the </span>
-<span class="sd">                    time series of instrumental errors</span>
+<span class="sd">      time series of instrumental errors</span>
 <span class="sd">    - crop       : factor to pass to the injector</span>
 <span class="sd">    - target_coords : Coordinates of the target </span>
-<span class="sd">                    default:None : finds the target from catalog</span>
+<span class="sd">      default:None : finds the target from catalog</span>
 <span class="sd">    - compensate_chromatic : Bool Whether to run the optimization</span>
-<span class="sd">                    of the actuators to compensate for chromaticity</span>
-<span class="sd">                    in the combiner</span>
+<span class="sd">      of the actuators to compensate for chromaticity</span>
+<span class="sd">      in the combiner</span>
 <span class="sd">    - modificators : a dict of parameters to supersede the config file</span>
 <span class="sd">    </span>
-<span class="sd">    Returns:</span>
-<span class="sd">    --------</span>
+<span class="sd">    **Returns:**</span>
+<span class="sd">    </span>
 <span class="sd">    - asim        : A simulator object</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">scifysim</span> <span class="kn">import</span> <span class="n">director</span>
@@ -200,7 +349,10 @@
 <div class="viewcode-block" id="get_uv"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.get_uv">[docs]</a><span class="k">def</span> <span class="nf">get_uv</span><span class="p">(</span><span class="n">puparray</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the uv baselines for a given pupil configuration.</span>
-<span class="sd">    puparray    : An array representing the location of each pupil</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * puparray    : An array representing the location of each pupil</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">uv</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">puparray</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
@@ -305,19 +457,22 @@
 <span class="sd">    Returns a new series of data based on the provided power spectrum.</span>
 <span class="sd">    If matchto is provided, the new series is adjusted for continuity </span>
 <span class="sd">    to that data.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    ps       : A power spectrum</span>
-<span class="sd">    matchto  : np.ndarray of preceding series. The mean of the first</span>
-<span class="sd">                n (matchlength) values of the new series are matched</span>
-<span class="sd">                to the mean of the last n values of this array.</span>
-<span class="sd">    matchlength : integer. The number of values to match </span>
-<span class="sd">    keepall  : Boolean. If true, will return the concatenation of the</span>
-<span class="sd">                new array with the old. If False, will return only the</span>
-<span class="sd">                new array.</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * ps       : A power spectrum</span>
+<span class="sd">    * matchto  : np.ndarray of preceding series. The mean of the first</span>
+<span class="sd">      n (matchlength) values of the new series are matched</span>
+<span class="sd">      to the mean of the last n values of this array.</span>
+<span class="sd">    * matchlength : integer. The number of values to match </span>
+<span class="sd">    * keepall  : Boolean. If true, will return the concatenation of the</span>
+<span class="sd">      new array with the old. If False, will return only the</span>
+<span class="sd">      new array.</span>
 <span class="sd">    </span>
 <span class="sd">    </span>
-<span class="sd">    output:</span>
-<span class="sd">    a numpy ndarray of the time series</span>
+<span class="sd">    **Returns:**</span>
+<span class="sd">    </span>
+<span class="sd">    * a numpy ndarray of the time series</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">SeedSequence</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span>
     <span class="n">newphi</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -339,11 +494,13 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Matches series b with series a with the nmatch last samples of a and</span>
 <span class="sd">    the nmatch first samples of b.</span>
-<span class="sd">    Returns the concatenation.</span>
 <span class="sd">    </span>
-<span class="sd">    a        : 1D array the root of the series</span>
-<span class="sd">    b        : 1D array the tail of the series </span>
-<span class="sd">    nmatch   : integer  The number of samples used to match the mean </span>
+<span class="sd">    </span>
+<span class="sd">    * a        : 1D array the root of the series</span>
+<span class="sd">    * b        : 1D array the tail of the series </span>
+<span class="sd">    * nmatch   : integer  The number of samples used to match the mean </span>
+<span class="sd">    </span>
+<span class="sd">    **Returns** the concatenation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">adj0</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="n">nmatch</span><span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">adj1</span> <span class="o">=</span> <span class="n">b</span><span class="p">[:</span><span class="n">nmatch</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -475,13 +632,17 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Queries GAIA DR2 catalog for distance, radius and </span>
 <span class="sd">    temperature of star:</span>
-<span class="sd">    star   : str   the name of the star</span>
-<span class="sd">    verbose: Whether to print the details found</span>
 <span class="sd">    </span>
-<span class="sd">    returns:</span>
-<span class="sd">    dist [pc]   : Distance</span>
-<span class="sd">    T    [K]    : Effective temperature</span>
-<span class="sd">    R    [Rsun] : Radius</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * star   : str   the name of the star</span>
+<span class="sd">    * verbose: Whether to print the details found</span>
+<span class="sd">    * showtable: Whether to show the table in list form</span>
+<span class="sd">    </span>
+<span class="sd">    ** returns:**</span>
+<span class="sd">    * dist [pc]   : Distance</span>
+<span class="sd">    * T    [K]    : Effective temperature</span>
+<span class="sd">    * R    [Rsun] : Radius</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">astroquery.vizier</span> <span class="kn">import</span> <span class="n">Vizier</span>
     <span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
@@ -501,17 +662,23 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T = &quot;</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="s2">&quot;[K]&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R = &quot;</span><span class="p">,</span> <span class="n">Rad</span><span class="p">,</span> <span class="s2">&quot;[R_sun]&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dist</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Rad</span></div>
+
 <div class="viewcode-block" id="get_star_params_GAIA_JMMC"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.get_star_params_GAIA_JMMC">[docs]</a><span class="k">def</span> <span class="nf">get_star_params_GAIA_JMMC</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">showtable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Queries GAIA DR2 catalog for distance, radius and </span>
 <span class="sd">    temperature of star:</span>
-<span class="sd">    star   : str   the name of the star</span>
-<span class="sd">    verbose: Whether to print the details found</span>
 <span class="sd">    </span>
-<span class="sd">    returns:</span>
-<span class="sd">    dist [pc]   : Distance</span>
-<span class="sd">    T    [K]    : Effective temperature</span>
-<span class="sd">    R    [Rsun] : Radius</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * star   : str   the name of the star</span>
+<span class="sd">    * verbose: Whether to print the details found</span>
+<span class="sd">    * showtable: Whether to show the table in list form</span>
+<span class="sd">    </span>
+<span class="sd">    **returns:**</span>
+<span class="sd">    </span>
+<span class="sd">    * dist [pc]   : Distance</span>
+<span class="sd">    * T    [K]    : Effective temperature</span>
+<span class="sd">    * R    [Rsun] : Radius</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">astroquery.vizier</span> <span class="kn">import</span> <span class="n">Vizier</span>
     <span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
@@ -565,7 +732,17 @@
     
 <div class="viewcode-block" id="find_best_night"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.find_best_night">[docs]</a><span class="k">def</span> <span class="nf">find_best_night</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">showplot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    duration   [h] : duration of the observing run</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * obs : Observatory object</span>
+<span class="sd">    * showplot : Whether to show a plot of the max elevation </span>
+<span class="sd">    * duration   [h] : duration of the observing run</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns:**</span>
+<span class="sd">    </span>
+<span class="sd">    * if duration is None (default) : ``besttime`` an ``astropy.Time`` object</span>
+<span class="sd">    * else : ``(Tstart, Tend)`` Start and end of the observing run</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">astropy.units</span>
     <span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">TimeDelta</span>
@@ -594,9 +771,17 @@
 <div class="viewcode-block" id="update_observing_night"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.update_observing_night">[docs]</a><span class="k">def</span> <span class="nf">update_observing_night</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mf">6.</span><span class="p">,</span>  <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                           <span class="n">target_coords</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    config               The parsed config file to modify</span>
-<span class="sd">    time      [fits format] (if None, will optimize for elevation)</span>
-<span class="sd">    duration  [h] </span>
+<span class="sd">    **Parameters**</span>
+<span class="sd">    </span>
+<span class="sd">    * config  : The parsed config file to modify</span>
+<span class="sd">    * time : [fits format] (if None, will optimize for elevation)</span>
+<span class="sd">    * duration : [h] *Default*: 6.h</span>
+<span class="sd">    * verbose : Whether to print some of the intermediate results</span>
+<span class="sd">    * target_coords : Coordinates of the object of interst.</span>
+<span class="sd">    </span>
+<span class="sd">        - **None** *Default*: Uses the target in the config file</span>
+<span class="sd">        - ``astropy.SkyCoords`` object.</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">scifysim.observatory</span> <span class="kn">import</span> <span class="n">observatory</span>
     <span class="kn">from</span> <span class="nn">astroplan</span> <span class="kn">import</span> <span class="n">FixedTarget</span>
@@ -648,19 +833,18 @@
 <span class="sd">    Obtains the coefficients including object magnitude, detector integration time,</span>
 <span class="sd">    transmission, spectral channels, pixel solid angle, and quantum efficiency (default: 1.).</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
+<span class="sd">    **Parameters:**</span>
 <span class="sd">    </span>
 <span class="sd">    * mag     : Magnitude of object (Vega)</span>
 <span class="sd">    * dit     : detector integration time [s]</span>
 <span class="sd">    * lead_transmission : The transmission of the leading element (often sky) of the </span>
-<span class="sd">                transmission-emission chain</span>
+<span class="sd">      transmission-emission chain</span>
 <span class="sd">    * context : The spectral context of the instrument (defining the vega magnitudes)</span>
 <span class="sd">    * eta     : (default=1.) The quantum efficiency of the detector</span>
 <span class="sd">    * spectrum : The type of spectrum of the object defaults to flat as opposed to the </span>
-<span class="sd">                temperature of Vega.</span>
+<span class="sd">      temperature of Vega.</span>
 <span class="sd">    * ds_sr   : When working with a map the solid angle of a pixel [sr]</span>
-<span class="sd">                Can be found in `simulator.vigneting_map.ds_sr` after maps have been computed</span>
+<span class="sd">      Can be found in `simulator.vigneting_map.ds_sr` after maps have been computed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">aspectrum</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">sflux_from_vegamag</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span> <span class="c1">#asim.src.planet.ss.flatten()</span>
@@ -676,18 +860,17 @@
 <span class="sd">    Obtains the coefficients including detector integration time,</span>
 <span class="sd">    transmission, spectral channels, pixel solid angle, and quantum efficiency (default: 1.).</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
+<span class="sd">    **Parameters:**</span>
 <span class="sd">    </span>
 <span class="sd">    * dit     : detector integration time [s]</span>
 <span class="sd">    * lead_transmission : The transmission of the leading element (often sky) of the </span>
-<span class="sd">                transmission-emission chain</span>
+<span class="sd">      transmission-emission chain</span>
 <span class="sd">    * context : The spectral context of the instrument (defining the vega magnitudes)</span>
 <span class="sd">    * eta     : (default=1.) The quantum efficiency of the detector</span>
 <span class="sd">    * spectrum : The type of spectrum of the object defaults to flat as opposed to the </span>
-<span class="sd">                temperature of Vega.</span>
+<span class="sd">      temperature of Vega.</span>
 <span class="sd">    * ds_sr   : When working with a map the solid angle of a pixel [sr]</span>
-<span class="sd">                Can be found in `simulator.vigneting_map.ds_sr` after maps have been computed</span>
+<span class="sd">      Can be found in `simulator.vigneting_map.ds_sr` after maps have been computed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">acoeff</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">ds_sr</span><span class="p">)</span> <span class="o">*</span>\
                   <span class="n">dit</span> <span class="o">*</span> <span class="n">eta</span> <span class="o">*</span>\
@@ -699,7 +882,8 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Here in photons per dit (default=1s)</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
 <span class="sd">    * maps     : Transmission maps for 1 ph/s/m2 </span>
 <span class="sd">                        at the entrance of atmo</span>
 <span class="sd">    * simulator : a sumulator object (see comments below)</span>
@@ -713,6 +897,7 @@
 <span class="sd">                simulator.combiner.K</span>
 <span class="sd">    </span>
 <span class="sd">    Simulator object is used for</span>
+<span class="sd">    </span>
 <span class="sd">    * The head transmission (simulator.src.sky)</span>
 <span class="sd">    * The solid angle of the pisel</span>
 <span class="sd">    * The spectral context (for the spectral channels)</span>
@@ -783,32 +968,33 @@
                <span class="n">use_tqdm</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluate the noise profile for a given parameter file.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
 <span class="sd">    - afile      : Config file </span>
 <span class="sd">    - t_exp      : Exposure time</span>
 <span class="sd">    - n_frames   : The number of frames for MC simulation</span>
-<span class="sd">                to evaluate the instrumental noise</span>
+<span class="sd">      to evaluate the instrumental noise</span>
 <span class="sd">    - instrumental_errors : Bool. Whether to include instrumental</span>
-<span class="sd">                    errors</span>
+<span class="sd">      errors</span>
 <span class="sd">    - seed       : seed to pass when generating the </span>
-<span class="sd">                    time series of instrumental errors</span>
+<span class="sd">      time series of instrumental errors</span>
 <span class="sd">    - crop       : factor to pass to the injector</span>
 <span class="sd">    - target_coords : Coordinates of the target </span>
-<span class="sd">                    default:None : finds the target from catalog</span>
+<span class="sd">      default:None : finds the target from catalog</span>
 <span class="sd">    - compensate_chromatic : Bool Whether to run the optimization</span>
-<span class="sd">                    of the actuators to compensate for chromaticity</span>
-<span class="sd">                    in the combiner</span>
+<span class="sd">      of the actuators to compensate for chromaticity</span>
+<span class="sd">      in the combiner</span>
 <span class="sd">    - plotall    : Whether to plot a bunch of charts</span>
 <span class="sd">    - use_tqdm   : Whether tqdm should be used at the step of the</span>
-<span class="sd">                    MC simulations. (use false for parameter exploration)</span>
+<span class="sd">      MC simulations. (use false for parameter exploration)</span>
 <span class="sd">                </span>
-<span class="sd">    Returns:</span>
-<span class="sd">    --------</span>
+<span class="sd">    **Returns:**</span>
+<span class="sd">    </span>
 <span class="sd">    - asim       : The simulator object</span>
 <span class="sd">    - prof       : The noise profile object</span>
 <span class="sd">    - characteristics : A dictionary containing a collection of</span>
-<span class="sd">                performance statistics</span>
+<span class="sd">      performance statistics</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">scifysim</span> <span class="k">as</span> <span class="nn">sf</span>
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -999,13 +1185,14 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Utility macro that packages the production of multiple sensitivity</span>
 <span class="sd">    maps for a given director object and noise profile</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
+<span class="sd">    </span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
 <span class="sd">    - asim     : Simulator director object</span>
 <span class="sd">    - prof     : Noise profile</span>
 <span class="sd">    </span>
-<span class="sd">    Returns:</span>
-<span class="sd">    --------</span>
+<span class="sd">    **Returns:**</span>
+<span class="sd">    </span>
 <span class="sd">    - metamap   : T</span>
 <span class="sd">    - themap    : The energy detector map in magnitude</span>
 <span class="sd">    - theNPmap  : The Neyman-Pearson detector map in magnitude</span>
@@ -1084,43 +1271,47 @@
     <span class="k">return</span> <span class="n">y</span></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.utilities</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

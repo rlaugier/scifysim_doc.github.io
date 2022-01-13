@@ -203,16 +203,20 @@
 for the input. It contains amplitude <em>a</em>, geometric
 piston <em>b</em> and ZnSe piston substitution <em>c</em>. Note that
 the ZnSe length replaces some air length.</p>
-<p>config:     A parsed config file
-lambs :     The wavelength channels to consider [m]</p>
-<blockquote>
-<div><p>(At the __init__ stage, it is only used for
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>config:     A parsed config file</p></li>
+<li><p>lambs :     The wavelength channels to consider [m]
+(At the __init__ stage, it is only used for
 the computation of a mean refractive index for
-the dispersive material)</p>
-</div></blockquote>
-<p>a     :     Vector of the amplitude term
-b     :     Vetor of the geometric piston term [m]
-c     :     Vetor of the dispersive piston term [m]</p>
+the dispersive material)</p></li>
+</ul>
+<p><strong>Internal parameters:</strong></p>
+<ul class="simple">
+<li><p>a     :     Vector of the amplitude term</p></li>
+<li><p>b     :     Vetor of the geometric piston term [m]</p></li>
+<li><p>c     :     Vetor of the dispersive piston term [m]</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py attribute">
@@ -231,7 +235,11 @@ c     :     Vetor of the dispersive piston term [m]</p>
 <span class="sig-name descname"><span class="pre">get_phasor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.get_phasor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.get_phasor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the complex phasor corresponding
 to the current a, b, c, and dcomp phasors.</p>
-<p>lambs :     The wavelength channels to consider [m]</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>lambs :     The wavelength channels to consider [m]</p></li>
+</ul>
+<p><strong>Returns:</strong> alpha</p>
 </dd></dl>
 
 <dl class="py method">
@@ -241,10 +249,13 @@ to the current a, b, c, and dcomp phasors.</p>
 parameters as arguments (slower).</p>
 <p>Returns the complex phasor corresponding
 to the current a, b, c, and dcomp phasors.</p>
-<p>lambs :     The wavelength channels to consider [m]
-a     :     Vector of the amplitude term
-b     :     Vetor of the geometric piston term [m]
-c     :     Vetor of the dispersive piston term [m]</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>lambs :     The wavelength channels to consider [m]</p></li>
+<li><p>a     :     Vector of the amplitude term</p></li>
+<li><p>b     :     Vetor of the geometric piston term [m]</p></li>
+<li><p>c     :     Vetor of the dispersive piston term [m]</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
@@ -262,9 +273,13 @@ c     :     Vetor of the dispersive piston term [m]</p>
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.solve_air">
 <span class="sig-name descname"><span class="pre">solve_air</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wet_atmo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.solve_air"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.solve_air" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes a least squares compensation model (see
-Koresko et al. 2003 DOI: 10.1117/12.458032)</p>
-<p>lambs :     The wavelength channels to consider [m]
-wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p>
+<strong>Koresko et al. 2003 DOI: 10.1117/12.458032</strong>)</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>lambs :     The wavelength channels to consider [m]</p></li>
+<li><p>wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p></li>
+</ul>
+<p><strong>Returns:</strong> <img class="math" src="_images/math/6f82540463aa637c24d88a1d1f72a2ab96acf0ab.png" alt="\Big( \mathbf{A}^T\mathbf{A}\mathbf{A}^T \Big)^{-1}"/></p>
 </dd></dl>
 
 <dl class="py method">
@@ -273,64 +288,69 @@ wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p>
 <dd><p>Computes the theoretical chromatic phase effect of the
 array geometry projected on axis based on the wet atmosphere
 model.</p>
-<p>lambs :     The wavelength channels to consider [m]
-proj_opds  : The projected piston obtained by projection</p>
-<blockquote>
-<div><p>(Get from simulator.obs.get_projected_geometric_pistons)</p>
-</div></blockquote>
-<p>wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>lambs :     The wavelength channels to consider [m]</p></li>
+<li><p>proj_opds  : The projected piston obtained by projection
+(Get from simulator.obs.get_projected_geometric_pistons)</p></li>
+<li><p>wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p></li>
+</ul>
+<p><strong>Returns:</strong> phase</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.tune_static">
 <span class="sig-name descname"><span class="pre">tune_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['b0',</span> <span class="pre">'c0',</span> <span class="pre">'b2',</span> <span class="pre">'c2']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.tune_static"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.tune_static" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optimize the compensator to correct chromatism in the
+<dd><p>Optimize the compensator to correct chromatism in the 
 model of the combiner. Returns a lmfit solution object.
 If “apply” is set to True, a, b, c, and dcomp are also
 set to the best fit value.</p>
-<p>lambs :     The wavelength channels to consider [m]
-combiner :  A combiner object (chromatic)
-apply    :  Boolean deciding whether to set the local</p>
-<blockquote>
-<div><p>parameters to best fit value (default: True)</p>
-</div></blockquote>
-<dl class="simple">
-<dt>freeze_params<span class="classifier">The name of parameters to be freezed.</span></dt><dd><p>Should be used to account for the larger than
-necessary number of degrees of freedom.</p>
-</dd>
-</dl>
-<p>Note: For obtaining a more practical direct results, some
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>lambs :     The wavelength channels to consider [m]</p></li>
+<li><p>combiner :  A combiner object (chromatic)</p></li>
+<li><p>apply    :  Boolean deciding whether to set the local
+parameters to best fit value (default: True)</p></li>
+<li><p>freeze_params : The name of parameters to be freezed.
+Should be used to account for the larger than
+necessary number of degrees of freedom.</p></li>
+</ul>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>For obtaining a more practical direct results, some
 more complicated balancing guidelines should be followed.</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.tune_static_shape">
 <span class="sig-name descname"><span class="pre">tune_static_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[('b3',</span> <span class="pre">'b2',</span> <span class="pre">0.0),</span> <span class="pre">('c3',</span> <span class="pre">'c2',</span> <span class="pre">0.0)]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['b0',</span> <span class="pre">'c0',</span> <span class="pre">'b1',</span> <span class="pre">'c1']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.tune_static_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.tune_static_shape" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optimize the compensator to correct chromatism in the
+<dd><p>Optimize the compensator to correct chromatism in the 
 model of the combiner to obtain enantomporph combinations
 at the outputs. Returns a lmfit solution object.
-If “apply” is set to True, a, b, c, and dcomp are also
+If <code class="docutils literal notranslate"><span class="pre">apply</span></code> is set to True, a, b, c, and dcomp are also
 set to the best fit value.</p>
 <p><strong>Currently only works for double Bracewell 3-4 architectures.</strong></p>
-<p>lambs :     The wavelength channels to consider [m]
-combiner :  A combiner object (chromatic)
-apply    :  Boolean deciding whether to set the local</p>
-<blockquote>
-<div><p>parameters to best fit value (default: True)</p>
-</div></blockquote>
-<p>Note: For obtaining a more practical direct results, some
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>lambs :     The wavelength channels to consider [m]</p></li>
+<li><p>combiner :  A combiner object (chromatic)</p></li>
+<li><p>apply    :  Boolean deciding whether to set the local
+parameters to best fit value (default: True)</p></li>
+</ul>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>For obtaining a more practical direct results, some
 more complicated balancing guidelines should be followed.</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
-sol = asim.corrector.tune_static_shape(asim.lambda_science_range,</p>
-<blockquote>
-<div><p>asim.combiner,
-sync_params=[(“b3”, “b2”, asim.corrector.b[3] - asim.corrector.b[2]),</p>
-<blockquote>
-<div><p>(“c3”, “c2”, asim.corrector.c[3] - asim.corrector.c[2])],</p>
-</div></blockquote>
-<p>apply=True)</p>
-</div></blockquote>
-<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">tune_static_shape</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                 <span class="n">asim</span><span class="o">.</span><span class="n">combiner</span><span class="p">,</span>
+                 <span class="n">sync_params</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="n">asim</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">asim</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+                             <span class="p">(</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span> <span class="n">asim</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">asim</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">])],</span>
+                 <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -340,11 +360,12 @@ sync_params=[(“b3”, “b2”, asim.corrector.b[3] - asim.corrector.b[2]),</p
 <span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">extract_corrector_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#extract_corrector_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.extract_corrector_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility function to reconstruct the <em>b</em> and <em>c</em>
 vectors from the lmfit Parameters object.</p>
-<p>corrector : The corrector object
-params   :  at lmfit Parameters object</p>
-<blockquote>
-<div><p>containing b_i and c_i terms</p>
-</div></blockquote>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>corrector : The corrector object</p></li>
+<li><p>params   :  at lmfit Parameters object
+containing b_i and c_i terms</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
@@ -354,22 +375,26 @@ params   :  at lmfit Parameters object</p>
 taking into account the corrections provided in
 params.</p>
 <p><strong>dcomp is computed automatically be default.</strong></p>
-<dl class="simple">
-<dt>params<span class="classifier">either</span></dt><dd><ul class="simple">
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p>params   : either</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>A Parameters object from the optimization</p></li>
 <li><p>A tuple of vectors bvec, cvec</p></li>
 </ul>
-</dd>
-</dl>
-<p>combiner : A combiner object.
-corrector : The corrector object
-lambs    : The wavelengths considered.</p>
+</div></blockquote>
+</li>
+<li><p>combiner : A combiner object.</p></li>
+<li><p>corrector : The corrector object</p></li>
+<li><p>lambs    : The wavelengths considered.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.correctors.get_contrast_res">
 <span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_contrast_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_contrast_res"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_contrast_res" title="Permalink to this definition">¶</a></dt>
-<dd><p>Macro that gets the a residual from parameters
+<dd><p>Macro that gets the a residual from parameters 
 for minimizing method.</p>
 </dd></dl>
 
@@ -380,35 +405,40 @@ for minimizing method.</p>
 to be minimized by the tuning method.
 The masks in the combiner definition
 are used to determine the role of the different outputs.</p>
-<p>combiner : A combiner object.
-Is       : An array of intensities</p>
-<p>Note: This definition might need some adjustments for
-use in kernel-nullers?</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>combiner : A combiner object.</p></li>
+<li><p>Is       : An array of intensities</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.correctors.get_es">
 <span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_es</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_es"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_es" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the enantiomorph excursion taking into account the corrections provided in
-params.
-<strong>Currently works only for double-bracewell 3-4 architecures</strong></p>
-<p><strong>dcomp is computed automatically be default.</strong></p>
-<dl class="simple">
-<dt>params<span class="classifier">either</span></dt><dd><ul class="simple">
+params.</p>
+<p><strong>Currently works only for double-bracewell 3-4 architecures</strong></p>
+<p><strong>dcomp is computed automatically by default.</strong></p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>params<span class="classifier">either</span></dt><dd><ul>
 <li><p>A Parameters object from the optimization</p></li>
 <li><p>A tuple of vectors bvec, cvec</p></li>
 </ul>
 </dd>
 </dl>
-<p>combiner : A combiner object.
-corrector : The corrector object
-lambs    : The wavelengths considered.</p>
+</li>
+<li><p>combiner : A combiner object.</p></li>
+<li><p>corrector : The corrector object</p></li>
+<li><p>lambs    : The wavelengths considered.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.correctors.get_shape_res">
 <span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">get_shape_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#get_shape_res"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.get_shape_res" title="Permalink to this definition">¶</a></dt>
-<dd><p>Macro that gets the a residual from parameters
+<dd><p>Macro that gets the a residual from parameters 
 for minimizing method.</p>
 </dd></dl>
 

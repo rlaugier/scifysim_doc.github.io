@@ -190,17 +190,21 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.mol_dens.mol_dens">
 <span class="sig-prename descclassname"><span class="pre">scifysim.mol_dens.</span></span><span class="sig-name descname"><span class="pre">mol_dens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">co2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph2o</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wvdens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/mol_dens.html#mol_dens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.mol_dens.mol_dens" title="Permalink to this definition">¶</a></dt>
-<dd><p>; PURPOSE:
-;   Returns the molair density of air and watervapor as a function temperature (in K), pressure (in mbar), relative humidity (%) and CO2 content (in ppm).
-;
-; REFERENCE:
-;   P.E. Ciddor, “The refractive index of air: new equations for the visible and near infrared”, Appl. Opt. 35 (9), 1566-1573
-;
-; MODIFICATION HISTORY:
-;   Version 1.0, 09-OCT-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, <a class="reference external" href="mailto:rdhartog&#37;&#52;&#48;rssd&#46;esa&#46;int">rdhartog<span>&#64;</span>rssd<span>&#46;</span>esa<span>&#46;</span>int</a></p>
-<p># !RL ???? :
-ON_ERROR,2
-ptot=pres*100.</p>
+<dd><p><strong>PURPOSE:</strong>
+Returns the molair density of air and watervapor as a function temperature (in K), pressure (in mbar), relative humidity (%) and CO2 content (in ppm).</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>temp : Temperature</p></li>
+<li><p>pres : Pressure</p></li>
+<li><p>rhum : Relative humidity</p></li>
+<li><p>co2  :</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>REFERENCE:</strong></dt><dd><p>P.E. Ciddor, “The refractive index of air: new equations for the visible and near infrared”, Appl. Opt. 35 (9), 1566-1573</p>
+</dd>
+<dt><strong>MODIFICATION HISTORY:</strong></dt><dd><p>Version 1.0, 09-OCT-2002, by Roland den Hartog, ESA / ESTEC /  Genie team, <a class="reference external" href="mailto:rdhartog&#37;&#52;&#48;rssd&#46;esa&#46;int">rdhartog<span>&#64;</span>rssd<span>&#46;</span>esa<span>&#46;</span>int</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

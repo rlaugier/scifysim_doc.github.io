@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.director &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.director &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.director</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.director</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.director</h1><div class="highlight"><pre>
 <span></span>
@@ -53,13 +197,16 @@
 <span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <div class="viewcode-block" id="simulator"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator">[docs]</a><span class="k">class</span> <span class="nc">simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.__init__"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
                  <span class="c1">#location=None, array=None,</span>
                 <span class="c1">#tarname=&quot;No name&quot;, tarpos=None, n_spec_ch=100):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The object meant to assemble and operate the simulator. Construct the injector object from a config file</span>
-<span class="sd">        file      : A pre-parsed config file</span>
-<span class="sd">        fpath     : The path to a config file</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * file      : A pre-parsed config file. See ``parsefile`` submodule</span>
+<span class="sd">        * fpath     : The path to a config file</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">scifysim</span> <span class="kn">import</span> <span class="n">parsefile</span>
@@ -87,11 +234,16 @@
 
         <span class="c1">#self.obs = sf.observatory.observatory(self.array, location=location)</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="kc">None</span></div>
         
 <div class="viewcode-block" id="simulator.prepare_observatory"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_observatory">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_observatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Preprare the observatory object for the simulator.</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * file : A parsed config file (see parsefile)</span>
+<span class="sd">        * fpath: (string) A path to the config file to parse</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">theconfig</span> <span class="o">=</span> <span class="n">file</span>
@@ -137,10 +289,11 @@
                  <span class="n">crop</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span>
                  <span class="n">injector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Either: </span>
-<span class="sd">            * Provide all parameters</span>
-<span class="sd">            * Provide a config file</span>
-<span class="sd">            * provide the injector</span>
+<span class="sd">        **Either:**</span>
+<span class="sd">        </span>
+<span class="sd">        * Provide all parameters</span>
+<span class="sd">        * Provide a config file</span>
+<span class="sd">        * provide the injector</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;tt_correction not implemented&quot;</span><span class="p">)</span>
@@ -174,7 +327,13 @@
     
 <div class="viewcode-block" id="simulator.prepare_combiner"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_combiner">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_combiner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Constructs self.combiner</span>
+<span class="sd">        Constructs ``self.combiner``</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * file : A parsed config file (see parsefile)</span>
+<span class="sd">        * **kwargs to pass to the combiner ``__init__`` method</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">combiner_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span><span class="s2">&quot;combiner&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ph_tap</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;photometric_tap&quot;</span><span class="p">)</span>
@@ -189,7 +348,8 @@
 <div class="viewcode-block" id="simulator.prepare_sources"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_sources">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepares a src object containing star, planet, sky and UT.</span>
-<span class="sd">        file     : A parsed config file (default: None will reuse the config file in self.)</span>
+<span class="sd">        </span>
+<span class="sd">        * file     : A parsed config file (default: None will reuse the config file in self.)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -199,10 +359,13 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepares the integraro object that rules the pixel properties</span>
 <span class="sd">        of the detector.</span>
-<span class="sd">        config    : A parsed config file (default: None will reuse the config file in self.)</span>
-<span class="sd">        keepall   : [boolean] Whether to keep each of the steps accumulated.</span>
-<span class="sd">                            False is recommended for faster computation and memory efficiency</span>
-<span class="sd">        n_sources : Number of sources sequencially accumulated. (deprecated, do not</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * config    : A parsed config file (default: None will reuse the config file in self.)</span>
+<span class="sd">        * keepall   : [boolean] Whether to keep each of the steps accumulated.</span>
+<span class="sd">          False is recommended for faster computation and memory efficiency</span>
+<span class="sd">        * n_sources : Number of sources sequencially accumulated. (deprecated, do not</span>
 <span class="sd">                            rely on this number)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -216,9 +379,12 @@
 <div class="viewcode-block" id="simulator.prepare_spectrograph"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_spectrograph">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_spectrograph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_chan</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepares the spectrograph object that maps the light over the detector.</span>
-<span class="sd">        file     : A parsed config file (default: None will reuse the config file in self.)</span>
-<span class="sd">        n_chan   : The number of outputs from the chip. If None: tries to get it from</span>
-<span class="sd">                 the shape of self.combiner.M</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * file     : A parsed config file (default: None will reuse the config file in self.)</span>
+<span class="sd">        * n_chan   : The number of outputs from the chip. If None: tries to get it from</span>
+<span class="sd">          the shape of ``self.combiner.M``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -233,13 +399,15 @@
 <span class="sd">        Prepare the corrector object for the simulator, based</span>
 <span class="sd">        on a config file.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        config   : Either:</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * config   : Either:</span>
+<span class="sd">        </span>
 <span class="sd">                    - None (default) to use the simulators config</span>
 <span class="sd">                    - A parsed config file</span>
-<span class="sd">        optimize : Boolean. If True, will optimize both depth and shape</span>
-<span class="sd">        apply    : Boolean. If True, apply the optimization </span>
+<span class="sd">                    </span>
+<span class="sd">        * optimize : Boolean. If True, will optimize both depth and shape</span>
+<span class="sd">        * apply    : Boolean. If True, apply the optimization </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -263,19 +431,28 @@
                                  <span class="n">monitor_phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
                                  <span class="n">perfect</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Warning: at the moment, this assumes pointing has already been performed.</span>
-<span class="sd">        </span>
 <span class="sd">        Simulate an exposure with source of interest and sources of noise</span>
-<span class="sd">        interest  : sf.sources.resolved_source object representing the source of intereest (planet)</span>
-<span class="sd">        star      : sf.sources.resolved_source object representing the star</span>
-<span class="sd">        diffuse   : a list of sf.transmission_emission objects linked in a chain.</span>
-<span class="sd">        texp      : Exposure time (seconds)</span>
-<span class="sd">        t_co      : Coherence time (seconds) </span>
-<span class="sd">        monitor_phase : If true, will also record values of phase errors from injection and fringe tracking</span>
+<span class="sd">        </span>
+<span class="sd">        .. Warning::</span>
+<span class="sd">        </span>
+<span class="sd">            At the moment, this assumes pointing has already been performed.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * interest  : sf.sources.resolved_source object representing the source of intereest (planet)</span>
+<span class="sd">        * star      : sf.sources.resolved_source object representing the star</span>
+<span class="sd">        * diffuse   : a list of sf.transmission_emission objects linked in a chain.</span>
+<span class="sd">        * texp      : Exposure time (seconds)</span>
+<span class="sd">        * t_co      : Coherence time (seconds) </span>
+<span class="sd">        * monitor_phase : If true, will also record values of phase errors from injection and fringe tracking</span>
 <span class="sd">        </span>
 <span class="sd">        Chained diffuse objects are used both for transmission and thermal background. </span>
 <span class="sd">        Result is returned as an integrator object. Currently the integrator object is only a</span>
 <span class="sd">        vessel for the individual subexposures, and not used to do the integration.</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** ``self.integrator``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t_co</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">screen</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">step_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">texp</span><span class="o">/</span><span class="n">t_co</span><span class="p">)</span>
@@ -361,14 +538,17 @@
 <span class="sd">        Computes the combination for a discretized light source object </span>
 <span class="sd">        for all the wavelengths of interest.</span>
 <span class="sd">        Returns the intensity in all outputs at all wavelengths.</span>
-<span class="sd">        inputs:</span>
-<span class="sd">        asource     : Source object or transmission_emission object</span>
-<span class="sd">                        including ss and xx_r attributes</span>
-<span class="sd">        injected    : complex phasor for the instrumental errors</span>
-<span class="sd">        input_arra  : The projected geometric configuration of the array</span>
-<span class="sd">                        use observatory.get_projected_array()</span>
-<span class="sd">        collected   : The intensity across wavelength and the difference source origins</span>
-<span class="sd">        dtype       : The data type to use (use np.float32 for maps)</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * asource     : Source object or transmission_emission object</span>
+<span class="sd">          including ss and xx_r attributes</span>
+<span class="sd">        * injected    : complex phasor for the instrumental errors</span>
+<span class="sd">        * input_arra  : The projected geometric configuration of the array</span>
+<span class="sd">          use observatory.get_projected_array()</span>
+<span class="sd">        * collected   : The intensity across wavelength and the difference source origins</span>
+<span class="sd">        * dtype       : The data type to use (use np.float32 for maps)</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Ideally, this collected operation should be factorized over all subexps</span>
         <span class="n">intensity</span> <span class="o">=</span> <span class="n">asource</span><span class="o">.</span><span class="n">ss</span> <span class="o">*</span> <span class="n">collected</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
@@ -399,19 +579,21 @@
 <span class="sd">        for all the wavelengths of interest. The computation is done </span>
 <span class="sd">        out of core using dask.</span>
 <span class="sd">        Returns the intensity in all outputs at all wavelengths.</span>
-<span class="sd">        inputs:</span>
-<span class="sd">        asource     : Source object or transmission_emission object</span>
-<span class="sd">                        including ss and xx_r attributes as dask arrays</span>
-<span class="sd">        injected    : complex phasor for the instrumental errors</span>
-<span class="sd">        input_array  : The projected geometric configuration of the array</span>
-<span class="sd">                        use observatory.get_projected_array()</span>
-<span class="sd">        collected   : Dask version of the intensity across wavelength</span>
-<span class="sd">                        and the difference source origins</span>
-<span class="sd">        map_index   : The index of the pointing in the sequence. Mostly use for numbering</span>
+<span class="sd">        </span>
+<span class="sd">        **inputs:**</span>
+<span class="sd">        </span>
+<span class="sd">        * asource     : Source object or transmission_emission object</span>
+<span class="sd">          including ss and xx_r attributes as dask arrays</span>
+<span class="sd">        * injected    : complex phasor for the instrumental errors</span>
+<span class="sd">        * input_array  : The projected geometric configuration of the array</span>
+<span class="sd">          use observatory.get_projected_array()</span>
+<span class="sd">        * collected   : Dask version of the intensity across wavelength</span>
+<span class="sd">          and the difference source origins</span>
+<span class="sd">        * map_index   : The index of the pointing in the sequence. Mostly use for numbering</span>
 <span class="sd">                        of the temporary disk file</span>
 <span class="sd">        </span>
-<span class="sd">        # Note that in &quot;dask&quot; mode the `collected` and `source.ss` are expected as dask arrays</span>
-<span class="sd">        # </span>
+<span class="sd">        .. note:: In &quot;dask&quot; mode the `collected` and `source.ss` are expected as dask arrays</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Ideally, this collected operation should be factorized over all subexps</span>
         <span class="n">intensity</span> <span class="o">=</span> <span class="n">asource</span><span class="o">.</span><span class="n">ss</span> <span class="o">*</span> <span class="n">collected</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
@@ -444,12 +626,17 @@
 <span class="sd">        Computes the output INTENSITY based on the input AMPLITUDE</span>
 <span class="sd">        This version provides a result in np.float32 format for smaller</span>
 <span class="sd">        memory footprint (for maps)</span>
-<span class="sd">        inst_phasor   : The instrumental phasor to apply to the inputs</span>
-<span class="sd">                        dimension (n_wl, n_input)</span>
-<span class="sd">        geom_phasor   : The geometric phasor due to source location</span>
-<span class="sd">                        dimension (n_wl, n_input)</span>
-<span class="sd">        amplitude     : Complex amplitude of the spectrum of the source</span>
-<span class="sd">                        dimension (n_wl, n_src)</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * inst_phasor   : The instrumental phasor to apply to the inputs</span>
+<span class="sd">          dimension (n_wl, n_input)</span>
+<span class="sd">        * geom_phasor   : The geometric phasor due to source location</span>
+<span class="sd">          dimension (n_wl, n_input)</span>
+<span class="sd">        * amplitude     : Complex amplitude of the spectrum of the source</span>
+<span class="sd">          dimension (n_wl, n_src)</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** Output complex amplitudes</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1">#from pdb import set_trace</span>
@@ -462,12 +649,18 @@
 <div class="viewcode-block" id="simulator.combine"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst_phasor</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the output INTENSITY based on the input AMPLITUDE</span>
-<span class="sd">        inst_phasor   : The instrumental phasor to apply to the inputs</span>
-<span class="sd">                        dimension (n_wl, n_input)</span>
-<span class="sd">        geom_phasor   : The geometric phasor due to source location</span>
-<span class="sd">                        dimension (n_wl, n_input)</span>
-<span class="sd">        amplitude     : Complex amplitude of the spectrum of the source</span>
-<span class="sd">                        dimension (n_wl, n_src)</span>
+<span class="sd">        or maps)</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * inst_phasor   : The instrumental phasor to apply to the inputs</span>
+<span class="sd">          dimension (n_wl, n_input)</span>
+<span class="sd">        * geom_phasor   : The geometric phasor due to source location</span>
+<span class="sd">          dimension (n_wl, n_input)</span>
+<span class="sd">        * amplitude     : Complex amplitude of the spectrum of the source</span>
+<span class="sd">          dimension (n_wl, n_src)</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** Output complex amplitudes</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">amplitude</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -479,9 +672,14 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the complex phasor corresponding to the locations</span>
 <span class="sd">        of the family of sources</span>
-<span class="sd">        alpha         : The coordinate matched to X in the array geometry</span>
-<span class="sd">        beta          : The coordinate matched to Y in the array geometry</span>
-<span class="sd">        anarray       : The array geometry (n_input, 2)</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * alpha         : The coordinate matched to X in the array geometry</span>
+<span class="sd">        * beta          : The coordinate matched to Y in the array geometry</span>
+<span class="sd">        * anarray       : The array geometry (n_input, 2)</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** : A vector of complex phasors</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
         <span class="n">phi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">anarray</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:]</span>
@@ -491,11 +689,13 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the complex phasor corresponding to the locations</span>
 <span class="sd">        of the family of sources</span>
-<span class="sd">        alpha         : The coordinate matched to X in the array geometry</span>
-<span class="sd">                        as a dask array (field positions)</span>
-<span class="sd">        beta          : The coordinate matched to Y in the array geometry</span>
-<span class="sd">                        as a dask array (field positions)</span>
-<span class="sd">        anarray       : The array geometry (n_input, 2)</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        * alpha         : The coordinate matched to X in the array geometry</span>
+<span class="sd">          as a dask array (field positions)</span>
+<span class="sd">        * beta          : The coordinate matched to Y in the array geometry</span>
+<span class="sd">          as a dask array (field positions)</span>
+<span class="sd">        * anarray       : The array geometry (n_input, 2)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># making a dask array of field positions (nfield, 2)</span>
         <span class="n">alphabeta</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">((</span><span class="n">alphas</span><span class="p">,</span> <span class="n">betas</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
@@ -515,16 +715,19 @@
 <span class="sd">        Warning: at the moment, this assumes pointing has already been performed.</span>
 <span class="sd">        </span>
 <span class="sd">        Simulate an exposure with source of interest and sources of noise</span>
-<span class="sd">        interest  : sf.sources.resolved_source object representing the source of intereest (planet)</span>
-<span class="sd">        star      : sf.sources.resolved_source object representing the star</span>
-<span class="sd">        diffuse   : a list of sf.transmission_emission objects linked in a chain.</span>
-<span class="sd">        texp      : Exposure time (seconds)</span>
-<span class="sd">        t_co      : Coherence time (seconds) </span>
-<span class="sd">        monitor_phase : If true, will also record values of phase errors from injection and</span>
-<span class="sd">                        fringe tracking</span>
-<span class="sd">        dtype     : Data type to use for results</span>
-<span class="sd">        spectro   : spectrograph object to use. If None, the method will assume one pixel </span>
-<span class="sd">                        per output and per spectral channel</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * interest  : sf.sources.resolved_source object representing the source of intereest (planet)</span>
+<span class="sd">        * star      : sf.sources.resolved_source object representing the star</span>
+<span class="sd">        * diffuse   : a list of sf.transmission_emission objects linked in a chain.</span>
+<span class="sd">        * texp      : Exposure time (seconds)</span>
+<span class="sd">        * t_co      : Coherence time (seconds) </span>
+<span class="sd">        * monitor_phase : If true, will also record values of phase errors from injection and</span>
+<span class="sd">          fringe tracking</span>
+<span class="sd">        * dtype     : Data type to use for results</span>
+<span class="sd">        * spectro   : spectrograph object to use. If None, the method will assume one pixel </span>
+<span class="sd">          per output and per spectral channel</span>
 <span class="sd">        </span>
 <span class="sd">        Chained diffuse objects are used both for transmission and thermal background. </span>
 <span class="sd">        Result is returned as an integrator object. Currently the integrator object is only a</span>
@@ -620,8 +823,13 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare an observing sequence</span>
 <span class="sd">        </span>
-<span class="sd">        coordinates  : read from file by default</span>
-<span class="sd">                        if skycoord object provided, then use that.</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        * file : Parsed config file</span>
+<span class="sd">        * times : deprecated</span>
+<span class="sd">        * remove_daytimes : (*default* : False) Whether to remove from</span>
+<span class="sd">          the sequence the daytime occurences</span>
+<span class="sd">        * coordinates  : read from file by default</span>
+<span class="sd">          if skycoord object provided, then use that.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Building sequence from new config file&quot;</span><span class="p">)</span>
@@ -663,15 +871,18 @@
         <span class="k">pass</span></div>
 <div class="viewcode-block" id="simulator.make_sequence"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">make_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Run an observing sequence</span>
+<span class="sd">        Deprecated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
     
 <div class="viewcode-block" id="simulator.point"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Points the array towards the target. Updates the </span>
-<span class="sd">        time    : The time to make the observation</span>
-<span class="sd">        target  : The skycoord object to point</span>
+<span class="sd">        Points the array towards the target. Updates the combiner</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * time    : The time to make the observation</span>
+<span class="sd">        * target  : The skycoord object to point</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset_static</span><span class="p">()</span>
@@ -682,19 +893,24 @@
                        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds the transmission maps for the combiner for all the pointings</span>
-<span class="sd">        on self.target at the times of self.sequence</span>
-<span class="sd">        mapres        : The resolution of the map in pixels</span>
-<span class="sd">        mapcrop       : Adjusts the extent of the map</span>
-<span class="sd">        Returns (also stored in self.map) a transmission map of shape:</span>
-<span class="sd">        [n_sequence,</span>
-<span class="sd">        n_wl_chanels,</span>
-<span class="sd">        n_outputs,</span>
-<span class="sd">        mapres,</span>
-<span class="sd">        mapres]</span>
+<span class="sd">        on self.target at the times of ``self.sequence``</span>
 <span class="sd">        </span>
-<span class="sd">        To get final flux of a point source :</span>
-<span class="sd">        Map/ds_sr * p.ss * DIT</span>
-<span class="sd">        ds_sr can be found in director.vigneting_map</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * mapres        : The resolution of the map in pixels</span>
+<span class="sd">        * mapcrop       : Adjusts the extent of the map</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** (also stored in self.map) a transmission map of shape:</span>
+<span class="sd">        </span>
+<span class="sd">            - [n_sequence,</span>
+<span class="sd">            - n_wl_chanels,</span>
+<span class="sd">            - n_outputs,</span>
+<span class="sd">            - mapres,</span>
+<span class="sd">            - mapres]</span>
+<span class="sd">        </span>
+<span class="sd">        To get final flux of a point source : ``Map/ds_sr * p.ss * DIT``</span>
+<span class="sd">        </span>
+<span class="sd">        ``ds_sr`` can be found in ``director.vigneting_map``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">vigneting_map</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injection_vigneting</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">mapres</span><span class="p">,</span> <span class="n">mapcrop</span><span class="p">)</span>
         <span class="c1"># Warning: this vigneting map for the maps are in the simulator.vigneting_map</span>
@@ -733,19 +949,19 @@
 <span class="sd">        call self.maps[element indices].compute() to compute specific elements</span>
 <span class="sd">        without computing the whole map.</span>
 <span class="sd">        </span>
-<span class="sd">        mapres        : The resolution of the map in pixels</span>
-<span class="sd">        mapcrop       : Adjusts the extent of the map</span>
-<span class="sd">        Returns (also stored in self.map) a transmission map of shape:</span>
-<span class="sd">        [n_sequence,</span>
-<span class="sd">        n_wl_chanels,</span>
-<span class="sd">        n_outputs,</span>
-<span class="sd">        mapres,</span>
-<span class="sd">        mapres]</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        * mapres        : The resolution of the map in pixels</span>
+<span class="sd">        * mapcrop       : Adjusts the extent of the map</span>
 <span class="sd">        </span>
-<span class="sd">        To get final flux of a point source :</span>
-<span class="sd">        Map/ds_sr * p.ss * DIT</span>
-<span class="sd">        ds_sr is the scene surface element in steradian</span>
-<span class="sd">        and can be found in director.vigneting_map</span>
+<span class="sd">        **Returns** (also stored in self.map) a transmission map of shape:</span>
+<span class="sd">        * [n_sequence,</span>
+<span class="sd">        * n_wl_chanels,</span>
+<span class="sd">        * n_outputs,</span>
+<span class="sd">        * mapres,</span>
+<span class="sd">        * mapres]</span>
+<span class="sd">        </span>
+<span class="sd">        To get final flux of a point source : ``Map/ds_sr * p.ss * DIT``</span>
+<span class="sd">        ``ds_sr`` is the scene surface element in steradian and can be found in ``director.vigneting_map``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">vigneting_map</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injection_vigneting</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">mapres</span><span class="p">,</span> <span class="n">mapcrop</span><span class="p">)</span>
         <span class="c1"># Warning: this vigneting map for the maps are in the simulator.vigneting_map</span>
@@ -778,7 +994,7 @@
 <div class="viewcode-block" id="simulator.persist_maps_to_disk"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.persist_maps_to_disk">[docs]</a>    <span class="k">def</span> <span class="nf">persist_maps_to_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;/tmp/full_maps.zarr&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes and stores the map to disk. The file is then loaded</span>
-<span class="sd">        out of core and is still accessible in the same way (but without</span>
+<span class="sd">        *out of core* and is still accessible in the same way (but without</span>
 <span class="sd">        the computing times).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing and writing full map&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -796,9 +1012,14 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>
-<span class="sd">        Map/ds_sr * p.ss * DIT</span>
-<span class="sd">        blockindex : The index in the observing sequence to create the map</span>
-<span class="sd">        vigneting_map : The vigneting map drawn used for resolution</span>
+<span class="sd">        </span>
+<span class="sd">        ``Map/ds_sr * p.ss * DIT``</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * blockindex : The index in the observing sequence to create the map</span>
+<span class="sd">        * vigneting_map : The vigneting map drawn used for resolution</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">blockindex</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
         <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
@@ -831,9 +1052,14 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>
-<span class="sd">        Map/ds_sr * p.ss * DIT</span>
-<span class="sd">        blockindex : The index in the observing sequence to create the map</span>
-<span class="sd">        vigneting_map : The vigneting map drawn used for resolution</span>
+<span class="sd">        ``Map/ds_sr * p.ss * DIT``</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * blockindex : The index in the observing sequence to create the map</span>
+<span class="sd">        * vigneting_map : The vigneting map drawn used for resolution</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the ``static_output``: the map</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">blockindex</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
         <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
@@ -862,8 +1088,8 @@
         <span class="c1">#combined = np.abs(static_output*np.conjugate(static_output)).astype(np.float32)</span>
         <span class="k">return</span> <span class="n">static_output</span></div>
         
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<div class="viewcode-block" id="simulator.__call__"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
 <div class="viewcode-block" id="simulator.reset_static"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.reset_static">[docs]</a>    <span class="k">def</span> <span class="nf">reset_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;computed_static&quot;</span><span class="p">):</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span></div></div>
@@ -875,43 +1101,47 @@
     <span class="n">asim</span><span class="o">.</span><span class="n">prepare_combiner</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">)</span></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.director</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

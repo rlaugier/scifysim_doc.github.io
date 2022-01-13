@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.correctors &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.correctors &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.correctors</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.correctors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.correctors</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -67,11 +211,11 @@
 <span class="sd">    Utility function to reconstruct the *b* and *c*</span>
 <span class="sd">    vectors from the lmfit Parameters object.</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
-<span class="sd">    corrector : The corrector object</span>
-<span class="sd">    params   :  at lmfit Parameters object</span>
-<span class="sd">                containing b_i and c_i terms</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * corrector : The corrector object</span>
+<span class="sd">    * params   :  at lmfit Parameters object</span>
+<span class="sd">      containing b_i and c_i terms</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">ntel</span> <span class="o">=</span> <span class="n">corrector</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -90,13 +234,15 @@
 <span class="sd">    The masks in the combiner definition</span>
 <span class="sd">    are used to determine the role of the different outputs.</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
-<span class="sd">    combiner : A combiner object.</span>
-<span class="sd">    Is       : An array of intensities</span>
+<span class="sd">    **Parameters:**</span>
 <span class="sd">    </span>
-<span class="sd">    Note: This definition might need some adjustments for</span>
-<span class="sd">    use in kernel-nullers?</span>
+<span class="sd">    * combiner : A combiner object.</span>
+<span class="sd">    * Is       : An array of intensities</span>
+<span class="sd">    </span>
+<span class="sd">    .. admonition: Note:</span>
+<span class="sd">    </span>
+<span class="sd">        This definition might need some adjustments for</span>
+<span class="sd">        use in kernel-nullers?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">bright</span> <span class="o">=</span> <span class="n">Is</span><span class="p">[:,</span><span class="n">combiner</span><span class="o">.</span><span class="n">bright</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">dark</span> <span class="o">=</span> <span class="n">Is</span><span class="p">[:,</span><span class="n">combiner</span><span class="o">.</span><span class="n">dark</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -111,14 +257,16 @@
 <span class="sd">    </span>
 <span class="sd">    **dcomp is computed automatically be default.**</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
-<span class="sd">    params   : either</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * params   : either</span>
+<span class="sd">    </span>
 <span class="sd">                - A Parameters object from the optimization</span>
 <span class="sd">                - A tuple of vectors bvec, cvec</span>
-<span class="sd">    combiner : A combiner object.</span>
-<span class="sd">    corrector : The corrector object</span>
-<span class="sd">    lambs    : The wavelengths considered.</span>
+<span class="sd">                </span>
+<span class="sd">    * combiner : A combiner object.</span>
+<span class="sd">    * corrector : The corrector object</span>
+<span class="sd">    * lambs    : The wavelengths considered.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">):</span>
@@ -149,18 +297,19 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the enantiomorph excursion taking into account the corrections provided in</span>
 <span class="sd">    params.</span>
+<span class="sd">    </span>
 <span class="sd">    **Currently works only for double-bracewell 3-4 architecures**</span>
 <span class="sd">        </span>
-<span class="sd">    **dcomp is computed automatically be default.**</span>
+<span class="sd">    **dcomp is computed automatically by default.**</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
-<span class="sd">    params   : either</span>
-<span class="sd">                - A Parameters object from the optimization</span>
-<span class="sd">                - A tuple of vectors bvec, cvec</span>
-<span class="sd">    combiner : A combiner object.</span>
-<span class="sd">    corrector : The corrector object</span>
-<span class="sd">    lambs    : The wavelengths considered.</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    - params   : either</span>
+<span class="sd">            * A Parameters object from the optimization</span>
+<span class="sd">            * A tuple of vectors bvec, cvec</span>
+<span class="sd">    - combiner : A combiner object.</span>
+<span class="sd">    - corrector : The corrector object</span>
+<span class="sd">    - lambs    : The wavelengths considered.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">):</span>
@@ -188,26 +337,26 @@
 
 
 <div class="viewcode-block" id="corrector"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector">[docs]</a><span class="k">class</span> <span class="nc">corrector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<div class="viewcode-block" id="corrector.__init__"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A module that provides beam adjustments</span>
 <span class="sd">        for the input. It contains amplitude *a*, geometric</span>
 <span class="sd">        piston *b* and ZnSe piston substitution *c*. Note that</span>
 <span class="sd">        the ZnSe length replaces some air length.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        config:     A parsed config file</span>
-<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
-<span class="sd">                    (At the __init__ stage, it is only used for</span>
-<span class="sd">                    the computation of a mean refractive index for</span>
-<span class="sd">                    the dispersive material)</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * config:     A parsed config file</span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">          (At the __init__ stage, it is only used for</span>
+<span class="sd">          the computation of a mean refractive index for</span>
+<span class="sd">          the dispersive material)</span>
 <span class="sd">                    </span>
-<span class="sd">        Internal parameters:</span>
-<span class="sd">        --------------------</span>
-<span class="sd">        a     :     Vector of the amplitude term</span>
-<span class="sd">        b     :     Vetor of the geometric piston term [m]</span>
-<span class="sd">        c     :     Vetor of the dispersive piston term [m]</span>
+<span class="sd">        **Internal parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * a     :     Vector of the amplitude term</span>
+<span class="sd">        * b     :     Vetor of the geometric piston term [m]</span>
+<span class="sd">        * c     :     Vetor of the dispersive piston term [m]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="n">nznse_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">znse_file</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
@@ -220,7 +369,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span></div>
         
     
 <div class="viewcode-block" id="corrector.get_phasor"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
@@ -228,9 +377,11 @@
 <span class="sd">        Returns the complex phasor corresponding</span>
 <span class="sd">        to the current a, b, c, and dcomp phasors.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns:** alpha</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
@@ -253,12 +404,12 @@
 <span class="sd">        Returns the complex phasor corresponding</span>
 <span class="sd">        to the current a, b, c, and dcomp phasors.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
-<span class="sd">        a     :     Vector of the amplitude term</span>
-<span class="sd">        b     :     Vetor of the geometric piston term [m]</span>
-<span class="sd">        c     :     Vetor of the dispersive piston term [m]</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        * a     :     Vector of the amplitude term</span>
+<span class="sd">        * b     :     Vetor of the geometric piston term [m]</span>
+<span class="sd">        * c     :     Vetor of the dispersive piston term [m]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -278,12 +429,14 @@
 <span class="sd">        array geometry projected on axis based on the wet atmosphere</span>
 <span class="sd">        model.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
-<span class="sd">        proj_opds  : The projected piston obtained by projection</span>
-<span class="sd">                    (Get from simulator.obs.get_projected_geometric_pistons)</span>
-<span class="sd">        wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        * proj_opds  : The projected piston obtained by projection</span>
+<span class="sd">          (Get from simulator.obs.get_projected_geometric_pistons)</span>
+<span class="sd">        * wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns:** phase</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
         <span class="n">phase</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="o">*</span><span class="n">nair</span><span class="o">*</span><span class="n">proj_opds</span>
@@ -292,12 +445,14 @@
 <div class="viewcode-block" id="corrector.solve_air"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air">[docs]</a>    <span class="k">def</span> <span class="nf">solve_air</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">wet_atmo</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes a least squares compensation model (see</span>
-<span class="sd">        Koresko et al. 2003 DOI: 10.1117/12.458032)</span>
+<span class="sd">        **Koresko et al. 2003 DOI: 10.1117/12.458032**)</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
-<span class="sd">        wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        * wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns:** :math:`\Big( \mathbf{A}^T\mathbf{A}\mathbf{A}^T \Big)^{-1}`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
         <span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">nair</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
@@ -314,18 +469,20 @@
 <span class="sd">        If &quot;apply&quot; is set to True, a, b, c, and dcomp are also</span>
 <span class="sd">        set to the best fit value.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
-<span class="sd">        combiner :  A combiner object (chromatic)  </span>
-<span class="sd">        apply    :  Boolean deciding whether to set the local</span>
-<span class="sd">                    parameters to best fit value (default: True)</span>
-<span class="sd">        freeze_params : The name of parameters to be freezed.</span>
-<span class="sd">                    Should be used to account for the larger than</span>
-<span class="sd">                    necessary number of degrees of freedom.</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        * combiner :  A combiner object (chromatic)  </span>
+<span class="sd">        * apply    :  Boolean deciding whether to set the local</span>
+<span class="sd">          parameters to best fit value (default: True)</span>
+<span class="sd">        * freeze_params : The name of parameters to be freezed.</span>
+<span class="sd">          Should be used to account for the larger than</span>
+<span class="sd">          necessary number of degrees of freedom.</span>
 <span class="sd">                    </span>
-<span class="sd">        Note: For obtaining a more practical direct results, some</span>
-<span class="sd">        more complicated balancing guidelines should be followed.</span>
+<span class="sd">        .. admonition:: Note:</span>
+<span class="sd">            </span>
+<span class="sd">            For obtaining a more practical direct results, some</span>
+<span class="sd">            more complicated balancing guidelines should be followed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -355,29 +512,33 @@
 <span class="sd">        Optimize the compensator to correct chromatism in the </span>
 <span class="sd">        model of the combiner to obtain enantomporph combinations</span>
 <span class="sd">        at the outputs. Returns a lmfit solution object.</span>
-<span class="sd">        If &quot;apply&quot; is set to True, a, b, c, and dcomp are also</span>
+<span class="sd">        If ``apply`` is set to True, a, b, c, and dcomp are also</span>
 <span class="sd">        set to the best fit value.</span>
 <span class="sd">        </span>
 <span class="sd">        **Currently only works for double Bracewell 3-4 architectures.**</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        lambs :     The wavelength channels to consider [m]</span>
-<span class="sd">        combiner :  A combiner object (chromatic)  </span>
-<span class="sd">        apply    :  Boolean deciding whether to set the local</span>
-<span class="sd">                    parameters to best fit value (default: True)</span>
-<span class="sd">        Note: For obtaining a more practical direct results, some</span>
-<span class="sd">        more complicated balancing guidelines should be followed.</span>
+<span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
-<span class="sd">        Example:</span>
-<span class="sd">        --------</span>
-<span class="sd">        ```</span>
-<span class="sd">        sol = asim.corrector.tune_static_shape(asim.lambda_science_range,</span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        * combiner :  A combiner object (chromatic)  </span>
+<span class="sd">        * apply    :  Boolean deciding whether to set the local</span>
+<span class="sd">          parameters to best fit value (default: True)</span>
+<span class="sd">          </span>
+<span class="sd">        .. admonition:: Note:</span>
+<span class="sd">        </span>
+<span class="sd">            For obtaining a more practical direct results, some</span>
+<span class="sd">            more complicated balancing guidelines should be followed.</span>
+<span class="sd">        </span>
+<span class="sd">        **Example:**</span>
+<span class="sd">        </span>
+<span class="sd">        .. code-block::</span>
+<span class="sd">            </span>
+<span class="sd">            sol = asim.corrector.tune_static_shape(asim.lambda_science_range,</span>
 <span class="sd">                             asim.combiner,</span>
 <span class="sd">                             sync_params=[(&quot;b3&quot;, &quot;b2&quot;, asim.corrector.b[3] - asim.corrector.b[2]),</span>
 <span class="sd">                                         (&quot;c3&quot;, &quot;c2&quot;, asim.corrector.c[3] - asim.corrector.c[2])],</span>
 <span class="sd">                             apply=True)</span>
-<span class="sd">        ```</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inside_tuning&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
@@ -426,43 +587,47 @@
         
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.correctors</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

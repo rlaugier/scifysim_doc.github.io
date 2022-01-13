@@ -1,41 +1,185 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scifysim.spectrograph &#8212; SCIFYsim 0.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.spectrograph &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.spectrograph</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>scifysim.spectrograph</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for scifysim.spectrograph</h1><div class="highlight"><pre>
 <span></span><span class="c1"># This module is designed </span>
@@ -50,7 +194,7 @@
 <span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <div class="viewcode-block" id="integrator"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator">[docs]</a><span class="k">class</span> <span class="nc">integrator</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="integrator.__init__"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">keepall</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">n_sources</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
                  <span class="n">infinite_well</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -58,13 +202,15 @@
 <span class="sd">        Contains the pixel model of the detector.</span>
 <span class="sd">        Currently it does not implement a system gain (1ADU = 1photoelectron)</span>
 <span class="sd">        </span>
-<span class="sd">        keepall    : [boolean] Whether to keep each of the steps accumulated</span>
-<span class="sd">        eta        :            The quantum efficiency</span>
-<span class="sd">        ron        : [photoelectrons] The read-out noise </span>
-<span class="sd">        ENF        :            The Excess Noise Factor 1 if not applicable</span>
-<span class="sd">        mgain      :            The amplification gain (for EMCCDs or APD/eAPD sensors)</span>
-<span class="sd">        well       : [photelectrons] The well depth</span>
-<span class="sd">        n_sources  :            The number of different sources propagated through the instrument</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * keepall    : [boolean] Whether to keep each of the steps accumulated</span>
+<span class="sd">        * eta        :            The quantum efficiency</span>
+<span class="sd">        * ron        : [photoelectrons] The read-out noise </span>
+<span class="sd">        * ENF        :            The Excess Noise Factor 1 if not applicable</span>
+<span class="sd">        * mgain      :            The amplification gain (for EMCCDs or APD/eAPD sensors)</span>
+<span class="sd">        * well       : [photelectrons] The well depth</span>
+<span class="sd">        * n_sources  :            The number of different sources propagated through the instrument</span>
 <span class="sd">        </span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -90,15 +236,15 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">well</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1.e20</span><span class="p">)</span> <span class="c1">#np.inf</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">well</span> <span class="o">=</span> <span class="n">well</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span></div>
         
 <div class="viewcode-block" id="integrator.accumulate"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.accumulate">[docs]</a>    <span class="k">def</span> <span class="nf">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Accumulates some signal.</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        value   : The signals to accumulate</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * value   : The signals to accumulate</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acc</span> <span class="o">+=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">runs</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -122,14 +268,14 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Made a little bit complicated by the ability to simulate CRED1 camera</span>
 <span class="sd">        </span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        spectrograph  : A spectrograph object to map the spectra on</span>
-<span class="sd">                    a 2D detector</span>
-<span class="sd">        t_exp         : [s]  Integration time to take into account dark current</span>
-<span class="sd">                        This is only used if self.exposure is close to 0. (if </span>
-<span class="sd">                        the )</span>
-<span class="sd">        n_pixsplit    : The number of pixels </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * spectrograph  : A spectrograph object to map the spectra on</span>
+<span class="sd">          a 2D detector</span>
+<span class="sd">        * t_exp         : [s]  Integration time to take into account dark current</span>
+<span class="sd">          This is only used if self.exposure is close to 0. (if </span>
+<span class="sd">          the )</span>
+<span class="sd">        * n_pixsplit    : The number of pixels </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">n_pixsplit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Splitting the signal over a number pixels</span>
             <span class="n">thepixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -188,8 +334,10 @@
 <span class="sd">        Computes some basic laws regarding exposure times</span>
 <span class="sd">        for the current configuration:</span>
 <span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
 <span class="sd">        - self.expr_snr_t       : expression of SNR as function of time</span>
-<span class="sd">                                    which also gets printed</span>
+<span class="sd">          which also gets printed</span>
 <span class="sd">        - self.expr_t_for_snr   : time to get a given SNR</span>
 <span class="sd">        - self.expr_well_fraction : Fraction of well filled by the number of Ph considered</span>
 <span class="sd">        - self.expr_t_max       : Maximum exposure time to fill the well</span>
@@ -198,8 +346,10 @@
 <span class="sd">        - self.well_fraction    : lambdified version of expr_well_faction </span>
 <span class="sd">        - self.t_exp_max        : lambdified version of expr_t_max</span>
 <span class="sd">        </span>
-<span class="sd">        eta, f_planet, n_pix, f_tot, ron, =  sp.symbols(&quot;eta, f_{planet}, n_p, f_{tot}, ron&quot;, real=True)</span>
-<span class="sd">        n_planet, n_tot, t_exp0, t_exp = sp.symbols(&quot;n_{planet}, n_{tot}, t_{esxp0}, t_{exp}&quot;, real=True)</span>
+<span class="sd">        .. code-block::</span>
+<span class="sd">        </span>
+<span class="sd">            eta, f_planet, n_pix, f_tot, ron, =  sp.symbols(&quot;eta, f_{planet}, n_p, f_{tot}, ron&quot;, real=True)</span>
+<span class="sd">            n_planet, n_tot, t_exp0, t_exp = sp.symbols(&quot;n_{planet}, n_{tot}, t_{esxp0}, t_{exp}&quot;, real=True)</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">eta</span><span class="p">,</span> <span class="n">f_planet</span><span class="p">,</span> <span class="n">n_pix</span><span class="p">,</span> <span class="n">f_tot</span><span class="p">,</span> <span class="n">ron</span><span class="p">,</span> <span class="o">=</span>  <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;eta, f_</span><span class="si">{planet}</span><span class="s2">, n_p, f_</span><span class="si">{tot}</span><span class="s2">, ron&quot;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -227,18 +377,18 @@
 <div class="viewcode-block" id="integrator.consolidate_metrologic"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.consolidate_metrologic">[docs]</a>    <span class="k">def</span> <span class="nf">consolidate_metrologic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compiles the results of metrologic exposure. </span>
-<span class="sd">        Paramters compiled:</span>
-<span class="sd">        -------------------</span>
-<span class="sd">        self.nsamples    : The number of integration steps</span>
-<span class="sd">        self.summed_signal : The total integration of </span>
-<span class="sd">                            all sources throughout the time steps</span>
-<span class="sd">        self.total_summed_signal : The total integration over</span>
-<span class="sd">                            both sources and time steps</span>
-<span class="sd">        self.sums        : The list of signals from each of the sources</span>
-<span class="sd">                            summed over the time steps</span>
-<span class="sd">        self.source_labels : The labels of the sources corresIFEST.in</span>
-<span class="sd">-rwxrwx--x  1 rlaugier rlaugier 1,1K mai   27 14:50 REAponding to </span>
-<span class="sd">                            sums.</span>
+<span class="sd">        </span>
+<span class="sd">        **Paramters compiled:**</span>
+<span class="sd">        </span>
+<span class="sd">        * ``self.nsamples``    : The number of integration steps</span>
+<span class="sd">        * ``self.summed_signal`` : The total integration of </span>
+<span class="sd">          all sources throughout the time steps</span>
+<span class="sd">        * ``self.total_summed_signal`` : The total integration over</span>
+<span class="sd">          both sources and time steps</span>
+<span class="sd">        * ``self.sums``        : The list of signals from each of the sources</span>
+<span class="sd">          summed over the time steps</span>
+<span class="sd">        * ``self.source_labels`` : The labels of the sources</span>
+<span class="sd">          corresponding to sums.</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nsamples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span>
@@ -259,7 +409,7 @@
         
 
 <div class="viewcode-block" id="spectrograph"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.spectrograph">[docs]</a><span class="k">class</span> <span class="nc">spectrograph</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aconfig</span><span class="p">,</span> <span class="n">lamb_range</span><span class="p">,</span> <span class="n">n_chan</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+<div class="viewcode-block" id="spectrograph.__init__"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.spectrograph.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aconfig</span><span class="p">,</span> <span class="n">lamb_range</span><span class="p">,</span> <span class="n">n_chan</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This class describres the behaviour of a simple spectrograph.</span>
 <span class="sd">        </span>
@@ -303,7 +453,7 @@
                                     <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">xx</span> <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ssx</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ssy</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">blank_sensor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blank_sensor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="spectrograph.get_spectrum_image"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.spectrograph.get_spectrum_image">[docs]</a>    <span class="k">def</span> <span class="nf">get_spectrum_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signal</span><span class="p">):</span>
         <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blank_sensor</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -325,9 +475,9 @@
 
         
 <div class="viewcode-block" id="basic_integrator"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.basic_integrator">[docs]</a><span class="k">class</span> <span class="nc">basic_integrator</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keepall</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="basic_integrator.__init__"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.basic_integrator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keepall</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keepall</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span></div>
 <div class="viewcode-block" id="basic_integrator.accumulate"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.basic_integrator.accumulate">[docs]</a>    <span class="k">def</span> <span class="nf">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acc</span> <span class="o">+=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">runs</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -349,43 +499,47 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">runs</span> <span class="o">=</span> <span class="mi">0</span></div></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">SCIFYsim 0.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">scifysim.spectrograph</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
         &#169; Copyright 2022, Romain Laugier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
-    </div>
-  </body>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>
