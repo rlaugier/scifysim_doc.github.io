@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Overview: module code &mdash; SCIFYsim 0.2.2 documentation</title>
+  <title>Documentation recipe &mdash; SCIFYsim 0.2.2 documentation</title>
   
 
   
@@ -162,10 +162,14 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Overview: module code</li>
+      <li>Documentation recipe</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/.ipynb_checkpoints/recipe-checkpoint.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -177,24 +181,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="scifysim/analysis.html">scifysim.analysis</a></li>
-<li><a href="scifysim/combiner.html">scifysim.combiner</a></li>
-<li><a href="scifysim/combiners.html">scifysim.combiners</a></li>
-<li><a href="scifysim/confconverter.html">scifysim.confconverter</a></li>
-<li><a href="scifysim/correctors.html">scifysim.correctors</a></li>
-<li><a href="scifysim/director.html">scifysim.director</a></li>
-<li><a href="scifysim/injection.html">scifysim.injection</a></li>
-<li><a href="scifysim/map_manager.html">scifysim.map_manager</a></li>
-<li><a href="scifysim/mol_dens.html">scifysim.mol_dens</a></li>
-<li><a href="scifysim/n_air.html">scifysim.n_air</a></li>
-<li><a href="scifysim/observatory.html">scifysim.observatory</a></li>
-<li><a href="scifysim/parsefile.html">scifysim.parsefile</a></li>
-<li><a href="scifysim/plot_tools.html">scifysim.plot_tools</a></li>
-<li><a href="scifysim/sources.html">scifysim.sources</a></li>
-<li><a href="scifysim/spectrograph.html">scifysim.spectrograph</a></li>
-<li><a href="scifysim/utilities.html">scifysim.utilities</a></li>
-</ul>
+  <div class="section" id="documentation-recipe">
+<span id="docrecipe"></span><h1>Documentation recipe<a class="headerlink" href="#documentation-recipe" title="Permalink to this headline">¶</a></h1>
+<p>This documentation was generated through the following sequence.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">SCIFYsim</span>
+<span class="n">mkdir</span> <span class="n">docs</span>
+<span class="n">cd</span> <span class="n">docs</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span> <span class="o">--</span><span class="n">ext</span><span class="o">-</span><span class="n">autodoc</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">renku</span><span class="o">-</span><span class="n">sphinx</span><span class="o">-</span><span class="n">theme</span>
+<span class="n">subl</span> <span class="n">source</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">py</span>
+        <span class="o">*</span> <span class="n">uncomment</span> <span class="n">the</span> <span class="n">reference</span> <span class="n">to</span> <span class="n">the</span> <span class="n">repo</span>
+        <span class="o">*</span> <span class="n">repo</span> <span class="n">should</span> <span class="n">be</span> <span class="s2">&quot;../../scifysim/&quot;</span>
+        <span class="o">*</span> <span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;renku&#39;</span>
+        <span class="o">*</span> <span class="kn">from</span> <span class="nn">scifysim</span> <span class="kn">import</span> <span class="n">version</span>
+        <span class="o">*</span> <span class="n">release</span> <span class="o">=</span> <span class="n">version</span>
+
+
+<span class="n">export</span> <span class="n">SPHINX_APIDOC_OPTIONS</span><span class="o">=</span><span class="n">members</span><span class="p">,</span><span class="n">undoc</span><span class="o">-</span><span class="n">members</span><span class="p">,</span><span class="n">show</span><span class="o">-</span><span class="n">inheritance</span><span class="p">,</span><span class="n">special</span><span class="o">-</span><span class="n">members</span> <span class="fm">__init__</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">apidoc</span> <span class="o">-</span><span class="n">f</span> <span class="o">--</span><span class="n">separate</span> <span class="o">-</span><span class="n">o</span> <span class="n">source</span><span class="o">/</span> <span class="o">../</span><span class="n">scifysim</span>
+
+<span class="c1"># We must create a log file in source so that conf.py can import SCIFYsim to get the version</span>
+<span class="n">mkdir</span> <span class="n">source</span><span class="o">/</span><span class="n">log</span>
+
+<span class="n">make</span> <span class="n">html</span>
+<span class="n">touch</span> <span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/.</span><span class="n">nojekyll</span>
+</pre></div>
+</div>
+<p>To compile the documentation
+.. code-block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span>
+<span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>We use “classic” theme because the RTD theme fails in a number of ways (fails to display itmeized lists, and some of the text…)</p>
+</div>
+
 
            </div>
            

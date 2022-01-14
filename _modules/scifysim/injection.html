@@ -98,10 +98,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scifysim.control_loop.html">scifysim.control_loop module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.correctors.html">scifysim.correctors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.director.html">scifysim.director module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scifysim.dummy.html">scifysim.dummy module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.injection.html">scifysim.injection module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.map_manager.html">scifysim.map_manager module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
@@ -1064,7 +1062,7 @@
         
         
         
-    <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="injector._setup"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.injector._setup">[docs]</a>    <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Common part of the setup</span>
 <span class="sd">        Nota: the seed for creation of the screen is incremented by 1 between pupils</span>
@@ -1111,7 +1109,7 @@
                 <span class="n">fiberwl</span><span class="o">.</span><span class="n">flat_masked_lppup</span> <span class="o">=</span> <span class="n">fiberwl</span><span class="o">.</span><span class="n">lppup</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">fiberwl</span><span class="o">.</span><span class="n">flatpup</span><span class="p">]</span>   <span class="c1"># This is pre-computation/ to optimize the computation</span>
                 <span class="n">focal_wl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_lp_pup</span><span class="p">)</span>
             <span class="n">lppup</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">focal_wl</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lppup</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lppup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lppup</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lppup</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="injector.reset_screen"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.injector.reset_screen">[docs]</a>    <span class="k">def</span> <span class="nf">reset_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">ascreen</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="p">:</span>

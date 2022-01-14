@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifysim.director module &mdash; SCIFYsim 0.2.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SCIFYsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.bimorph.html">scifysim.bimorph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.correctors.html">scifysim.correctors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SCIFYsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>scifysim.director module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/.ipynb_checkpoints/scifysim.director-checkpoint.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-scifysim.director">
+<span id="scifysim-director-module"></span><h1>scifysim.director module<a class="headerlink" href="#module-scifysim.director" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scifysim.director.simulator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.director.</span></span><span class="sig-name descname"><span class="pre">simulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.director.simulator.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.director',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.__init__&gt;,</span> <span class="pre">'prepare_observatory':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_observatory&gt;,</span> <span class="pre">'prepare_injector':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_injector&gt;,</span> <span class="pre">'prepare_combiner':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_combiner&gt;,</span> <span class="pre">'prepare_fringe_tracker':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_fringe_tracker&gt;,</span> <span class="pre">'prepare_sources':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_sources&gt;,</span> <span class="pre">'prepare_integrator':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_integrator&gt;,</span> <span class="pre">'prepare_spectrograph':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_spectrograph&gt;,</span> <span class="pre">'prepare_corrector':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_corrector&gt;,</span> <span class="pre">'make_metrologic_exposure':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.make_metrologic_exposure&gt;,</span> <span class="pre">'combine_light':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.combine_light&gt;,</span> <span class="pre">'combine_light_dask':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.combine_light_dask&gt;,</span> <span class="pre">'combine_32':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.combine_32&gt;,</span> <span class="pre">'combine':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.combine&gt;,</span> <span class="pre">'geometric_phasor':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.geometric_phasor&gt;,</span> <span class="pre">'geometric_phasor_dask':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.geometric_phasor_dask&gt;,</span> <span class="pre">'make_exposure':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.make_exposure&gt;,</span> <span class="pre">'prepare_sequence':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.prepare_sequence&gt;,</span> <span class="pre">'make_sequence':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.make_sequence&gt;,</span> <span class="pre">'point':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.point&gt;,</span> <span class="pre">'build_all_maps':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.build_all_maps&gt;,</span> <span class="pre">'build_all_maps_dask':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.build_all_maps_dask&gt;,</span> <span class="pre">'persist_maps_to_disk':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.persist_maps_to_disk&gt;,</span> <span class="pre">'make_map_dask':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.make_map_dask&gt;,</span> <span class="pre">'make_map':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.make_map&gt;,</span> <span class="pre">'__call__':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.__call__&gt;,</span> <span class="pre">'reset_static':</span> <span class="pre">&lt;function</span> <span class="pre">simulator.reset_static&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'simulator'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'simulator'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.director.simulator.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The object meant to assemble and operate the simulator. Construct the injector object from a config file</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>file      : A pre-parsed config file. See <code class="docutils literal notranslate"><span class="pre">parsefile</span></code> submodule</p></li>
+<li><p>fpath     : The path to a config file</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.director.simulator.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.director'</span></em><a class="headerlink" href="#scifysim.director.simulator.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scifysim.director.simulator.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.director.simulator.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.build_all_maps">
+<span class="sig-name descname"><span class="pre">build_all_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">mapres=100</span></em>, <em class="sig-param"><span class="pre">mapcrop=1.0</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.build_all_maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.build_all_maps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the transmission maps for the combiner for all the pointings
+on self.target at the times of <code class="docutils literal notranslate"><span class="pre">self.sequence</span></code></p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>mapres        : The resolution of the map in pixels</p></li>
+<li><p>mapcrop       : Adjusts the extent of the map</p></li>
+</ul>
+<p><strong>Returns</strong> (also stored in self.map) a transmission map of shape:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[n_sequence,</p></li>
+<li><p>n_wl_chanels,</p></li>
+<li><p>n_outputs,</p></li>
+<li><p>mapres,</p></li>
+<li><p>mapres]</p></li>
+</ul>
+</div></blockquote>
+<p>To get final flux of a point source : <code class="docutils literal notranslate"><span class="pre">Map/ds_sr</span> <span class="pre">*</span> <span class="pre">p.ss</span> <span class="pre">*</span> <span class="pre">DIT</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">ds_sr</span></code> can be found in <code class="docutils literal notranslate"><span class="pre">director.vigneting_map</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.build_all_maps_dask">
+<span class="sig-name descname"><span class="pre">build_all_maps_dask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapcrop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dask'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.build_all_maps_dask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.build_all_maps_dask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the transmission maps for the combiner for all the pointings
+on self.target at the times of self.sequence.
+Returns an uncomputed dask array referencing one input map per pointing
+that are each stored to disk.
+call self.maps[element indices].compute() to compute specific elements
+without computing the whole map.</p>
+<p><strong>Parameters:</strong>
+* mapres        : The resolution of the map in pixels
+* mapcrop       : Adjusts the extent of the map</p>
+<p><strong>Returns</strong> (also stored in self.map) a transmission map of shape:
+* [n_sequence,
+* n_wl_chanels,
+* n_outputs,
+* mapres,
+* mapres]</p>
+<p>To get final flux of a point source : <code class="docutils literal notranslate"><span class="pre">Map/ds_sr</span> <span class="pre">*</span> <span class="pre">p.ss</span> <span class="pre">*</span> <span class="pre">DIT</span></code>
+<code class="docutils literal notranslate"><span class="pre">ds_sr</span></code> is the scene surface element in steradian and can be found in <code class="docutils literal notranslate"><span class="pre">director.vigneting_map</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.combine">
+<span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_phasor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geom_phasor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.combine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.combine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the output INTENSITY based on the input AMPLITUDE
+or maps)</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>inst_phasor   : The instrumental phasor to apply to the inputs
+dimension (n_wl, n_input)</p></li>
+<li><p>geom_phasor   : The geometric phasor due to source location
+dimension (n_wl, n_input)</p></li>
+<li><p>amplitude     : Complex amplitude of the spectrum of the source
+dimension (n_wl, n_src)</p></li>
+</ul>
+<p><strong>Returns</strong> Output complex amplitudes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.combine_32">
+<span class="sig-name descname"><span class="pre">combine_32</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_phasor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geom_phasor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.combine_32"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.combine_32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the output INTENSITY based on the input AMPLITUDE
+This version provides a result in np.float32 format for smaller
+memory footprint (for maps)</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>inst_phasor   : The instrumental phasor to apply to the inputs
+dimension (n_wl, n_input)</p></li>
+<li><p>geom_phasor   : The geometric phasor due to source location
+dimension (n_wl, n_input)</p></li>
+<li><p>amplitude     : Complex amplitude of the spectrum of the source
+dimension (n_wl, n_src)</p></li>
+</ul>
+<p><strong>Returns</strong> Output complex amplitudes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.combine_light">
+<span class="sig-name descname"><span class="pre">combine_light</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">asource</span></em>, <em class="sig-param"><span class="pre">injected</span></em>, <em class="sig-param"><span class="pre">input_array</span></em>, <em class="sig-param"><span class="pre">collected</span></em>, <em class="sig-param"><span class="pre">dosum=True</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.combine_light"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.combine_light" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the combination for a discretized light source object 
+for all the wavelengths of interest.
+Returns the intensity in all outputs at all wavelengths.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>asource     : Source object or transmission_emission object
+including ss and xx_r attributes</p></li>
+<li><p>injected    : complex phasor for the instrumental errors</p></li>
+<li><p>input_arra  : The projected geometric configuration of the array
+use observatory.get_projected_array()</p></li>
+<li><p>collected   : The intensity across wavelength and the difference source origins</p></li>
+<li><p>dtype       : The data type to use (use np.float32 for maps)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.combine_light_dask">
+<span class="sig-name descname"><span class="pre">combine_light_dask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">injected</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collected</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dosum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.combine_light_dask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.combine_light_dask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the combination for a discretized light source object 
+for all the wavelengths of interest. The computation is done 
+out of core using dask.
+Returns the intensity in all outputs at all wavelengths.</p>
+<p><strong>inputs:</strong></p>
+<ul class="simple">
+<li><p>asource     : Source object or transmission_emission object
+including ss and xx_r attributes as dask arrays</p></li>
+<li><p>injected    : complex phasor for the instrumental errors</p></li>
+<li><p>input_array  : The projected geometric configuration of the array
+use observatory.get_projected_array()</p></li>
+<li><p>collected   : Dask version of the intensity across wavelength
+and the difference source origins</p></li>
+<li><dl class="simple">
+<dt>map_index<span class="classifier">The index of the pointing in the sequence. Mostly use for numbering</span></dt><dd><p>of the temporary disk file</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In “dask” mode the <cite>collected</cite> and <cite>source.ss</cite> are expected as dask arrays</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.geometric_phasor">
+<span class="sig-name descname"><span class="pre">geometric_phasor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.geometric_phasor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.geometric_phasor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the complex phasor corresponding to the locations
+of the family of sources</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>alpha         : The coordinate matched to X in the array geometry</p></li>
+<li><p>beta          : The coordinate matched to Y in the array geometry</p></li>
+<li><p>anarray       : The array geometry (n_input, 2)</p></li>
+</ul>
+<p><strong>Returns</strong> : A vector of complex phasors</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.geometric_phasor_dask">
+<span class="sig-name descname"><span class="pre">geometric_phasor_dask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alphas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">betas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.geometric_phasor_dask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.geometric_phasor_dask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the complex phasor corresponding to the locations
+of the family of sources</p>
+<p><strong>Parameters:</strong>
+* alpha         : The coordinate matched to X in the array geometry</p>
+<blockquote>
+<div><p>as a dask array (field positions)</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>beta          : The coordinate matched to Y in the array geometry
+as a dask array (field positions)</p></li>
+<li><p>anarray       : The array geometry (n_input, 2)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.make_exposure">
+<span class="sig-name descname"><span class="pre">make_exposure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">interest</span></em>, <em class="sig-param"><span class="pre">star</span></em>, <em class="sig-param"><span class="pre">diffuse</span></em>, <em class="sig-param"><span class="pre">texp=1.0</span></em>, <em class="sig-param"><span class="pre">t_co=0.002</span></em>, <em class="sig-param"><span class="pre">time=None</span></em>, <em class="sig-param"><span class="pre">monitor_phase=True</span></em>, <em class="sig-param"><span class="pre">use_tqdm=False</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">spectro=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.make_exposure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.make_exposure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Warning: at the moment, this assumes pointing has already been performed.</p>
+<p>Simulate an exposure with source of interest and sources of noise</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>interest  : sf.sources.resolved_source object representing the source of intereest (planet)</p></li>
+<li><p>star      : sf.sources.resolved_source object representing the star</p></li>
+<li><p>diffuse   : a list of sf.transmission_emission objects linked in a chain.</p></li>
+<li><p>texp      : Exposure time (seconds)</p></li>
+<li><p>t_co      : Coherence time (seconds)</p></li>
+<li><p>monitor_phase : If true, will also record values of phase errors from injection and
+fringe tracking</p></li>
+<li><p>dtype     : Data type to use for results</p></li>
+<li><p>spectro   : spectrograph object to use. If None, the method will assume one pixel 
+per output and per spectral channel</p></li>
+</ul>
+<p>Chained diffuse objects are used both for transmission and thermal background. 
+Result is returned as an integrator object. Currently the integrator object is only a
+vessel for the individual subexposures, and not used to do the integration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.make_map">
+<span class="sig-name descname"><span class="pre">make_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">blockindex</span></em>, <em class="sig-param"><span class="pre">vigneting_map</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.make_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.make_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create sensitivity map in ph/s/sr per spectral channel.
+To get final flux of a point source :
+<code class="docutils literal notranslate"><span class="pre">Map/ds_sr</span> <span class="pre">*</span> <span class="pre">p.ss</span> <span class="pre">*</span> <span class="pre">DIT</span></code></p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>blockindex : The index in the observing sequence to create the map</p></li>
+<li><p>vigneting_map : The vigneting map drawn used for resolution</p></li>
+</ul>
+<p><strong>Returns</strong> the <code class="docutils literal notranslate"><span class="pre">static_output</span></code>: the map</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.make_map_dask">
+<span class="sig-name descname"><span class="pre">make_map_dask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blockindex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vigneting_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dask'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.make_map_dask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.make_map_dask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create sensitivity map in ph/s/sr per spectral channel.
+To get final flux of a point source :</p>
+<p><code class="docutils literal notranslate"><span class="pre">Map/ds_sr</span> <span class="pre">*</span> <span class="pre">p.ss</span> <span class="pre">*</span> <span class="pre">DIT</span></code></p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>blockindex : The index in the observing sequence to create the map</p></li>
+<li><p>vigneting_map : The vigneting map drawn used for resolution</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.make_metrologic_exposure">
+<span class="sig-name descname"><span class="pre">make_metrologic_exposure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">interest</span></em>, <em class="sig-param"><span class="pre">star</span></em>, <em class="sig-param"><span class="pre">diffuse</span></em>, <em class="sig-param"><span class="pre">texp=1.0</span></em>, <em class="sig-param"><span class="pre">t_co=0.002</span></em>, <em class="sig-param"><span class="pre">time=None</span></em>, <em class="sig-param"><span class="pre">monitor_phase=True</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">perfect=False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.make_metrologic_exposure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.make_metrologic_exposure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate an exposure with source of interest and sources of noise</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At the moment, this assumes pointing has already been performed.</p>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>interest  : sf.sources.resolved_source object representing the source of intereest (planet)</p></li>
+<li><p>star      : sf.sources.resolved_source object representing the star</p></li>
+<li><p>diffuse   : a list of sf.transmission_emission objects linked in a chain.</p></li>
+<li><p>texp      : Exposure time (seconds)</p></li>
+<li><p>t_co      : Coherence time (seconds)</p></li>
+<li><p>monitor_phase : If true, will also record values of phase errors from injection and fringe tracking</p></li>
+</ul>
+<p>Chained diffuse objects are used both for transmission and thermal background. 
+Result is returned as an integrator object. Currently the integrator object is only a
+vessel for the individual subexposures, and not used to do the integration.</p>
+<p><strong>Returns</strong> <code class="docutils literal notranslate"><span class="pre">self.integrator</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.make_sequence">
+<span class="sig-name descname"><span class="pre">make_sequence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.make_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.make_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.persist_maps_to_disk">
+<span class="sig-name descname"><span class="pre">persist_maps_to_disk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/full_maps.zarr'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.persist_maps_to_disk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.persist_maps_to_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes and stores the map to disk. The file is then loaded
+<em>out of core</em> and is still accessible in the same way (but without
+the computing times).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.point">
+<span class="sig-name descname"><span class="pre">point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Points the array towards the target. Updates the combiner</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>time    : The time to make the observation</p></li>
+<li><p>target  : The skycoord object to point</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_combiner">
+<span class="sig-name descname"><span class="pre">prepare_combiner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_combiner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_combiner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs <code class="docutils literal notranslate"><span class="pre">self.combiner</span></code></p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>file : A parsed config file (see parsefile)</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs to pass to the combiner <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_corrector">
+<span class="sig-name descname"><span class="pre">prepare_corrector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_corrector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_corrector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare the corrector object for the simulator, based
+on a config file.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p>config   : Either:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>None (default) to use the simulators config</p></li>
+<li><p>A parsed config file</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>optimize : Boolean. If True, will optimize both depth and shape</p></li>
+<li><p>apply    : Boolean. If True, apply the optimization</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_fringe_tracker">
+<span class="sig-name descname"><span class="pre">prepare_fringe_tracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_fringe_tracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_fringe_tracker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_injector">
+<span class="sig-name descname"><span class="pre">prepare_injector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntelescopes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_piston</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">NA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">focal_hrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">focal_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">injector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_injector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_injector" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Either:</strong></p>
+<ul class="simple">
+<li><p>Provide all parameters</p></li>
+<li><p>Provide a config file</p></li>
+<li><p>provide the injector</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_integrator">
+<span class="sig-name descname"><span class="pre">prepare_integrator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infinite_well</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_integrator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_integrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares the integraro object that rules the pixel properties
+of the detector.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>config    : A parsed config file (default: None will reuse the config file in self.)</p></li>
+<li><p>keepall   : [boolean] Whether to keep each of the steps accumulated.
+False is recommended for faster computation and memory efficiency</p></li>
+<li><dl class="simple">
+<dt>n_sources<span class="classifier">Number of sources sequencially accumulated. (deprecated, do not</span></dt><dd><p>rely on this number)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_observatory">
+<span class="sig-name descname"><span class="pre">prepare_observatory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_observatory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_observatory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprare the observatory object for the simulator.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>file : A parsed config file (see parsefile)</p></li>
+<li><p>fpath: (string) A path to the config file to parse</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_sequence">
+<span class="sig-name descname"><span class="pre">prepare_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_daytime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare an observing sequence</p>
+<p><strong>Parameters:</strong>
+* file : Parsed config file
+* times : deprecated
+* remove_daytimes : (<em>default</em> : False) Whether to remove from</p>
+<blockquote>
+<div><p>the sequence the daytime occurences</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>coordinates  : read from file by default
+if skycoord object provided, then use that.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_sources">
+<span class="sig-name descname"><span class="pre">prepare_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares a src object containing star, planet, sky and UT.</p>
+<ul class="simple">
+<li><p>file     : A parsed config file (default: None will reuse the config file in self.)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.prepare_spectrograph">
+<span class="sig-name descname"><span class="pre">prepare_spectrograph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_chan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_spectrograph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_spectrograph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares the spectrograph object that maps the light over the detector.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p>file     : A parsed config file (default: None will reuse the config file in self.)</p></li>
+<li><p>n_chan   : The number of outputs from the chip. If None: tries to get it from
+the shape of <code class="docutils literal notranslate"><span class="pre">self.combiner.M</span></code></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.director.simulator.reset_static">
+<span class="sig-name descname"><span class="pre">reset_static</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.reset_static"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.reset_static" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.director.test_director">
+<span class="sig-prename descclassname"><span class="pre">scifysim.director.</span></span><span class="sig-name descname"><span class="pre">test_director</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#test_director"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.test_director" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Romain Laugier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

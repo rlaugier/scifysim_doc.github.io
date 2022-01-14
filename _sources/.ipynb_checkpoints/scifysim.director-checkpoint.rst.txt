@@ -1,7 +1,7 @@
-scifysim.dummy module
-=====================
+scifysim.director module
+========================
 
-.. automodule:: scifysim.dummy
+.. automodule:: scifysim.director
    :members:
    :undoc-members:
    :show-inheritance:
