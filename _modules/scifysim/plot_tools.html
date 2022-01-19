@@ -222,7 +222,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Pretty visualization of projected array: Emulates perspective</span>
 <span class="sd">    </span>
-<span class="sd">    **Parameters:**</span>
+<span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
 <span class="sd">    * dist  : The distance of the observer to the array</span>
 <span class="sd">    * psz   : The diameters of the pupils</span>
@@ -242,7 +242,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots the projected </span>
 <span class="sd">    </span>
-<span class="sd">    **Parameters:**</span>
+<span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
 <span class="sd">    * dist  : The distance of the observer to the array</span>
 <span class="sd">    * psz   : The diameters of the pupils</span>
@@ -318,7 +318,7 @@
 <span class="sd">    The plots are made of the array as seen from the target in meters </span>
 <span class="sd">    projected to RA-Dec coordinates.</span>
 <span class="sd">    </span>
-<span class="sd">    **Parameters:**</span>
+<span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
 <span class="sd">    * asim    : Simulator object</span>
 <span class="sd">    * seq_index: The index in the observing sequence (This feature may evolve)</span>
@@ -376,7 +376,7 @@
 <span class="sd">    The plots are made of the array as seen from the target in meters </span>
 <span class="sd">    projected to RA-Dec coordinates.</span>
 <span class="sd">    </span>
-<span class="sd">    **Parameters:**</span>
+<span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
 <span class="sd">    * asim    : Simulator object</span>
 <span class="sd">    * seq_indices: The index in the observing sequence (This feature may evolve)</span>
@@ -507,8 +507,10 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the response map of the instrument for the target and sequence</span>
 <span class="sd">    </span>
-<span class="sd">    **Parameters:**</span>
+<span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
+<span class="sd">    * asim         : simulator object. The simulator must contains ``self.maps``</span>
+<span class="sd">    * outputs      : array-like : An array of outputs for which the maps will be plotted</span>
 <span class="sd">    * wavelength   : np.ndarray containing wl indices (if None: use all the wavelength channels)</span>
 <span class="sd">    * sequence_index : The indices of the sequence to plot</span>
 <span class="sd">    * show         : Whether to call plt.show() for each plot</span>
@@ -560,6 +562,91 @@
                          <span class="n">i</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;The maps at </span><span class="si">%.2f</span><span class="s2"> $\mu m$&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">[</span><span class="n">wavelength</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">))</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save</span><span class="o">+</span><span class="s2">&quot;Compound_maps_</span><span class="si">%04d</span><span class="s2">.png&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+            
+<div class="viewcode-block" id="plot_differential_map"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_differential_map">[docs]</a><span class="k">def</span> <span class="nf">plot_differential_map</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">wavelength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">sequence_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                      <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+                      <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                      <span class="n">central_marker</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the differential response map of the instrument for the target and sequence</span>
+<span class="sd">    </span>
+<span class="sd">    **Arguments:**</span>
+<span class="sd">    </span>
+<span class="sd">    * asim         : simulator object. The simulator must contains ``self.maps``</span>
+<span class="sd">    * kernel       : A kernel matrix indicating the output combinations to take. defaults to ``None``</span>
+<span class="sd">      which uses the ``asim.combiner.K`` matrix.</span>
+<span class="sd">    * wavelength   : np.ndarray containing wl indices (if None: use all the wavelength channels)</span>
+<span class="sd">    * sequence_index : The indices of the sequence to plot</span>
+<span class="sd">    * show         : Whether to call plt.show() for each plot</span>
+<span class="sd">    * save         : either False or a string containing the root of a path like &quot;maps/figures_&quot;</span>
+<span class="sd">    * figsize      : 2 tuple to pass to plt.figure()</span>
+<span class="sd">    * dpi          : The dpi for the maps</span>
+<span class="sd">    * **kwargs     : Additional kwargs to pass to imshow</span>
+<span class="sd">    * add_central_marker: Add a marker at the 0,0 location</span>
+<span class="sd">    * central_marker_size: The size parameter to give the central marker</span>
+<span class="sd">    * central_marker_type: The type of marker to use</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mf">10.</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s1">&#39;marker&#39;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">central_marker</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">central_marker</span> <span class="o">=</span> <span class="n">base_params</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">central_marker</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># Update the params with the passed dict</span>
+        <span class="k">for</span> <span class="n">akey</span> <span class="ow">in</span> <span class="n">central_marker</span><span class="p">:</span>
+            <span class="n">base_params</span><span class="p">[</span><span class="n">akey</span><span class="p">]</span> <span class="o">=</span> <span class="n">central_marker</span><span class="p">[</span><span class="n">akey</span><span class="p">]</span>
+        <span class="n">central_marker</span> <span class="o">=</span> <span class="n">base_params</span>
+    <span class="k">if</span> <span class="n">sequence_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sequence_index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">wavelength</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sumall</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sumall</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">n_outputs</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">kernel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">combiner</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">):</span>
+            <span class="n">kernel</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">K</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Could not find a relevant kernel matrix to plot the map.&quot;</span><span class="p">)</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Please pass it to the function or add it as simulator.combiner.K&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;could not find the kernel matrix.&quot;</span><span class="p">)</span>
+    <span class="n">n_kernels</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_kernels</span><span class="p">)</span>
+            
+    <span class="n">difmaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;k o, s w o x y -&gt; s w k x y&quot;</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span>  <span class="n">asim</span><span class="o">.</span><span class="n">maps</span><span class="p">)</span>
+    
+    <span class="n">figs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sequence_index</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">oi</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">outputs</span><span class="p">):</span>
+            <span class="n">seqmap</span> <span class="o">=</span> <span class="n">difmaps</span><span class="p">[</span><span class="n">i</span><span class="p">,:,</span><span class="n">o</span><span class="p">,:,:]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">outputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">oi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1">#outmap = seqmap[:,:,:]</span>
+            <span class="k">if</span> <span class="n">sumall</span><span class="p">:</span>
+                <span class="n">themap</span> <span class="o">=</span> <span class="n">seqmap</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">themap</span> <span class="o">=</span> <span class="n">seqmap</span><span class="p">[</span><span class="n">wavelength</span><span class="p">,:,:]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">themap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">asim</span><span class="o">.</span><span class="n">map_extent</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">central_marker</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">**</span><span class="n">central_marker</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Output </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">o</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Position [mas]&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sumall</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;The compound differential maps for all wavelengths </span><span class="si">%.1f</span><span class="s2"> to </span><span class="si">%.1f</span><span class="s2"> $\mu m$ for block </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span>\
+                        <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span>
+                         <span class="n">i</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;The differential maps at </span><span class="si">%.2f</span><span class="s2"> $\mu m$&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">[</span><span class="n">wavelength</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">))</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
@@ -622,7 +709,7 @@
 <span class="sd">    Plots some information on the tuning of the combiner using geometric piston</span>
 <span class="sd">    and chromatic corrector plates.</span>
 <span class="sd">    </span>
-<span class="sd">    **Parameters:**</span>
+<span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
 <span class="sd">    * corrector : A corrector object</span>
 <span class="sd">    * lambs     : The wavelengths to plot [m]</span>

@@ -1039,8 +1039,7 @@
             <span class="n">pupil</span> <span class="o">=</span> <span class="n">tel_pupil</span><span class="p">(</span><span class="n">pres</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">theconfig</span><span class="p">,</span> <span class="n">tel_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         
         <span class="n">ntelescopes</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;n_dish&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">ntelescopes</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Currently only supports 4 telescopes&quot;</span><span class="p">)</span>
+        
         <span class="n">rm_inj_piston</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;remove_injection_piston&quot;</span><span class="p">)</span>
         
         <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">pupil</span><span class="o">=</span><span class="n">pupil</span><span class="p">,</span>

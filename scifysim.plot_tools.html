@@ -200,7 +200,7 @@
 <dt class="sig sig-object py" id="scifysim.plot_tools.piston2size">
 <span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">piston2size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">piston</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#piston2size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.piston2size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pretty visualization of projected array: Emulates perspective</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>dist  : The distance of the observer to the array</p></li>
 <li><p>psz   : The diameters of the pupils</p></li>
@@ -213,7 +213,7 @@
 <span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_corrector_tuning_angel_woolf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corrector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combiner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_corrector_tuning_angel_woolf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_corrector_tuning_angel_woolf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots some information on the tuning of the combiner using geometric piston
 and chromatic corrector plates.</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>corrector : A corrector object</p></li>
 <li><p>lambs     : The wavelengths to plot [m]</p></li>
@@ -228,6 +228,28 @@ and chromatic corrector plates.</p>
 <li><p>Shape excursion (before and after correction)</p></li>
 </ul>
 <p>Currently works only with lambda_science_range</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_differential_map">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_differential_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_differential_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_differential_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the differential response map of the instrument for the target and sequence</p>
+<p><strong>Arguments:</strong></p>
+<ul class="simple">
+<li><p>asim         : simulator object. The simulator must contains <code class="docutils literal notranslate"><span class="pre">self.maps</span></code></p></li>
+<li><p>kernel       : A kernel matrix indicating the output combinations to take. defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>
+which uses the <code class="docutils literal notranslate"><span class="pre">asim.combiner.K</span></code> matrix.</p></li>
+<li><p>wavelength   : np.ndarray containing wl indices (if None: use all the wavelength channels)</p></li>
+<li><p>sequence_index : The indices of the sequence to plot</p></li>
+<li><p>show         : Whether to call plt.show() for each plot</p></li>
+<li><p>save         : either False or a string containing the root of a path like “maps/<a href="#id5"><span class="problematic" id="id6">figures_</span></a>”</p></li>
+<li><p>figsize      : 2 tuple to pass to plt.figure()</p></li>
+<li><p>dpi          : The dpi for the maps</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs     : Additional kwargs to pass to imshow</p></li>
+<li><p>add_central_marker: Add a marker at the 0,0 location</p></li>
+<li><p>central_marker_size: The size parameter to give the central marker</p></li>
+<li><p>central_marker_type: The type of marker to use</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
@@ -257,7 +279,7 @@ As a contrast to plot_pupil, plot_projected_pupil takes in a
 simulator object.
 The plots are made of the array as seen from the target in meters 
 projected to RA-Dec coordinates.</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>asim    : Simulator object</p></li>
 <li><p>seq_index: The index in the observing sequence (This feature may evolve)</p></li>
@@ -277,7 +299,7 @@ As a contrast to plot_pupil, plot_projected_pupil takes in a
 simulator object.
 The plots are made of the array as seen from the target in meters 
 projected to RA-Dec coordinates.</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>asim    : Simulator object</p></li>
 <li><p>seq_indices: The index in the observing sequence (This feature may evolve)
@@ -293,7 +315,7 @@ if None: the whole sequence is mapped</p></li>
 <dt class="sig sig-object py" id="scifysim.plot_tools.plot_pupil">
 <span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_pupil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thearray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thepistons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_pupil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_pupil" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the projected</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>dist  : The distance of the observer to the array</p></li>
 <li><p>psz   : The diameters of the pupils</p></li>
@@ -317,15 +339,17 @@ meridians[[e0,n0], [e1, n1], …]]</p></li>
 <dt class="sig sig-object py" id="scifysim.plot_tools.plot_response_map">
 <span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_response_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_response_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_response_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the response map of the instrument for the target and sequence</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
+<li><p>asim         : simulator object. The simulator must contains <code class="docutils literal notranslate"><span class="pre">self.maps</span></code></p></li>
+<li><p>outputs      : array-like : An array of outputs for which the maps will be plotted</p></li>
 <li><p>wavelength   : np.ndarray containing wl indices (if None: use all the wavelength channels)</p></li>
 <li><p>sequence_index : The indices of the sequence to plot</p></li>
 <li><p>show         : Whether to call plt.show() for each plot</p></li>
-<li><p>save         : either False or a string containing the root of a path like “maps/<a href="#id3"><span class="problematic" id="id4">figures_</span></a>”</p></li>
+<li><p>save         : either False or a string containing the root of a path like “maps/<a href="#id7"><span class="problematic" id="id8">figures_</span></a>”</p></li>
 <li><p>figsize      : 2 tuple to pass to plt.figure()</p></li>
 <li><p>dpi          : The dpi for the maps</p></li>
-<li><p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs     : Additional kwargs to pass to imshow</p></li>
+<li><p><a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs     : Additional kwargs to pass to imshow</p></li>
 <li><p>add_central_marker: Add a marker at the 0,0 location</p></li>
 <li><p>central_marker_size: The size parameter to give the central marker</p></li>
 <li><p>central_marker_type: The type of marker to use</p></li>

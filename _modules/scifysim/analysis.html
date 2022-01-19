@@ -371,7 +371,7 @@
         
 
 <div class="viewcode-block" id="spectral_context"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context">[docs]</a><span class="k">class</span> <span class="nc">spectral_context</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="spectral_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Spectral context for magnitude considerations</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -381,7 +381,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">avega</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">prepare_all</span><span class="p">(</span><span class="n">vegafile</span><span class="p">,</span> <span class="n">update_params</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                            <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                            <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="n">compensate_chromatic</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avega</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="spectral_context.sflux_from_vegamag"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.sflux_from_vegamag">[docs]</a>    <span class="k">def</span> <span class="nf">sflux_from_vegamag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amag</span><span class="p">):</span>

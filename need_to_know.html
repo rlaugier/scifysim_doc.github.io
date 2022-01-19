@@ -42,7 +42,9 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentation recipe" href="recipe.html" />
+    <link rel="prev" title="Installing SCIFYsim" href="setup_guide.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,9 +94,18 @@
             
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">What you need to know</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#philosophy">Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulator">Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulating-an-exposure">Simulating an exposure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#useful-tools">Useful tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -195,21 +206,21 @@
 <li><p>simulator</p>
 <blockquote>
 <div><ul>
-<li><p><strong>source</strong> “<code class="docutils literal notranslate"><span class="pre">src</span></code>”: Computes and holds the parameters of the target</p></li>
-<li><p><strong>injector</strong> “<code class="docutils literal notranslate"><span class="pre">injector</span></code>”</p>
+<li><p><strong>source</strong> <code class="docutils literal notranslate"><span class="pre">src</span></code>: Computes and holds the parameters of the target</p></li>
+<li><p><strong>injector</strong> <code class="docutils literal notranslate"><span class="pre">injector</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>atmo</strong> “<code class="docutils literal notranslate"><span class="pre">screen</span></code>”: list of wavefront screens</p></li>
+<li><p><strong>atmo</strong> <code class="docutils literal notranslate"><span class="pre">screen</span></code>: list of wavefront screens</p></li>
 <li><dl class="simple">
-<dt><strong>fiber_head</strong> “<code class="docutils literal notranslate"><span class="pre">fiber</span></code>”: Computes and holds the information</dt><dd><p>of the waveguide for the injection</p>
+<dt><strong>fiber_head</strong> <code class="docutils literal notranslate"><span class="pre">fiber</span></code>: Computes and holds the information</dt><dd><p>of the waveguide for the injection</p>
 </dd>
 </dl>
 </li>
-<li><p><strong>focuser</strong> “<code class="docutils literal notranslate"><span class="pre">focal_plane</span></code>”: The system to simulate injection</p></li>
+<li><p><strong>focuser</strong> <code class="docutils literal notranslate"><span class="pre">focal_plane</span></code>: The system to simulate injection</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>corrector</strong> “<code class="docutils literal notranslate"><span class="pre">corrector</span></code>”: Models the adjustments we can make to
+<li><p><strong>corrector</strong> <code class="docutils literal notranslate"><span class="pre">corrector</span></code>: Models the adjustments we can make to
 the independent beams:</p>
 <ul class="simple">
 <li><p>Optical path</p></li>
@@ -217,11 +228,11 @@ the independent beams:</p>
 <li><p>etc.</p></li>
 </ul>
 </li>
-<li><p><strong>fringe_tracker</strong> “<code class="docutils literal notranslate"><span class="pre">fringe_tracker</span></code>”:</p></li>
-<li><p><strong>observatory</strong> “<code class="docutils literal notranslate"><span class="pre">obs</span></code>”: Contains the information on the array and its projection depending on the direction of observation.</p></li>
-<li><p><strong>combiner</strong> “<code class="docutils literal notranslate"><span class="pre">combiner</span></code>”: Computes and holds the combiner matrix</p></li>
-<li><p><strong>spectrograph</strong> “<code class="docutils literal notranslate"><span class="pre">spectro</span></code>”:</p></li>
-<li><p><strong>integrator</strong> “<code class="docutils literal notranslate"><span class="pre">integrator</span></code>”: Simulates the integrating behavior of light sensitive pixels.</p></li>
+<li><p><strong>fringe_tracker</strong> <code class="docutils literal notranslate"><span class="pre">fringe_tracker</span></code>:</p></li>
+<li><p><strong>observatory</strong> <code class="docutils literal notranslate"><span class="pre">obs</span></code>: Contains the information on the array and its projection depending on the direction of observation.</p></li>
+<li><p><strong>combiner</strong> <code class="docutils literal notranslate"><span class="pre">combiner</span></code>: Computes and holds the combiner matrix</p></li>
+<li><p><strong>spectrograph</strong> <code class="docutils literal notranslate"><span class="pre">spectro</span></code>:</p></li>
+<li><p><strong>integrator</strong> <code class="docutils literal notranslate"><span class="pre">integrator</span></code>: Simulates the integrating behavior of light sensitive pixels.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -247,6 +258,10 @@ the independent beams:</p>
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="recipe.html" class="btn btn-neutral float-right" title="Documentation recipe" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="setup_guide.html" class="btn btn-neutral float-left" title="Installing SCIFYsim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

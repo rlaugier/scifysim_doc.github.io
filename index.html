@@ -43,7 +43,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="scifysim.analysis module" href="scifysim.analysis.html" /> 
+    <link rel="next" title="Installing SCIFYsim" href="setup_guide.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,8 +94,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -184,11 +187,64 @@
             
   <div class="section" id="welcome-to-scifysim-s-documentation">
 <h1>Welcome to SCIFYsim’s documentation!<a class="headerlink" href="#welcome-to-scifysim-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>After you have <a class="reference internal" href="setup_guide.html#setup"><span class="std std-ref">installed</span></a> SCIFYsim, you can get taste of SCIFYsim by running the notebook <code class="docutils literal notranslate"><span class="pre">SCIFYsim/scifysim/quick_start.ipynb</span></code>. This will get you through the initialization of a simulator object and make your first exposures.</p>
+</div>
+<div class="section" id="what-you-need-to-know">
+<h2>What you need to know<a class="headerlink" href="#what-you-need-to-know" title="Permalink to this headline">¶</a></h2>
+<p>SCIFYsim does <strong>not</strong> have a GUI. You will have to interface with it through the API. You our recommendation is to use <strong>jupyter(lab)</strong> to create <strong>semi-interactive scripts</strong> to run the simulations and plot the data. You can also use <strong>scripts</strong> for a more rigid usage.</p>
+<p>It uses:</p>
+<ul class="simple">
+<li><p>Possibly <strong>extended stars</strong> and <strong>sources of interest</strong> using <em>blackbody spectrum</em> or <em>provided spectra</em>.</p></li>
+<li><p>The <strong>projection</strong> of the observing array of pupils</p></li>
+<li><p>Absorption and thermal emission of the train of <strong>optics</strong> and <strong>atmosphere</strong></p></li>
+<li><p>Random <strong>optical path aberrations</strong> from <em>fringe tracking</em> error power spectra</p></li>
+<li><p>Random <strong>injection aberrations</strong> based on partially <em>AO-corrected wavefront</em></p></li>
+<li><p><em>Atmospheric dispersion effects</em> and their <em>correction devices</em> (<em>Work in progress</em>)</p></li>
+<li><p>Beam combination in an <strong>interchangeable combiner matrix</strong> (including <em>chromatic aberrations</em>)</p></li>
+<li><p>Spectrograph and detector <em>integration</em></p></li>
+</ul>
+<p>It produces:</p>
+<ul>
+<li><p>Direct and differential (kernel) maps of the transmission in the field of view</p></li>
+<li><p><strong>Temporal series</strong> of simulated observations</p></li>
+<li><p>Characterization of noises from</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Thermal</strong> background</p></li>
+<li><p><strong>Photon noise</strong></p></li>
+<li><p><strong>Instrumental aberrations</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Computation of <strong>detection sensitivity</strong> based on advanced <em>hypothesis testing</em> techniques <a class="footnote-reference brackets" href="#id2" id="id1">1</a>
+combining the evolution of the baselines and all the spectral channels.</p></li>
+</ul>
+<p><a class="reference internal" href="need_to_know.html#need-to-know"><span class="std std-ref">More information here.</span></a></p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup_guide.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_guide.html#kernuller">Kernuller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_guide.html#id1">Installing SCIFYsim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_guide.html#setting-up-a-workspace">Setting up a workspace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="need_to_know.html">What you need to know</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="need_to_know.html#philosophy">Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="need_to_know.html#simulator">Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="need_to_know.html#simulating-an-exposure">Simulating an exposure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="need_to_know.html#useful-tools">Useful tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scifysim.html">scifysim package</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -206,17 +262,9 @@
 <li class="toctree-l1"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
 </ul>
 </div>
-<div class="section" id="quick-start">
-<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
-<p>After you have <a class="reference internal" href="setup_guide.html#setup"><span class="std std-ref">installed</span></a> SCIFYsim, you can get taste of SCIFYsim by running the notebook <code class="docutils literal notranslate"><span class="pre">SCIFYsim/scifysim/quick_start.ipynb</span></code>. This will get you through the initialization of a simulator object and make your first exposures.</p>
 </div>
-<div class="section" id="what-you-need-to-know">
-<h2>What you need to know<a class="headerlink" href="#what-you-need-to-know" title="Permalink to this headline">¶</a></h2>
-<p>SCIFYsim does not have a GUI. You will have to interface with it through the API. You our recommendation is to use <strong>jupyter(lab)</strong> to create <strong>semi-interactive scripts</strong> to run the simulations and plot the data. You can also use <strong>scripts</strong> for a more rigid usage.</p>
-<p><a class="reference internal" href="need_to_know.html#need-to-know"><span class="std std-ref">More information here.</span></a></p>
-</div>
-<div class="section" id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="other-links">
+<h2>Other links<a class="headerlink" href="#other-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="setup_guide.html#setup"><span class="std std-ref">Installing SCIFYsim</span></a></p></li>
 <li><p><a class="reference internal" href="need_to_know.html#need-to-know"><span class="std std-ref">What you need to know</span></a></p></li>
@@ -228,6 +276,14 @@
 <div class="section" id="building-this-documentation">
 <h2>Building this documentation<a class="headerlink" href="#building-this-documentation" title="Permalink to this headline">¶</a></h2>
 <p>Documentation is generated through sphinx. Intialization sequence follows this <a class="reference internal" href="recipe.html#docrecipe"><span class="std std-ref">recipe</span></a>.</p>
+<div class="section" id="references">
+<h3>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Ceau et al. (2019), A&amp;A, 630, A120</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 
@@ -237,7 +293,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="scifysim.analysis.html" class="btn btn-neutral float-right" title="scifysim.analysis module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="setup_guide.html" class="btn btn-neutral float-right" title="Installing SCIFYsim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
