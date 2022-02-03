@@ -43,8 +43,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="scifysim.bimorph module" href="scifysim.bimorph.html" />
-    <link rel="prev" title="Welcome to SCIFYsim’s documentation!" href="index.html" /> 
+    <link rel="next" title="scifysim.combiner module" href="scifysim.combiner.html" />
+    <link rel="prev" title="scifysim package" href="scifysim.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -95,8 +95,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -164,6 +167,10 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
+          <li><a href="modules.html">scifysim</a> &raquo;</li>
+        
+          <li><a href="scifysim.html">scifysim package</a> &raquo;</li>
+        
       <li>scifysim.analysis module</li>
     
     
@@ -194,7 +201,7 @@
 <dt class="sig sig-object py" id="scifysim.analysis.correlation_map">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">correlation_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postproc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_diffobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#correlation_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.correlation_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the raw correlation map of a signal with a map.</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><dl class="simple">
 <dt>signal<span class="classifier">The signal measured on sky shape:</span></dt><dd><p>(n_slots, n_wl, n_outputs)</p>
@@ -222,8 +229,36 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.analysis.get_sensitivity_Te">
-<span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">get_sensitivity_Te</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pfa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postproc_mat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#get_sensitivity_Te"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.get_sensitivity_Te" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">get_sensitivity_Te</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">maps</span></em>, <em class="sig-param"><span class="pre">mod=&lt;module</span> <span class="pre">'numpy'</span> <span class="pre">from</span> <span class="pre">'/home/rlaugier/miniconda3/envs/mathy/lib/python3.9/site-packages/numpy/__init__.py'&gt;</span></em>, <em class="sig-param"><span class="pre">pfa=0.002</span></em>, <em class="sig-param"><span class="pre">pdet=0.9</span></em>, <em class="sig-param"><span class="pre">postproc_mat=None</span></em>, <em class="sig-param"><span class="pre">ref_mag=10.0</span></em>, <em class="sig-param"><span class="pre">verbose=True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#get_sensitivity_Te"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.get_sensitivity_Te" title="Permalink to this definition">¶</a></dt>
 <dd><p>Magnitude map at which a companion is detectable for a given map and whitening matrix.
+The throughput for the signal of interest is given by the map at a reference magnitude.
+The effective noise floor is implicitly described by the whitening matrix.</p>
+<p><strong>Parameters</strong></p>
+<ul class="simple">
+<li><p>maps       : Differential map for a given reference magnitude</p></li>
+<li><p>mod        : The math module to use for vector ops default=numpy</p></li>
+<li><p>pfa        : The false alarm rate used to determine the threshold</p></li>
+<li><p>pdet       : The detection probability used to determine the threshold</p></li>
+<li><p>postproc_mat : The matrix of the whitening transformation ($Sigma^{-1/2}$)</p></li>
+<li><p>ref_mag    : The reference mag for the given map</p></li>
+<li><p>verbose    : Print some information along the way</p></li>
+</ul>
+<blockquote>
+<div><p>See <em>Ceau et al. 2019</em> for more information</p>
+</div></blockquote>
+<p><strong>Returns</strong></p>
+<ul class="simple">
+<li><p>mags : The magnitude at which Te crosses the threshold</p></li>
+<li><p>fluxs: The fluxes at which Te crosses the threshold</p></li>
+<li><p>Tes  : The values of the test statistic on the map at the reference magnitude</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.analysis.get_sensitivity_Te_old">
+<span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">get_sensitivity_Te_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pfa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postproc_mat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#get_sensitivity_Te_old"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.get_sensitivity_Te_old" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Deprecated</strong></p>
+<p>Magnitude map at which a companion is detectable for a given map and whitening matrix.
 The throughput for the signal of interest is given by the map at a reference magnitude.
 The effective noise floor is implicitly described by the whitening matrix.</p>
 <p><strong>Parameters</strong></p>
@@ -252,7 +287,26 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <dd><p>Magnitude map at which a companion is detectable for a given map and whitening matrix.
 The throughput for the signal of interest is given by the map at a reference magnitude.
 The effective noise floor is implicitly described by the whitening matrix.</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
+<ul class="simple">
+<li><p>maps       : Differential map for a given reference magnitude</p></li>
+<li><p>pfa        : The false alarm rate used to determine the threshold</p></li>
+<li><p>pdet       : The detection probability used to determine the threshold</p></li>
+<li><p>postproc_mat : The matrix of the whitening transformation ($Sigma^{-1/2}$)</p></li>
+<li><p>ref_mag    : The reference mag for the given map</p></li>
+<li><p>verbose    : Print some information along the way</p></li>
+</ul>
+<p><strong>Returns</strong>: A magnitude map</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.analysis.get_sensitivity_Tnp_old">
+<span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">get_sensitivity_Tnp_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pfa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postproc_mat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_tqdm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#get_sensitivity_Tnp_old"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.get_sensitivity_Tnp_old" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Deprecated</strong></p>
+<p>Magnitude map at which a companion is detectable for a given map and whitening matrix.
+The throughput for the signal of interest is given by the map at a reference magnitude.
+The effective noise floor is implicitly described by the whitening matrix.</p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>maps       : Differential map for a given reference magnitude</p></li>
 <li><p>pfa        : The false alarm rate used to determine the threshold</p></li>
@@ -325,7 +379,7 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <dd><p>Returns the compound noise floor
 WARNING: if matrix is True, then the result is
 a covariance matrix (beware of variances on diagonal)</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>m_star       : Magnitude of the star</p></li>
 <li><p>dit          : Detector integration time [s]</p></li>
@@ -343,7 +397,7 @@ a covariance matrix (beware of variances on diagonal)</p>
 <p class="admonition-title">Warning!</p>
 <p>If matrix is True, then sigma_phi_d is a covariance matrix (beware of variances on diagonal)</p>
 </div>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>m_star       : Magnitude of the star</p></li>
 <li><p>dit          : Detector integration time [s]</p></li>
@@ -368,8 +422,8 @@ covariance matrix for <code class="docutils literal notranslate"><span class="pr
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.analysis.pdet_e">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">pdet_e</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#pdet_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.pdet_e" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the residual of Pdet
-<strong>Parameters:</strong></p>
+<dd><p>Computes the residual of Pdet</p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>lamb     : The noncentrality parameter representing the feature</p></li>
 <li><p>xsi      : The location of threshold</p></li>
@@ -382,7 +436,7 @@ covariance matrix for <code class="docutils literal notranslate"><span class="pr
 <dt class="sig sig-object py" id="scifysim.analysis.residual_pdet_Te">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">residual_pdet_Te</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#residual_pdet_Te"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.residual_pdet_Te" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the residual of Pdet</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>lamb     : The noncentrality parameter representing the feature</p></li>
 <li><p>targ     : The target Pdet to converge to</p></li>
@@ -396,7 +450,7 @@ covariance matrix for <code class="docutils literal notranslate"><span class="pr
 <dt class="sig sig-object py" id="scifysim.analysis.residual_pdet_Tnp">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">residual_pdet_Tnp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xTx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#residual_pdet_Tnp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.residual_pdet_Tnp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the residual of Pdet in a NP test.</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>xTx     : The noncentrality parameter representing the feature</p></li>
 <li><p>targ     : The target Pdet to converge to</p></li>
@@ -411,17 +465,27 @@ covariance matrix for <code class="docutils literal notranslate"><span class="pr
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="scifysim.analysis.spectral_context.__dict__">
-<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.analysis',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.__init__&gt;,</span> <span class="pre">'sflux_from_vegamag':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.sflux_from_vegamag&gt;,</span> <span class="pre">'vegamag_from_ss':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.vegamag_from_ss&gt;,</span> <span class="pre">'get_mags_of_sim':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.get_mags_of_sim&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'spectral_context'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'spectral_context'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.analysis.spectral_context.__dict__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.analysis',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.__init__&gt;,</span> <span class="pre">'create_vega_config':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.create_vega_config&gt;,</span> <span class="pre">'sflux_from_vegamag':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.sflux_from_vegamag&gt;,</span> <span class="pre">'vegamag_from_ss':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.vegamag_from_ss&gt;,</span> <span class="pre">'get_mags_of_sim':</span> <span class="pre">&lt;function</span> <span class="pre">spectral_context.get_mags_of_sim&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'spectral_context'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'spectral_context'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.analysis.spectral_context.__dict__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.analysis.spectral_context.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vegafile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'config/vega.ini'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compensate_chromatic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#spectral_context.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.spectral_context.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spectral context for magnitude considerations</p>
-<p><strong>Parameters:</strong></p>
-<ul class="simple">
-<li><p>vegafile    : The configuration file for observation of Vega
-in the same spectral configuration</p></li>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><p>vegafile    : Either</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The parsed config file of the original simulator:
+a modified copy will be created for the reference 
+Vega observations.</p></li>
+<li><p>The path <em>str</em> to a file for observation of Vega
+in the same spectral configuration.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>compensate_chromatic: Argument to be passed to the new simulator</p></li>
 </ul>
 </dd></dl>
 
@@ -437,10 +501,27 @@ in the same spectral configuration</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="scifysim.analysis.spectral_context.create_vega_config">
+<span class="sig-name descname"><span class="pre">create_vega_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tarloc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Kraz'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#spectral_context.create_vega_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.spectral_context.create_vega_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the config file for a reference observation of Vega</p>
+<p><strong>Arguments:</strong></p>
+<ul class="simple">
+<li><p>config: A parsed config file from the simulator itself.</p></li>
+<li><p>tarloc: A star used as a proxy to observe close to Zenith.
+Kraz is a good fit for Paranal.</p></li>
+</ul>
+<p><strong>Returns</strong> a modified parsed <code class="docutils literal notranslate"><span class="pre">config</span></code> file that has the same settings but that
+is designed to reproduce an observation of Vega near zenith. Most parameters
+describing the instrument are the same. A shorter sequence is created (only 
+the central one is to be used: index 3). The target is chosen so that it passes
+near zenith at observatory.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="scifysim.analysis.spectral_context.get_mags_of_sim">
 <span class="sig-name descname"><span class="pre">get_mags_of_sim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#spectral_context.get_mags_of_sim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.spectral_context.get_mags_of_sim" title="Permalink to this definition">¶</a></dt>
 <dd><p>Magnitudes of planet and star of a simulator object</p>
-<p><strong>Parameters:</strong></p>
+<p><strong>Arguments:</strong></p>
 <ul class="simple">
 <li><p>asim     : A simulator object</p></li>
 </ul>
@@ -468,8 +549,8 @@ in the same spectral configuration</p></li>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="scifysim.bimorph.html" class="btn btn-neutral float-right" title="scifysim.bimorph module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to SCIFYsim’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scifysim.combiner.html" class="btn btn-neutral float-right" title="scifysim.combiner module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifysim.html" class="btn btn-neutral float-left" title="scifysim package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

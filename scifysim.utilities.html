@@ -94,8 +94,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -163,6 +166,10 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
+          <li><a href="modules.html">scifysim</a> &raquo;</li>
+        
+          <li><a href="scifysim.html">scifysim package</a> &raquo;</li>
+        
       <li>scifysim.utilities module</li>
     
     
@@ -187,12 +194,14 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.utilities.Cauchy">
 <span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">Cauchy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#Cauchy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.Cauchy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Shortcut to <code class="docutils literal notranslate"><span class="pre">scipy.stats.cauchy.pdf</span></code></p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.utilities.Gauss">
 <span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">Gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#Gauss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.Gauss" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Shortcut to <code class="docutils literal notranslate"><span class="pre">scipy.stats.norm.pdf</span></code></p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.utilities.coeff">
@@ -316,7 +325,7 @@ performance statistics</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.utilities.extract_diffobs_map">
-<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">extract_diffobs_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprod</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#extract_diffobs_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.extract_diffobs_map" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">extract_diffobs_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">maps</span></em>, <em class="sig-param"><span class="pre">simulator</span></em>, <em class="sig-param"><span class="pre">mod=&lt;module</span> <span class="pre">'numpy'</span> <span class="pre">from</span> <span class="pre">'/home/rlaugier/miniconda3/envs/mathy/lib/python3.9/site-packages/numpy/__init__.py'&gt;</span></em>, <em class="sig-param"><span class="pre">dit=1.0</span></em>, <em class="sig-param"><span class="pre">mag=None</span></em>, <em class="sig-param"><span class="pre">postprod=None</span></em>, <em class="sig-param"><span class="pre">eta=1.0</span></em>, <em class="sig-param"><span class="pre">K=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#extract_diffobs_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.extract_diffobs_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Here in photons per dit (default=1s)</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
@@ -338,7 +347,39 @@ simulator.combiner.K</p>
 </dl>
 </li>
 </ul>
-<p>Simulator object is used for</p>
+<p>Simulator object is used for:</p>
+<ul class="simple">
+<li><p>The head transmission (simulator.src.sky)</p></li>
+<li><p>The solid angle of the pisel</p></li>
+<li><p>The spectral context (for the spectral channels)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.extract_diffobs_map_old">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">extract_diffobs_map_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprod</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#extract_diffobs_map_old"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.extract_diffobs_map_old" title="Permalink to this definition">¶</a></dt>
+<dd><p>Here in photons per dit (default=1s)</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>maps<span class="classifier">Transmission maps for 1 ph/s/m2 </span></dt><dd><p>at the entrance of atmo</p>
+</dd>
+</dl>
+</li>
+<li><p>simulator : a sumulator object (see comments below)</p></li>
+<li><p>dit      : Detector integration time [s]</p></li>
+<li><p>mag      : The magnitude of a source on the map</p></li>
+<li><p>postprod : A post-processing (whitening matrix)</p></li>
+<li><p>eta      : The quantum efficiency of the detector</p></li>
+<li><dl class="simple">
+<dt>K<span class="classifier">A matrix to extract the differential</span></dt><dd><p>observable quantities (kernel matrix).
+By default, the matrix is obtained from 
+simulator.combiner.K</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Simulator object is used for:</p>
 <ul class="simple">
 <li><p>The head transmission (simulator.src.sky)</p></li>
 <li><p>The solid angle of the pisel</p></li>
@@ -359,6 +400,43 @@ simulator.combiner.K</p>
 <ul class="simple">
 <li><p>if duration is None (default) : <code class="docutils literal notranslate"><span class="pre">besttime</span></code> an <code class="docutils literal notranslate"><span class="pre">astropy.Time</span></code> object</p></li>
 <li><p>else : <code class="docutils literal notranslate"><span class="pre">(Tstart,</span> <span class="pre">Tend)</span></code> Start and end of the observing run</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.fit_distribution">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">fit_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bincenters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mypdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#fit_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.fit_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the histogram to a given pdf</p>
+<p><strong>Arguments:</strong></p>
+<ul class="simple">
+<li><p>hist : <em>array-like</em>  The empirical histogram given in density
+so that it has unity integral</p></li>
+<li><p>bincenters : <em>array-like</em> The center of bins. Same shape as hist.
+tip: use <code class="docutils literal notranslate"><span class="pre">get_bincenters</span></code> to convert edges to bin centers</p></li>
+<li><p>mypdf : <em>function</em> A function of the histogram to fit</p></li>
+<li><p>p0 : <em>array-like</em> Starting parameters for the fit. Typically
+a couple (loc, scale). Recommended is (mean, std).</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p>parameters: The best fit parameters (typically (loc, scale).</p></li>
+<li><p>histerror : An estimation of the errors on the bins, based on 
+Poissonian statistics (and set to the max for empty bins.</p></li>
+<li><p>covariance: The covariance of the parameters.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.get_bincenters">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">get_bincenters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#get_bincenters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.get_bincenters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quickly converts bin edges to bin centers:</p>
+<p><strong>Arguments:</strong></p>
+<ul class="simple">
+<li><p>edges: <em>Array</em> of size n</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p>bincenters: Centers of the intervals (size n-1)</p></li>
 </ul>
 </dd></dl>
 
@@ -537,6 +615,29 @@ new array.</p></li>
 <ul class="simple">
 <li><p>a numpy ndarray of the time series</p></li>
 </ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.utilities.range2R">
+<span class="sig-prename descclassname"><span class="pre">scifysim.utilities.</span></span><span class="sig-name descname"><span class="pre">range2R</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectral_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bins'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/utilities.html#range2R"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.utilities.range2R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function to convert a sequence of wavelengths to the
+target spectral resolution.</p>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><p>spectral_range : (array-like) The series of wavelength channels [m]</p></li>
+<li><p>mode : Decides what is considered a step in the series.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“bins” : The simulator wl bins as found in
+<code class="docutils literal notranslate"><span class="pre">simulator.lambda_science_range</span></code>:
+2 pixels per bin in Hi-5</p></li>
+<li><p>“chans” : The individual wavelength step</p></li>
+<li><p>“pixs” : The individual pixels (2.5 pixel per spectral channel)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Returns</strong> an array of the individual spectral resolutions</p>
 </dd></dl>
 
 <dl class="py function">

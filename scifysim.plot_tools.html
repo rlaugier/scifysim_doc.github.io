@@ -95,8 +95,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -163,6 +166,10 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">scifysim</a> &raquo;</li>
+        
+          <li><a href="scifysim.html">scifysim package</a> &raquo;</li>
         
       <li>scifysim.plot_tools module</li>
     
@@ -266,6 +273,25 @@ the integrator object.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="scifysim.plot_tools.plot_output_sources">
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_output_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_output_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_output_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the content of all outputs for each of the different sources:</p>
+<p><strong>Arguments:</strong></p>
+<ul class="simple">
+<li><p>integ  : An integrator object</p></li>
+<li><p>lambda_range : (<em>array-like</em>) The wavelength of interest.
+Find it in <code class="docutils literal notranslate"><span class="pre">simulator.lambda_science_range</span></code></p></li>
+<li><p>margins : The margins to leave between the spectra of outputs
+(in number of bar widths)</p></li>
+<li><p>show : (<em>boolean</em>) Whether to call <code class="docutils literal notranslate"><span class="pre">plt.show</span></code> before returning.</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p>signalplot:  A pyplot figure</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="scifysim.plot_tools.plot_phasescreen">
 <span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_phasescreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theinjector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_phasescreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_phasescreen" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -292,7 +318,7 @@ projected to RA-Dec coordinates.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.plot_tools.plot_projected_uv">
-<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_projected_uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_projected_uv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_projected_uv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_projected_uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_projected_uv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_projected_uv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Designed as a wrapper around plot_pupil that also handles
 additional illustration.
 As a contrast to plot_pupil, plot_projected_pupil takes in a
@@ -304,16 +330,13 @@ projected to RA-Dec coordinates.</p>
 <li><p>asim    : Simulator object</p></li>
 <li><p>seq_indices: The index in the observing sequence (This feature may evolve)
 if None: the whole sequence is mapped</p></li>
-<li><p>grid    : Whether to plot a grid of ground position</p></li>
-<li><p>grid_res: The number of lines in the grid for each direction</p></li>
-<li><p>compass : Whether to plot a little North and East symbol for direction</p></li>
-<li><p>compoass_length: In meters the length of the compass needles.</p></li>
+<li><p>show    : Whether to call <code class="docutils literal notranslate"><span class="pre">plt.show</span></code> before returning</p></li>
 </ul>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.plot_tools.plot_pupil">
-<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_pupil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thearray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thepistons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_pupil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_pupil" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.plot_tools.</span></span><span class="sig-name descname"><span class="pre">plot_pupil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thearray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thepistons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">140.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/plot_tools.html#plot_pupil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.plot_tools.plot_pupil" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the projected</p>
 <p><strong>Arguments:</strong></p>
 <ul class="simple">
@@ -328,6 +351,7 @@ after transformation by the same projection as the array
 <li><p>grid   : Similar to the compass but for a bunch of parallels and meridians
 [parallels[[e0,n0], [e1, n1], … ],
 meridians[[e0,n0], [e1, n1], …]]</p></li>
+<li><p>show   : whether to call <code class="docutils literal notranslate"><span class="pre">plt.show</span></code> before returning</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">

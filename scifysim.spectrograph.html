@@ -95,8 +95,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -163,6 +166,10 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">scifysim</a> &raquo;</li>
+        
+          <li><a href="scifysim.html">scifysim package</a> &raquo;</li>
         
       <li>scifysim.spectrograph module</li>
     
@@ -261,6 +268,23 @@ Currently it does not implement a system gain (1ADU = 1photoelectron)</p>
 <li><p>well       : [photelectrons] The well depth</p></li>
 <li><p>n_sources  :            The number of different sources propagated through the instrument</p></li>
 </ul>
+<p><strong>Content:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">planetlight</span></code>: The planet light with shape (n_wavelength, n_outputs)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">starlight</span></code>: The starlight light with shape (n_wavelength, n_outputs)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">static</span></code> : The list for all sources (see <code class="docutils literal notranslate"><span class="pre">self.source_labels</span></code>) of the
+<em>background diffuse</em> light propagated through all ouptuts. Shape is
+(n_wavelength, n_outputs) each. This is only gets updated once per pointing
+(at the start of the first make_exposure, upon detection of the absence of a
+<code class="docutils literal notranslate"><span class="pre">xx_r</span></code> attribute on the first diffuse source).</p></li>
+</ul>
+<p>For each subexposure (if <code class="docutils literal notranslate"><span class="pre">full_record</span></code> is True in calling <code class="docutils literal notranslate"><span class="pre">director.make_exposure</span></code> or <code class="docutils literal notranslate"><span class="pre">director.make_metrologic_exposure</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ft_phase</span></code>: Phase error [rad] <em>from fringe-tracking</em> of the first wavelength bin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inj_phase</span></code>: Phase error [rad] <em>at injection</em> of the first wavelength bin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inj_amp</span></code>: Amplitude of the injection phasor <em>from injection</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vals</span></code>: <strong>Only</strong> if <code class="docutils literal notranslate"><span class="pre">self.keepall</span></code> is true</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py attribute">
@@ -280,7 +304,7 @@ Currently it does not implement a system gain (1ADU = 1photoelectron)</p>
 <dd><p>Accumulates some signal.</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
-<li><p>value   : The signals to accumulate</p></li>
+<li><p>value   : The signals to accumulate [photons]</p></li>
 </ul>
 </dd></dl>
 
@@ -325,14 +349,15 @@ corresponding to sums.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.spectrograph.integrator.get_static">
 <span class="sig-name descname"><span class="pre">get_static</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.get_static"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.get_static" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the total value of integrated light from static sources.
-Not affected by noises</p>
+<dd><p><strong>Returns</strong> the total value of integrated light from static sources.</p>
+<p><strong>Not affected by noises</strong></p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.spectrograph.integrator.get_total">
 <span class="sig-name descname"><span class="pre">get_total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectrograph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_exp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_pixsplit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.get_total"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.get_total" title="Permalink to this definition">¶</a></dt>
-<dd><p>Made a little bit complicated by the ability to simulate CRED1 camera</p>
+<dd><p>Made a little bit complicated by the ability to simulate CRED1 camera. It is
+at this stage that the quantum efficiency <code class="docutils literal notranslate"><span class="pre">self.eta</span></code> is taken into account.</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>spectrograph  : A spectrograph object to map the spectra on
@@ -340,7 +365,8 @@ a 2D detector</p></li>
 <li><p>t_exp         : [s]  Integration time to take into account dark current
 This is only used if self.exposure is close to 0. (if 
 the )</p></li>
-<li><p>n_pixsplit    : The number of pixels</p></li>
+<li><p>n_pixsplit    : The number of pixels over which to spread the
+signal of each spectral bin.</p></li>
 </ul>
 </dd></dl>
 
@@ -371,6 +397,18 @@ which also gets printed</p></li>
 <dt class="sig sig-object py" id="scifysim.spectrograph.integrator.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/spectrograph.html#integrator.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.spectrograph.integrator.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset the values of the accumulation of signal in the detector.</p>
+<p><strong>Values reset:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self.vals</span> <span class="pre">=</span> <span class="pre">[]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.acc</span> <span class="pre">=</span> <span class="pre">0.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.runs</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.forensics</span> <span class="pre">=</span> <span class="pre">{}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.mean</span> <span class="pre">=</span> <span class="pre">None</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.std</span> <span class="pre">=</span> <span class="pre">None</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.exposure</span> <span class="pre">=</span> <span class="pre">0.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.starlight</span> <span class="pre">=</span> <span class="pre">None</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.planetlight</span> <span class="pre">=</span> <span class="pre">None</span></code></p></li>
+</ul>
 </dd></dl>
 
 </dd></dl>

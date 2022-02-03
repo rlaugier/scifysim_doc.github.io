@@ -93,8 +93,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -496,7 +499,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ft_phase</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Ugly management of injection/tracking&quot;</span><span class="p">)</span>
+        
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span><span class="p">)):</span>
             <span class="n">injected</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">get_efunc</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
             <span class="n">tracked</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fringe_tracker</span><span class="o">.</span><span class="n">phasor</span><span class="p">)</span>
@@ -1007,6 +1010,45 @@
         
         
 <div class="viewcode-block" id="simulator.make_map_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask">[docs]</a>    <span class="k">def</span> <span class="nf">make_map_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
+<span class="sd">        To get final flux of a point source :</span>
+<span class="sd">        </span>
+<span class="sd">        ``Map/ds_sr * p.ss * DIT``</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * blockindex : The index in the observing sequence to create the map</span>
+<span class="sd">        * vigneting_map : The vigneting map drawn used for resolution</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">blockindex</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        <span class="c1">#injected = self.injector.best_injection(self.lambda_science_range)</span>
+        <span class="n">vigneted_spectrum</span> <span class="o">=</span> \
+                <span class="n">vigneting_map</span><span class="o">.</span><span class="n">vigneted_spectrum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">),</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+        <span class="c1"># Caution: line is not idempotent!</span>
+        <span class="c1">#vigneted_spectrum = np.swapaxes(vigneted_spectrum, 0,1)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">vigneted_spectrum</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="c1">#self.mapsource.ss = vigneted_spectrum</span>
+        <span class="n">dummy_collected</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">perfect_injection</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ntelescopes</span><span class="p">))</span>\
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light_dask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span>
+                                           <span class="n">array</span><span class="p">,</span> <span class="n">dummy_collected</span><span class="p">,</span>
+                                           <span class="n">dosum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">map_index</span><span class="o">=</span><span class="n">map_index</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="n">static_output</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">static_output</span> <span class="o">=</span> <span class="n">static_output</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#static_output = static_output# * np.sqrt(vigneted_spectrum[:,None,:])</span>
+        <span class="c1"># lambdified argument order matters! This should remain synchronous</span>
+        <span class="c1"># with the lambdify call</span>
+        <span class="c1"># incoherently combining over sources</span>
+        <span class="c1"># Warning: modifying the array</span>
+        <span class="c1">#combined = np.abs(static_output*np.conjugate(static_output)).astype(np.float32)</span>
+        <span class="k">return</span> <span class="n">static_output</span></div>
+    
+<div class="viewcode-block" id="simulator.make_map_dask2"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask2">[docs]</a>    <span class="k">def</span> <span class="nf">make_map_dask2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>

@@ -93,8 +93,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -210,6 +213,23 @@
 <span class="sd">        * well       : [photelectrons] The well depth</span>
 <span class="sd">        * n_sources  :            The number of different sources propagated through the instrument</span>
 <span class="sd">        </span>
+<span class="sd">        **Content:**</span>
+<span class="sd">        </span>
+<span class="sd">        * ``planetlight``: The planet light with shape (n_wavelength, n_outputs)</span>
+<span class="sd">        * ``starlight``: The starlight light with shape (n_wavelength, n_outputs)</span>
+<span class="sd">        * ``static`` : The list for all sources (see ``self.source_labels``) of the</span>
+<span class="sd">          *background diffuse* light propagated through all ouptuts. Shape is</span>
+<span class="sd">          (n_wavelength, n_outputs) each. This is only gets updated once per pointing</span>
+<span class="sd">          (at the start of the first make_exposure, upon detection of the absence of a</span>
+<span class="sd">          ``xx_r`` attribute on the first diffuse source).</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        For each subexposure (if ``full_record`` is True in calling ``director.make_exposure`` or ``director.make_metrologic_exposure``.</span>
+<span class="sd">        </span>
+<span class="sd">        * ``ft_phase``: Phase error [rad] *from fringe-tracking* of the first wavelength bin.</span>
+<span class="sd">        * ``inj_phase``: Phase error [rad] *at injection* of the first wavelength bin.</span>
+<span class="sd">        * ``inj_amp``: Amplitude of the injection phasor *from injection*</span>
+<span class="sd">        * ``vals``: **Only** if ``self.keepall`` is true</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
@@ -242,7 +262,7 @@
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
-<span class="sd">        * value   : The signals to accumulate</span>
+<span class="sd">        * value   : The signals to accumulate [photons]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acc</span> <span class="o">+=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">runs</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -264,7 +284,8 @@
 <div class="viewcode-block" id="integrator.get_total"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.get_total">[docs]</a>    <span class="k">def</span> <span class="nf">get_total</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectrograph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_exp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">n_pixsplit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Made a little bit complicated by the ability to simulate CRED1 camera</span>
+<span class="sd">        Made a little bit complicated by the ability to simulate CRED1 camera. It is</span>
+<span class="sd">        at this stage that the quantum efficiency ``self.eta`` is taken into account.</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
@@ -273,7 +294,8 @@
 <span class="sd">        * t_exp         : [s]  Integration time to take into account dark current</span>
 <span class="sd">          This is only used if self.exposure is close to 0. (if </span>
 <span class="sd">          the )</span>
-<span class="sd">        * n_pixsplit    : The number of pixels </span>
+<span class="sd">        * n_pixsplit    : The number of pixels over which to spread the</span>
+<span class="sd">          signal of each spectral bin.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">n_pixsplit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Splitting the signal over a number pixels</span>
             <span class="n">thepixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -301,8 +323,9 @@
         <span class="k">return</span> <span class="n">read</span></div>
 <div class="viewcode-block" id="integrator.get_static"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.get_static">[docs]</a>    <span class="k">def</span> <span class="nf">get_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the total value of integrated light from static sources.</span>
-<span class="sd">        Not affected by noises</span>
+<span class="sd">        **Returns** the total value of integrated light from static sources.</span>
+<span class="sd">        </span>
+<span class="sd">        **Not affected by noises**</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">static</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">)</span>
         <span class="n">total_static</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span> <span class="o">*</span> <span class="n">static</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -316,6 +339,19 @@
 <div class="viewcode-block" id="integrator.reset"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reset the values of the accumulation of signal in the detector.</span>
+<span class="sd">        </span>
+<span class="sd">        **Values reset:**</span>
+<span class="sd">        </span>
+<span class="sd">        * ``self.vals = []``</span>
+<span class="sd">        * ``self.acc = 0.``</span>
+<span class="sd">        * ``self.runs = 0``</span>
+<span class="sd">        * ``self.forensics = {}``</span>
+<span class="sd">        * ``self.mean = None``</span>
+<span class="sd">        * ``self.std = None``</span>
+<span class="sd">        * ``self.exposure = 0.``</span>
+<span class="sd">        * ``self.starlight = None``</span>
+<span class="sd">        * ``self.planetlight = None``</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acc</span> <span class="o">=</span> <span class="mf">0.</span>
