@@ -203,18 +203,17 @@
 <dd><p>Returns the raw correlation map of a signal with a map.</p>
 <p><strong>Arguments:</strong></p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>signal<span class="classifier">The signal measured on sky shape:</span></dt><dd><p>(n_slots, n_wl, n_outputs)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>maps<span class="classifier">The maps for comparison shape:</span></dt><dd><p>(n_slots, n_wl, n_outputs, x_resolution, y_resolution)</p>
-</dd>
-</dl>
-</li>
+<li><p>signal      : The signal measured on sky shape:
+(n_slots, n_wl, n_outputs)</p></li>
+<li><p>maps        : The maps for comparison shape:
+(n_slots, n_wl, n_outputs, x_resolution, y_resolution)</p></li>
+<li><p>postproc    : The whitening matrix to use</p></li>
 </ul>
-<p><strong>Returns</strong> The correlation map</p>
+<p><strong>Returns</strong></p>
+<ul class="simple">
+<li><p>cmap1 : The correlation map</p></li>
+<li><p>xtx_map : The normalization map</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
@@ -235,7 +234,7 @@ The throughput for the signal of interest is given by the map at a reference mag
 The effective noise floor is implicitly described by the whitening matrix.</p>
 <p><strong>Parameters</strong></p>
 <ul class="simple">
-<li><p>maps       : Differential map for a given reference magnitude</p></li>
+<li><p>maps       : Differential map for a given reference magnitude and exposure time</p></li>
 <li><p>mod        : The math module to use for vector ops default=numpy</p></li>
 <li><p>pfa        : The false alarm rate used to determine the threshold</p></li>
 <li><p>pdet       : The detection probability used to determine the threshold</p></li>

@@ -595,7 +595,7 @@
 <span class="sd">    </span>
 <span class="sd">    **Parameters**</span>
 <span class="sd">    </span>
-<span class="sd">    * maps       : Differential map for a given reference magnitude</span>
+<span class="sd">    * maps       : Differential map for a given reference magnitude and exposure time</span>
 <span class="sd">    * mod        : The math module to use for vector ops default=numpy</span>
 <span class="sd">    * pfa        : The false alarm rate used to determine the threshold</span>
 <span class="sd">    * pdet       : The detection probability used to determine the threshold</span>
@@ -616,7 +616,7 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
         <span class="n">nbkp</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
-        <span class="n">nbkp</span> <span class="o">=</span> <span class="n">W</span>
+        <span class="n">nbkp</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Wrong dimension for post-processing matrix&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
@@ -632,9 +632,11 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">postproc_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
             <span class="n">postproc_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1">#Xsi is the threshold</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nbkp = &quot;</span><span class="p">,</span> <span class="n">nbkp</span><span class="p">)</span>
     <span class="n">xsi</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">pfa</span><span class="p">,</span> <span class="n">nbkp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">xsi</span><span class="p">)</span>
     <span class="n">lambda0</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">nbkp</span>
-    <span class="c1">#The solution lamabda is the x^T.x value satisfying Pdet and Pfa</span>
+    <span class="c1">#The solution lambda is the x^T.x value satisfying Pdet and Pfa</span>
     <span class="n">sol</span> <span class="o">=</span> <span class="n">leastsq</span><span class="p">(</span><span class="n">residual_pdet_Te</span><span class="p">,</span> <span class="n">lambda0</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">xsi</span><span class="p">,</span><span class="n">nbkp</span><span class="p">,</span> <span class="n">pdet</span><span class="p">))</span><span class="c1"># AKA lambda</span>
     <span class="n">lamb</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">w2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">f0</span> <span class="o">*</span> <span class="n">W</span>
@@ -650,6 +652,7 @@
     <span class="n">Tes</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;k y x , k y x -&gt; y x &quot;</span><span class="p">,</span> <span class="n">wsig</span><span class="o">*</span><span class="n">f0</span><span class="p">,</span> <span class="n">wsig</span><span class="o">*</span><span class="n">f0</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">mags</span><span class="p">,</span> <span class="n">fluxs</span><span class="p">,</span> <span class="n">Tes</span></div>
+
 
 
 <span class="c1">##################################</span>
@@ -812,15 +815,21 @@
 <span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
 <span class="sd">    * signal      : The signal measured on sky shape:</span>
-<span class="sd">                    (n_slots, n_wl, n_outputs)</span>
+<span class="sd">      (n_slots, n_wl, n_outputs)</span>
 <span class="sd">    * maps        : The maps for comparison shape:</span>
-<span class="sd">                    (n_slots, n_wl, n_outputs, x_resolution, y_resolution)</span>
+<span class="sd">      (n_slots, n_wl, n_outputs, x_resolution, y_resolution)</span>
+<span class="sd">    * postproc    : The whitening matrix to use </span>
 <span class="sd">    </span>
-<span class="sd">    **Returns** The correlation map</span>
+<span class="sd">    **Returns**</span>
+<span class="sd">    </span>
+<span class="sd">    * cmap1 : The correlation map</span>
+<span class="sd">    * xtx_map : The normalization map</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;Input shape (slots, wavelengths, outputs)&quot;</span>
     <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;Maps shape (slots, wavelengths, outputs, position, position)&quot;</span>
     
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n_diffobs&quot;</span><span class="p">,</span> <span class="n">n_diffobs</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape2&quot;</span><span class="p">,</span> <span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_diffobs</span><span class="p">:</span>
         <span class="n">diffobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, mkj-&gt;mki&quot;</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">signal</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">n_diffobs</span><span class="p">:</span>
@@ -834,11 +843,15 @@
     <span class="n">wsig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, ik -&gt; ij&quot;</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">diffobs</span><span class="p">,</span> <span class="s2">&quot;a b c -&gt; a (b c)&quot;</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">wmap</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">wsig</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">xsi</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;xsi = </span><span class="si">{</span><span class="n">xsi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;yty = </span><span class="si">{</span><span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     
     <span class="n">cmap1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijkl, ij -&gt; kl&quot;</span><span class="p">,</span> <span class="n">wmap</span><span class="p">,</span> <span class="n">wsig</span><span class="p">)</span>
+    <span class="n">xtx_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijkl, ijkl -&gt; kl&quot;</span><span class="p">,</span> <span class="n">wmap</span><span class="p">,</span> <span class="n">wmap</span><span class="p">)</span>
     <span class="c1">#cmap2 = np.einsum(&quot;ikl, i -&gt; kl&quot;, rearrange(wmap, &quot;a b c d -&gt; (a b) c d&quot;), wsig.flatten())</span>
     
-    <span class="k">return</span> <span class="n">cmap1</span></div>
+    <span class="k">return</span> <span class="n">cmap1</span><span class="p">,</span> <span class="n">xtx_map</span></div>
 </pre></div>
 
            </div>

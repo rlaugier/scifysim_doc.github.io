@@ -93,8 +93,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -506,13 +509,13 @@
         
         
         <span class="c1"># Creating absorbtion / emission chain:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trans_file</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optics&quot;</span><span class="p">,</span> <span class="s2">&quot;transfile_collecting_optics&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sky</span> <span class="o">=</span> <span class="n">transmission_emission</span><span class="p">(</span><span class="n">trans_file</span><span class="o">=</span><span class="s2">&quot;data/MK_trans_sfs.txt&quot;</span><span class="p">,</span>
                                          <span class="n">T</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_sky</span><span class="p">,</span> <span class="n">airmass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                          <span class="n">observatory</span><span class="o">=</span><span class="n">director</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span>
                                          <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Sky&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">UT</span> <span class="o">=</span> <span class="n">transmission_emission</span><span class="p">(</span><span class="n">trans_file</span><span class="o">=</span><span class="s2">&quot;data/VLTI_UT_trans_sfs.txt&quot;</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_vlti</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">UT</span> <span class="o">=</span> <span class="n">transmission_emission</span><span class="p">(</span><span class="n">trans_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trans_file</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_vlti</span><span class="p">,</span>
                                        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;UT_optics&quot;</span><span class="p">)</span>
-        
         <span class="n">n_warm_optics</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;optics&quot;</span><span class="p">,</span> <span class="s2">&quot;n_warm_optics&quot;</span><span class="p">)</span>
         <span class="n">throughput_warm_optics</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;optics&quot;</span><span class="p">,</span> <span class="s2">&quot;throughput_warm_optics&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">transmission_warm_optics</span> <span class="o">=</span> <span class="n">throughput_warm_optics</span><span class="o">**</span><span class="n">n_warm_optics</span>
