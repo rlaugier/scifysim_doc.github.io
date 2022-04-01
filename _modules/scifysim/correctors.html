@@ -338,7 +338,7 @@
 
 
 <div class="viewcode-block" id="corrector"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector">[docs]</a><span class="k">class</span> <span class="nc">corrector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="corrector.__init__"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<div class="viewcode-block" id="corrector.__init__"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A module that provides beam adjustments</span>
 <span class="sd">        for the input. It contains amplitude *a*, geometric</span>
@@ -352,6 +352,7 @@
 <span class="sd">          (At the __init__ stage, it is only used for</span>
 <span class="sd">          the computation of a mean refractive index for</span>
 <span class="sd">          the dispersive material)</span>
+<span class="sd">        * file A file containing the plate index</span>
 <span class="sd">                    </span>
 <span class="sd">        **Internal parameters:**</span>
 <span class="sd">        </span>
@@ -360,8 +361,11 @@
 <span class="sd">        * c     :     Vetor of the dispersive piston term [m]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="n">nznse_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">znse_file</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nznse_file</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">nznse_file</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nplate_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">znse_file</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="n">nplate_file</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nplate</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nplate_file</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">nplate_file</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
                                      <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span> <span class="p">)</span>
         <span class="n">diams</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;diam&quot;</span><span class="p">)</span>
         <span class="n">n_tel</span> <span class="o">=</span> <span class="n">diams</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -369,8 +373,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nplate</span><span class="p">(</span><span class="n">lambs</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">prediction_model</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">wet_atmo</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></div>
         
     
 <div class="viewcode-block" id="corrector.get_phasor"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
@@ -384,17 +390,44 @@
 <span class="sd">        </span>
 <span class="sd">        **Returns:** alpha</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nplate</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">alpha</span></div>
 <div class="viewcode-block" id="corrector.get_phasor_s"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_s">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Deprecated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nplate</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lamb</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">alpha</span></div>
-    
+<div class="viewcode-block" id="corrector.get_raw_phase_correction"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_raw_phase_correction">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw_phase_correction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dcomp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the raw (non-wrapped) phase produced by an optical path</span>
+<span class="sd">        of b[m] in air and c[m] in plate material.</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters**</span>
+<span class="sd">        </span>
+<span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
+<span class="sd">        * a     :     Vector of the amplitude term</span>
+<span class="sd">        * b     :     Vetor of the geometric piston term [m]</span>
+<span class="sd">        * c     :     Vetor of the dispersive piston term [m]</span>
+<span class="sd">        * dcomp :     A length of air to compensate for the plate</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prediction_model</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_Nair</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">nplate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nplate</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="o">*</span><span class="p">(</span><span class="n">nair</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="n">nplate</span><span class="o">*</span><span class="n">c</span><span class="p">)</span></div>
+<div class="viewcode-block" id="corrector.get_dcomp"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_dcomp">[docs]</a>    <span class="k">def</span> <span class="nf">get_dcomp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the theoertical value of dcomp for a given value of compensator</span>
+<span class="sd">        plate, to correct for the pure piston term introduced.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span>
+        <span class="k">return</span> <span class="n">dcomp</span></div>
+        
 <div class="viewcode-block" id="corrector.get_phasor_from_params"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_from_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor_from_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                <span class="n">dcomp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -412,7 +445,7 @@
 <span class="sd">        * b     :     Vetor of the geometric piston term [m]</span>
 <span class="sd">        * c     :     Vetor of the dispersive piston term [m]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nplate</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
         <span class="k">if</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -420,11 +453,11 @@
         <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span>
         <span class="k">if</span> <span class="n">dcomp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span>
+            <span class="n">dcomp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dcomp</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">dcomp</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">+</span><span class="n">c</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">alpha</span></div>
     
-<div class="viewcode-block" id="corrector.theoretical_phase"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.theoretical_phase">[docs]</a>    <span class="k">def</span> <span class="nf">theoretical_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span> <span class="n">proj_opds</span><span class="p">,</span> <span class="n">wet_atmo</span><span class="p">):</span>
+<div class="viewcode-block" id="corrector.theoretical_phase"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.theoretical_phase">[docs]</a>    <span class="k">def</span> <span class="nf">theoretical_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span> <span class="n">proj_opds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the theoretical chromatic phase effect of the</span>
 <span class="sd">        array geometry projected on axis based on the wet atmosphere</span>
@@ -435,15 +468,18 @@
 <span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
 <span class="sd">        * proj_opds  : The projected piston obtained by projection</span>
 <span class="sd">          (Get from simulator.obs.get_projected_geometric_pistons)</span>
-<span class="sd">        * wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        * model      : A model for humid air (see n_air.wet_atmo object).</span>
+<span class="sd">          If None, defaults to self.model, created upon init.</span>
+<span class="sd">        * add        : returns n-1+add (add=0 gives the relative</span>
+<span class="sd">          optical path compared to vacuum)</span>
 <span class="sd">        </span>
 <span class="sd">        **Returns:** phase</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_Nair</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="n">add</span><span class="p">)</span>
         <span class="n">phase</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="o">*</span><span class="n">nair</span><span class="o">*</span><span class="n">proj_opds</span>
-        <span class="k">return</span> <span class="n">phase</span></div>
+        <span class="k">return</span> <span class="n">phase</span><span class="o">.</span><span class="n">T</span></div>
         
-<div class="viewcode-block" id="corrector.solve_air"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air">[docs]</a>    <span class="k">def</span> <span class="nf">solve_air</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">wet_atmo</span><span class="p">):</span>
+<div class="viewcode-block" id="corrector.solve_air"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air">[docs]</a>    <span class="k">def</span> <span class="nf">solve_air</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes a least squares compensation model (see</span>
 <span class="sd">        **Koresko et al. 2003 DOI: 10.1117/12.458032**)</span>
@@ -451,12 +487,12 @@
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * lambs :     The wavelength channels to consider [m]</span>
-<span class="sd">        * wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</span>
+<span class="sd">        * model   : The wet atmosphere model (see n_air.wet_atmo object)</span>
 <span class="sd">        </span>
 <span class="sd">        **Returns:** :math:`\Big( \mathbf{A}^T\mathbf{A}\mathbf{A}^T \Big)^{-1}`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
-        <span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">nair</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nznse</span><span class="p">(</span><span class="n">lambs</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">nair</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_Nair</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">nair</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nplate</span><span class="p">(</span><span class="n">lambs</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
         <span class="n">A</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">ns</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>

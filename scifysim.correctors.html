@@ -98,7 +98,32 @@
 <li class="toctree-l1"><a class="reference internal" href="setup_guide.html">Installing SCIFYsim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="need_to_know.html">What you need to know</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recipe.html">Documentation recipe</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">scifysim</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">scifysim</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="scifysim.html">scifysim package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="scifysim.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">scifysim.correctors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.html#module-scifysim">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
@@ -194,16 +219,16 @@
 <span id="scifysim-correctors-module"></span><h1>scifysim.correctors module<a class="headerlink" href="#module-scifysim.correctors" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">corrector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scifysim.correctors.</span></span><span class="sig-name descname"><span class="pre">corrector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.__dict__">
-<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.correctors',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.__init__&gt;,</span> <span class="pre">'get_phasor':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor&gt;,</span> <span class="pre">'get_phasor_s':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor_s&gt;,</span> <span class="pre">'get_phasor_from_params':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor_from_params&gt;,</span> <span class="pre">'theoretical_phase':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.theoretical_phase&gt;,</span> <span class="pre">'solve_air':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.solve_air&gt;,</span> <span class="pre">'tune_static':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.tune_static&gt;,</span> <span class="pre">'tune_static_shape':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.tune_static_shape&gt;,</span> <span class="pre">'plot_tuning':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.plot_tuning&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'corrector'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'corrector'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.correctors.corrector.__dict__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'scifysim.correctors',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.__init__&gt;,</span> <span class="pre">'get_phasor':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor&gt;,</span> <span class="pre">'get_phasor_s':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor_s&gt;,</span> <span class="pre">'get_raw_phase_correction':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_raw_phase_correction&gt;,</span> <span class="pre">'get_dcomp':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_dcomp&gt;,</span> <span class="pre">'get_phasor_from_params':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.get_phasor_from_params&gt;,</span> <span class="pre">'theoretical_phase':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.theoretical_phase&gt;,</span> <span class="pre">'solve_air':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.solve_air&gt;,</span> <span class="pre">'tune_static':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.tune_static&gt;,</span> <span class="pre">'tune_static_shape':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.tune_static_shape&gt;,</span> <span class="pre">'plot_tuning':</span> <span class="pre">&lt;function</span> <span class="pre">corrector.plot_tuning&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'corrector'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'corrector'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#scifysim.correctors.corrector.__dict__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>A module that provides beam adjustments
 for the input. It contains amplitude <em>a</em>, geometric
 piston <em>b</em> and ZnSe piston substitution <em>c</em>. Note that
@@ -215,6 +240,7 @@ the ZnSe length replaces some air length.</p>
 (At the __init__ stage, it is only used for
 the computation of a mean refractive index for
 the dispersive material)</p></li>
+<li><p>file A file containing the plate index</p></li>
 </ul>
 <p><strong>Internal parameters:</strong></p>
 <ul class="simple">
@@ -226,13 +252,20 @@ the dispersive material)</p></li>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.__module__">
-<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scifysim.correctors'</span></em><a class="headerlink" href="#scifysim.correctors.corrector.__module__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'scifysim.correctors'</span></em><a class="headerlink" href="#scifysim.correctors.corrector.__module__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.__weakref__">
 <span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#scifysim.correctors.corrector.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.get_dcomp">
+<span class="sig-name descname"><span class="pre">get_dcomp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.get_dcomp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.get_dcomp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the theoertical value of dcomp for a given value of compensator
+plate, to correct for the pure piston term introduced.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -270,26 +303,41 @@ to the current a, b, c, and dcomp phasors.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="scifysim.correctors.corrector.get_raw_phase_correction">
+<span class="sig-name descname"><span class="pre">get_raw_phase_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dcomp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.get_raw_phase_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.get_raw_phase_correction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the raw (non-wrapped) phase produced by an optical path
+of b[m] in air and c[m] in plate material.</p>
+<p><strong>Parameters</strong></p>
+<ul class="simple">
+<li><p>lambs :     The wavelength channels to consider [m]</p></li>
+<li><p>a     :     Vector of the amplitude term</p></li>
+<li><p>b     :     Vetor of the geometric piston term [m]</p></li>
+<li><p>c     :     Vetor of the dispersive piston term [m]</p></li>
+<li><p>dcomp :     A length of air to compensate for the plate</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.plot_tuning">
 <span class="sig-name descname"><span class="pre">plot_tuning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.plot_tuning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.plot_tuning" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.solve_air">
-<span class="sig-name descname"><span class="pre">solve_air</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wet_atmo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.solve_air"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.solve_air" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">solve_air</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.solve_air"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.solve_air" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes a least squares compensation model (see
 <strong>Koresko et al. 2003 DOI: 10.1117/12.458032</strong>)</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>lambs :     The wavelength channels to consider [m]</p></li>
-<li><p>wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p></li>
+<li><p>model   : The wet atmosphere model (see n_air.wet_atmo object)</p></li>
 </ul>
 <p><strong>Returns:</strong> <img class="math" src="_images/math/6f82540463aa637c24d88a1d1f72a2ab96acf0ab.png" alt="\Big( \mathbf{A}^T\mathbf{A}\mathbf{A}^T \Big)^{-1}"/></p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.correctors.corrector.theoretical_phase">
-<span class="sig-name descname"><span class="pre">theoretical_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj_opds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wet_atmo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.theoretical_phase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.theoretical_phase" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">theoretical_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj_opds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/correctors.html#corrector.theoretical_phase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.correctors.corrector.theoretical_phase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the theoretical chromatic phase effect of the
 array geometry projected on axis based on the wet atmosphere
 model.</p>
@@ -298,7 +346,10 @@ model.</p>
 <li><p>lambs :     The wavelength channels to consider [m]</p></li>
 <li><p>proj_opds  : The projected piston obtained by projection
 (Get from simulator.obs.get_projected_geometric_pistons)</p></li>
-<li><p>wet_atmo   : The wet atmosphere model (see n_air.wet_atmo object)</p></li>
+<li><p>model      : A model for humid air (see n_air.wet_atmo object).
+If None, defaults to self.model, created upon init.</p></li>
+<li><p>add        : returns n-1+add (add=0 gives the relative
+optical path compared to vacuum)</p></li>
 </ul>
 <p><strong>Returns:</strong> phase</p>
 </dd></dl>

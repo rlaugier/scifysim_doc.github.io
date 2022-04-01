@@ -797,7 +797,6 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">combined_starlight</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">starlight</span> <span class="o">+=</span> <span class="n">combined_starlight</span>
             
-            
             <span class="n">combined_planetlight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">interest</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">collected</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">spectro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">combined_planetlight</span><span class="p">)</span>
@@ -876,7 +875,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
     
-<div class="viewcode-block" id="simulator.point"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.point"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">refresh_array</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Points the array towards the target. Updates the combiner</span>
 <span class="sd">        </span>
@@ -884,11 +883,13 @@
 <span class="sd">        </span>
 <span class="sd">        * time    : The time to make the observation</span>
 <span class="sd">        * target  : The skycoord object to point</span>
+<span class="sd">        * refresh_array : Whether to call a lambdification of the array</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset_static</span><span class="p">()</span>
         <span class="n">thearray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">refresh_array</span><span class="p">(</span><span class="n">thearray</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">refresh_array</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">refresh_array</span><span class="p">(</span><span class="n">thearray</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="simulator.build_all_maps"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.build_all_maps">[docs]</a>    <span class="k">def</span> <span class="nf">build_all_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapres</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mapcrop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
                        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>

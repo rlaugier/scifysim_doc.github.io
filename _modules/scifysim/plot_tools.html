@@ -768,8 +768,14 @@
     <span class="k">return</span> <span class="n">fig_phase</span><span class="p">,</span> <span class="n">fig_amp</span><span class="p">,</span> <span class="n">fig_outputs</span></div>
 
 
+<span class="kn">from</span> <span class="nn">kernuller.diagrams</span> <span class="kn">import</span> <span class="n">plot_chromatic_matrix</span> <span class="k">as</span> <span class="n">cmpc</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scifysim.correctors</span> <span class="kn">import</span> <span class="n">get_Is</span>
+
+
 <div class="viewcode-block" id="plot_corrector_tuning_angel_woolf"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_corrector_tuning_angel_woolf">[docs]</a><span class="k">def</span> <span class="nf">plot_corrector_tuning_angel_woolf</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span>
-                                      <span class="n">combiner</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                                      <span class="n">combiner</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                      <span class="n">maskout</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots some information on the tuning of the combiner using geometric piston</span>
 <span class="sd">    and chromatic corrector plates.</span>
@@ -791,9 +797,6 @@
 <span class="sd">    Currently works only with lambda_science_range</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="kn">from</span> <span class="nn">kernuller.diagrams</span> <span class="kn">import</span> <span class="n">plot_chromatic_matrix</span> <span class="k">as</span> <span class="n">cmpc</span>
-    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-    <span class="kn">from</span> <span class="nn">scifysim.correctors</span> <span class="kn">import</span> <span class="n">get_Is</span>
     
     <span class="n">darkout_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">combiner</span><span class="o">.</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="n">combiner</span><span class="o">.</span><span class="n">dark</span><span class="p">]</span>
     <span class="c1"># Normalisation factor is the peak intensity</span>
@@ -811,7 +814,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength [m]&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output contrast ($I^-/I^</span><span class="se">{{</span><span class="s2">peak</span><span class="se">}}</span><span class="s2">$)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output contrast ($</span><span class="se">\\</span><span class="s2">frac</span><span class="se">{{</span><span class="s2">I^-</span><span class="se">}}{{</span><span class="s2">I^</span><span class="se">{{</span><span class="s2">peak</span><span class="se">}}}}</span><span class="s2">$)&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;On-axis chromatic response&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show</span> <span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     
@@ -819,7 +822,7 @@
     
     <span class="n">original_plt_params</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
-    <span class="n">cmp_plot</span> <span class="o">=</span> <span class="n">cmpc</span><span class="p">(</span><span class="n">combiner</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">,:],</span> <span class="n">combiner</span><span class="o">.</span><span class="n">lamb</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span>
+    <span class="n">cmp_plot</span> <span class="o">=</span> <span class="n">cmpc</span><span class="p">(</span><span class="n">combiner</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="n">maskout</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">maskout</span><span class="p">[</span><span class="mi">1</span><span class="p">],:],</span> <span class="n">combiner</span><span class="o">.</span><span class="n">lamb</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span>
                 <span class="n">plotout</span><span class="o">=</span><span class="n">corphasor</span><span class="p">,</span> <span class="n">minfrac</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span> <span class="o">=</span> <span class="n">original_plt_params</span>
     

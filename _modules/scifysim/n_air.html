@@ -93,8 +93,11 @@
             
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../need_to_know.html">What you need to know</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../recipe.html">Documentation recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">scifysim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scifysim.bimorph.html">scifysim.bimorph module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.combiners.html">scifysim.combiners module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.confconverter.html">scifysim.confconverter module</a></li>
@@ -193,17 +196,61 @@
     
     
 <div class="viewcode-block" id="wet_atmo"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo">[docs]</a><span class="k">class</span> <span class="nc">wet_atmo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="wet_atmo.__init__"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pres</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;pres&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">co2</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;co2&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rhum</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;rhum&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;vlti&quot;</span><span class="p">,</span> <span class="s2">&quot;T_vlti&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="wet_atmo.__init__"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">temp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">rhum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ph2o</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eso</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">column</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nws</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eso</span> <span class="o">=</span> <span class="n">eso</span>
+        
+        <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;vlti&quot;</span><span class="p">,</span> <span class="s2">&quot;T_vlti&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pres</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pres</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;pres&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">co2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">co2</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">co2</span> <span class="o">=</span> <span class="n">co2</span>
+        <span class="k">if</span> <span class="n">rhum</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rhum</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;rhum&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rhum</span> <span class="o">=</span> <span class="n">rhum</span>
+            
         <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="kc">None</span></div>
-<div class="viewcode-block" id="wet_atmo.get_Nair"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span>
+        
+            
+<div class="viewcode-block" id="wet_atmo.get_Nair"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="n">add</span> <span class="o">+</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span>
                          <span class="n">pres</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pres</span><span class="p">,</span>
-                         <span class="n">rhum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rhum</span><span class="p">)</span>
+                         <span class="n">rhum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rhum</span><span class="p">,</span>
+                         <span class="n">co2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">co2</span><span class="p">,</span>
+                         <span class="n">eso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">eso</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span></div></div>
+    
+<span class="c1">#class simulated_air(object):</span>
+<span class="c1">#    def __init__(temp=273.15+15., pres=1000.,</span>
+<span class="c1">#         rhum=0., co2=450., ph2o=None, eso=False,</span>
+<span class="c1">#         column=False, nws=None, name=&quot;Simple model for atmosphere&quot;):</span>
+<span class="c1">#        &quot;&quot;&quot;</span>
+<span class="c1">#        An object to represent refractive and dispersive medium.</span>
+<span class="c1">#        &quot;&quot;&quot;</span>
+<span class="c1">#        self.temp = temp</span>
+<span class="c1">#        self.pres = pres</span>
+<span class="c1">#        self.rhum = rhum</span>
+<span class="c1">#        self.co2 = co2</span>
+<span class="c1">#        self.ph2o = ph2o</span>
+<span class="c1">#        self.eso = eso</span>
+<span class="c1">#        </span>
+<span class="c1">#        self.__doc__ = name</span>
+<span class="c1">#        </span>
+<span class="c1">#    def get_n(lambda_):</span>
+<span class="c1">#        &quot;&quot;&quot;</span>
+<span class="c1">#        </span>
+<span class="c1">#        &quot;&quot;&quot;</span>
+<span class="c1">#        then = n_air(lambda_, temp=self.temp, pres=self.pres,</span>
+<span class="c1">#                    rhum=self.rhum, co2=self.co2, ph2o=self.ph2o,</span>
+<span class="c1">#                    eso=self.eso, column=self.column) </span>
+        
+    
     
 
 <div class="viewcode-block" id="n_air"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.n_air">[docs]</a><span class="k">def</span> <span class="nf">n_air</span><span class="p">(</span><span class="n">lambda_</span> <span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mf">273.15</span><span class="o">+</span><span class="mf">15.</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="mf">1000.</span><span class="p">,</span>
