@@ -267,12 +267,8 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Did not understand the mode for target&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provide a valid mode for the target creation&quot;</span><span class="p">)</span>
             
-        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">observatory</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">theconfig</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">observatory</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">theconfig</span><span class="p">)</span></div>
         
-        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Undecided whether to store array in simulator or observatory&quot;</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">statlocs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">)</span></div>
-        
-
     
     
     
@@ -1012,7 +1008,7 @@
         
 <div class="viewcode-block" id="simulator.make_map_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask">[docs]</a>    <span class="k">def</span> <span class="nf">make_map_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
+<span class="sd">        Create sensitivity map in m^2.sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>
 <span class="sd">        </span>
 <span class="sd">        ``Map/ds_sr * p.ss * DIT``</span>
@@ -1051,7 +1047,7 @@
     
 <div class="viewcode-block" id="simulator.make_map_dask2"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask2">[docs]</a>    <span class="k">def</span> <span class="nf">make_map_dask2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
+<span class="sd">        Create sensitivity map in m^2.sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>
 <span class="sd">        </span>
 <span class="sd">        ``Map/ds_sr * p.ss * DIT``</span>
@@ -1091,7 +1087,7 @@
         
 <div class="viewcode-block" id="simulator.make_map"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map">[docs]</a>    <span class="k">def</span> <span class="nf">make_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create sensitivity map in ph/s/sr per spectral channel.</span>
+<span class="sd">        Create sensitivity map in m^2.sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>
 <span class="sd">        ``Map/ds_sr * p.ss * DIT``</span>
 <span class="sd">        </span>
@@ -1133,7 +1129,15 @@
         <span class="k">pass</span></div>
 <div class="viewcode-block" id="simulator.reset_static"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.reset_static">[docs]</a>    <span class="k">def</span> <span class="nf">reset_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;computed_static&quot;</span><span class="p">):</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span></div></div>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span></div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">spectral_res</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The spectral resolution of the instrument. Computed as a mean over all spectral channels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">range2R</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;bins&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">res</span></div>
     
 <div class="viewcode-block" id="test_director"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.test_director">[docs]</a><span class="k">def</span> <span class="nf">test_director</span><span class="p">():</span>
     <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;hard path in the test&quot;</span><span class="p">)</span>

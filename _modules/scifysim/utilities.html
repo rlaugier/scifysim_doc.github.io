@@ -318,7 +318,7 @@
                <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">crop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">target_coords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">compensate_chromatic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-               <span class="n">modificators</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+               <span class="n">modificators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">update_start_end</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A shortcut to prepare a simulator object</span>
 <span class="sd">    **Parameters:**</span>
@@ -351,7 +351,8 @@
         <span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">thetarget</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">update_params</span><span class="p">:</span>
         <span class="n">update_star_params</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
-    <span class="n">update_observing_night</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">target_coords</span><span class="o">=</span><span class="n">target_coords</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">update_start_end</span><span class="p">:</span>
+        <span class="n">update_observing_night</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">target_coords</span><span class="o">=</span><span class="n">target_coords</span><span class="p">)</span>
     <span class="n">asim</span><span class="o">.</span><span class="n">prepare_observatory</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">modificators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">amod</span> <span class="ow">in</span> <span class="n">modificators</span><span class="p">:</span>
