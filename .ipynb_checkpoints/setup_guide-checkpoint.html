@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Installing SCIFYsim &mdash; SCIFYsim 0.2.2 documentation</title>
@@ -184,13 +185,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installing-scifysim">
+  <section id="installing-scifysim">
 <span id="setup"></span><h1>Installing SCIFYsim<a class="headerlink" href="#installing-scifysim" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="prerequisites">
+<section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>Managing your environments through <code class="docutils literal notranslate"><span class="pre">conda</span></code> is highly recommended.</p>
-</div>
-<div class="section" id="kernuller">
+</section>
+<section id="kernuller">
 <h2>Kernuller<a class="headerlink" href="#kernuller" title="Permalink to this headline">¶</a></h2>
 <p>You can obtain <code class="docutils literal notranslate"><span class="pre">kernuller</span></code> from its <a class="reference external" href="https://github.com/rlaugier/kernuller">github page</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">rlaugier</span><span class="o">/</span><span class="n">kernuller</span>
@@ -198,8 +199,8 @@
 <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="xaosim">
+</section>
+<section id="xaosim">
 <h2>XAOSIM<a class="headerlink" href="#xaosim" title="Permalink to this headline">¶</a></h2>
 <p>You can obtain <code class="docutils literal notranslate"><span class="pre">xaosim</span></code> from its <a class="reference external" href="https://github.com/fmartinache/xaosim">github page</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">fmartinache</span><span class="o">/</span><span class="n">xaosim</span>
@@ -213,8 +214,8 @@
 not used in SCIFYsim. If you encounter a problem here, open the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file,
 remove the line that stars with <code class="docutils literal notranslate"><span class="pre">data_files</span></code> and try again.</p>
 </div>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h2>Installing SCIFYsim<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Installation procedure is similar:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">rlaugier</span><span class="o">/</span><span class="n">scifysim</span>
@@ -222,8 +223,8 @@ remove the line that stars with <code class="docutils literal notranslate"><span
 <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="setting-up-a-workspace">
+</section>
+<section id="setting-up-a-workspace">
 <h2>Setting up a workspace<a class="headerlink" href="#setting-up-a-workspace" title="Permalink to this headline">¶</a></h2>
 <p>Recommended workspace setup:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>└── working_directory
@@ -234,11 +235,11 @@ remove the line that stars with <code class="docutils literal notranslate"><span
           └── my_work.ipynb
 </pre></div>
 </div>
-<div class="section" id="log-directory">
+<section id="log-directory">
 <h3>Log directory<a class="headerlink" href="#log-directory" title="Permalink to this headline">¶</a></h3>
 <p>SCIFYsim uses a automated logging system. It will require a <strong>log directory</strong> in your working directory.</p>
-</div>
-<div class="section" id="config-files">
+</section>
+<section id="config-files">
 <h3>Config files<a class="headerlink" href="#config-files" title="Permalink to this headline">¶</a></h3>
 <p>SCIFYsim uses <strong>config files</strong>. You can get started by copying one of the default config files in <code class="docutils literal notranslate"><span class="pre">SCIFYsim/scifysim/config</span></code> into your working directory. You will have to refer to it explicitly in your source code.</p>
 <p>Config files are standard <code class="docutils literal notranslate"><span class="pre">.ini</span></code> files but use comments with <code class="docutils literal notranslate"><span class="pre">#</span></code>. They have sections marked by [] and the parameters use keys. The different organs of the simulator often keep in <code class="docutils literal notranslate"><span class="pre">self.config</span></code> the reference to the parsed config file that was used to create them. You can access their content by</p>
@@ -252,9 +253,9 @@ remove the line that stars with <code class="docutils literal notranslate"><span
 <p class="admonition-title">Photometry reference</p>
 <p>SCIFYsim uses references to Vega to compute photometry in a relevant manner. Therefore you need a to maintain a vega config file up to date that uses the same instrumental configuration.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

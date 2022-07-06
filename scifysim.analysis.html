@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>scifysim.analysis module &mdash; SCIFYsim 0.2.2 documentation</title>
@@ -215,7 +216,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-scifysim.analysis">
+  <section id="module-scifysim.analysis">
 <span id="scifysim-analysis-module"></span><h1>scifysim.analysis module<a class="headerlink" href="#module-scifysim.analysis" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.analysis.F2mag">
@@ -233,6 +234,8 @@
 <li><p>maps        : The maps for comparison shape:
 (n_slots, n_wl, n_outputs, x_resolution, y_resolution)</p></li>
 <li><p>postproc    : The whitening matrix to use</p></li>
+<li><p>n_diffobs : The number of differential observables for this combiner
+(1 for double bracewell, 3 for VIKiNG)</p></li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul class="simple">
@@ -250,6 +253,33 @@
 <dt class="sig sig-object py" id="scifysim.analysis.get_Tnp_threshold_map">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">get_Tnp_threshold_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xTx_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pfa</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#get_Tnp_threshold_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.get_Tnp_threshold_map" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.analysis.get_planet_residual">
+<span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">get_planet_residual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postproc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffuse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#get_planet_residual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.get_planet_residual" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>arguments:</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>my_params<span class="classifier">An lmfit Parameters object containing:</span></dt><dd><ul>
+<li><p>“Sep” separation in [mas]</p></li>
+<li><p>“PA” position angle in [deg]</p></li>
+<li><p>“Radius” The radius in [R_sun]</p></li>
+<li><p>“Temperature” The temperature [K]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>target_signal : The observed signal to fit</p></li>
+<li><p>asim : The simulator object</p></li>
+<li><p>dit : The detector integration time</p></li>
+<li><p>K : The matrix that transforms the outputs into observables
+(single row for double bracewell)</p></li>
+<li><p>postproc : An array of whitening matrices for each chunk (n_chunk, n_wl x n_k)</p></li>
+<li><p>notres : If <code class="docutils literal notranslate"><span class="pre">True</span></code> this will return the non-whitened model signal
+if <code class="docutils literal notranslate"><span class="pre">False</span></code> this will return the difference between the whitened model signal
+and the whitened target.</p></li>
+</ul>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.analysis.get_sensitivity_Te">
@@ -346,6 +376,45 @@ The effective noise floor is implicitly described by the whitening matrix.</p>
 <dt class="sig sig-object py" id="scifysim.analysis.mag2F">
 <span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">mag2F</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#mag2F"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.mag2F" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.analysis.make_source">
+<span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">make_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#make_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.make_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a source from scratch for purpose of model fitting.
+<strong>Arguments:</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>params: An lmfit Parameters object containing:</dt><dd><ul>
+<li><p>“Sep” separation in [mas]</p></li>
+<li><p>“PA” position angle in [deg]</p></li>
+<li><p>“Radius” The radius in [R_sun]</p></li>
+<li><p>“Temperature” The temperature [K]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>lambda_range : array of the wavelength channels used [m]</p></li>
+<li><p>distance: Distance to the system [pc]</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifysim.analysis.make_th_exps">
+<span class="sig-prename descclassname"><span class="pre">scifysim.analysis.</span></span><span class="sig-name descname"><span class="pre">make_th_exps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffuse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/analysis.html#make_th_exps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.analysis.make_th_exps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a model observation of an idealized source of interest.</p>
+<p>Simulator/obs are required to account for array projection, pointing
+and combination scheme.</p>
+<p><strong>Arguments:</strong></p>
+<ul class="simple">
+<li><p>asim : Simulator object</p></li>
+<li><p>dit : Detector integration time</p></li>
+<li><p>interest : Synthetic source of interest</p></li>
+<li><p>diffuse : The diffuse light chain, used
+to model absorption of instrument/sky</p></li>
+<li><p>obs : A given observatory object (default: None)</p></li>
+</ul>
+<p><strong>Returns:</strong> (n_chunk, n_wl, n_out) array recorded in the integration time.</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="scifysim.analysis.noiseprofile">
@@ -565,7 +634,7 @@ near zenith at observatory.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

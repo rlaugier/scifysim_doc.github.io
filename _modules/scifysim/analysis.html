@@ -189,6 +189,7 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">einops</span> <span class="kn">import</span> <span class="n">rearrange</span>
 <span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">sqrtm</span>
 
@@ -819,6 +820,8 @@
 <span class="sd">    * maps        : The maps for comparison shape:</span>
 <span class="sd">      (n_slots, n_wl, n_outputs, x_resolution, y_resolution)</span>
 <span class="sd">    * postproc    : The whitening matrix to use </span>
+<span class="sd">    * n_diffobs : The number of differential observables for this combiner</span>
+<span class="sd">      (1 for double bracewell, 3 for VIKiNG)</span>
 <span class="sd">    </span>
 <span class="sd">    **Returns**</span>
 <span class="sd">    </span>
@@ -839,19 +842,127 @@
         <span class="n">difmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, kljmn -&gt; klimn&quot;</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">maps</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">n_diffobs</span><span class="p">:</span>
         <span class="n">difmap</span> <span class="o">=</span> <span class="n">maps</span>
-    <span class="n">wmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, iklm -&gt; ijlm&quot;</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">difmap</span><span class="p">,</span> <span class="s2">&quot;a b c d e -&gt; a (b c) d e&quot;</span><span class="p">))</span>
-    <span class="n">wsig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, ik -&gt; ij&quot;</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">diffobs</span><span class="p">,</span> <span class="s2">&quot;a b c -&gt; a (b c)&quot;</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">wmap</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">wsig</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="n">xsi</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;xsi = </span><span class="si">{</span><span class="n">xsi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;yty = </span><span class="si">{</span><span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">K</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">wmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, iklm -&gt; ijlm&quot;</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">difmap</span><span class="p">,</span> <span class="s2">&quot;a b c d e -&gt; a (b c) d e&quot;</span><span class="p">))</span>
+        <span class="n">wsig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, ik -&gt; ij&quot;</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">diffobs</span><span class="p">,</span> <span class="s2">&quot;a b c -&gt; a (b c)&quot;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">wmap</span> <span class="o">=</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">difmap</span><span class="p">,</span> <span class="s2">&quot;a b c d e -&gt; a (b c) d e&quot;</span><span class="p">)</span>
+        <span class="n">wsig</span> <span class="o">=</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">diffobs</span><span class="p">,</span> <span class="s2">&quot;a b c -&gt; a (b c)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">wmap</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">wsig</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">xsi</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;xsi = </span><span class="si">{</span><span class="n">xsi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;yty = </span><span class="si">{</span><span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">wsig</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     
     <span class="n">cmap1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijkl, ij -&gt; kl&quot;</span><span class="p">,</span> <span class="n">wmap</span><span class="p">,</span> <span class="n">wsig</span><span class="p">)</span>
     <span class="n">xtx_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijkl, ijkl -&gt; kl&quot;</span><span class="p">,</span> <span class="n">wmap</span><span class="p">,</span> <span class="n">wmap</span><span class="p">)</span>
     <span class="c1">#cmap2 = np.einsum(&quot;ikl, i -&gt; kl&quot;, rearrange(wmap, &quot;a b c d -&gt; (a b) c d&quot;), wsig.flatten())</span>
     
     <span class="k">return</span> <span class="n">cmap1</span><span class="p">,</span> <span class="n">xtx_map</span></div>
+
+
+<div class="viewcode-block" id="make_source"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.make_source">[docs]</a><span class="k">def</span> <span class="nf">make_source</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a source from scratch for purpose of model fitting.</span>
+<span class="sd">    **Arguments:**</span>
+<span class="sd">    </span>
+<span class="sd">    * params: An lmfit Parameters object containing:</span>
+<span class="sd">        - &quot;Sep&quot; separation in [mas]</span>
+<span class="sd">        - &quot;PA&quot; position angle in [deg]</span>
+<span class="sd">        - &quot;Radius&quot; The radius in [R_sun]</span>
+<span class="sd">        - &quot;Temperature&quot; The temperature [K]</span>
+<span class="sd">    * lambda_range : array of the wavelength channels used [m]</span>
+<span class="sd">    * distance: Distance to the system [pc]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">planet_separation</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;Sep&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">planet_position_angle</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;PA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">planet_offsetx</span> <span class="o">=</span> <span class="o">-</span><span class="n">planet_separation</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">planet_position_angle</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">planet_offsety</span> <span class="o">=</span>  <span class="n">planet_separation</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">planet_position_angle</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">planet_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">planet_offsetx</span><span class="p">,</span> <span class="n">planet_offsety</span><span class="p">)</span>
+    <span class="n">mysource</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">resolved_source</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span>
+                                          <span class="n">resolved</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                         <span class="n">radius</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Radius&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                         <span class="n">T</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Temperature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                         <span class="n">offset</span><span class="o">=</span><span class="n">planet_offset</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mysource</span></div>
+
+<div class="viewcode-block" id="get_planet_residual"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_planet_residual">[docs]</a><span class="k">def</span> <span class="nf">get_planet_residual</span><span class="p">(</span><span class="n">my_params</span><span class="p">,</span> <span class="n">target_signal</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span> <span class="n">notres</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **arguments:**</span>
+<span class="sd">    </span>
+<span class="sd">    * my_params : An lmfit Parameters object containing:</span>
+<span class="sd">        - &quot;Sep&quot; separation in [mas]</span>
+<span class="sd">        - &quot;PA&quot; position angle in [deg]</span>
+<span class="sd">        - &quot;Radius&quot; The radius in [R_sun]</span>
+<span class="sd">        - &quot;Temperature&quot; The temperature [K]</span>
+<span class="sd">    * target_signal : The observed signal to fit</span>
+<span class="sd">    * asim : The simulator object</span>
+<span class="sd">    * dit : The detector integration time</span>
+<span class="sd">    * K : The matrix that transforms the outputs into observables</span>
+<span class="sd">      (single row for double bracewell)</span>
+<span class="sd">    * postproc : An array of whitening matrices for each chunk (n_chunk, n_wl x n_k)</span>
+<span class="sd">    * notres : If ``True`` this will return the non-whitened model signal</span>
+<span class="sd">      if ``False`` this will return the difference between the whitened model signal</span>
+<span class="sd">      and the whitened target.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">theobs</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">obs</span><span class="p">)</span>
+    <span class="n">interest</span> <span class="o">=</span> <span class="n">make_source</span><span class="p">(</span><span class="n">my_params</span><span class="p">,</span> <span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="n">asim</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+    <span class="c1">#theobs = copy.deepcopy(asim.obs)</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">make_th_exps</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="n">theobs</span><span class="p">)</span>
+    <span class="c1">#if not notres:</span>
+    <span class="c1">#print(K.shape)</span>
+    <span class="c1">#if len(K.shape)&gt;2:</span>
+    <span class="c1">#set_trace()</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;k o, n w o -&gt; n w k&quot;</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">combined</span><span class="p">)</span>
+    
+    <span class="c1">#print(&quot;postproc&quot;, postproc.shape)</span>
+    <span class="c1">#print(&quot;diff&quot;, diff.shape)</span>
+    <span class="n">wsig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, ik -&gt; ij&quot;</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="s2">&quot;a b c -&gt; a (b c)&quot;</span><span class="p">))</span>
+    <span class="c1"># Not very efficient</span>
+    <span class="c1">#set_trace()</span>
+    
+    <span class="k">if</span> <span class="n">notres</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">diff</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">wtarg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, ik -&gt; ij&quot;</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">target_signal</span><span class="p">,</span> <span class="s2">&quot;a b c -&gt; a (b c)&quot;</span><span class="p">))</span>
+        <span class="n">resvec</span> <span class="o">=</span> <span class="n">wsig</span> <span class="o">-</span> <span class="n">wtarg</span>
+        <span class="k">return</span> <span class="n">resvec</span></div>
+
+<div class="viewcode-block" id="make_th_exps"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.make_th_exps">[docs]</a><span class="k">def</span> <span class="nf">make_th_exps</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a model observation of an idealized source of interest.</span>
+<span class="sd">    </span>
+<span class="sd">    Simulator/obs are required to account for array projection, pointing</span>
+<span class="sd">    and combination scheme.</span>
+<span class="sd">    </span>
+<span class="sd">    **Arguments:**</span>
+<span class="sd">    </span>
+<span class="sd">    * asim : Simulator object</span>
+<span class="sd">    * dit : Detector integration time</span>
+<span class="sd">    * interest : Synthetic source of interest</span>
+<span class="sd">    * diffuse : The diffuse light chain, used</span>
+<span class="sd">      to model absorption of instrument/sky</span>
+<span class="sd">    * obs : A given observatory object (default: None)</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns:** (n_chunk, n_wl, n_out) array recorded in the integration time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">obs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">obs</span><span class="p">)</span>
+    <span class="n">lights</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">sequence</span><span class="p">):</span>
+        <span class="n">obs</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">asim</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">injected</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">best_injection</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="n">injected</span> <span class="o">=</span> <span class="n">injected</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">asim</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        
+        <span class="n">filtered_starlight</span> <span class="o">=</span> <span class="n">diffuse</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="n">collected</span> <span class="o">=</span> <span class="n">filtered_starlight</span> <span class="o">*</span> <span class="n">asim</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">collecting</span> <span class="o">*</span> <span class="n">dit</span>
+        <span class="c1">#set_trace()</span>
+        <span class="n">lights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">interest</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">collected</span><span class="p">))</span>
+    <span class="n">lights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lights</span></div>
 </pre></div>
 
            </div>
