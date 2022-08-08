@@ -237,7 +237,7 @@
         
         <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="kc">None</span></div>
         
-<div class="viewcode-block" id="simulator.prepare_observatory"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_observatory">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_observatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.prepare_observatory"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_observatory">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_observatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Preprare the observatory object for the simulator.</span>
 <span class="sd">        </span>
@@ -245,6 +245,8 @@
 <span class="sd">        </span>
 <span class="sd">        * file : A parsed config file (see parsefile)</span>
 <span class="sd">        * fpath: (string) A path to the config file to parse</span>
+<span class="sd">        * statlocs : The station locations (optional)</span>
+<span class="sd">          (east, north) for each aperture shape is (Na, 2)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">theconfig</span> <span class="o">=</span> <span class="n">file</span>
@@ -267,7 +269,7 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Did not understand the mode for target&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provide a valid mode for the target creation&quot;</span><span class="p">)</span>
             
-        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">observatory</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">theconfig</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">observatory</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">theconfig</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="n">statlocs</span><span class="p">)</span></div>
         
     
     

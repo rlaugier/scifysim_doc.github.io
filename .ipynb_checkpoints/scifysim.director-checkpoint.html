@@ -561,12 +561,14 @@ False is recommended for faster computation and memory efficiency</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.director.simulator.prepare_observatory">
-<span class="sig-name descname"><span class="pre">prepare_observatory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_observatory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_observatory" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">prepare_observatory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statlocs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scifysim/director.html#simulator.prepare_observatory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.director.simulator.prepare_observatory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Preprare the observatory object for the simulator.</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
 <li><p>file : A parsed config file (see parsefile)</p></li>
 <li><p>fpath: (string) A path to the config file to parse</p></li>
+<li><p>statlocs : The station locations (optional)
+(east, north) for each aperture shape is (Na, 2)</p></li>
 </ul>
 </dd></dl>
 

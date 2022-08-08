@@ -226,7 +226,7 @@
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        </span>
-<span class="sd">        * statlocs : The station locations </span>
+<span class="sd">        * statlocs : The station locations (optional)</span>
 <span class="sd">          (east, north) for each aperture shape is (Na, 2)</span>
 <span class="sd">        * location : An astropy.coordinatEarthLocation (default = Paranal)</span>
 <span class="sd">          example: myloc = astroplan.Observer.at_site(&quot;Paranal&quot;, timezone=&quot;UTC&quot;)</span>
@@ -251,7 +251,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">array_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;config&quot;</span><span class="p">)</span>
         <span class="n">raw_array</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;kernuller.</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array_config</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;order&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span> <span class="o">=</span> <span class="n">raw_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">statlocs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span> <span class="o">=</span> <span class="n">raw_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span> <span class="o">=</span> <span class="n">statlocs</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;self.theta&quot;</span><span class="p">)</span>
         <span class="c1">#R handles the azimuthal rotation</span>
