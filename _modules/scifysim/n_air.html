@@ -1,96 +1,49 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>scifysim.n_air &mdash; SCIFYsim 0.2.2 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>scifysim.n_air &mdash; SCIFYsim dev-0.2.3 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../index.html" class="icon icon-home"> SCIFYsim
           
-
-          
+          <a href="../../index.html" class="icon icon-home">
+            SCIFYsim
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.2
+                dev-0.2.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
@@ -115,77 +68,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">SCIFYsim</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-<div class="git-ribbon">
-  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
-</div>
-
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>scifysim.n_air</li>
-    
-    
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scifysim.n_air</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for scifysim.n_air</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">mol_dens</span>
 <span class="kn">from</span> <span class="nn">.mol_dens</span> <span class="kn">import</span> <span class="n">mol_dens</span>
+
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interp</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">units</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 
@@ -219,8 +133,12 @@
         
         <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;vlti&quot;</span><span class="p">,</span> <span class="s2">&quot;T_vlti&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span>
         <span class="k">if</span> <span class="n">pres</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pres</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;pres&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pres</span> <span class="o">=</span> <span class="n">pres</span>
         <span class="k">if</span> <span class="n">co2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">co2</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;co2&quot;</span><span class="p">)</span>
         <span class="k">else</span> <span class="p">:</span>
@@ -232,14 +150,74 @@
             
         <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="kc">None</span></div>
         
-            
-<div class="viewcode-block" id="wet_atmo.get_Nair"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+    
+<div class="viewcode-block" id="wet_atmo.get_Nair"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the refractive index (or reduced refractive index)</span>
+<span class="sd">        for humid air at the given wavelengths.</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">        * lambs : An array of wavelengths [m]</span>
+<span class="sd">        * add   : Gets added to the reduced refracive index:</span>
+<span class="sd">          default: 0. Use 1 to obtain the actual refractive index.</span>
+
+<span class="sd">        **Returns:**  add + n-1 </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Computing fraction of components</span>
+        <span class="n">P_tot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pres</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mbar</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">Pa</span><span class="p">)</span>
+        <span class="n">F_co2</span> <span class="o">=</span> <span class="mf">1e-6</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">co2</span>
+        <span class="n">F_h2o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rhum</span><span class="o">/</span><span class="mi">100</span> <span class="o">*</span> <span class="n">get_pvsat_buck</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">)</span><span class="o">/</span><span class="n">P_tot</span>
+        <span class="n">F_da</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">F_co2</span> <span class="o">+</span> <span class="n">F_h2o</span><span class="p">)</span>
+        <span class="c1">#print(&quot;H2O&quot;, F_h2o)</span>
+        <span class="c1">#print(&quot;CO2&quot;, F_co2)</span>
+        <span class="c1">#print(&quot;DA&quot;, F_da)</span>
+        <span class="n">n_ref</span> <span class="o">=</span> <span class="p">((</span><span class="n">r_index_DA</span><span class="p">(</span><span class="n">lambs</span><span class="p">))</span><span class="o">*</span><span class="n">F_da</span> <span class="o">+</span> <span class="p">(</span><span class="n">r_index_co2</span><span class="p">(</span><span class="n">lambs</span><span class="p">))</span><span class="o">*</span><span class="n">F_co2</span> <span class="o">+</span> <span class="p">(</span><span class="n">r_index_h2o</span><span class="p">(</span><span class="n">lambs</span><span class="p">))</span><span class="o">*</span><span class="n">F_h2o</span><span class="p">)</span>
+        <span class="n">n_compound_air</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">P_tot</span><span class="o">/</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">R</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_ref</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="n">n_compound_air</span> <span class="o">+</span> <span class="n">add</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span></div>
+
+<div class="viewcode-block" id="wet_atmo.get_Nair_wn"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair_wn">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair_wn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add=1 by default</span>
+<span class="sd">        </span>
+<span class="sd">        Returns the refractive index (or reduced refractive index)</span>
+<span class="sd">        for humid air at the given wavelengths.</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">        * sig : An array of wavenumber [m^-1]</span>
+<span class="sd">        * add   : Gets added to the reduced refracive index:</span>
+<span class="sd">          default: 1. Use 1 to obtain the actual refractive index.</span>
+
+<span class="sd">        **Returns:**  add + n-1 </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lambs</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">sig</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Nair</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="n">add</span><span class="p">)</span></div>
+                
+<div class="viewcode-block" id="wet_atmo.get_Nair_old"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.get_Nair_old">[docs]</a>    <span class="k">def</span> <span class="nf">get_Nair_old</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the refractive index (or reduced refractive index)</span>
+<span class="sd">        for humid air at the given wavelengths.</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * lambs : An array of wavelengths [m]</span>
+<span class="sd">        * add   : Gets added to the reduced refracive index:</span>
+<span class="sd">          default: 0. Use 1 to obtain the actual refractive index.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Using get_Nair_old() which is deprecated&quot;</span><span class="p">)</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This uses mol_dens...&quot;</span><span class="p">)</span>
+        <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is deprecated&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span> <span class="o">=</span> <span class="n">add</span> <span class="o">+</span> <span class="n">n_air</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span>
                          <span class="n">pres</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pres</span><span class="p">,</span>
                          <span class="n">rhum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rhum</span><span class="p">,</span>
                          <span class="n">co2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">co2</span><span class="p">,</span>
                          <span class="n">eso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">eso</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Nair</span></div>
+    
 <div class="viewcode-block" id="wet_atmo.report_setup"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.wet_atmo.report_setup">[docs]</a>    <span class="k">def</span> <span class="nf">report_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================================&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -248,6 +226,141 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CO2 content : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">co2</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ppm&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Relative humidity : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rhum</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================================&quot;</span><span class="p">)</span></div></div>
+<span class="c1">######################################################################</span>
+<span class="c1"># Update chunk</span>
+<span class="c1">######################################################################</span>
+<div class="viewcode-block" id="n_hat2nm1"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.n_hat2nm1">[docs]</a><span class="k">def</span> <span class="nf">n_hat2nm1</span><span class="p">(</span><span class="n">nhat</span><span class="p">,</span> <span class="n">P_i</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Works for pure gazes:</span>
+<span class="sd">    </span>
+<span class="sd">    **Arguments:**</span>
+<span class="sd">    * P_i  : Partial pressure [Pa]</span>
+<span class="sd">    * T    : Temperature [K]</span>
+<span class="sd">    </span>
+<span class="sd">    **Return:** add + n-1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">add</span> <span class="o">+</span> <span class="n">nhat</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">P_i</span> <span class="o">/</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">R</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span></div>
+    
+
+<div class="viewcode-block" id="compile_table"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.compile_table">[docs]</a><span class="k">def</span> <span class="nf">compile_table</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compiles a Mathar table into an interpolation function</span>
+<span class="sd">    </span>
+<span class="sd">    **Arguments:**</span>
+<span class="sd">    * file  : The url for a .dat file containing:</span>
+<span class="sd">        - in column 1 the frequency in THz</span>
+<span class="sd">        - in column 2 the reduced refracive index [fs/(mol/m^2)].</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns:** A function that computes the reduced the reduced</span>
+<span class="sd">    refractive index. Note that it switches from fs to s: [s/(mol/m^2)].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">atab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">freqM</span> <span class="o">=</span> <span class="n">atab</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">ref_indexM</span> <span class="o">=</span> <span class="n">atab</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">spline</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">splrep</span><span class="p">(</span><span class="n">freqM</span><span class="p">,</span> <span class="n">ref_indexM</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_n_red</span><span class="p">(</span><span class="n">lam2</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Interpolation of one of the Mathar tables. </span>
+<span class="sd">        Note that we switch to seconds here.</span>
+<span class="sd">        </span>
+<span class="sd">        **Arguments:**</span>
+<span class="sd">        </span>
+<span class="sd">        * lam2  : The wavelength [m]</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns:** the reduced refractive index [s.mol^-1.m^2].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">freq2</span> <span class="o">=</span> <span class="n">m2thz</span><span class="p">(</span><span class="n">lam2</span><span class="p">)</span> <span class="c1"># THz</span>
+        <span class="n">red_index2</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">splev</span><span class="p">(</span><span class="n">freq2</span><span class="p">,</span> <span class="n">spline</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">red_index2</span><span class="o">*</span><span class="mf">1e-15</span>
+    <span class="k">return</span> <span class="n">get_n_red</span></div>
+
+<span class="c1"># Loading tables compiled by Richard Mathar &amp; Jeff Meisner.</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+<span class="n">r_index_co2</span> <span class="o">=</span> <span class="n">compile_table</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="s2">&quot;data/n_mathar_co2.dat&quot;</span><span class="p">)</span>        <span class="c1"># Pure CO2</span>
+<span class="n">r_index_air</span> <span class="o">=</span> <span class="n">compile_table</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="s2">&quot;data/n_mathar_air_370co2.dat&quot;</span><span class="p">)</span> <span class="c1"># Dry air with 370ppm of CO2 </span>
+<span class="n">r_index_h2o</span> <span class="o">=</span> <span class="n">compile_table</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="s2">&quot;data/n_mathar_h2o.dat&quot;</span><span class="p">)</span>        <span class="c1"># Purte H2O</span>
+
+<div class="viewcode-block" id="r_index_DA"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.r_index_DA">[docs]</a><span class="k">def</span> <span class="nf">r_index_DA</span><span class="p">(</span><span class="n">lamb</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subtracting the contribution fo CO2 from the reference air that </span>
+<span class="sd">    is given by Mathar with 370ppm of CO2.</span>
+<span class="sd">    </span>
+<span class="sd">    **Arguments:**</span>
+<span class="sd">    * Wavelength [m]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">F_co2</span> <span class="o">=</span> <span class="mf">370.</span><span class="o">*</span><span class="mf">1e-6</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">r_index_air</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">-</span> <span class="n">r_index_co2</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">*</span> <span class="n">F_co2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">F_co2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_pvsat_buck"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.get_pvsat_buck">[docs]</a><span class="k">def</span> <span class="nf">get_pvsat_buck</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Saturating vapor pressure of H2O</span>
+<span class="sd">    </span>
+<span class="sd">    **Parmameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * T  : Temperature [K]</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns:** P_vsat [Pa]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_C</span> <span class="o">=</span> <span class="n">T</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="n">P_kPA</span> <span class="o">=</span> <span class="mf">0.61121</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="p">(</span><span class="mf">18.678</span> <span class="o">-</span> <span class="n">T_C</span><span class="o">/</span><span class="mf">234.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_C</span><span class="o">/</span><span class="p">(</span><span class="mf">257.14</span> <span class="o">+</span> <span class="n">T_C</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">P_kPA</span> <span class="o">*</span> <span class="mi">1000</span></div>
+<div class="viewcode-block" id="get_Ph2o"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.get_Ph2o">[docs]</a><span class="k">def</span> <span class="nf">get_Ph2o</span><span class="p">(</span><span class="n">Rhum</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * Rhum  : Relative humidity [%]</span>
+<span class="sd">    * T     : Temperature [K]</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns:** The partial pressure of water vapor [Pa]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Ph2o</span> <span class="o">=</span> <span class="n">Rhum</span><span class="o">/</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="n">get_pvsat_buck</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Ph2o</span></div>
+
+<div class="viewcode-block" id="get_Pco2"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.get_Pco2">[docs]</a><span class="k">def</span> <span class="nf">get_Pco2</span><span class="p">(</span><span class="n">co2_ppm</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">ptot</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">    </span>
+<span class="sd">    * co2_ppm : Relative content of CO2 [ppm] (ppmv)</span>
+<span class="sd">    * T       : Temperature [K]</span>
+<span class="sd">    * ptot       : The total pressure of the mixture [Pa]</span>
+<span class="sd">    </span>
+<span class="sd">    **Returns:** The partial pressure of CO2 [Pa]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Fco2</span> <span class="o">=</span> <span class="mf">1e-6</span> <span class="o">*</span> <span class="n">co2_ppm</span>
+    <span class="n">Pco2</span> <span class="o">=</span> <span class="n">Fco2</span><span class="o">*</span><span class="n">ptot</span>
+    <span class="k">return</span> <span class="n">Pco2</span></div>
+
+<div class="viewcode-block" id="get_n_air"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.get_n_air">[docs]</a><span class="k">def</span> <span class="nf">get_n_air</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">g_co2</span><span class="p">,</span> <span class="n">rhum</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">nref</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    * pres  : [mbar]</span>
+<span class="sd">    * g_co2 : [ppmv]</span>
+<span class="sd">    * rhum  : [%]</span>
+<span class="sd">    * T     : [K]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P_tot</span> <span class="o">=</span> <span class="n">pres</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mbar</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">Pa</span><span class="p">)</span>
+    <span class="n">F_co2</span> <span class="o">=</span> <span class="mf">1e-6</span> <span class="o">*</span> <span class="n">g_co2</span>
+    <span class="n">F_h2o</span> <span class="o">=</span> <span class="n">rhum</span><span class="o">/</span><span class="mi">100</span> <span class="o">*</span> <span class="n">get_pvsat_buck</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="n">P_tot</span>
+    <span class="n">F_da</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">F_co2</span> <span class="o">+</span> <span class="n">F_h2o</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H2O&quot;</span><span class="p">,</span> <span class="n">F_h2o</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CO2&quot;</span><span class="p">,</span> <span class="n">F_co2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DA&quot;</span><span class="p">,</span> <span class="n">F_da</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">n_ref</span> <span class="o">=</span> <span class="p">((</span><span class="n">r_index_DA</span><span class="p">(</span><span class="n">lamb</span><span class="p">))</span><span class="o">*</span><span class="n">F_da</span> <span class="o">+</span> <span class="p">(</span><span class="n">r_index_co2</span><span class="p">(</span><span class="n">lamb</span><span class="p">))</span><span class="o">*</span><span class="n">F_co2</span> <span class="o">+</span> <span class="p">(</span><span class="n">r_index_h2o</span><span class="p">(</span><span class="n">lamb</span><span class="p">))</span><span class="o">*</span><span class="n">F_h2o</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nref</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n_ref</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n_compound_air</span> <span class="o">=</span> <span class="n">add</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">P_tot</span><span class="o">/</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">R</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_ref</span>
+        <span class="k">return</span> <span class="n">n_compound_air</span></div>
+
+
+
+
+
+<span class="c1">#######################################################################</span>
+<span class="c1"># End of new block</span>
+<span class="c1">#######################################################################</span>
         
     
 <span class="c1">#class simulated_air(object):</span>
@@ -274,7 +387,36 @@
 <span class="c1">#                    rhum=self.rhum, co2=self.co2, ph2o=self.ph2o,</span>
 <span class="c1">#                    eso=self.eso, column=self.column) </span>
         
-    
+<div class="viewcode-block" id="get_n_CO2"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.get_n_CO2">[docs]</a><span class="k">def</span> <span class="nf">get_n_CO2</span><span class="p">(</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **Parameters :**</span>
+<span class="sd">    </span>
+<span class="sd">    * wavelength: [m] </span>
+<span class="sd">    * add : Value to add to n-1</span>
+<span class="sd">      (default: 0 returns n-1)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns the refractive index of CO2 from</span>
+<span class="sd">    dispersion formula found at</span>
+<span class="sd">    https://refractiveindex.info/?shelf=main&amp;book=CO2&amp;page=Bideau-Mehu</span>
+<span class="sd">    </span>
+<span class="sd">    n_absolute: true</span>
+<span class="sd">    wavelength_vacuum: true</span>
+<span class="sd">    temperature: 0 °C</span>
+<span class="sd">    pressure: 101325 Pa</span>
+<span class="sd">    </span>
+<span class="sd">    Ref:</span>
+<span class="sd">    A. Bideau-Mehu, Y. Guern, R. Abjean and A. Johannin-Gilles. Interferometric</span>
+<span class="sd">    determination of the refractive index of carbon dioxide in the ultraviolet</span>
+<span class="sd">    region, Opt. Commun. 9, 432-434 (1973)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Using get_n_CO2() which is deprecated&quot;</span><span class="p">)</span>
+    <span class="n">logit</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is deprecated. Use n_hat2nm1(r_index_co2(lambs), P, T) instead&quot;</span><span class="p">)</span>
+    <span class="n">lambs</span> <span class="o">=</span> <span class="n">wavelength</span><span class="o">*</span><span class="mf">1e6</span>
+    <span class="n">Bs_CO2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.991e-2</span><span class="p">,</span> <span class="mf">1.4472e-3</span><span class="p">,</span> <span class="mf">6.42941e-5</span><span class="p">,</span> <span class="mf">5.21306e-5</span><span class="p">,</span> <span class="mf">1.46847e-6</span><span class="p">])</span>
+    <span class="n">Cs_CO2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">166.175</span><span class="p">,</span> <span class="mf">79.609</span><span class="p">,</span> <span class="mf">56.3064</span><span class="p">,</span> <span class="mf">46.0196</span><span class="p">,</span> <span class="mf">0.055178</span><span class="p">])</span><span class="c1">#0.0584738</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">aB</span><span class="o">/</span><span class="p">(</span><span class="n">aC</span><span class="o">-</span><span class="n">lambs</span><span class="o">**-</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">aB</span><span class="p">,</span> <span class="n">aC</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Bs_CO2</span><span class="p">,</span> <span class="n">Cs_CO2</span><span class="p">)])</span>
+    <span class="n">n_CO2</span> <span class="o">=</span> <span class="n">add</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n_CO2</span></div>
     
 
 <div class="viewcode-block" id="n_air"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.n_air">[docs]</a><span class="k">def</span> <span class="nf">n_air</span><span class="p">(</span><span class="n">lambda_</span> <span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mf">273.15</span><span class="o">+</span><span class="mf">15.</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="mf">1000.</span><span class="p">,</span>
@@ -349,7 +491,11 @@
         <span class="c1"># Refractive index of pure air...</span>
         <span class="n">k0</span><span class="p">,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span> <span class="o">=</span> <span class="mf">238.0185</span><span class="p">,</span> <span class="mf">5792105.</span><span class="p">,</span> <span class="mf">57.362</span> <span class="p">,</span> <span class="mf">167917.</span>       <span class="c1"># um^-2</span>
         <span class="n">s2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">/</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">*</span> <span class="mf">1e+6</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>                                  <span class="c1"># um^-2</span>
-        <span class="n">naxs</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="o">/</span><span class="p">(</span><span class="n">k0</span> <span class="o">-</span> <span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="n">k3</span><span class="o">/</span><span class="p">(</span><span class="n">k2</span> <span class="o">-</span> <span class="n">s2</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="mf">0.534e-6</span><span class="o">*</span><span class="p">(</span><span class="n">co2</span> <span class="o">-</span> <span class="mf">450.</span><span class="p">))</span> <span class="c1"># in reality this is n-1</span>
+        <span class="c1">#naxs = 1e-8*(k1/(k0 - s2) + k3/(k2 - s2))*(1. + 0.534e-6*(co2 - 450.)) # in reality this is n-1</span>
+        <span class="c1"># Using the new n_CO2 definition instead</span>
+        <span class="n">naxs</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="o">/</span><span class="p">(</span><span class="n">k0</span> <span class="o">-</span> <span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="n">k3</span><span class="o">/</span><span class="p">(</span><span class="n">k2</span> <span class="o">-</span> <span class="n">s2</span><span class="p">))</span> <span class="c1"># in reality this is n-1</span>
+        <span class="n">naxs</span> <span class="o">+=</span> <span class="n">get_n_CO2</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span><span class="o">*</span><span class="n">co2</span><span class="o">/</span><span class="mf">1e6</span>
+        
 
         <span class="c1"># and pure water vapor, using the Hill &amp; Lawrence approximation in IR, Ciddor in VIS</span>
         <span class="c1">#n=N_ELEMENTS(lambda) &amp; nws=FLTARR(n)</span>
@@ -360,6 +506,7 @@
 
         <span class="c1"># Compute the densities of air, standard dry air, water vapor and standard water vapor</span>
         <span class="n">daxs</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="mf">288.15</span><span class="p">,</span> <span class="mf">1013.25</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">450.</span><span class="p">)</span><span class="c1"># !RL Added the CO2 value. Bug?</span>
+        <span class="c1">#daxs *= 1.e6/450.</span>
         <span class="n">dummy</span><span class="p">,</span> <span class="n">dws</span> <span class="o">=</span> <span class="n">mol_dens</span><span class="p">(</span><span class="mf">293.15</span><span class="p">,</span> <span class="mf">13.33</span><span class="p">,</span> <span class="mf">100.</span><span class="p">,</span> <span class="mf">450.</span><span class="p">,</span> <span class="n">wvdens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># Compute the phase index</span>
@@ -493,8 +640,7 @@
 <span class="c1">####################################################################################</span>
 
     
-<span class="kn">import</span> <span class="nn">pathlib</span>
-<span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interp</span>
+
 
 
 <div class="viewcode-block" id="n_h2o"><a class="viewcode-back" href="../../scifysim.n_air.html#scifysim.n_air.n_h2o">[docs]</a><span class="k">def</span> <span class="nf">n_h2o</span><span class="p">(</span><span class="n">lambda_</span><span class="p">,</span> <span class="n">approx</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -638,7 +784,7 @@
         <span class="n">freqs</span> <span class="o">=</span> <span class="n">freq1</span>
         <span class="n">nh2o</span> <span class="o">=</span> <span class="n">nh2o1</span>
     <span class="k">else</span> <span class="p">:</span>
-        <span class="k">if</span> <span class="n">separate</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">separate</span> <span class="p">:</span>
             <span class="n">lambda_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">lam1</span><span class="p">,</span> <span class="n">lam2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">freq1</span><span class="p">,</span> <span class="n">freq2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">nh2o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">nh2o1</span><span class="p">,</span> <span class="n">nh2o2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
@@ -728,46 +874,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Romain Laugier.
-
-    </p>
+    <p>&#169; Copyright 2022, Romain Laugier.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

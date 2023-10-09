@@ -1,96 +1,49 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>scifysim.sources &mdash; SCIFYsim 0.2.2 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>scifysim.sources &mdash; SCIFYsim dev-0.2.3 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../index.html" class="icon icon-home"> SCIFYsim
           
-
-          
+          <a href="../../index.html" class="icon icon-home">
+            SCIFYsim
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.2
+                dev-0.2.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
@@ -115,73 +68,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">SCIFYsim</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-<div class="git-ribbon">
-  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
-</div>
-
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>scifysim.sources</li>
-    
-    
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scifysim.sources</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for scifysim.sources</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -193,11 +103,24 @@
 <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span>
 <span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interp</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">VEGA_TEMPERATURE</span> <span class="o">=</span> <span class="mf">9600.</span> <span class="c1"># K</span>
+<span class="n">VEGA_DIST</span> <span class="o">=</span> <span class="mf">7.68</span> <span class="c1"># pc</span>
+<span class="n">VEGA_RADIUS</span> <span class="o">=</span> <span class="mf">2.36</span> <span class="c1"># R_sun</span>
+
 
 <span class="n">parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
 
+<span class="c1">#qe_file = parent/&quot;data/hawaii2rg_qe.csv&quot;</span>
+<span class="c1">#qe_data = np.loadtxt(znse_file,delimiter=&quot;;&quot;)</span>
+<span class="c1">#qe_interp = interp.interp1d(qe_data[:,0]*1e-6, qe_data[:,1],</span>
+<span class="c1">#                             kind=order, bounds_error=False )</span>
+
 <div class="viewcode-block" id="transmission_emission"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission">[docs]</a><span class="k">class</span> <span class="nc">transmission_emission</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="transmission_emission.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">trans_file</span><span class="o">=</span><span class="s2">&quot;data/MK_trans_sfs.txt&quot;</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">285</span><span class="p">,</span>
+<div class="viewcode-block" id="transmission_emission.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trans_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">285</span><span class="p">,</span>
                  <span class="n">airmass</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">observatory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;noname&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reproduces a basic behaviour in emission-transmission of a medium in the optical</span>
@@ -216,6 +139,8 @@
 <span class="sd">            object contains an ss attribute, it already</span>
 <span class="sd">            takes into account the transmission through the insturment.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">trans_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No default value for transmission file&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trans_file</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
             <span class="c1"># Flat value from 1 nm to 50µm</span>
@@ -243,6 +168,8 @@
 <span class="sd">        * wl            : The wavelength channels to compute [m]</span>
 <span class="sd">        * bright        : If True: compute the brightness</span>
 <span class="sd">          if False: compute the transmission</span>
+<span class="sd">          </span>
+<span class="sd">        [ph/s/sr]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">bright</span><span class="p">:</span>
@@ -269,8 +196,10 @@
         <span class="c1"># Add offset of 3.25e-3 Jy/as² to account fot OH emission lines (see Vanzi &amp; Hainaut)</span>
         <span class="c1">#if bright:</span>
         <span class="c1">#    sky[wl&lt;2.5e-6] = sky[wl&lt;2.5e-6] + 3.25e-3*units.sr.to(units.arcsec**2)</span>
+
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">wl</span><span class="o">&lt;</span><span class="mf">2.5e-6</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Must account for OH emisison lines&quot;</span><span class="p">)</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;OH emission lines are not accounted for&quot;</span><span class="p">)</span>
+            <span class="c1">## raise NotImplementedError(&quot;Must account for OH emisison lines&quot;)</span>
         
         <span class="k">return</span> <span class="n">sky</span></div>
         
@@ -393,6 +322,81 @@
     <span class="n">A</span><span class="o">.</span><span class="n">downstream</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
+<div class="viewcode-block" id="enclosure"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.enclosure">[docs]</a><span class="k">class</span> <span class="nc">enclosure</span><span class="p">(</span><span class="n">transmission_emission</span><span class="p">):</span>
+<div class="viewcode-block" id="enclosure.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.enclosure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">trans_file</span><span class="o">=</span><span class="s2">&quot;data/hawaii2rg_qe.csv&quot;</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">285</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;noname&quot;</span><span class="p">,</span>
+                <span class="n">solid_angle</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reproduces a basic behaviour of an enclosure at a given temperature. </span>
+<span class="sd">        Here, self.trans represents the (1-quantum efficiency) as to be</span>
+<span class="sd">        analogous to optics in transmission.</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * qe            : The quantum efficiency of the detector, including</span>
+<span class="sd">          throughput by intervening glasses/surfaces.</span>
+<span class="sd">        * T             : Temperature of the medium used for emission</span>
+<span class="sd">        * airmass       : When True, scales the effect with the airmass provided by the observatory object</span>
+<span class="sd">        * observatory   : The observatory object used to provided the airmass.</span>
+<span class="sd">        * solid_angle   : The solid angle for this given part of the enclosure</span>
+<span class="sd">          Default: 2pi, the fraction seen by a plane detector.</span>
+<span class="sd">        </span>
+<span class="sd">        .. warning::</span>
+<span class="sd">            Unlike for astrophysical sources, when a transmission_emission</span>
+<span class="sd">            object contains an ss attribute, it already</span>
+<span class="sd">            takes into account the transmission through the insturment.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trans_file</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="c1"># Flat value from 1 nm to 50µm</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qe_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0e-9</span><span class="p">,</span> <span class="n">trans_file</span><span class="p">],</span>
+                                       <span class="p">[</span><span class="mf">50.0e-6</span><span class="p">,</span> <span class="n">trans_file</span><span class="p">]])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trans_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qe_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">parent</span><span class="o">/</span><span class="n">trans_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Requires a float or a file path&quot;</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">trans</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="mf">1e-6</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">qe_file</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">qe_file</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span>
+                                     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span> <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solid_angle</span> <span class="o">=</span> <span class="n">solid_angle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">airmass</span> <span class="o">=</span> <span class="kc">False</span></div>
+            
+<div class="viewcode-block" id="enclosure.get_total_emission"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.enclosure.get_total_emission">[docs]</a>    <span class="k">def</span> <span class="nf">get_total_emission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bright</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">n_sub</span><span class="o">=</span><span class="mi">10</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Similar begaviour as get_trans_emit() but averages the effect over each spectral channel.</span>
+<span class="sd">        </span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * wl            : The center of each wavelength channel. If bandwidth is not provided</span>
+<span class="sd">          (prefered situation) the width of each channel will be set as the spacing</span>
+<span class="sd">          between them (through np.gradient())</span>
+<span class="sd">        * bandwidth     : (deprecated) array of floats providing the width of each spectral channe.</span>
+<span class="sd">        * n_sub         : The number of sub-channel to compute for the calculation. A minimum of 10 is recommended.</span>
+<span class="sd">        * solid_angle   : As this is designed to </span>
+<span class="sd">                        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#</span>
+        <span class="c1"># Little shortcut when bandwidth is not provided: infer it based</span>
+        <span class="c1"># on the band covered by wl</span>
+        <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="n">cen_wl</span> <span class="o">=</span> <span class="n">wl</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">wl</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wl</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wl</span><span class="p">)</span>
+                <span class="n">cen_wl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">wl</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cen_wl</span> <span class="o">=</span> <span class="n">wl</span>
+        
+        <span class="n">lambda_min</span> <span class="o">=</span> <span class="n">wl</span> <span class="o">-</span> <span class="n">bandwidth</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">lambda_max</span> <span class="o">=</span> <span class="n">wl</span> <span class="o">+</span> <span class="n">bandwidth</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">os_wl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lambda_min</span><span class="p">,</span> <span class="n">lambda_max</span><span class="p">,</span> <span class="n">n_sub</span><span class="p">)</span>
+        <span class="n">sky</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_trans_emit</span><span class="p">(</span><span class="n">os_wl</span><span class="p">,</span> <span class="n">bright</span><span class="o">=</span><span class="n">bright</span><span class="p">)</span>
+        <span class="n">mean_sky</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sky</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mean_sky</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">solid_angle</span></div></div>
+
+
 <div class="viewcode-block" id="_blackbody"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources._blackbody">[docs]</a><span class="k">class</span> <span class="nc">_blackbody</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="viewcode-block" id="_blackbody.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources._blackbody.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numexpr&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -442,7 +446,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">get_B_lamb_ph</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;f(wavelength[m], T[K]) Computes the Planck law in [ph / s / m^2 / m / sr]&quot;&quot;&quot;</span>
         
         <span class="c1"># For ph / s / m^2 / Hz / sr</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">B_nu_ph</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">B_nu_ph</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> \
                     <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">k_b</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">))</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_B_nu_ph</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">ee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">B_nu_ph</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thesubs</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_B_nu_ph</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">modules</span><span class="o">=</span><span class="n">modules</span><span class="p">)</span>
@@ -478,6 +482,68 @@
                     <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">((</span><span class="n">radius</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">R_sun</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">dist</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">pc</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">flux_density</span></div>
 
+<div class="viewcode-block" id="vega_flux_bin"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.vega_flux_bin">[docs]</a><span class="k">def</span> <span class="nf">vega_flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">VEGA_TEMPERATURE</span><span class="p">,</span>
+                        <span class="n">dist</span><span class="o">=</span><span class="n">VEGA_DIST</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">VEGA_RADIUS</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the flux density for Vega</span>
+<span class="sd">    lambda_range : Wavelenght [m]</span>
+<span class="sd">    T      : temperature default 9600. [K]</span>
+<span class="sd">    dist   : Distance 7.68 [pc]</span>
+<span class="sd">    radius : Star radius 2.36 [R_sun]</span>
+<span class="sd">    </span>
+<span class="sd">    Returns flux density [ph/s/m^2] arriving to earth (no atmosphere).</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fd_unit</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="n">photon</span><span class="o">/</span><span class="n">units</span><span class="o">.</span><span class="n">s</span><span class="o">/</span><span class="n">units</span><span class="o">.</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">fd_unit</span> <span class="o">*</span> <span class="n">distant_blackbody</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>
+                            <span class="n">dist</span><span class="o">=</span><span class="n">dist</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="magT2flux_bin"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.magT2flux_bin">[docs]</a><span class="k">def</span> <span class="nf">magT2flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="n">base_fd</span> <span class="o">=</span> <span class="n">mag2flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">mag</span><span class="p">)</span>
+    <span class="n">body_sd</span> <span class="o">=</span> <span class="n">blackbody</span><span class="o">.</span><span class="n">get_B_lamb_ph</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+    <span class="c1"># vega_sd = blackbody.get_B_lamb_ph(lambda_range, VEGA_TEMPERATURE)</span>
+    <span class="n">spectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">base_fd</span><span class="p">)</span> <span class="o">*</span> <span class="n">body_sd</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">body_sd</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">spectrum</span></div>
+    
+    
+<div class="viewcode-block" id="mag2flux_bin"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.mag2flux_bin">[docs]</a><span class="k">def</span> <span class="nf">mag2flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">mag</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **Arguments**:</span>
+<span class="sd">    * lambda_range : Wavelength channels [m]</span>
+<span class="sd">    * mag          : Magnitud [vega]</span>
+
+<span class="sd">    Returns: Flux density [ph/s/m^2] arriving to earth</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vega_fd</span> <span class="o">=</span> <span class="n">vega_flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">)</span>
+    <span class="n">afd</span> <span class="o">=</span> <span class="n">vega_fd</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">mag</span><span class="o">/</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">afd</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="flux_bin2mag"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.flux_bin2mag">[docs]</a><span class="k">def</span> <span class="nf">flux_bin2mag</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">fd</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **Arguments**: </span>
+<span class="sd">    * lambda_range : Wavelength channels [m]</span>
+<span class="sd">    * fd           : flux density [ph/s/m^2]</span>
+<span class="sd">      arriving to earth (no atmo)</span>
+
+<span class="sd">    Returns : magnitude (vega) for each wavelength</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vega_fd</span> <span class="o">=</span> <span class="n">vega_flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">)</span>
+    <span class="n">amag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fd</span> <span class="o">/</span> <span class="n">vega_fd</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">amag</span></div>
+
+<div class="viewcode-block" id="ABmag2Jy"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.ABmag2Jy">[docs]</a><span class="k">def</span> <span class="nf">ABmag2Jy</span><span class="p">(</span><span class="n">ABmag</span><span class="p">):</span>
+    <span class="n">fnu</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="n">jansky</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">((</span><span class="n">ABmag</span> <span class="o">-</span> <span class="mf">8.9</span><span class="p">)</span><span class="o">/-</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fnu</span></div>
+
+<div class="viewcode-block" id="Jy2ABmag"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.Jy2ABmag">[docs]</a><span class="k">def</span> <span class="nf">Jy2ABmag</span><span class="p">(</span><span class="n">fnu</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fnu</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">fnu</span><span class="o">.</span><span class="n">unit</span> <span class="ow">is</span> <span class="n">units</span><span class="o">.</span><span class="n">jansky</span>
+        <span class="n">myfnu</span> <span class="o">=</span> <span class="n">fnu</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">myfnu</span> <span class="o">=</span> <span class="n">fnu</span>
+    <span class="n">amag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">myfnu</span><span class="p">)</span> <span class="o">+</span> <span class="mf">8.90</span>
+    <span class="k">return</span> <span class="n">amag</span> </div>
+
 <div class="viewcode-block" id="group"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.group">[docs]</a><span class="k">class</span> <span class="nc">group</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Just a simple object to structure some data.</span>
@@ -506,14 +572,21 @@
         <span class="c1"># Building the transmission chain</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_sky</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;t_sky&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_vlti</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;vlti&quot;</span><span class="p">,</span> <span class="s2">&quot;T_vlti&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sky_trans_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;tfile&quot;</span><span class="p">)</span>
         
         
         <span class="c1"># Creating absorbtion / emission chain:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trans_file</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optics&quot;</span><span class="p">,</span> <span class="s2">&quot;transfile_collecting_optics&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sky</span> <span class="o">=</span> <span class="n">transmission_emission</span><span class="p">(</span><span class="n">trans_file</span><span class="o">=</span><span class="s2">&quot;data/MK_trans_sfs.txt&quot;</span><span class="p">,</span>
-                                         <span class="n">T</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_sky</span><span class="p">,</span> <span class="n">airmass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                         <span class="n">observatory</span><span class="o">=</span><span class="n">director</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span>
-                                         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Sky&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">director</span><span class="o">.</span><span class="n">space</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sky</span> <span class="o">=</span> <span class="n">transmission_emission</span><span class="p">(</span><span class="n">trans_file</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                                             <span class="n">T</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                                             <span class="n">observatory</span><span class="o">=</span><span class="n">director</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span>
+                                             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Sky&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sky</span> <span class="o">=</span> <span class="n">transmission_emission</span><span class="p">(</span><span class="n">trans_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sky_trans_file</span><span class="p">,</span>
+                                             <span class="n">T</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_sky</span><span class="p">,</span> <span class="n">airmass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                             <span class="n">observatory</span><span class="o">=</span><span class="n">director</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span>
+                                             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Sky&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">UT</span> <span class="o">=</span> <span class="n">transmission_emission</span><span class="p">(</span><span class="n">trans_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trans_file</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_vlti</span><span class="p">,</span>
                                        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;UT_optics&quot;</span><span class="p">)</span>
         <span class="n">n_warm_optics</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;optics&quot;</span><span class="p">,</span> <span class="s2">&quot;n_warm_optics&quot;</span><span class="p">)</span>
@@ -586,8 +659,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span>
         <span class="c1"># self.ang_radius is in radians</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">pc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">R_sun</span><span class="p">))</span>
-        <span class="n">total_solid_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># disk section [sr]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">total_flux_density</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distant_blackbody</span><span class="p">()</span><span class="o">/</span> <span class="n">total_solid_angle</span> <span class="c1"># [ph / s / m^2 / sr]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_solid_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># disk section [sr]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_flux_density</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distant_blackbody</span><span class="p">()</span><span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_solid_angle</span> <span class="c1"># [ph / s / m^2 / sr]</span>
         
         <span class="k">if</span> <span class="n">resolved</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">build_grid</span><span class="p">(</span><span class="n">angular_res</span><span class="p">,</span> <span class="n">radial_res</span><span class="p">)</span>
@@ -633,7 +706,8 @@
         
         <span class="bp">self</span><span class="o">.</span><span class="n">dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dtheta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dr</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dtheta</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dr</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dtheta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">sr</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="c1"># In sr</span></div>
         
 <div class="viewcode-block" id="resolved_source.get_spectrum_map"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.resolved_source.get_spectrum_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_spectrum_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -666,7 +740,130 @@
         <span class="c1">#Discretization by spectral bins</span>
         <span class="n">flux_density</span> <span class="o">=</span> <span class="n">blackbody</span><span class="o">.</span><span class="n">get_B_lamb_ph</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">dlambda</span> \
                         <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">R_sun</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">pc</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="c1">#That gives the scaling of the flux density by the distance</span>
-        <span class="k">return</span> <span class="n">flux_density</span></div></div>
+        <span class="k">return</span> <span class="n">flux_density</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">L</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the luminosity (in solar luminosity)</span>
+<span class="sd">        returns the approximate star luminosity based on blackbody</span>
+<span class="sd">        and the Stefan-Boltzman law.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">R_sun</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">m</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">sigma_sb</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">K</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
+        
+        <span class="k">return</span> <span class="n">P</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">L_sun</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="exozodi_simple"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple">[docs]</a><span class="k">class</span> <span class="nc">exozodi_simple</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="exozodi_simple.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span>
+                 <span class="n">star</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> 
+                 <span class="n">angular_res</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">radial_res</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">),</span>
+                 <span class="n">build_map</span><span class="o">=</span><span class="kc">True</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * distance             : Distance of the source [pc]</span>
+<span class="sd">        * radius             : The radius of the source [R_sun]</span>
+<span class="sd">        * star                 : a star object</span>
+<span class="sd">        * z                    : The amount of zodi  [zodi]</span>
+<span class="sd">        * L_star               : the star luminosity [L_sun]</span>
+<span class="sd">        * angular_res          : Number of bins in position angle</span>
+<span class="sd">        * radial_res           : Number of bins in radius</span>
+<span class="sd">        * offset               : Offset of the source radial ([mas], [deg])</span>
+<span class="sd">        * build_map            : Whether to precompute a mapped spectrum </span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        After building the map, ``self.ss`` (wl, pos_x, pos_y) contains the map</span>
+<span class="sd">        of flux density corresponding to positions ``self.xx``, ``self.yy``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_range</span> <span class="o">=</span> <span class="n">lambda_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distance</span> <span class="o">=</span> <span class="n">distance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="c1"># self.ang_radius is in radians</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_grid</span><span class="p">(</span><span class="n">angular_res</span><span class="p">,</span> <span class="n">radial_res</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">pc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">R_sun</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_solid_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># disk section [sr]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_flux_density</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distant_blackbody</span><span class="p">()</span><span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_solid_angle</span> <span class="c1"># [ph / s / m^2 / sr]</span>
+
+         <span class="c1"># calculate the parameters required by Kennedy2015</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">star</span> <span class="o">=</span> <span class="n">star</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L_star</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">L</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">T_star</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.34</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_in</span> <span class="o">=</span> <span class="mf">0.034422617777777775</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L_star</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L_star</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma_zero</span> <span class="o">=</span> <span class="mf">7.11889e-8</span>  <span class="c1"># Sigma_{m,0} from Kennedy+2015 (doi:10.1088/0067-0049/216/2/23)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">exozodiacal_disk</span><span class="p">()</span></div>
+     
+<div class="viewcode-block" id="exozodi_simple.build_grid"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.build_grid">[docs]</a>    <span class="k">def</span> <span class="nf">build_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angular_res</span><span class="p">,</span> <span class="n">radial_res</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Routine used to construct resolved source:</span>
+<span class="sd">        </span>
+<span class="sd">        **Creates** self.xx, self.yy, self.ds, self.theta, self.r</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">radial_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span><span class="o">/</span><span class="n">radial_res</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">angular_res</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="o">+</span><span class="n">radial_step</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span><span class="o">-</span><span class="n">radial_step</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">radial_res</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="p">)</span>
+        <span class="c1"># Angular positions referenced East of North</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xx</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">rad</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="p">)</span> \
+                    <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yy</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">rad</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="p">)</span> \
+                    <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtheta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dr</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dtheta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">sr</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="c1"># In sr</span></div>
+        
+<div class="viewcode-block" id="exozodi_simple.get_spectrum_map"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.get_spectrum_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_spectrum_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maps self.total_flux_density</span>
+<span class="sd">        </span>
+<span class="sd">        This **produces** numerical integration over solid angle elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">themap</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">total_flux_density</span><span class="p">[:,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:,]</span> <span class="c1">#self.r[None,:,:]*self.dr[None,:,:]*self.dtheta[None,:,:]</span>
+        <span class="k">return</span> <span class="n">themap</span></div>
+    
+<div class="viewcode-block" id="exozodi_simple.build_spectrum_map"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.build_spectrum_map">[docs]</a>    <span class="k">def</span> <span class="nf">build_spectrum_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The map is saved in a flat shape</span>
+<span class="sd">        xx_f and yy_f are created to be flat versions of the coordinates.</span>
+<span class="sd">        ss is a total flux (ph/s/m^2) at the entrance of earth atmosphere.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spectrum_map</span><span class="p">()</span><span class="o">.</span><span class="n">value</span> <span class="c1"># Fixing a bug that appears in the spectrograph?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xx_f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yy_f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xx_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx_f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yy_f</span><span class="p">)</span></div>
+        
+
+<div class="viewcode-block" id="exozodi_simple.exozodiacal_disk"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.exozodiacal_disk">[docs]</a>    <span class="k">def</span> <span class="nf">exozodiacal_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        * z       : Zodi level [solar zodiacal level]</span>
+<span class="sd">        * L_star  : Star luminosity [L_sun]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span>
+        <span class="n">L_star</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span>
+        
+        <span class="n">r_mas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">r_au</span> <span class="o">=</span> <span class="n">r_mas</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">pc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">au</span><span class="p">))</span>
+        <span class="n">t_dust</span> <span class="o">=</span> <span class="mf">278.3</span><span class="o">*</span><span class="n">L_star</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span><span class="o">*</span><span class="n">r_au</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">r_au</span><span class="p">)</span>
+        <span class="n">sigma</span><span class="p">[</span><span class="n">r_au</span><span class="o">&gt;=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_in</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma_zero</span> <span class="o">*</span> <span class="n">z</span> <span class="o">*</span> <span class="p">(</span><span class="n">r_au</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_0</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+
+        <span class="n">dlambda</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">)</span>
+        <span class="c1">#Discretization by spectral bins</span>
+        <span class="n">b_lamb</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:]</span> <span class="o">*</span> <span class="n">blackbody</span><span class="o">.</span><span class="n">get_B_lamb_ph</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">t_dust</span><span class="p">)</span> <span class="c1"># [ph / s /m^2 / m / sr]</span>
+        <span class="n">b_1</span> <span class="o">=</span> <span class="n">b_lamb</span> <span class="o">*</span> <span class="n">dlambda</span> <span class="c1"># [ph/s/m^2/sr]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ss</span> <span class="o">=</span> <span class="n">b_1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_sr</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:]</span> <span class="c1"># [ph/s/m^2]</span>
+        <span class="c1"># f(wavelength[m], T[K]) Computes the Planck law in [ph / s / m^2 / m / sr]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_flux_density</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ss</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span></div></div>
         
 
 
@@ -740,50 +937,35 @@
         <span class="c1">#self.f = Piecewise((1, self.r&lt;=radius),</span>
         <span class="c1">#                   (0, self.r&gt;radius))</span>
 
+
         
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Romain Laugier.
-
-    </p>
+    <p>&#169; Copyright 2022, Romain Laugier.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

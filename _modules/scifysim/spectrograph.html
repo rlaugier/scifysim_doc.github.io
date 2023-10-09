@@ -1,96 +1,49 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>scifysim.spectrograph &mdash; SCIFYsim 0.2.2 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>scifysim.spectrograph &mdash; SCIFYsim dev-0.2.3 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../index.html" class="icon icon-home"> SCIFYsim
           
-
-          
+          <a href="../../index.html" class="icon icon-home">
+            SCIFYsim
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.2
+                dev-0.2.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
@@ -115,80 +68,39 @@
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">SCIFYsim</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-<div class="git-ribbon">
-  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
-</div>
-
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>scifysim.spectrograph</li>
-    
-    
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scifysim.spectrograph</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for scifysim.spectrograph</h1><div class="highlight"><pre>
 <span></span><span class="c1"># This module is designed </span>
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numexpr</span> <span class="k">as</span> <span class="nn">ne</span>
+<span class="kn">import</span> <span class="nn">scifysim</span> <span class="k">as</span> <span class="nn">sf</span>
 <span class="kn">from</span> <span class="nn">kernuller</span> <span class="kn">import</span> <span class="n">fprint</span>
 <span class="kn">from</span> <span class="nn">.utilities</span> <span class="kn">import</span> <span class="n">ee</span>
+<span class="kn">from</span> <span class="nn">pdb</span> <span class="kn">import</span> <span class="n">set_trace</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 
@@ -222,6 +134,7 @@
 <span class="sd">          (n_wavelength, n_outputs) each. This is only gets updated once per pointing</span>
 <span class="sd">          (at the start of the first make_exposure, upon detection of the absence of a</span>
 <span class="sd">          ``xx_r`` attribute on the first diffuse source).</span>
+<span class="sd">        * ``cold_bg`` : The flux from cold enclosure [e-/s/pixel]</span>
 <span class="sd">        </span>
 <span class="sd">        </span>
 <span class="sd">        For each subexposure (if ``full_record`` is True in calling ``director.make_exposure`` or ``director.make_metrologic_exposure``.</span>
@@ -242,19 +155,55 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dark</span><span class="o">=</span><span class="mf">0.05</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ENF</span><span class="o">=</span><span class="mf">1.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mgain</span><span class="o">=</span><span class="mf">1.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">xs</span> <span class="o">=</span> <span class="mf">18.0e-6</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ys</span> <span class="o">=</span> <span class="mf">18.0e-6</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">well</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;eta&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ron</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;ron&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dark</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;dark&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ENF</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;ENF&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mgain</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;mgain&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_pixsplit</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;spectrograph&quot;</span><span class="p">,</span> <span class="s2">&quot;n_pix_split&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">xs</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;pix_size_x&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ys</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;pix_size_y&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">T_enclosure</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;optics&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_cold_optics&quot;</span><span class="p">)</span>
+            <span class="c1">#self.update_enclosure()</span>
             <span class="n">well</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;well&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">well</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span> <span class="ow">or</span> <span class="n">infinite_well</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">well</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1.e20</span><span class="p">)</span> <span class="c1">#np.inf</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">well</span> <span class="o">=</span> <span class="n">well</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="integrator.update_enclosure"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.update_enclosure">[docs]</a>    <span class="k">def</span> <span class="nf">update_enclosure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wavelength_range</span><span class="p">,</span>
+                        <span class="n">bottom_range</span><span class="o">=</span><span class="mf">2.55e-6</span><span class="p">,</span>
+                        <span class="n">top_range</span><span class="o">=</span><span class="mf">5.8e-6</span><span class="p">,</span>
+                        <span class="n">n_ch_enclosure</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Arguments:**</span>
+<span class="sd">        * wavelength_range : [m] the channels for which to compute the flux.</span>
+<span class="sd">        </span>
+<span class="sd">        Computation of the cold background `self.cold_bg` [e-/s/pix]</span>
+<span class="sd">        and `self.det_sources` [e-/s/channel]</span>
+<span class="sd">        Also gives `self.det_labels` for names</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pix_area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ys</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enclosure</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">enclosure</span><span class="p">(</span><span class="n">solid_angle</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">T_enclosure</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Enclosure&quot;</span><span class="p">)</span>
+        <span class="c1"># Note: the radiometric background is computed summed over a broad wavelength range</span>
+        <span class="c1"># then broadcast over all the spectral channels.</span>
+        <span class="n">enclosure_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">bottom_range</span><span class="p">,</span> <span class="n">top_range</span><span class="p">,</span> <span class="n">n_ch_enclosure</span><span class="p">)</span>
+        <span class="c1"># QE eta is included through the QE curve similarly to transmission</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cold_bg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pix_area</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enclosure</span><span class="o">.</span><span class="n">get_total_emission</span><span class="p">(</span><span class="n">enclosure_range</span><span class="p">,</span>
+                                                                                <span class="n">bright</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                                                <span class="n">n_sub</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span> <span class="o">*</span>\
+                                        <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">wavelength_range</span><span class="p">)</span>
+        <span class="c1">#set_trace()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">det_sources</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cold_bg</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_pixsplit</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dark</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_pixsplit</span><span class="p">)</span> <span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">det_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Cold enclosure&quot;</span><span class="p">,</span> <span class="s2">&quot;Dark current&quot;</span><span class="p">]</span></div>
         
 <div class="viewcode-block" id="integrator.accumulate"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.accumulate">[docs]</a>    <span class="k">def</span> <span class="nf">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -278,9 +227,6 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">std</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span></div>
-<div class="viewcode-block" id="integrator.compute_noised"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.compute_noised">[docs]</a>    <span class="k">def</span> <span class="nf">compute_noised</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Noises not implemented yet&quot;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Noises not implemented yet&quot;</span><span class="p">)</span></div>
 <div class="viewcode-block" id="integrator.get_total"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.get_total">[docs]</a>    <span class="k">def</span> <span class="nf">get_total</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectrograph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_exp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">n_pixsplit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -299,18 +245,22 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">n_pixsplit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Splitting the signal over a number pixels</span>
             <span class="n">thepixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-            <span class="n">thepixels</span> <span class="o">=</span> <span class="p">((</span><span class="n">thepixels</span><span class="o">/</span><span class="n">n_pixsplit</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_pixsplit</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">])</span>
+            <span class="n">thepixels</span> <span class="o">=</span> <span class="p">((</span><span class="n">thepixels</span><span class="o">/</span><span class="n">n_pixsplit</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_pixsplit</span><span class="p">))[:,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">])</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Usin post-defined n_pixsplit&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">thepixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">thepixels</span> <span class="o">=</span> <span class="p">((</span><span class="n">thepixels</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n_pixsplit</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_pixsplit</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exposure</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1.e-8</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">exposure</span> <span class="o">=</span> <span class="n">t_exp</span>
-        <span class="n">obtained_dark</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dark</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">exposure</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgain</span>
+        <span class="n">obtained_dark</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dark</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">exposure</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgain</span> <span class="c1"># This is done per pix</span>
+        <span class="n">obtained_cold_bg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cold_bg</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">exposure</span> <span class="c1"># This is done per pix</span>
         <span class="k">if</span> <span class="n">spectrograph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">acc</span> <span class="o">=</span> <span class="n">spectrograph</span><span class="o">.</span><span class="n">get_spectrum_image</span><span class="p">(</span><span class="n">thepixels</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">acc</span> <span class="o">=</span> <span class="n">thepixels</span>
         <span class="n">electrons</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgain</span>
-        <span class="n">electrons</span> <span class="o">=</span> <span class="n">electrons</span> <span class="o">+</span> <span class="n">obtained_dark</span>
+        <span class="c1">#set_trace()</span>
+        <span class="n">electrons</span> <span class="o">=</span> <span class="n">electrons</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cold_bg</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">obtained_dark</span>
         <span class="n">expectancy</span> <span class="o">=</span> <span class="n">electrons</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">electrons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">electrons</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ENF</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">ENF</span>
         <span class="n">electrons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">electrons</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">well</span><span class="p">)</span>
@@ -321,15 +271,25 @@
                          <span class="s2">&quot;Read noise&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ron</span><span class="p">,</span>
                          <span class="s2">&quot;Dark signal&quot;</span><span class="p">:</span> <span class="n">obtained_dark</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">read</span></div>
+
 <div class="viewcode-block" id="integrator.get_static"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.get_static">[docs]</a>    <span class="k">def</span> <span class="nf">get_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        **Returns** the total value of integrated light from static sources.</span>
+<span class="sd">        **Returns**</span>
+<span class="sd">        * total_static: the total value of integrated light from static sources. [ph/dit/ch]</span>
+<span class="sd">        * dark_current: the dark current [e-/dit/pix]</span>
+<span class="sd">        * enclosure_thermal_background : [e-/dit/pix]</span>
 <span class="sd">        </span>
 <span class="sd">        **Not affected by noises**</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">static</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">)</span>
         <span class="n">total_static</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span> <span class="o">*</span> <span class="n">static</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">total_static</span></div>
+        
+        <span class="n">t_exp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_co</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_subexps</span>
+        <span class="n">enclosure_thermal_background</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cold_bg</span> <span class="o">*</span> <span class="n">t_exp</span>
+        <span class="n">dark_current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dark</span> <span class="o">*</span> <span class="n">t_exp</span>
+        
+        <span class="k">return</span> <span class="n">total_static</span><span class="p">,</span> <span class="n">dark_current</span><span class="p">,</span> <span class="n">enclosure_thermal_background</span></div>
     
 <div class="viewcode-block" id="integrator.get_starlight"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.get_starlight">[docs]</a>    <span class="k">def</span> <span class="nf">get_starlight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">starlight</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    </div>
@@ -534,46 +494,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Romain Laugier.
-
-    </p>
+    <p>&#169; Copyright 2022, Romain Laugier.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,96 +1,49 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>scifysim.injection &mdash; SCIFYsim 0.2.2 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>scifysim.injection &mdash; SCIFYsim dev-0.2.3 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../index.html" class="icon icon-home"> SCIFYsim
           
-
-          
+          <a href="../../index.html" class="icon icon-home">
+            SCIFYsim
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.2
+                dev-0.2.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
@@ -115,73 +68,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">SCIFYsim</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-<div class="git-ribbon">
-  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
-</div>
-
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>scifysim.injection</li>
-    
-    
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scifysim.injection</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for scifysim.injection</h1><div class="highlight"><pre>
 <span></span><span class="c1"># injection.py</span>
 
@@ -627,6 +537,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span> <span class="o">=</span> <span class="n">pupil</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">flatpup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">screen_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flatpup</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pupilsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">pdiam</span>  <span class="o">=</span> <span class="n">pdiam</span>                 <span class="c1"># pupil diameter in meters</span>
@@ -645,7 +556,12 @@
       
         <span class="c1"># final tune-up</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_cam</span><span class="p">()</span>
-        
+        <span class="bp">self</span><span class="o">.</span><span class="n">define_TT</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="focuser.define_TT"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.focuser.define_TT">[docs]</a>    <span class="k">def</span> <span class="nf">define_TT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Defines tip and tilt phase screens based on the pupil</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="o">*</span><span class="n">zernike</span><span class="o">.</span><span class="n">mkzer</span><span class="p">(</span><span class="o">*</span><span class="n">zernike</span><span class="o">.</span><span class="n">noll_2_zern</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
                                  <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">,</span>
                                  <span class="n">limit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -658,6 +574,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ntilt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tilt</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">tilt</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tilt</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span></div>
 
     <span class="c1"># =========================================================================</span>
+
+<div class="viewcode-block" id="focuser.update_pupil"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.focuser.update_pupil">[docs]</a>    <span class="k">def</span> <span class="nf">update_pupil</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pupil</span><span class="p">,</span> <span class="n">reference_pupil</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">pupil</span><span class="o">.</span><span class="n">dtype</span><span class="o">==</span><span class="nb">bool</span><span class="p">),</span> <span class="s2">&quot;Given wrong pupil data type. Needs bool.&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">pupil</span><span class="o">.</span><span class="n">shape</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span> <span class="o">=</span> <span class="n">pupil</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatpup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">screen_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flatpup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pupilsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_signal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pupilsum</span> <span class="o">*</span> <span class="mf">1.</span><span class="o">/</span><span class="n">reference_pupil</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span></div>
+        
 <div class="viewcode-block" id="focuser.update_cam"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.focuser.update_cam">[docs]</a>    <span class="k">def</span> <span class="nf">update_cam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pscale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">between_pixel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Change the filter, the plate scale or the centering of the camera</span>
@@ -712,7 +638,7 @@
 <span class="sd">        - nph: the total number of photons inside the frame</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">nph</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flaot32</span><span class="p">(</span><span class="n">nph</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">nph</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">phot_noise</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1e6</span><span class="p">)</span>
@@ -785,7 +711,7 @@
                 <span class="n">phs</span> <span class="o">+=</span> <span class="n">phscreen</span>
             
         <span class="n">wf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">phs</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mu2phase</span><span class="p">)</span>
-        <span class="n">wf</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>  <span class="c1"># signal scaling</span>
+        <span class="n">wf</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupilsum</span><span class="p">)</span>  <span class="c1"># signal scaling</span>
         <span class="n">wf</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span>                               <span class="c1"># apply the pupil mask</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_phs</span> <span class="o">=</span> <span class="n">phs</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupil</span>                   <span class="c1"># store total phase</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc_pa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sft</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>                      <span class="c1"># focal plane cplx ampl</span>
@@ -805,7 +731,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1">#set_trace()</span>
         <span class="n">phs</span> <span class="o">=</span> <span class="n">phscreen</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-        <span class="n">phs</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">phs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">flatpup</span><span class="p">])</span>
+        <span class="n">phs</span> <span class="o">+=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">phs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">flatpup</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">screen_bias</span>
         <span class="c1"># We do only the needed operations thanks to masking</span>
         <span class="n">wf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pupilsum</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">phs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">flatpup</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mu2phase</span><span class="p">)</span>  <span class="c1"># signal scaling</span>
         <span class="c1">#wf *= self.pupil                               # apply the pupil mask</span>
@@ -853,9 +779,11 @@
 <div class="viewcode-block" id="injector.__init__"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.injector.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pupil</span><span class="o">=</span><span class="s2">&quot;VLT&quot;</span><span class="p">,</span>
                  <span class="n">pdiam</span><span class="o">=</span><span class="mf">8.</span><span class="p">,</span><span class="n">odiam</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">ntelescopes</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">tt_correction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">no_piston</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lambda_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">fiber_mode</span><span class="o">=</span><span class="s2">&quot;diameter&quot;</span><span class="p">,</span>
                  <span class="n">NA</span> <span class="o">=</span> <span class="mf">0.23</span><span class="p">,</span>
                  <span class="n">a</span> <span class="o">=</span> <span class="mf">4.25e-6</span><span class="p">,</span>
                  <span class="n">ncore</span> <span class="o">=</span> <span class="mf">2.7</span><span class="p">,</span>
+                 <span class="n">wl_mfd</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">focal_hrange</span><span class="o">=</span><span class="mf">20.0e-6</span><span class="p">,</span>
                  <span class="n">focal_res</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
                  <span class="n">pscale</span> <span class="o">=</span> <span class="mf">4.5</span><span class="p">,</span>
@@ -901,11 +829,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">atmo_config</span> <span class="o">=</span> <span class="n">atmo_config</span>
         
         <span class="c1">##########</span>
-        <span class="c1"># Temporary</span>
-        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Hard-coded variables:&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">NA</span> <span class="o">=</span> <span class="n">NA</span> <span class="c1">#0.23#0.21</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="c1">#4.25e-6#3.0e-6</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ncore</span> <span class="o">=</span> <span class="n">ncore</span> <span class="c1">#2.7</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fiber_mode</span> <span class="o">=</span> <span class="n">fiber_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NA</span> <span class="o">=</span> <span class="n">NA</span> <span class="c1"># 0.23#0.21</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="c1"># 4.25e-6#3.0e-6</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ncore</span> <span class="o">=</span> <span class="n">ncore</span> <span class="c1"># 2.7</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wl_mfd</span> <span class="o">=</span> <span class="n">wl_mfd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">focal_hrange</span> <span class="o">=</span> <span class="n">focal_hrange</span> <span class="c1"># 20.0e-6</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">focal_res</span> <span class="o">=</span> <span class="n">focal_res</span> <span class="c1"># 50</span>
         
@@ -958,6 +886,8 @@
                 <span class="n">confpath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
         
         <span class="c1"># Numerical aperture</span>
+        <span class="n">fiber_mode</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fiber&quot;</span><span class="p">,</span> <span class="s2">&quot;fiber_mode&quot;</span><span class="p">)</span>
+        <span class="n">wl_mfd</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fiber&quot;</span><span class="p">,</span> <span class="s2">&quot;fib_wav&quot;</span><span class="p">)</span>
         <span class="n">NA</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;fiber&quot;</span><span class="p">,</span> <span class="s2">&quot;num_app&quot;</span><span class="p">)</span>
         <span class="c1"># Core radius</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;fiber&quot;</span><span class="p">,</span> <span class="s2">&quot;core&quot;</span><span class="p">)</span>
@@ -1032,7 +962,6 @@
         <span class="n">focal_res</span> <span class="o">=</span> <span class="n">focal_res</span>
         <span class="n">focal_hrange</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;fiber&quot;</span><span class="p">,</span> <span class="s2">&quot;focal_hrange&quot;</span><span class="p">)</span>
         <span class="n">pscale</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;fiber&quot;</span><span class="p">,</span> <span class="s2">&quot;pscale&quot;</span><span class="p">)</span>
-        <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Needs a nice way to build pupils in here&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pupil</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">pres</span> <span class="o">=</span> <span class="n">theconfig</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;atmo&quot;</span><span class="p">,</span> <span class="s2">&quot;pup_res&quot;</span><span class="p">)</span>
             <span class="n">radius</span> <span class="o">=</span> <span class="n">pres</span><span class="o">//</span><span class="mi">2</span>
@@ -1047,8 +976,10 @@
                  <span class="n">ntelescopes</span><span class="o">=</span><span class="n">ntelescopes</span><span class="p">,</span> <span class="n">tt_correction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">no_piston</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lambda_range</span><span class="o">=</span><span class="n">lambda_range</span><span class="p">,</span>
                  <span class="n">atmo_config</span><span class="o">=</span><span class="n">atmo_config</span><span class="p">,</span>
+                 <span class="n">fiber_mode</span><span class="o">=</span><span class="n">fiber_mode</span><span class="p">,</span>
                  <span class="n">NA</span><span class="o">=</span><span class="n">NA</span><span class="p">,</span>
                  <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span>
+                 <span class="n">wl_mfd</span><span class="o">=</span><span class="n">wl_mfd</span><span class="p">,</span>
                  <span class="n">ncore</span><span class="o">=</span><span class="n">ncore</span><span class="p">,</span>
                  <span class="n">focal_hrange</span><span class="o">=</span><span class="n">focal_hrange</span><span class="p">,</span>
                  <span class="n">focal_res</span><span class="o">=</span><span class="n">focal_res</span><span class="p">,</span>
@@ -1082,7 +1013,12 @@
                                              <span class="n">xsz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">focal_res</span><span class="p">,</span> <span class="n">ysz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">focal_res</span><span class="p">,</span> <span class="n">pupil</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pupil</span><span class="p">,</span>
                                              <span class="n">pscale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pscale</span><span class="p">,</span> <span class="n">pdiam</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pdiam</span><span class="p">,</span>
                                              <span class="n">wl</span><span class="o">=</span><span class="n">wl</span><span class="p">,</span> <span class="n">rm_inj_piston</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rm_inj_piston</span><span class="p">)</span> <span class="k">for</span> <span class="n">wl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fiber</span> <span class="o">=</span> <span class="n">fiber_head</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fiber_mode</span> <span class="o">==</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fiber</span> <span class="o">=</span> <span class="n">gaussian_fiber_head</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fiber_mode</span> <span class="o">==</span> <span class="s2">&quot;diameter&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fiber</span> <span class="o">=</span> <span class="n">fiber_head</span><span class="p">()</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fibfiber</span> <span class="o">=</span> <span class="n">fiber_head</span><span class="p">()</span>
         <span class="c1"># Caluclating the focal length of the focuser</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">focal_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">focal_hrange</span><span class="o">/</span><span class="n">utilities</span><span class="o">.</span><span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">focal_plane</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fov</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">fp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">focal_plane</span><span class="p">:</span>
@@ -1201,6 +1137,12 @@
 <div class="viewcode-block" id="injector.give_interpolated"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.injector.give_interpolated">[docs]</a>    <span class="k">def</span> <span class="nf">give_interpolated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">interpolation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This one will yield the method that interpolates all the injection phasors</span>
+
+<span class="sd">        **Arguments:**</span>
+
+<span class="sd">        * interpolation:  type of interpolation to use based on the computed n (typically n=3)</span>
+<span class="sd">          wavefronts.</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">injection_values</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1222,7 +1164,13 @@
         
 <div class="viewcode-block" id="injector.compute_best_injection"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.injector.compute_best_injection">[docs]</a>    <span class="k">def</span> <span class="nf">compute_best_injection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">interpolation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This one will yield the method that interpolates all the injection phasors</span>
+<span class="sd">        This one will yield the method that interpolates ideal injection</span>
+
+<span class="sd">        **Arguments:**</span>
+
+<span class="sd">        * interpolation:  type of interpolation to use based on the computed n (typically n=3)</span>
+<span class="sd">          wavefronts.</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
         
@@ -1270,9 +1218,12 @@
                 <span class="n">focal_wl</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">for</span> <span class="n">fiberwl</span> <span class="ow">in</span> <span class="n">scope</span><span class="p">:</span>
                     <span class="n">focal_wl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fiberwl</span><span class="o">.</span><span class="n">getimage</span><span class="p">(</span><span class="n">thescreen</span><span class="p">))</span>
+                    <span class="c1"># focal_wl.append(fiberwl.get_injection(thescreen))</span>
                 <span class="n">focal_planes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">focal_wl</span><span class="p">)</span>
             <span class="n">focal_planes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">focal_planes</span><span class="p">)</span>
             <span class="n">injected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">focal_planes</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">lpmap</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:,:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># print(focal_planes.shape)</span>
+            <span class="c1"># injected = np.sum(focal_planes[0])</span>
             <span class="c1">#print(injected.dtype)</span>
             <span class="n">injecteds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">injected</span><span class="p">)</span>
         <span class="n">injecteds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">injecteds</span><span class="p">)</span>
@@ -1543,9 +1494,9 @@
         <span class="k">elif</span> <span class="n">mfd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mfd_value</span> <span class="o">=</span> <span class="n">mfd</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wl_mfd_value</span> <span class="o">=</span> <span class="n">wl_mfd</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">NA_value</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb0</span><span class="o">/</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">w_0</span><span class="p">))</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfd_value</span><span class="p">),</span>
-                                                                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_0</span><span class="p">,</span> <span class="n">mfd</span><span class="o">/</span><span class="mi">2</span><span class="p">)])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">thesubs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NA_value</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb0</span><span class="o">/</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">w_0</span><span class="p">))</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wl_mfd_value</span><span class="p">),</span>
+                                                                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfd_value</span><span class="o">/</span><span class="mi">2</span><span class="p">)]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">thesubs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NA_value</span><span class="p">))</span>
         <span class="c1">#self.consolidate_equation(self.thesubs)</span>
         <span class="k">if</span> <span class="n">apply</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">consolidate_equation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thesubs</span><span class="p">)</span></div>
@@ -1741,12 +1692,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">vig</span> <span class="o">=</span> <span class="n">injector</span><span class="o">.</span><span class="n">injection_rate</span><span class="p">(</span><span class="n">injector</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rr_lambdaond</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vig_func</span> <span class="o">=</span> <span class="n">injector</span><span class="o">.</span><span class="n">injection_rate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vig</span><span class="p">)</span></div>
-<div class="viewcode-block" id="injection_vigneting.vigneted_spectrum"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.injection_vigneting.vigneted_spectrum">[docs]</a>    <span class="k">def</span> <span class="nf">vigneted_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">exptime</span><span class="p">):</span>
+
+<div class="viewcode-block" id="injection_vigneting.vigneted_spectrum"><a class="viewcode-back" href="../../scifysim.injection.html#scifysim.injection.injection_vigneting.vigneted_spectrum">[docs]</a>    <span class="k">def</span> <span class="nf">vigneted_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">exptime</span><span class="p">,</span> <span class="n">transmission</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        </span>
+<span class="sd">        transmission: The first object of the transmission-emission chain</span>
+<span class="sd">        to be used to compute the instrument transmission. This allows to account</span>
+<span class="sd">        for throughtput, including airmass.</span>
+<span class="sd">        </span>
 <span class="sd">        spectrum   : Flux density in ph/s/sr/m^2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">transmission</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">throughput</span> <span class="o">=</span> <span class="n">transmission</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">throughput</span> <span class="o">=</span> <span class="mf">1.</span>
         <span class="n">factor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collecting</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">*</span> <span class="n">exptime</span>
-        <span class="n">vigneted_spectrum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vig_func</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rr_lambdaond</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">spectrum</span> <span class="o">*</span> <span class="n">factor</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:]</span>
+        <span class="n">vigneted_spectrum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vig_func</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rr_lambdaond</span><span class="p">)</span> <span class="o">*</span>\
+                                            <span class="p">(</span><span class="n">spectrum</span> <span class="o">*</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">throughput</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:]</span>
         <span class="k">return</span> <span class="n">vigneted_spectrum</span></div></div>
         
     
@@ -1993,46 +1955,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Romain Laugier.
-
-    </p>
+    <p>&#169; Copyright 2022, Romain Laugier.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

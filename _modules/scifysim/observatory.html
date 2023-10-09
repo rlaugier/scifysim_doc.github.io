@@ -1,96 +1,49 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>scifysim.observatory &mdash; SCIFYsim 0.2.2 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>scifysim.observatory &mdash; SCIFYsim dev-0.2.3 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../index.html" class="icon icon-home"> SCIFYsim
           
-
-          
+          <a href="../../index.html" class="icon icon-home">
+            SCIFYsim
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.2
+                dev-0.2.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
@@ -115,79 +68,39 @@
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">SCIFYsim</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-<div class="git-ribbon">
-  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
-</div>
-
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>scifysim.observatory</li>
-    
-    
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scifysim.observatory</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for scifysim.observatory</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
 
 <span class="kn">import</span> <span class="nn">kernuller</span>
+
+<span class="kn">from</span> <span class="nn">scifysim</span> <span class="kn">import</span> <span class="n">utilities</span>
 
 
 <span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
@@ -215,7 +128,6 @@
 <span class="sd">    target_positions = myobs.get_positions(targets[0], obstimes)</span>
 <span class="sd">    newarray = myobs.get_projected_array(myobs.get_positions(targets, obstimes)[0,0])</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
 
 <div class="viewcode-block" id="observatory"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory">[docs]</a><span class="k">class</span> <span class="nc">observatory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -248,8 +160,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span> <span class="o">=</span> <span class="n">astroplan</span><span class="o">.</span><span class="n">Observer</span><span class="o">.</span><span class="n">at_site</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">timezone</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
         
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">array_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;config&quot;</span><span class="p">)</span>
-        <span class="n">raw_array</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;kernuller.</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array_config</span><span class="p">))</span>
+        <span class="c1"># self.array_config = self.config.get(&quot;configuration&quot;, &quot;config&quot;)</span>
+        <span class="n">raw_array</span><span class="p">,</span> <span class="n">array_config</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">get_raw_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">array_config</span> <span class="o">=</span> <span class="n">array_config</span><span class="p">;</span> <span class="k">del</span> <span class="n">array_config</span>
+        <span class="c1"># raw_array = eval(&quot;kernuller.%s&quot;%(self.array_config))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;order&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">statlocs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span> <span class="o">=</span> <span class="n">raw_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">]</span>
@@ -288,13 +202,13 @@
 
         
 <div class="viewcode-block" id="observatory.build_observing_sequence"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.build_observing_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">build_observing_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                            <span class="n">npoints</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                            <span class="n">npoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * times : a list of UTC time strings (&quot;2020-04-13T00:00:00&quot;)</span>
-<span class="sd">          that define an interval (if npoints is not None,</span>
+<span class="sd">          that define an interval (if npoints is not None),</span>
 <span class="sd">          or the complete list of times (if npoints is None)</span>
 <span class="sd">        * npoints : The number of samples to take on the interval</span>
 <span class="sd">          None means that the times is the whole list</span>
@@ -312,7 +226,7 @@
             <span class="n">obstimes</span> <span class="o">=</span> <span class="n">obs2502</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span> <span class="n">npoints</span><span class="p">)</span>
         <span class="c1">#npoints is None means the times represent a list of times </span>
         <span class="k">else</span><span class="p">:</span> 
-            <span class="n">obstimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Time</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obstimes</span><span class="p">))])</span>
+            <span class="n">obstimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Time</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">))])</span>
             
         <span class="n">totaltime</span> <span class="o">=</span> <span class="p">(</span><span class="n">obstimes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">obstimes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
         <span class="k">if</span> <span class="n">remove_daytime</span><span class="p">:</span>
@@ -369,7 +283,7 @@
         <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">tarPA</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">taraltaz</span><span class="p">,</span> <span class="n">tarPA</span></div>
         
-<div class="viewcode-block" id="observatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="observatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
@@ -379,15 +293,34 @@
 <span class="sd">        </span>
 <span class="sd">        **Returns** the new coordinates for the projected array</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">taraltaz</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">altaz</span>
         <span class="k">if</span> <span class="n">loc_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">loc_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using loc_array </span><span class="si">{</span><span class="n">loc_array</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">arrayaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">((</span><span class="mi">180</span> <span class="o">-</span> <span class="n">taraltaz</span><span class="o">.</span><span class="n">az</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">loc_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="n">altazarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">arrayaz</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-        
-        <span class="k">if</span> <span class="n">PA</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># if PA is True:</span>
+        <span class="c1">#     PA = self.PA</span>
+        <span class="c1">#     radecarray = self.R(PA.rad).dot(altazarray.T).T</span>
+        <span class="c1">#     newarray = radecarray</span>
+            
+        <span class="k">if</span> <span class="n">PA</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span> 
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">altazarray</span>
+        <span class="k">elif</span> <span class="n">PA</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">radecarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PA</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">altazarray</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">radecarray</span>
+            
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">PA</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
             <span class="n">radecarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="n">PA</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">altazarray</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
             <span class="n">newarray</span> <span class="o">=</span> <span class="n">radecarray</span>
-        <span class="k">else</span><span class="p">:</span> 
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">PA</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="c1"># raise TypeError(&quot;Provide PA as a quantity in [rad]&quot;)</span>
+            <span class="n">radecarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span> <span class="o">*</span> <span class="n">PA</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">altazarray</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">radecarray</span>
+        <span class="k">if</span> <span class="n">PA</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;This path is deprecated: &quot;</span><span class="p">)</span>
             <span class="n">newarray</span> <span class="o">=</span> <span class="n">altazarray</span>
             
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
@@ -397,7 +330,7 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">loc_array</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">newarray</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">newarray</span></div>
-<div class="viewcode-block" id="observatory.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="p">):</span>
+<div class="viewcode-block" id="observatory.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
@@ -406,6 +339,8 @@
 <span class="sd">        **Returns** the geomtric piston resutling from the pointing</span>
 <span class="sd">        of the array.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">taraltaz</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">altaz</span>
         <span class="n">arrayaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">((</span><span class="mi">180</span> <span class="o">-</span> <span class="n">taraltaz</span><span class="o">.</span><span class="n">az</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="n">pistons</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">arrayaz</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
@@ -415,7 +350,253 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pistons</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">pistons</span></div></div>
+
+<div class="viewcode-block" id="ObservatoryAltAz"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz">[docs]</a><span class="k">class</span> <span class="nc">ObservatoryAltAz</span><span class="p">(</span><span class="n">observatory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For observatories that are mounted on a single alt-az mount.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ObservatoryAltAz.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
+<span class="sd">        * PA       : parallactic angle to derotate </span>
+<span class="sd">        * loc_array: the array of points to use (None: use self.statlocs)</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the new coordinates for the projected array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">taraltaz</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">altaz</span>
+        <span class="k">if</span> <span class="n">loc_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">loc_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using loc_array </span><span class="si">{</span><span class="n">loc_array</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># For an AltAz mount, no need to project or rotate on Azimuth</span>
+            
+        <span class="k">if</span> <span class="n">PA</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span> 
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">loc_array</span>
+        <span class="k">elif</span> <span class="n">PA</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">radecarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PA</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">loc_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">radecarray</span>
+            
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">PA</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+            <span class="n">radecarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="n">PA</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">loc_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">radecarray</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">PA</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="c1"># raise TypeError(&quot;Provide PA as a quantity in [rad]&quot;)</span>
+            <span class="n">radecarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span> <span class="o">*</span> <span class="n">PA</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">loc_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">radecarray</span>
+        <span class="k">if</span> <span class="n">PA</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;This path is deprecated: &quot;</span><span class="p">)</span>
+            <span class="n">newarray</span> <span class="o">=</span> <span class="n">loc_array</span>
+            
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;=== AltAz position:&quot;</span><span class="p">)</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;az &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">az</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span><span class="mi">180</span><span class="p">))</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;alt &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">loc_array</span><span class="p">))</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">newarray</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">newarray</span></div>
+<div class="viewcode-block" id="ObservatoryAltAz.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        </span>
+<span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
+<span class="sd">        </span>
+<span class="sd">        **Returns** the geomtric piston resutling from the pointing</span>
+<span class="sd">        of the array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">taraltaz</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">altaz</span>
+        <span class="n">pistons</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;=== pistons:&quot;</span><span class="p">)</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;az &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">az</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span><span class="mi">180</span><span class="p">))</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;alt &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="p">))</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pistons</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">pistons</span></div></div>
+
+<div class="viewcode-block" id="SpaceObservatory"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory">[docs]</a><span class="k">class</span> <span class="nc">SpaceObservatory</span><span class="p">(</span><span class="n">observatory</span><span class="p">):</span>
+<div class="viewcode-block" id="SpaceObservatory.__init__"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">multi_dish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        </span>
+<span class="sd">        * statlocs : The station locations (optional)</span>
+<span class="sd">          (east, north) for each aperture shape is (Na, 2)</span>
+<span class="sd">        * location : An astropy.coordinatEarthLocation (default = Paranal)</span>
+<span class="sd">          example: myloc = astroplan.Observer.at_site(&quot;Paranal&quot;, timezone=&quot;UTC&quot;)</span>
+<span class="sd">        * multi_dish : When True, the geometry of the pupil varies depending on the relative position</span>
+<span class="sd">          of the target, expecially in terms of projection of the pupil on the plane</span>
+<span class="sd">          orthogonal to the line of sight.</span>
+<span class="sd">          When False, (not implemented yet) the array is expected to be always facing</span>
+<span class="sd">          the line of sight, as is the case for example with a systme like GLINT. </span>
+<span class="sd">        * config    : A parsed config object.</span>
+<span class="sd">        * verbose  : Activate verbosity in the log</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="k">if</span> <span class="n">location</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span> <span class="o">=</span> <span class="n">location</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dummy_location</span> <span class="o">=</span> <span class="n">astroplan</span><span class="o">.</span><span class="n">Observer</span><span class="o">.</span><span class="n">at_site</span><span class="p">(</span><span class="s2">&quot;paranal&quot;</span><span class="p">,</span> <span class="n">timezone</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_tel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;n_dish&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># self.array_config = self.config.get(&quot;configuration&quot;, &quot;config&quot;)</span>
+        <span class="n">raw_array</span><span class="p">,</span> <span class="n">array_config</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">get_raw_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">array_config</span> <span class="o">=</span> <span class="n">array_config</span><span class="p">;</span> <span class="k">del</span> <span class="n">array_config</span>
+        <span class="c1"># raw_array = eval(&quot;kernuller.%s&quot;%(self.array_config))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;order&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">statlocs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span> <span class="o">=</span> <span class="n">raw_array</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span> <span class="o">=</span> <span class="n">statlocs</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;self.theta&quot;</span><span class="p">)</span>
+        <span class="c1">#R handles the azimuthal rotation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Rs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)],</span>
+                       <span class="p">[</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+        <span class="c1">#P handles the projection due to elevation rotation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ps</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ps</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+        <span class="c1">#C handles the piston due to elevation.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P_M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotation_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;rotation_rate&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_0</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;seq_start&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_0</span><span class="o">.</span><span class="n">to_value</span><span class="p">(</span><span class="s2">&quot;unix&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motion_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;motion_type&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion_type</span> <span class="o">==</span> <span class="s2">&quot;rotation&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">motion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion_type</span> <span class="o">==</span> <span class="s2">&quot;interpolation&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">motion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interp_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;array_time_steps&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interp_y</span> <span class="o">=</span> <span class="n">raw_array</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interpolation_function</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interp_t</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">interp_y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">motion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation</span>
+        <span class="c1"># Initializing by pointing to instant 0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpaceObservatory.time2t"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.time2t">[docs]</a>    <span class="k">def</span> <span class="nf">time2t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Convenience conversion from astropy.Time object</span>
+<span class="sd">        to seconds since the start of observations used internally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">to_value</span><span class="p">(</span><span class="s2">&quot;unix&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_0</span></div>
+
+<div class="viewcode-block" id="SpaceObservatory.interpolation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            **Arguments:**</span>
+<span class="sd">        * t    : time [s]</span>
+<span class="sd">        * loc_array : irrelevant hereo</span>
+<span class="sd">        * full_output : irrelevant here</span>
+<span class="sd">        </span>
+<span class="sd">        **returns:**</span>
+<span class="sd">        * x_A_t  [m] The 3D location of the array of apertures</span>
+
+<span class="sd">        **Computes:**</span>
+<span class="sd">        * x_A_t   [m] The 3D location of the array of apertures</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">loc_array</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Passed loc_array irrelevant argument&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">full_output</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Passed full_output: irrelevant argument&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation_function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpaceObservatory.rotation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.rotation">[docs]</a>    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Einsum:</span>
+<span class="sd">        * i : Input space</span>
+<span class="sd">        * o : Output space</span>
+<span class="sd">        * a : Aperture</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">loc_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">loc_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotation_rate</span> <span class="o">*</span> <span class="n">t</span>
+        <span class="n">R_rotation</span> <span class="o">=</span> <span class="n">basic_z_rotation</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">R_rotation</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Got shape R_rotation </span><span class="si">{</span><span class="n">R_rotation</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">assert</span> <span class="n">loc_array</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_tel</span><span class="p">,</span> <span class="mi">3</span><span class="p">,),</span> <span class="sa">f</span><span class="s2">&quot;Got shape x_M </span><span class="si">{</span><span class="n">loc_array</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">x_A_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;o i, a i -&gt; a o&quot;</span><span class="p">,</span> <span class="n">R_rotation</span><span class="p">,</span> <span class="n">loc_array</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">full_output</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x_A_t</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">R_rotation</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x_A_t</span></div>
+        
+<div class="viewcode-block" id="SpaceObservatory.point"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Refreshes the parameters related to pointing and motion</span>
+<span class="sd">        in particular:</span>
+<span class="sd">        * `self.x_A_t`</span>
+<span class="sd">        * `self.R_rotation` when relevant</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time2t</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">motion_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion_type</span> <span class="o">==</span> <span class="s2">&quot;rotation&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span> <span class="o">=</span> <span class="n">motion_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">motion_result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">R_rotation</span> <span class="o">=</span> <span class="n">motion_result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span> <span class="o">=</span> <span class="n">motion_result</span></div>
+
+    <span class="c1"># def build_observing_sequence(self):</span>
+    <span class="c1">#     pass</span>
+
+<div class="viewcode-block" id="SpaceObservatory.get_position"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">dummy_taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dummy_location</span><span class="o">.</span><span class="n">altaz</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+                            <span class="n">grid_times_targets</span><span class="o">=</span><span class="n">grid_times_targets</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">to_value</span><span class="p">(</span><span class="s2">&quot;unix&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_0</span>
+        <span class="n">x_A_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">aPA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x_A_t</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_A_t</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">dummy_taraltaz</span><span class="p">,</span> <span class="n">aPA</span></div>
+
+<div class="viewcode-block" id="SpaceObservatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">loc_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">loc_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span>
+        <span class="n">x_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;o i , a i -&gt; a o&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">P_M</span><span class="p">,</span> <span class="n">loc_array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x_P</span></div>
+
+<div class="viewcode-block" id="SpaceObservatory.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Computes the distance traveled past the reference plane:</span>
+<span class="sd">        $P_A - A + AM$</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">P_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">()</span>
+        <span class="n">P_A_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span>  <span class="o">-</span> <span class="n">P_A</span>
+        <span class="n">norm_PAA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">P_A_A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">M_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_M</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span>
+        <span class="n">norm_M_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">M_A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">optical_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">norm_M_A</span> <span class="o">+</span> <span class="n">norm_PAA</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">optical_path</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_tel</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;shape of optical path </span><span class="si">{</span><span class="n">norm_M_A</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">optical_path</span></div></div>
+        
+<div class="viewcode-block" id="basic_interpolation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.basic_interpolation">[docs]</a><span class="k">def</span> <span class="nf">basic_interpolation</span><span class="p">(</span><span class="n">t</span><span class="p">,):</span>
+    <span class="k">pass</span></div>
+
+
     
+<div class="viewcode-block" id="basic_z_rotation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.basic_z_rotation">[docs]</a><span class="k">def</span> <span class="nf">basic_z_rotation</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        basic rotation matrix around z</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,],</span>
+                    <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="mi">0</span><span class="p">,],</span>
+                    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">M_R</span></div>
 
 <div class="viewcode-block" id="test_observatory"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.test_observatory">[docs]</a><span class="k">def</span> <span class="nf">test_observatory</span><span class="p">(</span><span class="n">tarname</span><span class="o">=</span><span class="s2">&quot;Tau cet&quot;</span><span class="p">,</span>
                      <span class="n">startend</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2020-10-20T00:00:00&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-10-20T10:00:00&quot;</span><span class="p">],</span>
@@ -463,46 +644,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Romain Laugier.
-
-    </p>
+    <p>&#169; Copyright 2022, Romain Laugier.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

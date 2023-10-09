@@ -1,96 +1,49 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>scifysim.analysis &mdash; SCIFYsim 0.2.2 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>scifysim.analysis &mdash; SCIFYsim dev-0.2.3 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../index.html" class="icon icon-home"> SCIFYsim
           
-
-          
+          <a href="../../index.html" class="icon icon-home">
+            SCIFYsim
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.2
+                dev-0.2.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../setup_guide.html">Installing SCIFYsim</a></li>
@@ -115,73 +68,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../scifysim.utilities.html">scifysim.utilities module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">SCIFYsim</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-<div class="git-ribbon">
-  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
-</div>
-
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>scifysim.analysis</li>
-    
-    
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scifysim.analysis</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for scifysim.analysis</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -190,10 +100,12 @@
 <span class="kn">from</span> <span class="nn">einops</span> <span class="kn">import</span> <span class="n">rearrange</span>
 <span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
 <span class="kn">import</span> <span class="nn">copy</span>
-
+<span class="kn">from</span> <span class="nn">pdb</span> <span class="kn">import</span> <span class="n">set_trace</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">sqrtm</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
 
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span><span class="p">,</span> <span class="n">ncx2</span><span class="p">,</span> <span class="n">norm</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">leastsq</span>
@@ -221,6 +133,14 @@
 <span class="sd">        * integ.mean_starlight (run ``integ.mean_starlight = np.mean(starlights, axis=0)``)</span>
 <span class="sd">        * integ.mean_planetlight (run ``integ.mean_planetlight = np.mean(planetlights, axis=0)``)</span>
 <span class="sd">        * integ.get_static() (run ``integ.static = asim.computed_static``)</span>
+
+<span class="sd">        **Notes:**</span>
+<span class="sd">        </span>
+<span class="sd">        * `self.sigma_ron` in [e-] </span>
+<span class="sd">        * `self.s_enc_bg` is defined in [ph/s/pix]</span>
+<span class="sd">        * `self.s_dark_current` is defined in [e-/s/pix]</span>
+<span class="sd">        * `self.s_d` is defined in [ph/s/ch] (that is **per channel**)</span>
+<span class="sd">        * `self.s_total_bg_current_ch` is in [e-/s/ch]</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Read noise</span>
@@ -238,10 +158,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">m_0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mp0</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_mags_of_sim</span><span class="p">(</span><span class="n">asim</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">F_0</span> <span class="o">=</span> <span class="n">mag2F</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s_0</span> <span class="o">=</span> <span class="n">integ</span><span class="o">.</span><span class="n">mean_starlight</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">s_d</span> <span class="o">=</span> <span class="n">integ</span><span class="o">.</span><span class="n">get_static</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span>
-        
+        <span class="n">static</span><span class="p">,</span> <span class="n">dark_current</span><span class="p">,</span> <span class="n">enclosure</span> <span class="o">=</span> <span class="n">integ</span><span class="o">.</span><span class="n">get_static</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_dark_current</span> <span class="o">=</span> <span class="n">dark_current</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_enc_bg</span> <span class="o">=</span> <span class="n">enclosure</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="c1"># Must convert that back in equ. photons</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_d</span> <span class="o">=</span> <span class="n">static</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="c1"># Must convert that back in equ. photon</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_d = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_d</span><span class="si">}</span><span class="s2"> [ph/s] the static output&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_dark_current = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_dark_current</span><span class="si">}</span><span class="s2"> [ph-/s] equivalent the dark current&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_enc_bg = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_enc_bg</span><span class="si">}</span><span class="s2"> [ph-/s] equivalent the enclosure background&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p_0</span> <span class="o">=</span> <span class="n">integ</span><span class="o">.</span><span class="n">mean_planetlight</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span>
-        
+        <span class="c1"># The total background current per channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_total_bg_current_ch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mynpix</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_dark_current</span> <span class="o">+</span>\
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mynpix</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_enc_bg</span> <span class="o">+</span>\
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_d</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         
         <span class="c1">#self.sigma_phot = np.sqrt(integ.eta * self.s_0 * self.dit_0)</span>
         <span class="c1">#self.sigma_phot_d = np.sqrt(2) * self.sigma_phot</span>
@@ -276,7 +204,7 @@
         
         <span class="c1"># small s is a flux</span>
         <span class="n">s_s</span> <span class="o">=</span> <span class="n">Fs</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">F_0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_0</span>
-        <span class="n">s_d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_d</span>
+        <span class="n">s_d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_d</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mynpix</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">s_dark_current</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_enc_bg</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
         
         
         <span class="n">sigma_phot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">dit</span> <span class="o">*</span> <span class="p">(</span><span class="n">s_d</span> <span class="o">+</span> <span class="n">s_s</span><span class="p">))</span>
@@ -326,14 +254,14 @@
         
 <div class="viewcode-block" id="noiseprofile.plot_noise_sources"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.plot_noise_sources">[docs]</a>    <span class="k">def</span> <span class="nf">plot_noise_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wls</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">starmags</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
                           <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">legend_font</span><span class="o">=</span><span class="s2">&quot;x-small&quot;</span><span class="p">,</span>
-                          <span class="n">ymin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+                          <span class="n">ymin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">n_dits</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         
         <span class="n">sigphis</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">sigphots</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">amag</span> <span class="ow">in</span> <span class="n">starmags</span><span class="p">:</span>
             <span class="n">asigphot</span><span class="p">,</span> <span class="n">asigphi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_noises</span><span class="p">(</span><span class="n">amag</span><span class="p">,</span> <span class="n">dit</span><span class="p">)</span>
-            <span class="n">sigphots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asigphot</span><span class="p">)</span>
-            <span class="n">sigphis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asigphi</span><span class="p">)</span>
+            <span class="n">sigphots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_dits</span><span class="p">)</span> <span class="o">*</span> <span class="n">asigphot</span><span class="p">)</span>
+            <span class="n">sigphis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_dits</span><span class="p">)</span> <span class="o">*</span> <span class="n">asigphi</span><span class="p">)</span>
         <span class="n">sigphots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sigphots</span><span class="p">)</span>
         <span class="n">sigphis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sigphis</span><span class="p">)</span>
         
@@ -341,7 +269,7 @@
         <span class="n">mybmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span>
         <span class="n">mygmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">YlOrBr</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wls</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma_ron_d</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">wls</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wls</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_dits</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma_ron_d</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">wls</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
                  <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\sigma_</span><span class="si">{RON}</span><span class="s2">$&quot;</span><span class="p">)</span>
         <span class="c1">#plt.plot(wls, sigma_phot, label=&quot;Photon&quot;)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dump</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sigphis</span><span class="p">):</span>
@@ -361,7 +289,7 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Noise $[e^-]$&quot;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength [m]&quot;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="n">legend_font</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">legend_loc</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Noise in single </span><span class="si">%.2f</span><span class="s2"> s DIT&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">dit</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise for </span><span class="si">{</span><span class="n">n_dits</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">dit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s DITs&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">fig</span></div>
@@ -371,12 +299,15 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;t_dit_0 = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span><span class="p">,</span> <span class="s2">&quot;# The reference exposure time used in MC simulations&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eta = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">,</span> <span class="s2">&quot;# The quantum efficiency of the detector&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sigma_ron_d = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma_ron_d</span><span class="p">,</span> <span class="s2">&quot;# The total readout noise per spectral channel for the differential observable(s)&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;k_phi = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_phi_m</span><span class="p">,</span> <span class="s2">&quot;# The instrumental error coefficient&quot;</span><span class="p">)</span></div></div>
-        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;k_phi = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_phi_m</span><span class="p">,</span> <span class="s2">&quot;# The instrumental error coefficient&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_d = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_d</span><span class="si">}</span><span class="s2"> [ph/s] the static output&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_dark_current = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_dark_current</span><span class="si">}</span><span class="s2"> [e-/s] the dark current&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_enc_bg = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_enc_bg</span><span class="si">}</span><span class="s2"> [e-/s] the enclosure background&quot;</span><span class="p">)</span></div></div>
         
 
 <div class="viewcode-block" id="spectral_context"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context">[docs]</a><span class="k">class</span> <span class="nc">spectral_context</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="spectral_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Spectral context for magnitude considerations</span>
 <span class="sd">        </span>
 <span class="sd">        **Arguments:**</span>
@@ -390,15 +321,26 @@
 <span class="sd">              in the same spectral configuration.</span>
 <span class="sd">        </span>
 <span class="sd">        * compensate_chromatic: Argument to be passed to the new simulator</span>
+<span class="sd">        * verbose     : whether to give more details</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vegafile</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;no longer supported</span><span class="se">\</span>
+<span class="s2">                Please provide a ConfigParser object (asim.config)&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">avega</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">prepare_all</span><span class="p">(</span><span class="n">vegafile</span><span class="p">,</span> <span class="n">update_params</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                            <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="n">compensate_chromatic</span><span class="p">)</span>
+                            <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="n">compensate_chromatic</span><span class="p">,</span>
+                            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vegafile</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">parsefile</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">):</span>
             <span class="n">vega_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_vega_config</span><span class="p">(</span><span class="n">vegafile</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">vega_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;space&quot;</span><span class="p">:</span>
+                <span class="n">use</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">use</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">avega</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">prepare_all</span><span class="p">(</span><span class="n">vega_config</span><span class="p">,</span> <span class="n">update_params</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                            <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="n">compensate_chromatic</span><span class="p">)</span>
+                            <span class="n">instrumental_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">compensate_chromatic</span><span class="o">=</span><span class="n">compensate_chromatic</span><span class="p">,</span>
+                            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                            <span class="n">update_start_end</span><span class="o">=</span><span class="n">use</span><span class="p">)</span>
             
         <span class="k">else</span> <span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>
@@ -465,7 +407,86 @@
         <span class="n">m_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vegamag_from_ss</span><span class="p">(</span><span class="n">ss_star</span><span class="p">))</span>
         <span class="n">m_planet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vegamag_from_ss</span><span class="p">(</span><span class="n">ss_planet</span><span class="p">))</span>
         
-        <span class="k">return</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">m_planet</span></div></div>
+        <span class="k">return</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">m_planet</span></div>
+
+<div class="viewcode-block" id="spectral_context.get_difmap_flux"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_difmap_flux">[docs]</a>    <span class="k">def</span> <span class="nf">get_difmap_flux</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="nb">map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;e-&quot;</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">planet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">single_out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the map in terms of flux of a given planet</span>
+<span class="sd">        Not kernel-ready</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">K</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">K</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">K</span>
+        <span class="k">if</span> <span class="nb">map</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">map</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">maps</span>
+        <span class="k">if</span> <span class="n">planet</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">planet</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">planet</span>
+        <span class="c1"># adiffmap = map[:,:,3,:,:] - map[:,:,4,:,:]</span>
+        <span class="c1"># flux_map = adiffmap / \</span>
+        <span class="c1">#     sim.vigneting_map.ds_sr * planet.ss.sum(axis=1)[None,:,None,None]</span>
+        <span class="c1"># else:</span>
+        <span class="n">adiffmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;k o , s w o x y -&gt; s w k x y&quot;</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="nb">map</span><span class="p">)</span>
+        <span class="n">flux_map</span> <span class="o">=</span> <span class="n">adiffmap</span> <span class="o">/</span> \
+            <span class="n">sim</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">*</span> <span class="n">planet</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">single_out</span><span class="p">:</span>
+            <span class="n">flux_map</span> <span class="o">=</span>  <span class="n">flux_map</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">,:,:]</span> 
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;e-&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">flux_map</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;ph&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">flux_map</span></div>
+
+        
+<div class="viewcode-block" id="spectral_context.get_maxmap"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_maxmap">[docs]</a>    <span class="k">def</span> <span class="nf">get_maxmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the maximum of the map</span>
+
+<span class="sd">        **Arguments:**</span>
+<span class="sd">        * map:  A map object (asim.maps)</span>
+<span class="sd">        * time_index: An index for the (asim.sequence)</span>
+<span class="sd">          observing series</span>
+<span class="sd">        * max : (True) Returns only the max signal of the map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">time_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">time_index</span> <span class="o">=</span> <span class="nb">map</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span>
+        <span class="n">adiffmap</span> <span class="o">=</span> <span class="nb">map</span><span class="p">[</span><span class="n">time_index</span><span class="p">,:,</span><span class="mi">3</span><span class="p">,:,:]</span> <span class="o">-</span> <span class="nb">map</span><span class="p">[</span><span class="n">time_index</span><span class="p">,:,</span><span class="mi">4</span><span class="p">,:,:]</span>
+        <span class="k">if</span> <span class="nb">max</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">adiffmap</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">adiffmap</span></div>
+
+<div class="viewcode-block" id="spectral_context.get_planet_max_signal"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_planet_max_signal">[docs]</a>    <span class="k">def</span> <span class="nf">get_planet_max_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">planet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the differential flux signal ph/s collected</span>
+<span class="sd">        for a given planet</span>
+
+<span class="sd">        **Arguments:**</span>
+<span class="sd">        * sim : A director object</span>
+<span class="sd">        * planet : a source.</span>
+<span class="sd">        * time_index: An index for the (asim.sequence)</span>
+<span class="sd">          observing series</span>
+<span class="sd">        * max : (True) Returns only the max signal of the map</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">planet</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">planet</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">planet</span>
+        <span class="k">if</span> <span class="nb">max</span><span class="p">:</span>
+            <span class="n">amax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_maxmap</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="n">time_index</span><span class="p">)</span>
+            <span class="n">planet_signal</span> <span class="o">=</span> <span class="n">amax</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">*</span> <span class="n">planet</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">planet_signal</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+        
+
+<div class="viewcode-block" id="simplified_context"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context">[docs]</a><span class="k">class</span> <span class="nc">simplified_context</span><span class="p">(</span><span class="n">spectral_context</span><span class="p">):</span>
+<div class="viewcode-block" id="simplified_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mycontext</span><span class="p">):</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span> <span class="o">=</span> <span class="n">mycontext</span><span class="o">.</span><span class="n">thevegassflux</span></div>
+
+<div class="viewcode-block" id="simplified_context.to_pickle"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context.to_pickle">[docs]</a>    <span class="k">def</span> <span class="nf">to_pickle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">apath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Saving the context to a pickle file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">apath</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">thefile</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thefile</span><span class="p">)</span></div></div>
+        
     
 <div class="viewcode-block" id="mag2F"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.mag2F">[docs]</a><span class="k">def</span> <span class="nf">mag2F</span><span class="p">(</span><span class="n">mag</span><span class="p">):</span>
     <span class="n">F</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">mag</span><span class="o">/</span><span class="mf">2.5</span><span class="p">)</span>
@@ -474,6 +495,167 @@
     <span class="n">mag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">F</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">mag</span></div>
 
+<div class="viewcode-block" id="BasicETC"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC">[docs]</a><span class="k">class</span> <span class="nc">BasicETC</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicETC.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Parameters:**</span>
+<span class="sd">        * ipeak : []</span>
+<span class="sd">        * pdiam : [m]</span>
+<span class="sd">        * S_collecting [m^2]</span>
+<span class="sd">        * lambda_science_range [m]</span>
+<span class="sd">        * diffuse []</span>
+<span class="sd">        * throughput []</span>
+<span class="sd">        * eta [e-/ph]</span>
+<span class="sd">        * fiber_etendue [sr]</span>
+<span class="sd">        * cold_enclosure [e-/s]</span>
+<span class="sd">        * dark_current [e-/s]</span>
+<span class="sd">        * src_names []</span>
+<span class="sd">        * contribs [ph/s]</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">update_enclosure</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">peak_contributions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="p">[:,</span><span class="mi">3</span><span class="p">,:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ipeak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">peak_contributions</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdiam</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">pdiam</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">odiam</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">odiam</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">S_collecting</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdiam</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">odiam</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffuse</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">diffuse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">throughput</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffuse</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">electron</span> <span class="o">/</span> <span class="n">units</span><span class="o">.</span><span class="n">photon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fiber_etendue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdiam</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">contribs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">src_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cold_enclosure</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">det_sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dark_current</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">det_sources</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span> <span class="s2">&quot;default_dit&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ron</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">ron</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">electron</span>
+        <span class="k">for</span> <span class="n">anelement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffuse</span><span class="p">:</span>
+            <span class="n">contribs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fiber_etendue</span> \
+                            <span class="o">*</span> <span class="n">anelement</span><span class="o">.</span><span class="n">get_own_brightness</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span> \
+                            <span class="o">*</span> <span class="n">anelement</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">src_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anelement</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">contribs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">det_sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+                        <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">src_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">det_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">contribs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">det_sources</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> \
+                        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">det_sources</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">src_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">det_labels</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contribs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">contribs</span><span class="p">)</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">photon</span><span class="o">/</span><span class="n">units</span><span class="o">.</span><span class="n">s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contribs_current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">contribs</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">contribs_variance_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The variance rate in e-**2/s&quot;&quot;&quot;</span>
+        <span class="n">variance_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contribs_current</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> \
+                        <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">electron</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">units</span><span class="o">.</span><span class="n">s</span>
+        <span class="k">return</span> <span class="n">variance_rate</span>
+
+<div class="viewcode-block" id="BasicETC.get_min_exp_time"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.get_min_exp_time">[docs]</a>    <span class="k">def</span> <span class="nf">get_min_exp_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">planet_T</span><span class="p">,</span> <span class="n">snr</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">dit_0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dit_0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dit_0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dit_0</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+            <span class="n">dit_0</span> <span class="o">=</span> <span class="n">dit_0</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">s</span>
+        <span class="n">total_current_planet</span><span class="p">,</span> <span class="n">total_noise</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_signal_noise</span><span class="p">(</span><span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                                                    <span class="n">T</span><span class="o">=</span><span class="n">planet_T</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                                                    <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">at</span> <span class="o">=</span> <span class="n">snr</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">contribs_variance_rate</span> \
+                            <span class="o">/</span><span class="n">total_current_planet</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">at2</span> <span class="o">=</span> <span class="n">snr</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> \
+            <span class="o">*</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">contribs_variance_rate</span> \
+                        <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ron</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dit_0</span><span class="p">)</span> \
+              <span class="o">/</span><span class="n">total_current_planet</span><span class="o">**</span><span class="mi">2</span> 
+        <span class="k">return</span> <span class="n">at</span><span class="p">,</span> <span class="n">at2</span></div>
+
+
+<div class="viewcode-block" id="BasicETC.planet_photons"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.planet_photons">[docs]</a>    <span class="k">def</span> <span class="nf">planet_photons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dit</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+            <span class="n">dit</span> <span class="o">=</span> <span class="n">dit</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">s</span>
+        <span class="k">if</span> <span class="n">T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fd_planet</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">mag2flux_bin</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="n">planet_mag</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fd_planet</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">magT2flux_bin</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                            <span class="n">planet_mag</span><span class="p">,</span>
+                            <span class="n">T</span><span class="o">=</span><span class="n">T</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">dit</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd_planet</span></div>
+
+<div class="viewcode-block" id="BasicETC.show_signal_noise"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.show_signal_noise">[docs]</a>    <span class="k">def</span> <span class="nf">show_signal_noise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">decompose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">planet_photons</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">planet_photons</span><span class="p">(</span><span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="n">dit</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>
+                                            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="n">planet_electrons</span> <span class="o">=</span> <span class="n">planet_photons</span> \
+                        <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ipeak</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">throughput</span> \
+                        <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">S_collecting</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> 
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dit</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+            <span class="n">dit</span> <span class="o">=</span> <span class="n">dit</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">s</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Planet photons </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">planet_photons</span><span class="p">)</span><span class="o">/</span><span class="n">dit</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [ph/s] </span><span class="se">\</span>
+<span class="s2">                        for a total of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">planet_photons</span><span class="p">)</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [ph]&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean total transmission </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">throughput</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> \%&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Collecting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">S_collecting</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [m^2]&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quantum efficiency </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Planet e- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">planet_electrons</span><span class="p">)</span><span class="o">/</span><span class="n">dit</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [e-/s] </span><span class="se">\</span>
+<span class="s2">                        for a total of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">planet_electrons</span><span class="p">)</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [e-]&quot;</span><span class="p">)</span>
+        <span class="n">background_photons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contribs</span> <span class="o">*</span> <span class="n">dit</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">background_electrons</span> <span class="o">=</span> <span class="n">background_photons</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span>
+        <span class="n">background_sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">background_electrons</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">total_background_sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">background_electrons</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">electron</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Background photons </span><span class="si">{</span><span class="n">background_photons</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">dit</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [ph/s] </span><span class="se">\</span>
+<span class="s2">                        for a total of </span><span class="si">{</span><span class="n">background_photons</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [ph]&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Background electrons </span><span class="si">{</span><span class="n">background_electrons</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">dit</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [ph/s] </span><span class="se">\</span>
+<span class="s2">                        for a total of </span><span class="si">{</span><span class="n">background_electrons</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [ph]&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Photon noise std </span><span class="si">{</span><span class="n">total_background_sigma</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> [e-]&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SNR min </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">planet_electrons</span><span class="o">/</span><span class="n">background_sigma</span><span class="p">)</span><span class="si">}</span><span class="se">\</span>
+<span class="s2">                max </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">planet_electrons</span><span class="o">/</span><span class="n">background_sigma</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="n">contribs_current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contribs_current</span> <span class="o">*</span> <span class="n">dit</span>
+            <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+            <span class="n">afig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">contrib2variance</span><span class="p">(</span><span class="n">contribs_current</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">acontrib</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">contribs_current</span><span class="p">):</span>
+                <span class="n">acontrib_variance</span> <span class="o">=</span> <span class="n">contrib2variance</span><span class="p">(</span><span class="n">acontrib</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">acontrib_variance</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                    <span class="n">y1</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">y2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">base</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">acontrib_variance</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">sigma$ </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">src_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">base</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">acontrib_variance</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> 
+                    <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">contribs_current</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total background noise&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
+                    <span class="n">planet_electrons</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Planet L=</span><span class="si">{</span><span class="n">planet_mag</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">K&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;x-small&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength [m]&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Planet [e-] </span><span class="se">\n</span><span class="s2"> $</span><span class="se">\\</span><span class="s2">sigma_</span><span class="si">{background}</span><span class="s2">$ [e-]&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DIT = </span><span class="si">{</span><span class="n">dit</span><span class="si">}</span><span class="s2"> [s]&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">plot</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">show</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">planet_electrons</span><span class="p">,</span> <span class="n">background_sigma</span><span class="p">,</span> <span class="n">afig</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">planet_electrons</span><span class="p">,</span> <span class="n">background_sigma</span></div></div>
+        
+        
+        
+            
+        
+<div class="viewcode-block" id="contrib2variance"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.contrib2variance">[docs]</a><span class="k">def</span> <span class="nf">contrib2variance</span><span class="p">(</span><span class="n">acontrib</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">units</span><span class="o">.</span><span class="n">electron</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Assumes incoming signals proportional to electrons.</span>
+<span class="sd">    Tweaks the unit to a poisson variance (e.g. from e- to e-**2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">avar</span> <span class="o">=</span> <span class="n">acontrib</span><span class="o">*</span><span class="n">unit</span>
+    <span class="k">return</span> <span class="n">avar</span></div>
 
 <span class="c1">##################################</span>
 <span class="c1"># The energy detector test</span>
@@ -633,9 +815,10 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">postproc_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
             <span class="n">postproc_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1">#Xsi is the threshold</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nbkp = &quot;</span><span class="p">,</span> <span class="n">nbkp</span><span class="p">)</span>
     <span class="n">xsi</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">pfa</span><span class="p">,</span> <span class="n">nbkp</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">xsi</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nbkp = &quot;</span><span class="p">,</span> <span class="n">nbkp</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">xsi</span><span class="p">)</span>
     <span class="n">lambda0</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">nbkp</span>
     <span class="c1">#The solution lambda is the x^T.x value satisfying Pdet and Pfa</span>
     <span class="n">sol</span> <span class="o">=</span> <span class="n">leastsq</span><span class="p">(</span><span class="n">residual_pdet_Te</span><span class="p">,</span> <span class="n">lambda0</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">xsi</span><span class="p">,</span><span class="n">nbkp</span><span class="p">,</span> <span class="n">pdet</span><span class="p">))</span><span class="c1"># AKA lambda</span>
@@ -807,7 +990,9 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">mag_map</span></div>
- 
+
+
+<span class="c1">## Tools for interpretation </span>
 
 <div class="viewcode-block" id="correlation_map"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.correlation_map">[docs]</a><span class="k">def</span> <span class="nf">correlation_map</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">maps</span><span class="p">,</span> <span class="n">postproc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_diffobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -865,6 +1050,7 @@
 <div class="viewcode-block" id="make_source"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.make_source">[docs]</a><span class="k">def</span> <span class="nf">make_source</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a source from scratch for purpose of model fitting.</span>
+<span class="sd">    </span>
 <span class="sd">    **Arguments:**</span>
 <span class="sd">    </span>
 <span class="sd">    * params: An lmfit Parameters object containing:</span>
@@ -966,46 +1152,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Romain Laugier.
-
-    </p>
+    <p>&#169; Copyright 2022, Romain Laugier.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
