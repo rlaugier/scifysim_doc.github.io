@@ -110,6 +110,8 @@
 <span class="kn">from</span> <span class="nn">astroplan</span> <span class="kn">import</span> <span class="n">plots</span>
 <span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">EarthLocation</span><span class="p">,</span> <span class="n">AltAz</span><span class="p">,</span> <span class="n">get_sun</span>
 
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -181,7 +183,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ps</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
         <span class="c1">#C handles the piston due to elevation.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)]])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Cs</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+        
+        <span class="n">n_tel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">bl_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_tel</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">bl_mat</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">abl</span> <span class="ow">in</span> <span class="n">bl_list</span><span class="p">:</span>
+            <span class="n">avec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_tel</span><span class="p">)</span>
+            <span class="n">avec</span><span class="p">[</span><span class="n">abl</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">avec</span><span class="p">[</span><span class="n">abl</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">bl_mat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avec</span><span class="p">)</span>
+        <span class="n">bl_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bl_mat</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bl_mat</span> <span class="o">=</span> <span class="n">bl_mat</span>
+        <span class="k">del</span> <span class="n">bl_mat</span>
+        <span class="k">del</span> <span class="n">bl_list</span></div>
+        
         
 <div class="viewcode-block" id="observatory.point"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obstime</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -197,7 +213,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">altaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">altaz</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
                                                    <span class="n">time</span><span class="o">=</span><span class="n">obstime</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">PA</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">parallactic_angle</span><span class="p">(</span><span class="n">obstime</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PA</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">parallactic_angle</span><span class="p">(</span><span class="n">obstime</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">current_proj_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bl_mat</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">current_proj_array</span><span class="p">)</span></div>
         
 
         
@@ -487,6 +505,16 @@
                                 <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                 <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">motion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation</span>
+        <span class="c1"># Creating the baseline matrix</span>
+        <span class="n">bl_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_tel</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">bl_mat</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">abl</span> <span class="ow">in</span> <span class="n">bl_list</span><span class="p">:</span>
+            <span class="n">avec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_tel</span><span class="p">)</span>
+            <span class="n">avec</span><span class="p">[</span><span class="n">abl</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">avec</span><span class="p">[</span><span class="n">abl</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">bl_mat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avec</span><span class="p">)</span>
+        <span class="n">bl_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bl_mat</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bl_mat</span> <span class="o">=</span> <span class="n">bl_mat</span>
         <span class="c1"># Initializing by pointing to instant 0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_0</span><span class="p">)</span></div>
 
@@ -549,7 +577,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">motion_result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">R_rotation</span> <span class="o">=</span> <span class="n">motion_result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span> <span class="o">=</span> <span class="n">motion_result</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span> <span class="o">=</span> <span class="n">motion_result</span>
+        <span class="n">current_proj_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bl_mat</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">current_proj_array</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span></div>
 
     <span class="c1"># def build_observing_sequence(self):</span>
     <span class="c1">#     pass</span>

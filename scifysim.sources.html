@@ -322,8 +322,11 @@ of flux density corresponding to positions <code class="docutils literal notrans
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.exozodi_simple.build_grid">
 <span class="sig-name descname"><span class="pre">build_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angular_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radial_res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#exozodi_simple.build_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.exozodi_simple.build_grid" title="Permalink to this definition"></a></dt>
-<dd><p>Routine used to construct resolved source:</p>
-<p><strong>Creates</strong> self.xx, self.yy, self.ds, self.theta, self.r</p>
+<dd><p>Routine used to construct resolved source:
+<strong>Creates</strong> self.xx, self.yy, self.ds, self.theta, self.r</p>
+<p><strong>Arguments</strong>:
+* angular_res : Number of angulare elements
+* radial_res  : Number of radial elements</p>
 </dd></dl>
 
 <dl class="py method">
@@ -337,9 +340,13 @@ ss is a total flux (ph/s/m^2) at the entrance of earth atmosphere.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.sources.exozodi_simple.exozodiacal_disk">
 <span class="sig-name descname"><span class="pre">exozodiacal_disk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/sources.html#exozodi_simple.exozodiacal_disk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.sources.exozodi_simple.exozodiacal_disk" title="Permalink to this definition"></a></dt>
-<dd><ul class="simple">
-<li><p>z       : Zodi level [solar zodiacal level]</p></li>
-<li><p>L_star  : Star luminosity [L_sun]</p></li>
+<dd><p>Computes the emission spectrum of each disk element.
+Updates:</p>
+<ul class="simple">
+<li><p><cite>self.ss</cite> the spectral illuminance</p></li>
+<li><p><cite>self.total_flux density</cite></p></li>
+<li><p><cite>self.sigma</cite> the opacity</p></li>
+<li><p><cite>self.t_dust</cite> the temperature of the dust</p></li>
 </ul>
 </dd></dl>
 

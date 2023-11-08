@@ -119,7 +119,7 @@
 <span class="sd">    * mod   : the module to convert to (default: numpy)</span>
 <span class="sd">      will work with cupy, jax, etc...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">mod</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sf</span><span class="o">.</span><span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="n">array</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">mod</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="n">array</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="vec2diag"><a class="viewcode-back" href="../../scifysim.utilities.html#scifysim.utilities.vec2diag">[docs]</a><span class="k">def</span> <span class="nf">vec2diag</span><span class="p">(</span><span class="n">vec</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -282,6 +282,8 @@
 <span class="sd">    </span>
 <span class="sd">    - afile      : Config file </span>
 <span class="sd">    - thetarget  : target name to replace in config file</span>
+<span class="sd">    - update_params: (bool) default: False. When True, updates the</span>
+<span class="sd">      parameters of the star based on databases such as GAIA DR3</span>
 <span class="sd">    - instrumental_errors : Bool. Whether to include instrumental</span>
 <span class="sd">      errors</span>
 <span class="sd">    - seed       : seed to pass when generating the </span>
