@@ -418,6 +418,7 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">loc_array</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">newarray</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">newarray</span></div>
+
 <div class="viewcode-block" id="ObservatoryAltAz.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
@@ -498,6 +499,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">motion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion_type</span> <span class="o">==</span> <span class="s2">&quot;interpolation&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">motion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation</span>
+            <span class="c1"># TODO: switch on &quot;array_time_type&quot; : array or file. </span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interp_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;array_time_steps&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interp_y</span> <span class="o">=</span> <span class="n">raw_array</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpolation_function</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interp_t</span><span class="p">,</span>
@@ -585,6 +587,16 @@
     <span class="c1">#     pass</span>
 
 <div class="viewcode-block" id="SpaceObservatory.get_position"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the position of the collectors as a function of time</span>
+
+<span class="sd">        **Arguments** : </span>
+
+<span class="sd">        * target : Ignored</span>
+<span class="sd">        * time   : The time of the observations (astropy.Time)</span>
+<span class="sd">          such as found in `simulator.sequence`</span>
+<span class="sd">        * grid_times_target : Ignored</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dummy_taraltaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dummy_location</span><span class="o">.</span><span class="n">altaz</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
                             <span class="n">grid_times_targets</span><span class="o">=</span><span class="n">grid_times_targets</span><span class="p">)</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">to_value</span><span class="p">(</span><span class="s2">&quot;unix&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_0</span>
@@ -592,20 +604,38 @@
         <span class="n">aPA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x_A_t</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_A_t</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">dummy_taraltaz</span><span class="p">,</span> <span class="n">aPA</span></div>
 
-<div class="viewcode-block" id="SpaceObservatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="SpaceObservatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">PA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">c3d</span><span class="o">=</span><span class="kc">False</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the projected collector array</span>
+
+<span class="sd">        **Arguments : **</span>
+<span class="sd">        * tarltaz : Ignored</span>
+<span class="sd">        * time : (optional) A given time at which to point</span>
+<span class="sd">        * PA   : (Optional) Ignored</span>
+<span class="sd">        * loc_array : (Optional) Overrides the current array</span>
+<span class="sd">          configuration from pointing to use this one instead.</span>
+<span class="sd">        * c3d  : (optional) When True, returns the array as a </span>
+<span class="sd">        set of 3D vector. When False (default) 2D vectors are given</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">loc_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">loc_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span>
         <span class="n">x_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;o i , a i -&gt; a o&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">P_M</span><span class="p">,</span> <span class="n">loc_array</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">x_P</span></div>
+        <span class="k">if</span> <span class="n">c3d</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x_P</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x_P</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="SpaceObservatory.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Computes the distance traveled past the reference plane:</span>
 <span class="sd">        $P_A - A + AM$</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">P_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">()</span>
+        <span class="n">P_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="n">c3d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">P_A_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span>  <span class="o">-</span> <span class="n">P_A</span>
         <span class="n">norm_PAA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">P_A_A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">M_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_M</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_A_t</span>
@@ -622,6 +652,7 @@
 <div class="viewcode-block" id="basic_z_rotation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.basic_z_rotation">[docs]</a><span class="k">def</span> <span class="nf">basic_z_rotation</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        basic rotation matrix around z</span>
+<span class="sd">    **Returns**: The rotation matrix.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">M_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,],</span>
                     <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="mi">0</span><span class="p">,],</span>

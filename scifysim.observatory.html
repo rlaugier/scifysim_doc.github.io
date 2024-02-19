@@ -190,24 +190,32 @@ the line of sight, as is the case for example with a systme like GLINT.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.SpaceObservatory.get_position">
 <span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_times_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#SpaceObservatory.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.SpaceObservatory.get_position" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Parameters:</strong></p>
+<dd><p>Computes the position of the collectors as a function of time</p>
+<p><strong>Arguments</strong> :</p>
 <ul class="simple">
-<li><p>target:   one or a list of of targets</p></li>
-<li><p>obstimes: one or a list of astropy.Times to make the observations</p></li>
+<li><p>target : Ignored</p></li>
+<li><p>time   : The time of the observations (astropy.Time)
+such as found in <cite>simulator.sequence</cite></p></li>
+<li><p>grid_times_target : Ignored</p></li>
 </ul>
-<p><strong>Returns</strong> the <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.AltAz</span></code> for a given target</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifysim.observatory.SpaceObservatory.get_projected_array">
-<span class="sig-name descname"><span class="pre">get_projected_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taraltaz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#SpaceObservatory.get_projected_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.SpaceObservatory.get_projected_array" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Parameters:</strong></p>
+<span class="sig-name descname"><span class="pre">get_projected_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taraltaz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c3d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#SpaceObservatory.get_projected_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.SpaceObservatory.get_projected_array" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the projected collector array</p>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Arguments : **
+* tarltaz : Ignored
+* time : (optional) A given time at which to point
+* PA   : (Optional) Ignored
+* loc_array : (Optional) Overrides the current array</p>
+<blockquote>
+<div><p>configuration from pointing to use this one instead.</p>
+</div></blockquote>
 <ul class="simple">
-<li><p>taraltaz : the astropy.coordinates.AltAz of the target</p></li>
-<li><p>PA       : parallactic angle to derotate</p></li>
-<li><p>loc_array: the array of points to use (None: use self.statlocs)</p></li>
+<li><p>c3d  : (optional) When True, returns the array as a</p></li>
 </ul>
-<p><strong>Returns</strong> the new coordinates for the projected array</p>
+<p>set of 3D vector. When False (default) 2D vectors are given</p>
 </dd></dl>
 
 <dl class="py method">
@@ -279,7 +287,10 @@ the line of sight, as is the case for example with a systme like GLINT.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.observatory.basic_z_rotation">
 <span class="sig-prename descclassname"><span class="pre">scifysim.observatory.</span></span><span class="sig-name descname"><span class="pre">basic_z_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/observatory.html#basic_z_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.observatory.basic_z_rotation" title="Permalink to this definition"></a></dt>
-<dd><p>basic rotation matrix around z</p>
+<dd><blockquote>
+<div><p>basic rotation matrix around z</p>
+</div></blockquote>
+<p><strong>Returns</strong>: The rotation matrix.</p>
 </dd></dl>
 
 <dl class="py data">

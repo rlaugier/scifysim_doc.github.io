@@ -179,9 +179,9 @@
         <span class="n">apath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;array_motion_file&quot;</span><span class="p">))</span>
         <span class="n">relative</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;array_motion_local&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">relative</span><span class="p">:</span>
-            <span class="n">mypath</span> <span class="o">=</span> <span class="n">parent</span><span class="o">/</span><span class="n">apath</span>
-        <span class="k">else</span><span class="p">:</span>
             <span class="n">mypath</span> <span class="o">=</span> <span class="n">apath</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mypath</span> <span class="o">=</span> <span class="n">parent</span><span class="o">/</span><span class="n">apath</span>
         <span class="n">raw_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mypath</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="c1"># Check (n_t, n_tel, X)</span>
         <span class="k">assert</span> <span class="n">raw_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span> <span class="c1"># check 3D position</span>
