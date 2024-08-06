@@ -13,11 +13,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5f61e39c"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -99,27 +99,247 @@
            <div itemprop="articleBody">
              
   <section id="scifysim">
-<h1>scifysim<a class="headerlink" href="#scifysim" title="Permalink to this heading"></a></h1>
+<h1>scifysim<a class="headerlink" href="#scifysim" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.html">scifysim package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="scifysim.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.BasicETC"><code class="docutils literal notranslate"><span class="pre">BasicETC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.F2mag"><code class="docutils literal notranslate"><span class="pre">F2mag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.contrib2variance"><code class="docutils literal notranslate"><span class="pre">contrib2variance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.correlation_map"><code class="docutils literal notranslate"><span class="pre">correlation_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.get_Tnp_threshold"><code class="docutils literal notranslate"><span class="pre">get_Tnp_threshold()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.get_Tnp_threshold_map"><code class="docutils literal notranslate"><span class="pre">get_Tnp_threshold_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.get_planet_residual"><code class="docutils literal notranslate"><span class="pre">get_planet_residual()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.get_sensitivity_Te"><code class="docutils literal notranslate"><span class="pre">get_sensitivity_Te()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.get_sensitivity_Te_old"><code class="docutils literal notranslate"><span class="pre">get_sensitivity_Te_old()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.get_sensitivity_Tnp"><code class="docutils literal notranslate"><span class="pre">get_sensitivity_Tnp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.get_sensitivity_Tnp_old"><code class="docutils literal notranslate"><span class="pre">get_sensitivity_Tnp_old()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.mag2F"><code class="docutils literal notranslate"><span class="pre">mag2F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.make_source"><code class="docutils literal notranslate"><span class="pre">make_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.make_th_exps"><code class="docutils literal notranslate"><span class="pre">make_th_exps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.noiseprofile"><code class="docutils literal notranslate"><span class="pre">noiseprofile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.pdet_e"><code class="docutils literal notranslate"><span class="pre">pdet_e()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.residual_pdet_Te"><code class="docutils literal notranslate"><span class="pre">residual_pdet_Te()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.residual_pdet_Tnp"><code class="docutils literal notranslate"><span class="pre">residual_pdet_Tnp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.simplified_context"><code class="docutils literal notranslate"><span class="pre">simplified_context</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.analysis.html#scifysim.analysis.spectral_context"><code class="docutils literal notranslate"><span class="pre">spectral_context</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiner.html#scifysim.combiner.combiner"><code class="docutils literal notranslate"><span class="pre">combiner</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiner.html#scifysim.combiner.test_angel_woolf"><code class="docutils literal notranslate"><span class="pre">test_angel_woolf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiner.html#scifysim.combiner.test_combiner"><code class="docutils literal notranslate"><span class="pre">test_combiner()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.ABCD"><code class="docutils literal notranslate"><span class="pre">ABCD()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.GLINT"><code class="docutils literal notranslate"><span class="pre">GLINT()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.GRAVITY"><code class="docutils literal notranslate"><span class="pre">GRAVITY()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.VIKiNG"><code class="docutils literal notranslate"><span class="pre">VIKiNG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.angel_woolf_ph"><code class="docutils literal notranslate"><span class="pre">angel_woolf_ph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.angel_woolf_ph_chromatic"><code class="docutils literal notranslate"><span class="pre">angel_woolf_ph_chromatic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.bracewell_ph"><code class="docutils literal notranslate"><span class="pre">bracewell_ph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.four2six"><code class="docutils literal notranslate"><span class="pre">four2six()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.four_photometric"><code class="docutils literal notranslate"><span class="pre">four_photometric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.geom_ph_shifter"><code class="docutils literal notranslate"><span class="pre">geom_ph_shifter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.kernel_nuller_3T"><code class="docutils literal notranslate"><span class="pre">kernel_nuller_3T()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.kernel_nuller_4T"><code class="docutils literal notranslate"><span class="pre">kernel_nuller_4T()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.kernel_nuller_5T"><code class="docutils literal notranslate"><span class="pre">kernel_nuller_5T()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.kernel_nuller_6T"><code class="docutils literal notranslate"><span class="pre">kernel_nuller_6T()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.ph_shifter"><code class="docutils literal notranslate"><span class="pre">ph_shifter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.piston2phase"><code class="docutils literal notranslate"><span class="pre">piston2phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.sp_clip_rows"><code class="docutils literal notranslate"><span class="pre">sp_clip_rows()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.combiners.html#scifysim.combiners.test_combiners"><code class="docutils literal notranslate"><span class="pre">test_combiners()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.confconverter.html">scifysim.confconverter module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.confconverter.html#scifysim.confconverter.convert_config_file"><code class="docutils literal notranslate"><span class="pre">convert_config_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.confconverter.html#scifysim.confconverter.set_logging_level"><code class="docutils literal notranslate"><span class="pre">set_logging_level()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.bs2bcs"><code class="docutils literal notranslate"><span class="pre">bs2bcs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.corrector"><code class="docutils literal notranslate"><span class="pre">corrector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.extract_corrector_params"><code class="docutils literal notranslate"><span class="pre">extract_corrector_params()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.generic_vacuum"><code class="docutils literal notranslate"><span class="pre">generic_vacuum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.get_Is"><code class="docutils literal notranslate"><span class="pre">get_Is()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.get_contrast_res"><code class="docutils literal notranslate"><span class="pre">get_contrast_res()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.get_depth"><code class="docutils literal notranslate"><span class="pre">get_depth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.get_es"><code class="docutils literal notranslate"><span class="pre">get_es()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.get_max_differential"><code class="docutils literal notranslate"><span class="pre">get_max_differential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.get_shape_res"><code class="docutils literal notranslate"><span class="pre">get_shape_res()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.material_sellmeier"><code class="docutils literal notranslate"><span class="pre">material_sellmeier</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.no_material"><code class="docutils literal notranslate"><span class="pre">no_material()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.correctors.html#scifysim.correctors.offband_ft"><code class="docutils literal notranslate"><span class="pre">offband_ft</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.director.html#scifysim.director.simulator"><code class="docutils literal notranslate"><span class="pre">simulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.director.html#scifysim.director.test_director"><code class="docutils literal notranslate"><span class="pre">test_director()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.Hn"><code class="docutils literal notranslate"><span class="pre">Hn()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.J0"><code class="docutils literal notranslate"><span class="pre">J0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.J1"><code class="docutils literal notranslate"><span class="pre">J1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.K0"><code class="docutils literal notranslate"><span class="pre">K0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.atmo"><code class="docutils literal notranslate"><span class="pre">atmo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.atmo_screen"><code class="docutils literal notranslate"><span class="pre">atmo_screen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.fiber_head"><code class="docutils literal notranslate"><span class="pre">fiber_head</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.focuser"><code class="docutils literal notranslate"><span class="pre">focuser</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.fringe_tracker"><code class="docutils literal notranslate"><span class="pre">fringe_tracker</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.gaussian_fiber_head"><code class="docutils literal notranslate"><span class="pre">gaussian_fiber_head</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.injection_cloud"><code class="docutils literal notranslate"><span class="pre">injection_cloud</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.injection_vigneting"><code class="docutils literal notranslate"><span class="pre">injection_vigneting</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.injector"><code class="docutils literal notranslate"><span class="pre">injector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.optimize_a"><code class="docutils literal notranslate"><span class="pre">optimize_a()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.seeing_to_r0"><code class="docutils literal notranslate"><span class="pre">seeing_to_r0()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.tel_pupil"><code class="docutils literal notranslate"><span class="pre">tel_pupil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.test_fiber"><code class="docutils literal notranslate"><span class="pre">test_fiber()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.test_injection"><code class="docutils literal notranslate"><span class="pre">test_injection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.test_injection_fromfile"><code class="docutils literal notranslate"><span class="pre">test_injection_fromfile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.injection.html#scifysim.injection.test_injection_function"><code class="docutils literal notranslate"><span class="pre">test_injection_function()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.map_manager.html">scifysim.map_manager module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.map_manager.html#scifysim.map_manager.map_meta"><code class="docutils literal notranslate"><span class="pre">map_meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.mol_dens.html#scifysim.mol_dens.mol_dens"><code class="docutils literal notranslate"><span class="pre">mol_dens()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.mol_dens.html#scifysim.mol_dens.set_logging_level"><code class="docutils literal notranslate"><span class="pre">set_logging_level()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.mol_dens.html#scifysim.mol_dens.test_mol"><code class="docutils literal notranslate"><span class="pre">test_mol()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.compile_table"><code class="docutils literal notranslate"><span class="pre">compile_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.get_Pco2"><code class="docutils literal notranslate"><span class="pre">get_Pco2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.get_Ph2o"><code class="docutils literal notranslate"><span class="pre">get_Ph2o()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.get_n_CO2"><code class="docutils literal notranslate"><span class="pre">get_n_CO2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.get_n_air"><code class="docutils literal notranslate"><span class="pre">get_n_air()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.get_pvsat_buck"><code class="docutils literal notranslate"><span class="pre">get_pvsat_buck()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.m2thz"><code class="docutils literal notranslate"><span class="pre">m2thz()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.n_air"><code class="docutils literal notranslate"><span class="pre">n_air()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.n_h2o"><code class="docutils literal notranslate"><span class="pre">n_h2o()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.n_hat2nm1"><code class="docutils literal notranslate"><span class="pre">n_hat2nm1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.r_index_DA"><code class="docutils literal notranslate"><span class="pre">r_index_DA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.r_index_air"><code class="docutils literal notranslate"><span class="pre">r_index_air()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.r_index_co2"><code class="docutils literal notranslate"><span class="pre">r_index_co2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.r_index_h2o"><code class="docutils literal notranslate"><span class="pre">r_index_h2o()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.set_logging_level"><code class="docutils literal notranslate"><span class="pre">set_logging_level()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.test_air"><code class="docutils literal notranslate"><span class="pre">test_air()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.test_h2o"><code class="docutils literal notranslate"><span class="pre">test_h2o()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.thz2m"><code class="docutils literal notranslate"><span class="pre">thz2m()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.n_air.html#scifysim.n_air.wet_atmo"><code class="docutils literal notranslate"><span class="pre">wet_atmo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz"><code class="docutils literal notranslate"><span class="pre">ObservatoryAltAz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html#scifysim.observatory.SpaceObservatory"><code class="docutils literal notranslate"><span class="pre">SpaceObservatory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html#scifysim.observatory.basic_interpolation"><code class="docutils literal notranslate"><span class="pre">basic_interpolation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html#scifysim.observatory.basic_z_rotation"><code class="docutils literal notranslate"><span class="pre">basic_z_rotation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html#scifysim.observatory.logit"><code class="docutils literal notranslate"><span class="pre">logit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html#scifysim.observatory.observatory"><code class="docutils literal notranslate"><span class="pre">observatory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.observatory.html#scifysim.observatory.test_observatory"><code class="docutils literal notranslate"><span class="pre">test_observatory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.parsefile.html">scifysim.parsefile module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.parsefile.html#scifysim.parsefile.getarray"><code class="docutils literal notranslate"><span class="pre">getarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.parsefile.html#scifysim.parsefile.getdate"><code class="docutils literal notranslate"><span class="pre">getdate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.parsefile.html#scifysim.parsefile.list_all"><code class="docutils literal notranslate"><span class="pre">list_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.parsefile.html#scifysim.parsefile.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.getcolor"><code class="docutils literal notranslate"><span class="pre">getcolor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.getcolortrace"><code class="docutils literal notranslate"><span class="pre">getcolortrace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.make_cursor"><code class="docutils literal notranslate"><span class="pre">make_cursor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.piston2size"><code class="docutils literal notranslate"><span class="pre">piston2size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_colored_uv"><code class="docutils literal notranslate"><span class="pre">plot_colored_uv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_corrector_tuning_angel_woolf"><code class="docutils literal notranslate"><span class="pre">plot_corrector_tuning_angel_woolf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_differential_map"><code class="docutils literal notranslate"><span class="pre">plot_differential_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_injection"><code class="docutils literal notranslate"><span class="pre">plot_injection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_multiple_maps"><code class="docutils literal notranslate"><span class="pre">plot_multiple_maps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_opds"><code class="docutils literal notranslate"><span class="pre">plot_opds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_output_sources"><code class="docutils literal notranslate"><span class="pre">plot_output_sources()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_phasescreen"><code class="docutils literal notranslate"><span class="pre">plot_phasescreen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_projected_pupil"><code class="docutils literal notranslate"><span class="pre">plot_projected_pupil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_projected_uv"><code class="docutils literal notranslate"><span class="pre">plot_projected_uv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_pupil"><code class="docutils literal notranslate"><span class="pre">plot_pupil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.plot_tools.html#scifysim.plot_tools.plot_response_map"><code class="docutils literal notranslate"><span class="pre">plot_response_map()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.ABmag2Jy"><code class="docutils literal notranslate"><span class="pre">ABmag2Jy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.Jy2ABmag"><code class="docutils literal notranslate"><span class="pre">Jy2ABmag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources._blackbody"><code class="docutils literal notranslate"><span class="pre">_blackbody</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.chain"><code class="docutils literal notranslate"><span class="pre">chain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.distant_blackbody"><code class="docutils literal notranslate"><span class="pre">distant_blackbody()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.enclosure"><code class="docutils literal notranslate"><span class="pre">enclosure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.exozodi_simple"><code class="docutils literal notranslate"><span class="pre">exozodi_simple</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.flux_bin2mag"><code class="docutils literal notranslate"><span class="pre">flux_bin2mag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.group"><code class="docutils literal notranslate"><span class="pre">group</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.mag2flux_bin"><code class="docutils literal notranslate"><span class="pre">mag2flux_bin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.magT2flux_bin"><code class="docutils literal notranslate"><span class="pre">magT2flux_bin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.resolved_source"><code class="docutils literal notranslate"><span class="pre">resolved_source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.set_sink"><code class="docutils literal notranslate"><span class="pre">set_sink()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.set_source"><code class="docutils literal notranslate"><span class="pre">set_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.source"><code class="docutils literal notranslate"><span class="pre">source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.src_extended"><code class="docutils literal notranslate"><span class="pre">src_extended</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.star_planet_target"><code class="docutils literal notranslate"><span class="pre">star_planet_target</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.transmission_emission"><code class="docutils literal notranslate"><span class="pre">transmission_emission</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.sources.html#scifysim.sources.vega_flux_bin"><code class="docutils literal notranslate"><span class="pre">vega_flux_bin()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.spectrograph.html#scifysim.spectrograph.basic_integrator"><code class="docutils literal notranslate"><span class="pre">basic_integrator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.spectrograph.html#scifysim.spectrograph.integrator"><code class="docutils literal notranslate"><span class="pre">integrator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.spectrograph.html#scifysim.spectrograph.spectrograph"><code class="docutils literal notranslate"><span class="pre">spectrograph</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifysim.utilities.html">scifysim.utilities module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.Gauss"><code class="docutils literal notranslate"><span class="pre">Gauss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.coeff"><code class="docutils literal notranslate"><span class="pre">coeff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.ee"><code class="docutils literal notranslate"><span class="pre">ee</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.eval_perf"><code class="docutils literal notranslate"><span class="pre">eval_perf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.extract_diffobs_map"><code class="docutils literal notranslate"><span class="pre">extract_diffobs_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.extract_diffobs_map_old"><code class="docutils literal notranslate"><span class="pre">extract_diffobs_map_old()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.find_best_night"><code class="docutils literal notranslate"><span class="pre">find_best_night()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.fit_distribution"><code class="docutils literal notranslate"><span class="pre">fit_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_bincenters"><code class="docutils literal notranslate"><span class="pre">get_bincenters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_header_bl_data"><code class="docutils literal notranslate"><span class="pre">get_header_bl_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_index_pos"><code class="docutils literal notranslate"><span class="pre">get_index_pos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_location"><code class="docutils literal notranslate"><span class="pre">get_location()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_raw_array"><code class="docutils literal notranslate"><span class="pre">get_raw_array()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_star_params"><code class="docutils literal notranslate"><span class="pre">get_star_params()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_star_params_GAIA_JMMC"><code class="docutils literal notranslate"><span class="pre">get_star_params_GAIA_JMMC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.get_uv"><code class="docutils literal notranslate"><span class="pre">get_uv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.lambdifyz"><code class="docutils literal notranslate"><span class="pre">lambdifyz()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.loadGRA4MAT"><code class="docutils literal notranslate"><span class="pre">loadGRA4MAT()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.mag2sig"><code class="docutils literal notranslate"><span class="pre">mag2sig()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.matchseries"><code class="docutils literal notranslate"><span class="pre">matchseries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.parameters2latex"><code class="docutils literal notranslate"><span class="pre">parameters2latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.parameters2table"><code class="docutils literal notranslate"><span class="pre">parameters2table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.prepare_all"><code class="docutils literal notranslate"><span class="pre">prepare_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.produce_maps"><code class="docutils literal notranslate"><span class="pre">produce_maps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.profileit"><code class="docutils literal notranslate"><span class="pre">profileit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.random_series_fft"><code class="docutils literal notranslate"><span class="pre">random_series_fft()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.range2R"><code class="docutils literal notranslate"><span class="pre">range2R()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.sp2mod"><code class="docutils literal notranslate"><span class="pre">sp2mod()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.table2latex"><code class="docutils literal notranslate"><span class="pre">table2latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.test_ex"><code class="docutils literal notranslate"><span class="pre">test_ex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.test_maps"><code class="docutils literal notranslate"><span class="pre">test_maps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.test_random_series"><code class="docutils literal notranslate"><span class="pre">test_random_series()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.trois"><code class="docutils literal notranslate"><span class="pre">trois()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.update_observing_night"><code class="docutils literal notranslate"><span class="pre">update_observing_night()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.update_star_params"><code class="docutils literal notranslate"><span class="pre">update_star_params()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.vec2diag"><code class="docutils literal notranslate"><span class="pre">vec2diag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifysim.utilities.html#scifysim.utilities.wrap_phase"><code class="docutils literal notranslate"><span class="pre">wrap_phase()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="scifysim.html#module-scifysim">Module contents</a></li>

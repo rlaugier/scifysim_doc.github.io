@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5f61e39c"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -114,6 +114,7 @@
 <span class="n">parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
 <span class="c1">#znse_file = parent/&quot;data/znse_index.csv&quot;</span>
 <span class="n">znse_file</span> <span class="o">=</span> <span class="n">parent</span><span class="o">/</span><span class="s2">&quot;data/znse_Connolly.csv&quot;</span>
+<span class="n">caf2_file</span> <span class="o">=</span> <span class="n">parent</span><span class="o">/</span><span class="s2">&quot;data/caf2_index.csv&quot;</span>
 
 
 
@@ -121,20 +122,27 @@
 <span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 <span class="n">comphasor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">thetas</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
 
-<div class="viewcode-block" id="get_max_differential"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_max_differential">[docs]</a><span class="k">def</span> <span class="nf">get_max_differential</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="get_max_differential">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_max_differential">[docs]</a>
+<span class="k">def</span> <span class="nf">get_max_differential</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets the maximum differential between beams:</span>
 <span class="sd">    </span>
 <span class="sd">    * returns : max(array) - min(array)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">array</span><span class="p">)</span></div>
 
+
 <span class="c1"># Utility functions for optimization</span>
 <span class="c1">##################################################</span>
 
-<div class="viewcode-block" id="material_sellmeier"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.material_sellmeier">[docs]</a><span class="k">class</span> <span class="nc">material_sellmeier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="material_sellmeier.__init__"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.material_sellmeier.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">cs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="material_sellmeier">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.material_sellmeier">[docs]</a>
+<span class="k">class</span> <span class="nc">material_sellmeier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="material_sellmeier.__init__">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.material_sellmeier.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">cs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        * bs  : the B terms of the Sellmeier equation</span>
 <span class="sd">        * cs  : the C terms of the Sellmeier equation [µm^2]</span>
 
@@ -147,22 +155,30 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">bs</span> <span class="o">=</span> <span class="n">bs</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cs</span> <span class="o">=</span> <span class="n">cs</span></div>
+
             
-<div class="viewcode-block" id="material_sellmeier.get_n"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.material_sellmeier.get_n">[docs]</a>    <span class="k">def</span> <span class="nf">get_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="material_sellmeier.get_n">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.material_sellmeier.get_n">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">lamb_microns</span> <span class="o">=</span> <span class="n">lamb</span><span class="o">*</span><span class="mf">1e6</span>
         <span class="n">terms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ab</span><span class="o">*</span><span class="n">lamb_microns</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">lamb_microns</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> \
                         <span class="k">for</span> <span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">ac</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cs</span><span class="p">)])</span>
         <span class="n">nr</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">nr</span> <span class="o">+</span> <span class="n">add</span></div></div>
+        <span class="k">return</span> <span class="n">nr</span> <span class="o">+</span> <span class="n">add</span></div>
+</div>
 
-<div class="viewcode-block" id="bs2bcs"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.bs2bcs">[docs]</a><span class="k">def</span> <span class="nf">bs2bcs</span><span class="p">(</span><span class="n">bs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="bs2bcs">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.bs2bcs">[docs]</a>
+<span class="k">def</span> <span class="nf">bs2bcs</span><span class="p">(</span><span class="n">bs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transforms a flat list of sellmeier coefficients (B1, C1, B2, C2, ...)</span>
 <span class="sd">    into two vectors fo coefficients B and C.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">order</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span>
     <span class="n">b2</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">order</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">b2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">b2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>    </div>
+
 
 <span class="c1"># Adding builtin material for the linb</span>
 <span class="n">bs_e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.9804</span><span class="p">,</span>
@@ -183,8 +199,10 @@
 
 
 <span class="kn">from</span> <span class="nn">lmfit</span> <span class="kn">import</span> <span class="n">Parameters</span><span class="p">,</span> <span class="n">minimize</span>
-<div class="viewcode-block" id="extract_corrector_params"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.extract_corrector_params">[docs]</a><span class="k">def</span> <span class="nf">extract_corrector_params</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="extract_corrector_params">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.extract_corrector_params">[docs]</a>
+<span class="k">def</span> <span class="nf">extract_corrector_params</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Utility function to reconstruct the *b* and *c*</span>
 <span class="sd">    vectors from the lmfit Parameters object.</span>
 <span class="sd">    </span>
@@ -204,8 +222,11 @@
     <span class="k">return</span> <span class="n">bvec</span><span class="p">,</span><span class="n">cvec</span></div>
 
 
-<div class="viewcode-block" id="get_depth"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_depth">[docs]</a><span class="k">def</span> <span class="nf">get_depth</span><span class="p">(</span><span class="n">combiner</span><span class="p">,</span> <span class="n">Is</span><span class="p">,):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="get_depth">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_depth">[docs]</a>
+<span class="k">def</span> <span class="nf">get_depth</span><span class="p">(</span><span class="n">combiner</span><span class="p">,</span> <span class="n">Is</span><span class="p">,):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes a &quot;null depth&quot; analogue (dark/bright)</span>
 <span class="sd">    to be minimized by the tuning method.</span>
 <span class="sd">    The masks in the combiner definition</span>
@@ -226,8 +247,11 @@
     <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">dark</span><span class="o">/</span><span class="n">bright</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span></div>
 
-<div class="viewcode-block" id="get_Is"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_Is">[docs]</a><span class="k">def</span> <span class="nf">get_Is</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="get_Is">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_Is">[docs]</a>
+<span class="k">def</span> <span class="nf">get_Is</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns intensities at the combiners&#39; outputs</span>
 <span class="sd">    taking into account the corrections provided in</span>
 <span class="sd">    params.</span>
@@ -266,8 +290,11 @@
     <span class="k">return</span> <span class="n">Is</span></div>
 
 
-<div class="viewcode-block" id="get_contrast_res"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_contrast_res">[docs]</a><span class="k">def</span> <span class="nf">get_contrast_res</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="get_contrast_res">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_contrast_res">[docs]</a>
+<span class="k">def</span> <span class="nf">get_contrast_res</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Macro that gets the a residual from parameters </span>
 <span class="sd">    for minimizing method.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -276,8 +303,11 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="get_es"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_es">[docs]</a><span class="k">def</span> <span class="nf">get_es</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="get_es">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_es">[docs]</a>
+<span class="k">def</span> <span class="nf">get_es</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the enantiomorph excursion taking into account the corrections provided in</span>
 <span class="sd">    params.</span>
 <span class="sd">    </span>
@@ -310,17 +340,25 @@
     <span class="n">excursion</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">allcor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">excursion</span></div>
-<div class="viewcode-block" id="get_shape_res"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_shape_res">[docs]</a><span class="k">def</span> <span class="nf">get_shape_res</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="get_shape_res">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.get_shape_res">[docs]</a>
+<span class="k">def</span> <span class="nf">get_shape_res</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Macro that gets the a residual from parameters </span>
 <span class="sd">    for minimizing method.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">get_es</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">corrector</span><span class="p">,</span> <span class="n">lambs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span></div>
 
-<div class="viewcode-block" id="offband_ft"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft">[docs]</a><span class="k">class</span> <span class="nc">offband_ft</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="offband_ft.__init__"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl_ft</span><span class="p">,</span> <span class="n">wl_science</span><span class="p">,</span> <span class="n">wa_true</span><span class="p">,</span> <span class="n">wa_model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">corrector</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="offband_ft">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft">[docs]</a>
+<span class="k">class</span> <span class="nc">offband_ft</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="offband_ft.__init__">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl_ft</span><span class="p">,</span> <span class="n">wl_science</span><span class="p">,</span> <span class="n">wa_true</span><span class="p">,</span> <span class="n">wa_model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">corrector</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds a fringe tracker object that handles the problems of dispersion</span>
 <span class="sd">        between the band in use and the band of interest. It also addresses the problems</span>
 <span class="sd">        inside the band of interest.</span>
@@ -357,7 +395,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">phase_correction_ft</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">phase_correction_ft_science</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="offband_ft.refresh_corrector_models"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.refresh_corrector_models">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_corrector_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="offband_ft.refresh_corrector_models">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.refresh_corrector_models">[docs]</a>
+    <span class="k">def</span> <span class="nf">refresh_corrector_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S_model_science</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector_model</span><span class="o">.</span><span class="n">solve_air_corrector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wl_science</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S_model_ft</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector_model</span><span class="o">.</span><span class="n">solve_air</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wl_ft</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wa_true</span><span class="p">)</span><span class="c1"># Solving based for the closed_loop FT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S_model_ft_feedforward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector_model</span><span class="o">.</span><span class="n">solve_air_corrector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wl_ft</span><span class="p">)</span><span class="c1"># Solving based on the FT measurements</span>
@@ -368,10 +409,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">S_gd_model_science</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_S_GD_star</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wl_science</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wa_model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S_gd_ft</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_S_GD_star</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wl_ft</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wa_true</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S_gd_science</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_S_GD_star</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wl_science</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wa_true</span><span class="p">)</span></div>
+
         
         
-<div class="viewcode-block" id="offband_ft.get_ft_correction_on_science"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_ft_correction_on_science">[docs]</a>    <span class="k">def</span> <span class="nf">get_ft_correction_on_science</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="offband_ft.get_ft_correction_on_science">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_ft_correction_on_science">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_ft_correction_on_science</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Arguments**:</span>
 <span class="sd">        </span>
 <span class="sd">        * pistons : The value of optical path length missing at </span>
@@ -399,11 +443,14 @@
                                                             <span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">simple_piston_ft</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase_correction_ft_science</span></div>
+
     
 
     
-<div class="viewcode-block" id="offband_ft.update_NCP_corrections"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.update_NCP_corrections">[docs]</a>    <span class="k">def</span> <span class="nf">update_NCP_corrections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;phase&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="offband_ft.update_NCP_corrections">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.update_NCP_corrections">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_NCP_corrections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;phase&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by `get_phase_on_band` and `get_phase_on_science_values` and therefore</span>
 <span class="sd">        called each time the `director.point` is called.</span>
 <span class="sd">        </span>
@@ -534,6 +581,7 @@
 
 
 
+
     
         <span class="c1"># # Computing the errors in the L&#39; band</span>
         <span class="c1"># # The total phase from the piston on the band</span>
@@ -576,8 +624,10 @@
         <span class="c1"># if band is not None:</span>
         <span class="c1">#     return total_phase_on_band, correction_to_phase_ft    </span>
 
-<div class="viewcode-block" id="offband_ft.update_NCP_corrections_old"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.update_NCP_corrections_old">[docs]</a>    <span class="k">def</span> <span class="nf">update_NCP_corrections_old</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="offband_ft.update_NCP_corrections_old">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.update_NCP_corrections_old">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_NCP_corrections_old</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by `get_phase_on_band` and `get_phase_on_science_values` and therefore</span>
 <span class="sd">        called each time the `director.point` is called.</span>
 <span class="sd">        </span>
@@ -652,8 +702,11 @@
         <span class="k">if</span> <span class="n">band</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">total_phase_on_band</span><span class="p">,</span> <span class="n">correction_to_phase_ft</span></div>
 
-<div class="viewcode-block" id="offband_ft.get_modeled_law"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_modeled_law">[docs]</a>    <span class="k">def</span> <span class="nf">get_modeled_law</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_baseline</span><span class="o">=</span><span class="mi">133</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="offband_ft.get_modeled_law">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_modeled_law">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_modeled_law</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_baseline</span><span class="o">=</span><span class="mi">133</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate a law for glass and air compensation</span>
 <span class="sd">        **Arguments:**</span>
 <span class="sd">        </span>
@@ -700,11 +753,14 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum glass range: </span><span class="si">{</span><span class="n">glass_range</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mm&quot;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
         
         
         
-<div class="viewcode-block" id="offband_ft.get_S_GD_star"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_S_GD_star">[docs]</a>    <span class="k">def</span> <span class="nf">get_S_GD_star</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="offband_ft.get_S_GD_star">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_S_GD_star">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_S_GD_star</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        S_GD_star is the transform matrix (flat in this case) that projects</span>
 <span class="sd">        the phase of vacuum created phases into piston that minimize the</span>
 <span class="sd">        group delay.</span>
@@ -739,8 +795,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">s_gd</span> <span class="o">=</span> <span class="n">s_gd</span>
         <span class="k">return</span> <span class="n">s_gd</span></div>
 
-<div class="viewcode-block" id="offband_ft.get_phase_GD_tracking"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_phase_GD_tracking">[docs]</a>    <span class="k">def</span> <span class="nf">get_phase_GD_tracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="offband_ft.get_phase_GD_tracking">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_phase_GD_tracking">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_phase_GD_tracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pistons</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Arguments**:</span>
 
 <span class="sd">        * band  : if None: will save `self.sld_sxs`</span>
@@ -761,12 +820,15 @@
         <span class="k">if</span> <span class="n">band</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">phase_GD_target</span> <span class="o">=</span> <span class="n">phase_GD_target</span>
         <span class="k">return</span> <span class="n">phase_GD_target</span></div>
+
         
     
-<div class="viewcode-block" id="offband_ft.get_phase_on_band"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_phase_on_band">[docs]</a>    <span class="k">def</span> <span class="nf">get_phase_on_band</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">pistons</span><span class="p">,</span>
+<div class="viewcode-block" id="offband_ft.get_phase_on_band">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_phase_on_band">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_phase_on_band</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">pistons</span><span class="p">,</span>
                                 <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;ideal&quot;</span><span class="p">,</span>
                                 <span class="n">ft_mode</span><span class="o">=</span><span class="s2">&quot;phase&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Similar to ``get_phase_science_values`` but for an arbitrary band </span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Similar to ``get_phase_science_values`` but for an arbitrary band </span>
 <span class="sd">        for illustration purposes.</span>
 <span class="sd">        </span>
 <span class="sd">        **Arguments**:</span>
@@ -815,10 +877,13 @@
             <span class="n">correction_feedforward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_raw_phase_correction</span><span class="p">(</span><span class="n">band</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span>
                                                                             <span class="n">vector</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">b_ft</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">phi_asgard_model_band</span> <span class="o">-</span> <span class="n">phi_nott_model_band</span> <span class="o">-</span> <span class="n">correction_feedforward</span></div>
+
         
         
         
-<div class="viewcode-block" id="offband_ft.get_phase_science_values"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_phase_science_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_phase_science_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pistons</span><span class="p">,</span>
+<div class="viewcode-block" id="offband_ft.get_phase_science_values">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.offband_ft.get_phase_science_values">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_phase_science_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pistons</span><span class="p">,</span>
                                     <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;ideal&quot;</span><span class="p">,</span>
                                     <span class="n">ft_mode</span><span class="o">=</span><span class="s2">&quot;phase&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_NCP_corrections</span><span class="p">(</span><span class="n">pistons</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">ft_mode</span><span class="p">)</span>
@@ -833,25 +898,37 @@
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;feedforward&quot;</span><span class="p">:</span>
             <span class="c1"># Assumes a measurement of dispersion in the FT band</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;feedfoward not implemented yet. returns model-model&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_asgard_model</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_nott_model</span></div></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_asgard_model</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_nott_model</span></div>
+</div>
+
 
         
 
-<div class="viewcode-block" id="generic_vacuum"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.generic_vacuum">[docs]</a><span class="k">def</span> <span class="nf">generic_vacuum</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="generic_vacuum">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.generic_vacuum">[docs]</a>
+<span class="k">def</span> <span class="nf">generic_vacuum</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add should always be 1.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">lambs</span> <span class="o">*</span> <span class="n">add</span></div>
-<div class="viewcode-block" id="no_material"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.no_material">[docs]</a><span class="k">def</span> <span class="nf">no_material</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span> <span class="o">+</span> <span class="n">add</span></div>
+
+<div class="viewcode-block" id="no_material">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.no_material">[docs]</a>
+<span class="k">def</span> <span class="nf">no_material</span><span class="p">(</span><span class="n">lambs</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add should always be 0.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">lambs</span> <span class="o">*</span> <span class="mf">0.</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">lambs</span><span class="p">)</span> <span class="o">+</span> <span class="n">add</span></div>
 
-<div class="viewcode-block" id="corrector"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector">[docs]</a><span class="k">class</span> <span class="nc">corrector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="corrector.__init__"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+
+<div class="viewcode-block" id="corrector">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector">[docs]</a>
+<span class="k">class</span> <span class="nc">corrector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="corrector.__init__">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
                 <span class="n">model_comp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model_material2</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A module that provides beam adjustments</span>
 <span class="sd">        for the input. It contains amplitude *a*, geometric</span>
 <span class="sd">        piston *b* and ZnSe piston substitution *c*. Note that</span>
@@ -881,9 +958,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">nplate_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">znse_file</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+            <span class="n">nplate_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">znse_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span> 
-            <span class="n">nplate_file</span> <span class="o">=</span> <span class="n">file</span>
+            <span class="n">nplate_file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">parent</span><span class="o">/</span><span class="s2">&quot;data&quot;</span><span class="o">/</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nplate</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nplate_file</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">nplate_file</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
                                      <span class="n">kind</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span> <span class="p">)</span>
         <span class="k">if</span> <span class="n">model_comp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -914,11 +991,14 @@
 
         
         <span class="bp">self</span><span class="o">.</span><span class="n">prediction_model</span> <span class="o">=</span> <span class="n">n_air</span><span class="o">.</span><span class="n">wet_atmo</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></div>
+
         <span class="c1">#pdb.set_trace()</span>
         
-<div class="viewcode-block" id="corrector.refresh_adjustments"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.refresh_adjustments">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_adjustments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chip_corr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atmo_corr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="corrector.refresh_adjustments">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.refresh_adjustments">[docs]</a>
+    <span class="k">def</span> <span class="nf">refresh_adjustments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chip_corr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atmo_corr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">write</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates the values of self.a, self.b... based on the </span>
 <span class="sd">        values in self.chip_corr and atmo_corr. Except for a,</span>
 <span class="sd">        arrays are of shape `(n_tel, n_glasses)` with n_glasses including</span>
@@ -950,9 +1030,12 @@
         <span class="c1">#-(self.nmean-1)*self.c </span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="n">chip_corr</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">atmo_corr</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># A length of air as compensation for glass</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="n">chip_corr</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">atmo_corr</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># Additional material (CO2 bellows)</span></div>
+
         
-<div class="viewcode-block" id="corrector.get_phasor"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.get_phasor">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the complex phasor corresponding</span>
 <span class="sd">        to the current a, b, c, and dcomp phasors.</span>
 <span class="sd">        </span>
@@ -971,8 +1054,11 @@
                                                         <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">*</span> <span class="n">np1</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span>\
                                                         <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">*</span> <span class="n">np2</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]))</span>
         <span class="k">return</span> <span class="n">alpha</span></div>
-<div class="viewcode-block" id="corrector.get_phasor_s"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_s">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="corrector.get_phasor_s">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_s">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_phasor_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Deprecated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># the air displacing solid plate:</span>
@@ -982,10 +1068,13 @@
         <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">+</span>\
                                                 <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">*</span><span class="n">np1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="o">*</span><span class="n">np2</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">alpha</span></div>
-<div class="viewcode-block" id="corrector.get_raw_phase_correction"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_raw_phase_correction">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw_phase_correction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span>
+
+<div class="viewcode-block" id="corrector.get_raw_phase_correction">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_raw_phase_correction">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_raw_phase_correction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span>
                                  <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                                  <span class="n">dcomp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vector</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the raw (non-wrapped) phase produced by an optical path</span>
 <span class="sd">        of b[m] in air and c[m] in plate material.</span>
 <span class="sd">        </span>
@@ -1023,25 +1112,34 @@
                 <span class="n">phase_correction</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambs</span><span class="o">*</span><span class="p">(</span><span class="n">nair</span><span class="o">*</span><span class="p">(</span><span class="n">vector</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dcomp</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">phase_correction</span></div>
 
-<div class="viewcode-block" id="corrector.get_vector"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_vector">[docs]</a>    <span class="k">def</span> <span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="corrector.get_vector">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_vector">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            get_vector get the vector form of the current corrector setup.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">vector</span></div>
+
     
-<div class="viewcode-block" id="corrector.get_dcomp"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_dcomp">[docs]</a>    <span class="k">def</span> <span class="nf">get_dcomp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.get_dcomp">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_dcomp">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_dcomp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the theoertical value of dcomp for a given value of compensator</span>
 <span class="sd">        plate, to correct for the pure piston term introduced.</span>
 <span class="sd">        **Arguments**:</span>
-<span class="sd">        * c   : The value of glass plaet [m]</span>
+<span class="sd">        * c   : The value of glass plate [m]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span>
         <span class="k">return</span> <span class="n">dcomp</span></div>
+
         
-<div class="viewcode-block" id="corrector.get_dcomp_from_vector"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_dcomp_from_vector">[docs]</a>    <span class="k">def</span> <span class="nf">get_dcomp_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.get_dcomp_from_vector">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_dcomp_from_vector">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_dcomp_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the theoertical value of dcomp for a vector value of compensator</span>
 <span class="sd">        plate, to correct for the pure piston term introduced.</span>
 <span class="sd">        **Arguments**:</span>
@@ -1051,12 +1149,15 @@
         <span class="n">c</span> <span class="o">=</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span>
         <span class="k">return</span> <span class="n">dcomp</span></div>
+
         
 
-<div class="viewcode-block" id="corrector.get_phasor_from_params"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_from_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_phasor_from_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="corrector.get_phasor_from_params">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.get_phasor_from_params">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_phasor_from_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                <span class="n">dcomp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Similar to get_phasor() but allows to provide the</span>
 <span class="sd">        parameters as arguments (slower).</span>
 <span class="sd">        </span>
@@ -1098,9 +1199,12 @@
                                                         <span class="n">c</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">*</span> <span class="n">np1</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span>\
                                                         <span class="n">e</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span> <span class="o">*</span> <span class="n">np2</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]))</span>
         <span class="k">return</span> <span class="n">alpha</span></div>
+
     
-<div class="viewcode-block" id="corrector.theoretical_phase"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.theoretical_phase">[docs]</a>    <span class="k">def</span> <span class="nf">theoretical_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span> <span class="n">proj_opds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.theoretical_phase">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.theoretical_phase">[docs]</a>
+    <span class="k">def</span> <span class="nf">theoretical_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span> <span class="n">proj_opds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the theoretical chromatic phase effect of the</span>
 <span class="sd">        array geometry projected on axis based on the wet atmosphere</span>
 <span class="sd">        model.</span>
@@ -1145,9 +1249,12 @@
             
         <span class="n">phase</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">proj_opds_s</span> <span class="o">*</span> <span class="p">((</span><span class="n">nair</span> <span class="o">-</span> <span class="n">nref</span><span class="p">)</span> <span class="o">/</span> <span class="n">lambs</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">phase</span></div>
+
     
-<div class="viewcode-block" id="corrector.theoretical_piston"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.theoretical_piston">[docs]</a>    <span class="k">def</span> <span class="nf">theoretical_piston</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span> <span class="n">proj_opds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.theoretical_piston">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.theoretical_piston">[docs]</a>
+    <span class="k">def</span> <span class="nf">theoretical_piston</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span> <span class="n">proj_opds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the theoretical chromatic optical path effect of the</span>
 <span class="sd">        array geometry projected on axis based on the wet atmosphere</span>
 <span class="sd">        model.</span>
@@ -1186,9 +1293,12 @@
             <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
         <span class="n">phase</span> <span class="o">=</span> <span class="n">proj_opds</span> <span class="o">*</span> <span class="p">(</span><span class="n">nair</span> <span class="o">-</span> <span class="n">nref</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">phase</span><span class="o">.</span><span class="n">T</span></div>
+
         
-<div class="viewcode-block" id="corrector.solve_air"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air">[docs]</a>    <span class="k">def</span> <span class="nf">solve_air</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">corrector_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.solve_air">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air">[docs]</a>
+    <span class="k">def</span> <span class="nf">solve_air</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">corrector_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes a least squares compensation model (see</span>
 <span class="sd">        **Koresko et al. 2003 DOI: 10.1117/12.458032**)</span>
 <span class="sd">        </span>
@@ -1218,12 +1328,15 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span></div>
+
         
         
                               
                               
-<div class="viewcode-block" id="corrector.solve_air_corrector"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air_corrector">[docs]</a>    <span class="k">def</span> <span class="nf">solve_air_corrector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.solve_air_corrector">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air_corrector">[docs]</a>
+    <span class="k">def</span> <span class="nf">solve_air_corrector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes a least squares compensation model for </span>
 <span class="sd">        correction with variable thickness plates of material.</span>
 <span class="sd">        (see **Koresko et al. 2003 DOI: 10.1117/12.458032**)</span>
@@ -1262,8 +1375,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span></div>
 
-<div class="viewcode-block" id="corrector.solve_air_model"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air_model">[docs]</a>    <span class="k">def</span> <span class="nf">solve_air_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">models</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="corrector.solve_air_model">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.solve_air_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">solve_air_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">models</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes a least squares compensation model (see</span>
 <span class="sd">        **Koresko et al. 2003 DOI: 10.1117/12.458032**)</span>
 <span class="sd">        </span>
@@ -1282,10 +1398,13 @@
         
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span></div>
+
                               
-<div class="viewcode-block" id="corrector.tune_static"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.tune_static">[docs]</a>    <span class="k">def</span> <span class="nf">tune_static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="corrector.tune_static">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.tune_static">[docs]</a>
+    <span class="k">def</span> <span class="nf">tune_static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">freeze_params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;b0&quot;</span><span class="p">,</span> <span class="s2">&quot;c0&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Optimize the compensator to correct chromatism in the </span>
 <span class="sd">        model of the combiner. Returns a lmfit solution object.</span>
 <span class="sd">        If &quot;apply&quot; is set to True, a, b, c, and dcomp are also</span>
@@ -1330,12 +1449,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chip_corr</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chip_corr</span><span class="p">[</span><span class="s2">&quot;dcomp&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">sol</span></div>
+
     
-<div class="viewcode-block" id="corrector.tune_static_shape"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.tune_static_shape">[docs]</a>    <span class="k">def</span> <span class="nf">tune_static_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="corrector.tune_static_shape">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.tune_static_shape">[docs]</a>
+    <span class="k">def</span> <span class="nf">tune_static_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambs</span><span class="p">,</span> <span class="n">combiner</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">sync_params</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span>
                                 <span class="p">(</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)],</span>
                     <span class="n">freeze_params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;b0&quot;</span><span class="p">,</span> <span class="s2">&quot;c0&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Optimize the compensator to correct chromatism in the </span>
 <span class="sd">        model of the combiner to obtain enantomporph combinations</span>
 <span class="sd">        at the outputs. Returns a lmfit solution object.</span>
@@ -1395,11 +1517,14 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">cvec</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dcomp</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmean</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
         <span class="k">return</span> <span class="n">sol</span></div>
+
     
     
     
-<div class="viewcode-block" id="corrector.plot_tuning"><a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.plot_tuning">[docs]</a>    <span class="k">def</span> <span class="nf">plot_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span>  <span class="n">npoints</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="corrector.plot_tuning">
+<a class="viewcode-back" href="../../scifysim.correctors.html#scifysim.correctors.corrector.plot_tuning">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span>  <span class="n">npoints</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot of the state of tuning.</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -1412,7 +1537,9 @@
         <span class="n">pltlambrange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lambs</span><span class="p">),</span>
                                    <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lambs</span><span class="p">),</span>
                                    <span class="n">npoints</span><span class="p">)</span>
-        <span class="n">init_phasor</span> <span class="o">=</span> <span class="n">cor</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="n">pltlambrange</span><span class="p">)</span></div></div>
+        <span class="n">init_phasor</span> <span class="o">=</span> <span class="n">cor</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="n">pltlambrange</span><span class="p">)</span></div>
+</div>
+
         
 </pre></div>
 

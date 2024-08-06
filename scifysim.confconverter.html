@@ -13,11 +13,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5f61e39c"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -81,7 +81,11 @@
 <li class="toctree-l1"><a class="reference internal" href="scifysim.analysis.html">scifysim.analysis module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiner.html">scifysim.combiner module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.combiners.html">scifysim.combiners module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.confconverter module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.confconverter module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scifysim.confconverter.convert_config_file"><code class="docutils literal notranslate"><span class="pre">convert_config_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scifysim.confconverter.set_logging_level"><code class="docutils literal notranslate"><span class="pre">set_logging_level()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.correctors.html">scifysim.correctors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.director.html">scifysim.director module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.injection.html">scifysim.injection module</a></li>
@@ -123,10 +127,10 @@
            <div itemprop="articleBody">
              
   <section id="module-scifysim.confconverter">
-<span id="scifysim-confconverter-module"></span><h1>scifysim.confconverter module<a class="headerlink" href="#module-scifysim.confconverter" title="Permalink to this heading"></a></h1>
+<span id="scifysim-confconverter-module"></span><h1>scifysim.confconverter module<a class="headerlink" href="#module-scifysim.confconverter" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.confconverter.convert_config_file">
-<span class="sig-prename descclassname"><span class="pre">scifysim.confconverter.</span></span><span class="sig-name descname"><span class="pre">convert_config_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/confconverter.html#convert_config_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.confconverter.convert_config_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.confconverter.</span></span><span class="sig-name descname"><span class="pre">convert_config_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/confconverter.html#convert_config_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.confconverter.convert_config_file" title="Link to this definition"></a></dt>
 <dd><p>A simple routine to convert .prm config file to .ini config files</p>
 <p><strong>Paramters</strong></p>
 <ul class="simple">
@@ -140,7 +144,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.confconverter.set_logging_level">
-<span class="sig-prename descclassname"><span class="pre">scifysim.confconverter.</span></span><span class="sig-name descname"><span class="pre">set_logging_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/confconverter.html#set_logging_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.confconverter.set_logging_level" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.confconverter.</span></span><span class="sig-name descname"><span class="pre">set_logging_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/confconverter.html#set_logging_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.confconverter.set_logging_level" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

@@ -13,11 +13,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5f61e39c"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -89,7 +89,13 @@
 <li class="toctree-l1"><a class="reference internal" href="scifysim.mol_dens.html">scifysim.mol_dens module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.n_air.html">scifysim.n_air module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.observatory.html">scifysim.observatory module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.parsefile module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scifysim.parsefile module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scifysim.parsefile.getarray"><code class="docutils literal notranslate"><span class="pre">getarray()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scifysim.parsefile.getdate"><code class="docutils literal notranslate"><span class="pre">getdate()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scifysim.parsefile.list_all"><code class="docutils literal notranslate"><span class="pre">list_all()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scifysim.parsefile.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.plot_tools.html">scifysim.plot_tools module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.sources.html">scifysim.sources module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scifysim.spectrograph.html">scifysim.spectrograph module</a></li>
@@ -123,10 +129,10 @@
            <div itemprop="articleBody">
              
   <section id="module-scifysim.parsefile">
-<span id="scifysim-parsefile-module"></span><h1>scifysim.parsefile module<a class="headerlink" href="#module-scifysim.parsefile" title="Permalink to this heading"></a></h1>
+<span id="scifysim-parsefile-module"></span><h1>scifysim.parsefile module<a class="headerlink" href="#module-scifysim.parsefile" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.parsefile.getarray">
-<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">getarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#getarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.getarray" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">getarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#getarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.getarray" title="Link to this definition"></a></dt>
 <dd><p>An extra get method to parse arrays</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
@@ -138,7 +144,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.parsefile.getdate">
-<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">getdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#getdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.getdate" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">getdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#getdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.getdate" title="Link to this definition"></a></dt>
 <dd><p>An extra get method to parse dates in the GENIE .prm format</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">
@@ -150,13 +156,13 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.parsefile.list_all">
-<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">list_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#list_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.list_all" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">list_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#list_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.list_all" title="Link to this definition"></a></dt>
 <dd><p>An extra get method list all the values in the file</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="scifysim.parsefile.parse_file">
-<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#parse_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.parse_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">scifysim.parsefile.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scifysim/parsefile.html#parse_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scifysim.parsefile.parse_file" title="Link to this definition"></a></dt>
 <dd><p>Just a quick macro to parse the config file</p>
 <p><strong>Parameters:</strong></p>
 <ul class="simple">

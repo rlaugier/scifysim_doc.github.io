@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5f61e39c"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -131,12 +131,16 @@
 <span class="sd">    newarray = myobs.get_projected_array(myobs.get_positions(targets, obstimes)[0,0])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="observatory"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory">[docs]</a><span class="k">class</span> <span class="nc">observatory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="observatory">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory">[docs]</a>
+<span class="k">class</span> <span class="nc">observatory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class help define the properties of the observatory infrastructure, especially the uv coverage.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="observatory.__init__"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">multi_dish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="observatory.__init__">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">multi_dish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        </span>
@@ -172,6 +176,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span> <span class="o">=</span> <span class="n">statlocs</span>
         
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdiams</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span><span class="s2">&quot;diam&quot;</span><span class="p">)</span>
+        
         <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;self.theta&quot;</span><span class="p">)</span>
         <span class="c1">#R handles the azimuthal rotation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Rs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)],</span>
@@ -197,10 +203,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bl_mat</span> <span class="o">=</span> <span class="n">bl_mat</span>
         <span class="k">del</span> <span class="n">bl_mat</span>
         <span class="k">del</span> <span class="n">bl_list</span></div>
+
         
         
-<div class="viewcode-block" id="observatory.point"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obstime</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="observatory.point">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.point">[docs]</a>
+    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obstime</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Points the array towards the target, updating its position angle (PA) and altaz (used for airmass).</span>
 <span class="sd">        These are later used by other methods to compute the projection of the array.</span>
 <span class="sd">        </span>
@@ -211,17 +220,21 @@
 <span class="sd">        * target    : The astroplan.FixedTarget object of interest. Usually resolved in the </span>
 <span class="sd">          self.build_observign_sequence() routine with astroplan.FixedTarget.from_name()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">obstime</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">altaz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">altaz</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
                                                    <span class="n">time</span><span class="o">=</span><span class="n">obstime</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">PA</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">parallactic_angle</span><span class="p">(</span><span class="n">obstime</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
         <span class="n">current_proj_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bl_mat</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">current_proj_array</span><span class="p">)</span></div>
+
         
 
         
-<div class="viewcode-block" id="observatory.build_observing_sequence"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.build_observing_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">build_observing_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="observatory.build_observing_sequence">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.build_observing_sequence">[docs]</a>
+    <span class="k">def</span> <span class="nf">build_observing_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">npoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
@@ -263,10 +276,13 @@
         
         
         <span class="k">return</span> <span class="n">obstimes</span></div>
+
             
         
-<div class="viewcode-block" id="observatory.get_positions"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_positions">[docs]</a>    <span class="k">def</span> <span class="nf">get_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">obstimes</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="observatory.get_positions">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_positions">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">obstimes</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Deprecated</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -281,9 +297,12 @@
                                                    <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">tarPA</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span><span class="o">.</span><span class="n">parallactic_angle</span><span class="p">(</span><span class="n">obstimes</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">targets</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">taraltaz</span><span class="c1">#, tarPA</span></div>
+
     
-<div class="viewcode-block" id="observatory.get_position"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;        </span>
+<div class="viewcode-block" id="observatory.get_position">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;        </span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * target:   one or a list of of targets</span>
@@ -300,9 +319,12 @@
         <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;target PA&quot;</span><span class="p">)</span>
         <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">tarPA</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">taraltaz</span><span class="p">,</span> <span class="n">tarPA</span></div>
+
         
-<div class="viewcode-block" id="observatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="observatory.get_projected_array">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_array">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
@@ -348,8 +370,11 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">loc_array</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">newarray</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">newarray</span></div>
-<div class="viewcode-block" id="observatory.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="observatory.get_projected_geometric_pistons">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.observatory.get_projected_geometric_pistons">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
@@ -367,16 +392,22 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;alt &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pistons</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">pistons</span></div></div>
+        <span class="k">return</span> <span class="n">pistons</span></div>
+</div>
 
-<div class="viewcode-block" id="ObservatoryAltAz"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz">[docs]</a><span class="k">class</span> <span class="nc">ObservatoryAltAz</span><span class="p">(</span><span class="n">observatory</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ObservatoryAltAz">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz">[docs]</a>
+<span class="k">class</span> <span class="nc">ObservatoryAltAz</span><span class="p">(</span><span class="n">observatory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    For observatories that are mounted on a single alt-az mount.</span>
 <span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ObservatoryAltAz.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ObservatoryAltAz.get_projected_array">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz.get_projected_array">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
@@ -419,8 +450,11 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">newarray</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">newarray</span></div>
 
-<div class="viewcode-block" id="ObservatoryAltAz.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ObservatoryAltAz.get_projected_geometric_pistons">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.ObservatoryAltAz.get_projected_geometric_pistons">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * taraltaz : the astropy.coordinates.AltAz of the target</span>
@@ -437,12 +471,18 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;alt &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">taraltaz</span><span class="o">.</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;old array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statlocs</span><span class="p">))</span>
             <span class="n">logit</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;new array &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pistons</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">pistons</span></div></div>
+        <span class="k">return</span> <span class="n">pistons</span></div>
+</div>
 
-<div class="viewcode-block" id="SpaceObservatory"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory">[docs]</a><span class="k">class</span> <span class="nc">SpaceObservatory</span><span class="p">(</span><span class="n">observatory</span><span class="p">):</span>
-<div class="viewcode-block" id="SpaceObservatory.__init__"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+
+<div class="viewcode-block" id="SpaceObservatory">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory">[docs]</a>
+<span class="k">class</span> <span class="nc">SpaceObservatory</span><span class="p">(</span><span class="n">observatory</span><span class="p">):</span>
+<div class="viewcode-block" id="SpaceObservatory.__init__">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">multi_dish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        </span>
@@ -466,6 +506,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">observatory_location</span> <span class="o">=</span> <span class="n">location</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dummy_location</span> <span class="o">=</span> <span class="n">astroplan</span><span class="o">.</span><span class="n">Observer</span><span class="o">.</span><span class="n">at_site</span><span class="p">(</span><span class="s2">&quot;paranal&quot;</span><span class="p">,</span> <span class="n">timezone</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_tel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;n_dish&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdiams</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getarray</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span><span class="s2">&quot;diam&quot;</span><span class="p">)</span>
         
         <span class="c1"># self.array_config = self.config.get(&quot;configuration&quot;, &quot;config&quot;)</span>
         <span class="n">raw_array</span><span class="p">,</span> <span class="n">array_config</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">get_raw_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
@@ -520,15 +561,21 @@
         <span class="c1"># Initializing by pointing to instant 0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SpaceObservatory.time2t"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.time2t">[docs]</a>    <span class="k">def</span> <span class="nf">time2t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpaceObservatory.time2t">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.time2t">[docs]</a>
+    <span class="k">def</span> <span class="nf">time2t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Convenience conversion from astropy.Time object</span>
 <span class="sd">        to seconds since the start of observations used internally</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">to_value</span><span class="p">(</span><span class="s2">&quot;unix&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_0</span></div>
 
-<div class="viewcode-block" id="SpaceObservatory.interpolation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpaceObservatory.interpolation">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.interpolation">[docs]</a>
+    <span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **Arguments:**</span>
 <span class="sd">        * t    : time [s]</span>
 <span class="sd">        * loc_array : irrelevant hereo</span>
@@ -546,8 +593,11 @@
             <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Passed full_output: irrelevant argument&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation_function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SpaceObservatory.rotation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.rotation">[docs]</a>    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpaceObservatory.rotation">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.rotation">[docs]</a>
+    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Einsum:</span>
 <span class="sd">        * i : Input space</span>
 <span class="sd">        * o : Output space</span>
@@ -564,14 +614,18 @@
             <span class="k">return</span> <span class="n">x_A_t</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">R_rotation</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">x_A_t</span></div>
+
         
-<div class="viewcode-block" id="SpaceObservatory.point"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpaceObservatory.point">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.point">[docs]</a>
+    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Refreshes the parameters related to pointing and motion</span>
 <span class="sd">        in particular:</span>
 <span class="sd">        * `self.x_A_t`</span>
 <span class="sd">        * `self.R_rotation` when relevant</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
         <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time2t</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
         <span class="n">motion_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion_type</span> <span class="o">==</span> <span class="s2">&quot;rotation&quot;</span><span class="p">:</span>
@@ -583,11 +637,14 @@
         <span class="n">current_proj_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bl_mat</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">current_proj_array</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span></div>
 
+
     <span class="c1"># def build_observing_sequence(self):</span>
     <span class="c1">#     pass</span>
 
-<div class="viewcode-block" id="SpaceObservatory.get_position"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpaceObservatory.get_position">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">grid_times_targets</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the position of the collectors as a function of time</span>
 
 <span class="sd">        **Arguments** : </span>
@@ -604,10 +661,13 @@
         <span class="n">aPA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x_A_t</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_A_t</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">dummy_taraltaz</span><span class="p">,</span> <span class="n">aPA</span></div>
 
-<div class="viewcode-block" id="SpaceObservatory.get_projected_array"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+
+<div class="viewcode-block" id="SpaceObservatory.get_projected_array">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_array">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_projected_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taraltaz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">PA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loc_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">c3d</span><span class="o">=</span><span class="kc">False</span><span class="p">,):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the projected collector array</span>
 
 <span class="sd">        **Arguments : **</span>
@@ -630,8 +690,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">x_P</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="SpaceObservatory.get_projected_geometric_pistons"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_geometric_pistons">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpaceObservatory.get_projected_geometric_pistons">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.SpaceObservatory.get_projected_geometric_pistons">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_projected_geometric_pistons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Computes the distance traveled past the reference plane:</span>
 <span class="sd">        $P_A - A + AM$</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -642,15 +705,22 @@
         <span class="n">norm_M_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">M_A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">optical_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">norm_M_A</span> <span class="o">+</span> <span class="n">norm_PAA</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
         <span class="k">assert</span> <span class="n">optical_path</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_tel</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;shape of optical path </span><span class="si">{</span><span class="n">norm_M_A</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">return</span> <span class="n">optical_path</span></div></div>
+        <span class="k">return</span> <span class="n">optical_path</span></div>
+</div>
+
         
-<div class="viewcode-block" id="basic_interpolation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.basic_interpolation">[docs]</a><span class="k">def</span> <span class="nf">basic_interpolation</span><span class="p">(</span><span class="n">t</span><span class="p">,):</span>
+<div class="viewcode-block" id="basic_interpolation">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.basic_interpolation">[docs]</a>
+<span class="k">def</span> <span class="nf">basic_interpolation</span><span class="p">(</span><span class="n">t</span><span class="p">,):</span>
     <span class="k">pass</span></div>
 
 
+
     
-<div class="viewcode-block" id="basic_z_rotation"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.basic_z_rotation">[docs]</a><span class="k">def</span> <span class="nf">basic_z_rotation</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="basic_z_rotation">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.basic_z_rotation">[docs]</a>
+<span class="k">def</span> <span class="nf">basic_z_rotation</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        basic rotation matrix around z</span>
 <span class="sd">    **Returns**: The rotation matrix.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -659,11 +729,14 @@
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
     <span class="k">return</span> <span class="n">M_R</span></div>
 
-<div class="viewcode-block" id="test_observatory"><a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.test_observatory">[docs]</a><span class="k">def</span> <span class="nf">test_observatory</span><span class="p">(</span><span class="n">tarname</span><span class="o">=</span><span class="s2">&quot;Tau cet&quot;</span><span class="p">,</span>
+
+<div class="viewcode-block" id="test_observatory">
+<a class="viewcode-back" href="../../scifysim.observatory.html#scifysim.observatory.test_observatory">[docs]</a>
+<span class="k">def</span> <span class="nf">test_observatory</span><span class="p">(</span><span class="n">tarname</span><span class="o">=</span><span class="s2">&quot;Tau cet&quot;</span><span class="p">,</span>
                      <span class="n">startend</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2020-10-20T00:00:00&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-10-20T10:00:00&quot;</span><span class="p">],</span>
                      <span class="n">nblocs</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-    
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Runs some test for the core functions of observatory</span>
 <span class="sd">    </span>
 <span class="sd">    **Parameters:**</span>
@@ -701,6 +774,7 @@
 
     <span class="k">for</span> <span class="n">seqindex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">plot_pupil</span><span class="p">(</span><span class="n">thearrays</span><span class="p">[</span><span class="n">seqindex</span><span class="p">],</span> <span class="n">thepistons</span><span class="o">=</span><span class="n">thepistons</span><span class="p">[</span><span class="n">seqindex</span><span class="p">])</span></div>
+
         
 </pre></div>
 
