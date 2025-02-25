@@ -14,9 +14,9 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=5f61e39c"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=88750a54"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -132,28 +132,20 @@
               <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">YlOrRd</span><span class="p">,</span>
               <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">GnBu</span><span class="p">]</span>
 
-<div class="viewcode-block" id="getcolor">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.getcolor">[docs]</a>
-<span class="k">def</span> <span class="nf">getcolor</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">tracelength</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="getcolor"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.getcolor">[docs]</a><span class="k">def</span> <span class="nf">getcolor</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">tracelength</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts an index to one of the basic colors of matplotlib</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s2">&quot;C&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="getcolortrace">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.getcolortrace">[docs]</a>
-<span class="k">def</span> <span class="nf">getcolortrace</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="getcolortrace"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.getcolortrace">[docs]</a><span class="k">def</span> <span class="nf">getcolortrace</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="p">):</span>
         <span class="n">thecmap</span> <span class="o">=</span> <span class="n">colortraces</span><span class="p">[</span><span class="n">cmap</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">thecmap</span> <span class="o">=</span> <span class="n">cmap</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="n">thecmap</span><span class="p">(</span><span class="n">value</span><span class="o">/</span><span class="n">length</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">trace</span></div>
-
     
-<div class="viewcode-block" id="piston2size">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.piston2size">[docs]</a>
-<span class="k">def</span> <span class="nf">piston2size</span><span class="p">(</span><span class="n">piston</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mf">140.</span><span class="p">,</span> <span class="n">psz</span><span class="o">=</span><span class="mf">8.</span><span class="p">,</span> <span class="n">usize</span><span class="o">=</span><span class="mf">150.</span><span class="p">):</span>
+<div class="viewcode-block" id="piston2size"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.piston2size">[docs]</a><span class="k">def</span> <span class="nf">piston2size</span><span class="p">(</span><span class="n">piston</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mf">140.</span><span class="p">,</span> <span class="n">psz</span><span class="o">=</span><span class="mf">8.</span><span class="p">,</span> <span class="n">usize</span><span class="o">=</span><span class="mf">150.</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Pretty visualization of projected array: Emulates perspective</span>
 <span class="sd">    </span>
@@ -170,11 +162,8 @@
 
 
 
-
     
-<div class="viewcode-block" id="plot_pupil">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_pupil">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_pupil</span><span class="p">(</span><span class="n">thearray</span><span class="p">,</span> <span class="n">thepistons</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">psz</span><span class="o">=</span><span class="mf">8.</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_pupil"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_pupil">[docs]</a><span class="k">def</span> <span class="nf">plot_pupil</span><span class="p">(</span><span class="n">thearray</span><span class="p">,</span> <span class="n">thepistons</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">psz</span><span class="o">=</span><span class="mf">8.</span><span class="p">,</span>
                <span class="n">usize</span><span class="o">=</span><span class="mf">150.</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mf">140.</span><span class="p">,</span> <span class="n">perspective</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                <span class="n">compass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -246,13 +235,11 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">fig</span></div>
 
-
-<div class="viewcode-block" id="plot_projected_pupil">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_projected_pupil">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_projected_pupil</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">seq_index</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_projected_pupil"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_projected_pupil">[docs]</a><span class="k">def</span> <span class="nf">plot_projected_pupil</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">seq_index</span><span class="p">,</span>
                          <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid_res</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                          <span class="n">compass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">compass_length</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
-                         <span class="n">usize</span><span class="o">=</span><span class="mf">150.</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mf">140.</span><span class="p">,</span> <span class="n">perspective</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                         <span class="n">usize</span><span class="o">=</span><span class="mf">150.</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mf">140.</span><span class="p">,</span> <span class="n">perspective</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Designed as a wrapper around plot_pupil that also handles</span>
 <span class="sd">    additional illustration.</span>
@@ -310,14 +297,12 @@
     
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_pupil</span><span class="p">(</span><span class="n">p_array</span><span class="p">,</span> <span class="n">thepistons</span><span class="p">,</span> <span class="n">compass</span><span class="o">=</span><span class="n">pcompass</span><span class="p">,</span>
                     <span class="n">usize</span><span class="o">=</span><span class="n">usize</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="n">dist</span><span class="p">,</span> <span class="n">perspective</span><span class="o">=</span><span class="n">perspective</span><span class="p">,</span>
-                    <span class="n">grid</span><span class="o">=</span><span class="n">projected_grid</span><span class="p">)</span>
+                    <span class="n">grid</span><span class="o">=</span><span class="n">projected_grid</span><span class="p">,</span>
+                    <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">fig</span></div>
 
-
-<div class="viewcode-block" id="plot_projected_uv">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_projected_uv">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_projected_uv</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">seq_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_projected_uv"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_projected_uv">[docs]</a><span class="k">def</span> <span class="nf">plot_projected_uv</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">seq_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid_res</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                          <span class="n">compass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">compass_length</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
                          <span class="n">usize</span><span class="o">=</span><span class="mf">150.</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mf">140.</span><span class="p">,</span> <span class="n">perspective</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -375,10 +360,7 @@
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">alluvs</span></div>
 
 
-
-<div class="viewcode-block" id="plot_colored_uv">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_colored_uv">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_colored_uv</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Plot of the uv coverage&quot;</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_colored_uv"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_colored_uv">[docs]</a><span class="k">def</span> <span class="nf">plot_colored_uv</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Plot of the uv coverage&quot;</span><span class="p">,</span>
     <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">wls</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span>
@@ -400,10 +382,7 @@
     <span class="k">return</span> <span class="n">fig</span></div>
 
 
-
-<div class="viewcode-block" id="plot_multiple_maps">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_multiple_maps">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_multiple_maps</span><span class="p">(</span><span class="n">maplist</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span>  <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detector</span><span class="o">=</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+<div class="viewcode-block" id="plot_multiple_maps"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_multiple_maps">[docs]</a><span class="k">def</span> <span class="nf">plot_multiple_maps</span><span class="p">(</span><span class="n">maplist</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span>  <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detector</span><span class="o">=</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
                        <span class="n">single_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">adjust_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                        <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;x-small&quot;</span><span class="p">,</span><span class="n">titles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                        <span class="n">remove_titles</span><span class="o">=</span><span class="p">[],</span>
@@ -508,10 +487,7 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">fig</span></div>
 
-
-<div class="viewcode-block" id="plot_phasescreen">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_phasescreen">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_phasescreen</span><span class="p">(</span><span class="n">theinjector</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">screen_index</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_phasescreen"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_phasescreen">[docs]</a><span class="k">def</span> <span class="nf">plot_phasescreen</span><span class="p">(</span><span class="n">theinjector</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">screen_index</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
     <span class="kn">import</span> <span class="nn">scifysim</span> <span class="k">as</span> <span class="nn">sf</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">theinjector</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injector</span><span class="p">):</span>
@@ -533,14 +509,11 @@
     <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">fig</span></div>
-
     
     
     
 
-<div class="viewcode-block" id="plot_injection">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_injection">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_injection</span><span class="p">(</span><span class="n">theinjector</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_injection"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_injection">[docs]</a><span class="k">def</span> <span class="nf">plot_injection</span><span class="p">(</span><span class="n">theinjector</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Provides a view of the injector status. Plots the phase screen for each pupil.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -578,7 +551,7 @@
     <span class="n">amplitudes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.</span><span class="p">,</span><span class="mf">2.</span><span class="p">))</span>
     <span class="n">width</span> <span class="o">=</span> <span class="mf">0.1</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">injected</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">width</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">injected</span><span class="p">[:,</span><span class="n">i</span><span class="p">]),</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> µm&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">width</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">injected</span><span class="p">[:,</span><span class="n">i</span><span class="p">]),</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> µm&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower center&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Injection amplitude&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Injection amplitude for each telescope by WL&quot;</span><span class="p">)</span>
@@ -588,7 +561,7 @@
     <span class="n">phases</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.</span><span class="p">,</span><span class="mf">2.</span><span class="p">))</span>
     <span class="n">width</span> <span class="o">=</span> <span class="mf">0.1</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">injected</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">width</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">injected</span><span class="p">[:,</span><span class="n">i</span><span class="p">]),</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> µm&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">width</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">injected</span><span class="p">[:,</span><span class="n">i</span><span class="p">]),</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> µm&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">theinjector</span><span class="o">.</span><span class="n">lambda_range</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower center&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Injection phase [radians]&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Injection phase for each telescope by WL&quot;</span><span class="p">)</span>
@@ -597,10 +570,7 @@
         
     <span class="k">return</span> <span class="n">focal_plane</span><span class="p">,</span> <span class="n">amplitudes</span><span class="p">,</span> <span class="n">phases</span></div>
 
-
-<div class="viewcode-block" id="plot_output_sources">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_output_sources">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_output_sources</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">integ</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">margins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_output_sources"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_output_sources">[docs]</a><span class="k">def</span> <span class="nf">plot_output_sources</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">integ</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">margins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                        <span class="n">t_exp</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the content of all outputs for each of the different sources:</span>
@@ -666,11 +636,8 @@
     
     <span class="k">return</span> <span class="n">signalplot</span></div>
 
-
     
-<div class="viewcode-block" id="plot_response_map">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_response_map">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_response_map</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_response_map"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_response_map">[docs]</a><span class="k">def</span> <span class="nf">plot_response_map</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">wavelength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">sequence_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -755,11 +722,8 @@
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="n">figs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">figs</span></div>
-
             
-<div class="viewcode-block" id="plot_differential_map">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_differential_map">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_differential_map</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_differential_map"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_differential_map">[docs]</a><span class="k">def</span> <span class="nf">plot_differential_map</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">wavelength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">sequence_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -770,6 +734,7 @@
                       <span class="n">central_marker</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                       <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                       <span class="n">return_difmaps</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                      <span class="n">use_precomputed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                       <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the differential response map of the instrument for the target and sequence</span>
@@ -789,6 +754,7 @@
 <span class="sd">    * add_central_marker: Add a marker at the 0,0 location</span>
 <span class="sd">    * central_marker_size: The size parameter to give the central marker</span>
 <span class="sd">    * central_marker_type: The type of marker to use</span>
+<span class="sd">    * use_precomputed: (False) if True, use asim.difmaps pre-computed by extract_difobs_map</span>
 <span class="sd">    </span>
 <span class="sd">    **returns:** fig (, difmaps)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -816,8 +782,10 @@
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;could not find the kernel matrix.&quot;</span><span class="p">)</span>
     <span class="n">n_kernels</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_kernels</span><span class="p">)</span>
-            
-    <span class="n">difmaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;k o, s w o x y -&gt; s w k x y&quot;</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span>  <span class="n">asim</span><span class="o">.</span><span class="n">maps</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">use_precomputed</span><span class="p">:</span>
+        <span class="n">difmaps</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">difmaps</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">difmaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;k o, s w o x y -&gt; s w k x y&quot;</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span>  <span class="n">asim</span><span class="o">.</span><span class="n">maps</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="n">sumall</span><span class="p">:</span>
         <span class="n">amax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">difmaps</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
@@ -865,11 +833,8 @@
         <span class="k">return</span> <span class="n">figs</span><span class="p">,</span> <span class="n">difmaps</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">figs</span></div>
-
             
-<div class="viewcode-block" id="plot_opds">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_opds">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_opds</span><span class="p">(</span><span class="n">integ</span><span class="p">,</span> <span class="n">step_time</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_opds"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_opds">[docs]</a><span class="k">def</span> <span class="nf">plot_opds</span><span class="p">(</span><span class="n">integ</span><span class="p">,</span> <span class="n">step_time</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots the phase error information collected by </span>
 <span class="sd">    the integrator object.</span>
@@ -918,15 +883,12 @@
     <span class="k">return</span> <span class="n">fig_phase</span><span class="p">,</span> <span class="n">fig_amp</span><span class="p">,</span> <span class="n">fig_outputs</span></div>
 
 
-
 <span class="kn">from</span> <span class="nn">kernuller.diagrams</span> <span class="kn">import</span> <span class="n">plot_chromatic_matrix</span> <span class="k">as</span> <span class="n">cmpc</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scifysim.correctors</span> <span class="kn">import</span> <span class="n">get_Is</span>
 
 
-<div class="viewcode-block" id="plot_corrector_tuning_angel_woolf">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_corrector_tuning_angel_woolf">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_corrector_tuning_angel_woolf</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_corrector_tuning_angel_woolf"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.plot_corrector_tuning_angel_woolf">[docs]</a><span class="k">def</span> <span class="nf">plot_corrector_tuning_angel_woolf</span><span class="p">(</span><span class="n">corrector</span><span class="p">,</span><span class="n">lambs</span><span class="p">,</span>
                                       <span class="n">combiner</span><span class="p">,</span> <span class="n">wv_model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                       <span class="n">out_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                       <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -1059,10 +1021,7 @@
 
 
 
-
-<div class="viewcode-block" id="make_cursor">
-<a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.make_cursor">[docs]</a>
-<span class="k">def</span> <span class="nf">make_cursor</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+<div class="viewcode-block" id="make_cursor"><a class="viewcode-back" href="../../scifysim.plot_tools.html#scifysim.plot_tools.make_cursor">[docs]</a><span class="k">def</span> <span class="nf">make_cursor</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
                <span class="n">flipy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">flipy</span><span class="p">:</span> <span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1072,7 +1031,6 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">size</span><span class="p">,</span> <span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">size</span><span class="p">]),</span>
              <span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
              <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
 </pre></div>
 
            </div>

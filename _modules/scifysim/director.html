@@ -14,9 +14,9 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=5f61e39c"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=88750a54"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -113,12 +113,8 @@
 <span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="simulator">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator">[docs]</a>
-<span class="k">class</span> <span class="nc">simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="simulator.__init__">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator">[docs]</a><span class="k">class</span> <span class="nc">simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.__init__"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
                  <span class="c1">#location=None, array=None,</span>
                 <span class="c1">#tarname=&quot;No name&quot;, tarpos=None, n_spec_ch=100):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -166,11 +162,8 @@
         <span class="c1">#self.obs = sf.observatory.observatory(self.array, location=location)</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="kc">None</span></div>
-
         
-<div class="viewcode-block" id="simulator.prepare_observatory">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_observatory">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_observatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.prepare_observatory"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_observatory">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_observatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Preprare the observatory object for the simulator.</span>
 <span class="sd">        </span>
@@ -211,15 +204,12 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">observatory</span><span class="o">.</span><span class="n">ObservatoryAltAz</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">theconfig</span><span class="p">,</span> <span class="n">statlocs</span><span class="o">=</span><span class="n">statlocs</span><span class="p">)</span>
             <span class="c1"># This is the true atmospheric model</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">wet_atmo</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">wet_atmo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span></div>
-
         
 
     
     
     
-<div class="viewcode-block" id="simulator.prepare_injector">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_injector">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_injector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.prepare_injector"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_injector">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_injector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">ntelescopes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tt_correction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">no_piston</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lambda_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">NA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -267,12 +257,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">vigneting</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">injection_vigneting</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">crop</span><span class="p">)</span>
         
         <span class="k">pass</span></div>
-
     
     
-<div class="viewcode-block" id="simulator.prepare_combiner">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_combiner">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_combiner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.prepare_combiner"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_combiner">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_combiner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructs ``self.combiner``</span>
 <span class="sd">        </span>
@@ -286,19 +273,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ph_tap</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;photometric_tap&quot;</span><span class="p">)</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
         
         
-<div class="viewcode-block" id="simulator.prepare_fringe_tracker">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_fringe_tracker">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_fringe_tracker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.prepare_fringe_tracker"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_fringe_tracker">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_fringe_tracker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fringe_tracker</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">injection</span><span class="o">.</span><span class="n">fringe_tracker</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="simulator.prepare_sources">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_sources">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.prepare_sources"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_sources">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepares a src object containing star, planet, sky and UT.</span>
 <span class="sd">        </span>
@@ -307,10 +288,7 @@
         <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">star_planet_target</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="simulator.prepare_integrator">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_integrator">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_integrator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepall</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.prepare_integrator"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_integrator">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_integrator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepall</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                            <span class="n">n_sources</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">infinite_well</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepares the integraro object that rules the pixel properties</span>
@@ -330,12 +308,9 @@
                                                      <span class="n">keepall</span><span class="o">=</span><span class="n">keepall</span><span class="p">,</span>
                                                      <span class="n">n_sources</span><span class="o">=</span><span class="n">n_sources</span><span class="p">,</span>
                                                      <span class="n">infinite_well</span><span class="o">=</span><span class="n">infinite_well</span><span class="p">)</span></div>
-
         
         
-<div class="viewcode-block" id="simulator.prepare_spectrograph">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_spectrograph">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_spectrograph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_chan</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.prepare_spectrograph"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_spectrograph">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_spectrograph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_chan</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepares the spectrograph object that maps the light over the detector.</span>
 <span class="sd">        </span>
@@ -352,11 +327,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">spectro</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">spectrograph</span><span class="o">.</span><span class="n">spectrograph</span><span class="p">(</span><span class="n">config</span><span class="p">,</span>
                                                  <span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span>
                                                  <span class="n">n_chan</span><span class="o">=</span><span class="n">n_chan</span><span class="p">)</span></div>
-
         
-<div class="viewcode-block" id="simulator.prepare_corrector">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_corrector">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_corrector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.prepare_corrector"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_corrector">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_corrector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">model_air</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare the corrector object for the simulator, based</span>
@@ -427,24 +399,15 @@
                                                       <span class="n">wa_true</span><span class="o">=</span><span class="n">myair</span><span class="p">,</span> <span class="n">wa_model</span><span class="o">=</span><span class="n">mymodel</span><span class="p">,</span>
                                                      <span class="n">corrector</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="simulator.backup_ldc">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.backup_ldc">[docs]</a>
-    <span class="k">def</span> <span class="nf">backup_ldc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.backup_ldc"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.backup_ldc">[docs]</a>    <span class="k">def</span> <span class="nf">backup_ldc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bu_corrector</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bu_offband</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offband_model</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="simulator.restore_ldc">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.restore_ldc">[docs]</a>
-    <span class="k">def</span> <span class="nf">restore_ldc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.restore_ldc"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.restore_ldc">[docs]</a>    <span class="k">def</span> <span class="nf">restore_ldc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bu_corrector</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">offband_model</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bu_offband</span><span class="p">)</span></div>
-
         
-<div class="viewcode-block" id="simulator.point">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.point">[docs]</a>
-    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">refresh_array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">disp_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.point"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">refresh_array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">disp_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                     <span class="n">long_disp_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ld_mode_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                     <span class="n">ft_mode</span><span class="o">=</span><span class="s2">&quot;phase&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -541,10 +504,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">phasor_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ph_disp</span><span class="p">)</span>   </div>
 
 
-
-<div class="viewcode-block" id="simulator.make_metrologic_exposure">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_metrologic_exposure">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_metrologic_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.make_metrologic_exposure"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_metrologic_exposure">[docs]</a>    <span class="k">def</span> <span class="nf">make_metrologic_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span>
                                  <span class="n">int_sources</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                  <span class="n">texp</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">t_co</span><span class="o">=</span><span class="mf">2.0e-3</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                  <span class="n">monitor_phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
@@ -662,10 +622,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;### WARNING: idealized injection used&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean phasor : &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">injected</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span></div>
-
-<div class="viewcode-block" id="simulator.combine_light">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_light">[docs]</a>
-    <span class="k">def</span> <span class="nf">combine_light</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asource</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">collected</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.combine_light"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_light">[docs]</a>    <span class="k">def</span> <span class="nf">combine_light</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asource</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">collected</span><span class="p">,</span>
                       <span class="n">dosum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the combination for a discretized light source object </span>
@@ -704,11 +661,8 @@
             <span class="c1">#set_trace()</span>
             <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
         <span class="k">return</span> <span class="n">outputs</span></div>
-
     
-<div class="viewcode-block" id="simulator.combine_light_dask">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_light_dask">[docs]</a>
-    <span class="k">def</span> <span class="nf">combine_light_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asource</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">collected</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.combine_light_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_light_dask">[docs]</a>    <span class="k">def</span> <span class="nf">combine_light_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asource</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">collected</span><span class="p">,</span>
                       <span class="n">dosum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the combination for a discretized light source object </span>
@@ -757,10 +711,49 @@
             <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
         <span class="k">return</span> <span class="n">outputs</span></div>
 
+<div class="viewcode-block" id="simulator.combine_light_dask2"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_light_dask2">[docs]</a>    <span class="k">def</span> <span class="nf">combine_light_dask2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asource</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">collected</span><span class="p">,</span>
+                      <span class="n">dosum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the combination for a discretized light source object </span>
+<span class="sd">        for all the wavelengths of interest. The computation is done </span>
+<span class="sd">        out of core using dask.</span>
+<span class="sd">        Returns the intensity in all outputs at all wavelengths.</span>
+<span class="sd">        </span>
+<span class="sd">        **inputs:**</span>
+<span class="sd">        </span>
+<span class="sd">        * asource     : Source object or transmission_emission object</span>
+<span class="sd">          including ss and xx_r attributes as dask arrays</span>
+<span class="sd">        * injected    : complex phasor for the instrumental errors</span>
+<span class="sd">        * input_array  : The projected geometric configuration of the array</span>
+<span class="sd">          use observatory.get_projected_array()</span>
+<span class="sd">        * collected   : Dask version of the intensity across wavelength</span>
+<span class="sd">          and the difference source origins</span>
+<span class="sd">        * map_index   : The index of the pointing in the sequence. Mostly use for numbering</span>
+<span class="sd">                        of the temporary disk file</span>
+<span class="sd">        </span>
+<span class="sd">        .. note:: In &quot;dask&quot; mode the `collected` and `source.ss` are expected as dask arrays</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Ideally, this collected operation should be factorized over all subexps</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">asource</span><span class="o">.</span><span class="n">ss</span> <span class="o">*</span> <span class="n">collected</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="simulator.combine_32">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_32">[docs]</a>
-    <span class="k">def</span> <span class="nf">combine_32</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst_phasor</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="kc">None</span><span class="p">,):</span>
+        <span class="n">geometric_phasor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometric_phasor_dask</span><span class="p">(</span><span class="n">asource</span><span class="o">.</span><span class="n">xx_r</span><span class="p">,</span>
+                                                      <span class="n">asource</span><span class="o">.</span><span class="n">yy_r</span><span class="p">,</span>
+                                                      <span class="n">input_array</span><span class="p">)</span>
+        <span class="c1"># da.to_zarr(geometric_phasor , f&quot;/tmp/full_geometric_phasor_{map_index}.zarr&quot;, overwrite=True)</span>
+        <span class="c1"># geometric_phasor =  da.from_zarr(f&quot;/tmp/full_geometric_phasor_{map_index}.zarr&quot;)</span>
+        <span class="n">myinput</span> <span class="o">=</span> <span class="n">injected</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:]</span> <span class="o">*</span> <span class="n">geometric_phasor</span>
+        <span class="n">myinput</span> <span class="o">=</span> <span class="n">myinput</span> <span class="o">*</span> <span class="n">amplitude</span><span class="o">.</span><span class="n">T</span><span class="p">[:,:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;w o i, f w i -&gt; f w o&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="p">,</span> <span class="n">myinput</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dosum</span><span class="p">:</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">outputs</span></div>
+
+<div class="viewcode-block" id="simulator.combine_32"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine_32">[docs]</a>    <span class="k">def</span> <span class="nf">combine_32</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst_phasor</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="kc">None</span><span class="p">,):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the output INTENSITY based on the input AMPLITUDE</span>
 <span class="sd">        This version provides a result in np.float32 format for smaller</span>
@@ -785,10 +778,7 @@
         <span class="n">output_amps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk,ik-&gt;ij&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">),</span> <span class="n">myinput</span><span class="p">)</span>
         <span class="c1">#set_trace()</span>
         <span class="k">return</span> <span class="n">output_amps</span></div>
-
-<div class="viewcode-block" id="simulator.combine">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine">[docs]</a>
-    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst_phasor</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.combine"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst_phasor</span><span class="p">,</span> <span class="n">geom_phasor</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the output INTENSITY based on the input AMPLITUDE</span>
 <span class="sd">        or maps)</span>
@@ -810,11 +800,8 @@
         <span class="n">myinput</span> <span class="o">=</span> <span class="n">inst_phasor</span><span class="o">*</span><span class="n">geom_phasor</span><span class="o">*</span><span class="n">amplitude</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
         <span class="n">output_amps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk,ik-&gt;ij&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">combiner</span><span class="o">.</span><span class="n">Mcn</span><span class="p">,</span> <span class="n">myinput</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output_amps</span></div>
-
     
-<div class="viewcode-block" id="simulator.geometric_phasor">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.geometric_phasor">[docs]</a>
-    <span class="k">def</span> <span class="nf">geometric_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">anarray</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.geometric_phasor"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.geometric_phasor">[docs]</a>    <span class="k">def</span> <span class="nf">geometric_phasor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">anarray</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the complex phasor corresponding to the locations</span>
 <span class="sd">        of the family of sources</span>
@@ -832,12 +819,9 @@
         <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">phi</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">b</span></div>
 
-
     
 
-<div class="viewcode-block" id="simulator.geometric_phasor_dask">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.geometric_phasor_dask">[docs]</a>
-    <span class="k">def</span> <span class="nf">geometric_phasor_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">betas</span><span class="p">,</span> <span class="n">anarray</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.geometric_phasor_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.geometric_phasor_dask">[docs]</a>    <span class="k">def</span> <span class="nf">geometric_phasor_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">betas</span><span class="p">,</span> <span class="n">anarray</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the complex phasor corresponding to the locations</span>
 <span class="sd">        of the family of sources</span>
@@ -856,11 +840,8 @@
         <span class="n">z</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">phi</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">z</span></div>
 
-
     
-<div class="viewcode-block" id="simulator.make_exposure">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_exposure">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.make_exposure"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_exposure">[docs]</a>    <span class="k">def</span> <span class="nf">make_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span>
                                  <span class="n">texp</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">t_co</span><span class="o">=</span><span class="mf">2.0e-3</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                  <span class="n">monitor_phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                  <span class="n">use_tqdm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -974,11 +955,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_phase</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">inj_amp</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span></div>
-
     
-<div class="viewcode-block" id="simulator.prepare_sequence">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_sequence">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.prepare_sequence"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.prepare_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_daytime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                         <span class="n">coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare an observing sequence</span>
@@ -1029,23 +1007,17 @@
                 
             
         <span class="k">pass</span></div>
-
-<div class="viewcode-block" id="simulator.make_sequence">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_sequence">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.make_sequence"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">make_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Deprecated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
-
     
     
         
         
     
-<div class="viewcode-block" id="simulator.build_all_maps">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.build_all_maps">[docs]</a>
-    <span class="k">def</span> <span class="nf">build_all_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapres</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mapcrop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.build_all_maps"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.build_all_maps">[docs]</a>    <span class="k">def</span> <span class="nf">build_all_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapres</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mapcrop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
                        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">transmission</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds the transmission maps for the combiner for all the pointings</span>
@@ -1077,6 +1049,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">xx_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">rr_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">rr</span><span class="p">)</span>
         <span class="n">maps</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
@@ -1101,10 +1074,7 @@
                   <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">map_extent</span> <span class="o">=</span> <span class="n">extent</span></div>
 
-
-<div class="viewcode-block" id="simulator.get_loc_map">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.get_loc_map">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_loc_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.get_loc_map"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.get_loc_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_loc_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the nearest pixel location of for a relative coordinate</span>
 <span class="sd">        **Arguments:**</span>
@@ -1120,13 +1090,11 @@
         <span class="n">yindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">yindex_raw</span><span class="p">,</span>
                 <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">resol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">resol</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">yindex</span><span class="p">,</span> <span class="n">xindex</span><span class="p">)</span></div>
-
         
         
-<div class="viewcode-block" id="simulator.build_all_maps_dask">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.build_all_maps_dask">[docs]</a>
-    <span class="k">def</span> <span class="nf">build_all_maps_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapres</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mapcrop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
-                       <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">transmission</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.build_all_maps_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.build_all_maps_dask">[docs]</a>    <span class="k">def</span> <span class="nf">build_all_maps_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapres</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mapcrop</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                       <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">transmission</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+                        <span class="n">no_compute</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds the transmission maps for the combiner for all the pointings</span>
 <span class="sd">        on self.target at the times of self.sequence.</span>
@@ -1161,6 +1129,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">xx_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="o">.</span><span class="n">rr_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">rr</span><span class="p">)</span>
         <span class="n">maps</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
@@ -1169,7 +1138,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">local_transmission</span> <span class="o">=</span> <span class="n">transmission</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
             <span class="n">amap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_map_dask</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="n">i</span><span class="p">,</span>
-                                     <span class="n">transmission</span><span class="o">=</span><span class="n">transmission</span><span class="p">)</span>
+                                     <span class="n">transmission</span><span class="o">=</span><span class="n">transmission</span><span class="p">,</span> <span class="n">no_compute</span><span class="o">=</span><span class="n">no_compute</span><span class="p">)</span>
             <span class="n">maps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">amap</span><span class="p">)</span>
         <span class="n">maps</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -1184,11 +1153,8 @@
                   <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">),</span>
                   <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">yy</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">map_extent</span> <span class="o">=</span> <span class="n">extent</span></div>
-
         
-<div class="viewcode-block" id="simulator.persist_maps_to_disk">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.persist_maps_to_disk">[docs]</a>
-    <span class="k">def</span> <span class="nf">persist_maps_to_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;/tmp/full_maps.zarr&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.persist_maps_to_disk"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.persist_maps_to_disk">[docs]</a>    <span class="k">def</span> <span class="nf">persist_maps_to_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;/tmp/full_maps.zarr&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes and stores the map to disk. The file is then loaded</span>
 <span class="sd">        *out of core* and is still accessible in the same way (but without</span>
@@ -1202,14 +1168,11 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/tmp/full_geometric_phasor_*.zarr&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The files </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2"> can be removed manually&quot;</span><span class="p">)</span></div>
-
         
         
         
-<div class="viewcode-block" id="simulator.make_map_dask">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_map_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                             <span class="n">transmission</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.make_map_dask"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask">[docs]</a>    <span class="k">def</span> <span class="nf">make_map_dask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                             <span class="n">transmission</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no_compute</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create sensitivity map in m^2.sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>
@@ -1237,7 +1200,12 @@
         <span class="n">perfect_injection</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ntelescopes</span><span class="p">))</span>\
             <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>\
             <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">phasor_disp</span>
-        <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light_dask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span>
+        <span class="k">if</span> <span class="n">no_compute</span><span class="p">:</span>
+            <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light_dask2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span>
+                                           <span class="n">array</span><span class="p">,</span> <span class="n">dummy_collected</span><span class="p">,</span>
+                                           <span class="n">dosum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="n">map_index</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">static_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_light_dask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapsource</span><span class="p">,</span> <span class="n">perfect_injection</span><span class="p">,</span>
                                            <span class="n">array</span><span class="p">,</span> <span class="n">dummy_collected</span><span class="p">,</span>
                                            <span class="n">dosum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="n">map_index</span><span class="p">)</span>
         <span class="n">static_output</span> <span class="o">=</span> <span class="n">static_output</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -1249,11 +1217,8 @@
         <span class="c1"># Warning: modifying the array</span>
         <span class="c1">#combined = np.abs(static_output*np.conjugate(static_output)).astype(np.float32)</span>
         <span class="k">return</span> <span class="n">static_output</span></div>
-
     
-<div class="viewcode-block" id="simulator.make_map_dask2">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask2">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_map_dask2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.make_map_dask2"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map_dask2">[docs]</a>    <span class="k">def</span> <span class="nf">make_map_dask2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">map_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create sensitivity map in m^2.sr per spectral channel.</span>
 <span class="sd">        To get final flux of a point source :</span>
@@ -1291,12 +1256,9 @@
         <span class="c1"># Warning: modifying the array</span>
         <span class="c1">#combined = np.abs(static_output*np.conjugate(static_output)).astype(np.float32)</span>
         <span class="k">return</span> <span class="n">static_output</span></div>
-
         
         
-<div class="viewcode-block" id="simulator.make_map">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+<div class="viewcode-block" id="simulator.make_map"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.make_map">[docs]</a>    <span class="k">def</span> <span class="nf">make_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockindex</span><span class="p">,</span> <span class="n">vigneting_map</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
                 <span class="n">transmission</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create sensitivity map in m^2.sr per spectral channel.</span>
@@ -1339,7 +1301,6 @@
         <span class="c1">#combined = np.abs(static_output*np.conjugate(static_output)).astype(np.float32)</span>
         <span class="k">return</span> <span class="n">static_output</span></div>
 
-
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">gain_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ds_sr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">ds_sr</span>
@@ -1349,17 +1310,11 @@
         <span class="k">return</span> <span class="n">throughput_map</span>
 
         
-<div class="viewcode-block" id="simulator.__call__">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.__call__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.__call__"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
-
-<div class="viewcode-block" id="simulator.reset_static">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.reset_static">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="simulator.reset_static"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.simulator.reset_static">[docs]</a>    <span class="k">def</span> <span class="nf">reset_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;computed_static&quot;</span><span class="p">):</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">computed_static</span></div>
-
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">spectral_res</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1368,16 +1323,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sf</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">range2R</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;bins&quot;</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">res</span></div>
-
     
-<div class="viewcode-block" id="test_director">
-<a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.test_director">[docs]</a>
-<span class="k">def</span> <span class="nf">test_director</span><span class="p">():</span>
+<div class="viewcode-block" id="test_director"><a class="viewcode-back" href="../../scifysim.director.html#scifysim.director.test_director">[docs]</a><span class="k">def</span> <span class="nf">test_director</span><span class="p">():</span>
     <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;hard path in the test&quot;</span><span class="p">)</span>
     <span class="n">asim</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">fpath</span><span class="o">=</span><span class="s2">&quot;/home/rlaugier/Documents/hi5/SCIFYsim/scifysim/config/default_new_4T.ini&quot;</span><span class="p">)</span>
     <span class="n">asim</span><span class="o">.</span><span class="n">prepare_injector</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
     <span class="n">asim</span><span class="o">.</span><span class="n">prepare_combiner</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">config</span><span class="p">)</span></div>
-
 </pre></div>
 
            </div>

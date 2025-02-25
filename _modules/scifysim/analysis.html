@@ -14,9 +14,9 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=5f61e39c"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=88750a54"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -112,12 +112,8 @@
 
 <span class="n">logit</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="noiseprofile">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile">[docs]</a>
-<span class="k">class</span> <span class="nc">noiseprofile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="noiseprofile.__init__">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">diffobs_series</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_pixsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="noiseprofile"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile">[docs]</a><span class="k">class</span> <span class="nc">noiseprofile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="noiseprofile.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">diffobs_series</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_pixsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        An object to dynamically compute a parametric noise floor</span>
 <span class="sd">        </span>
@@ -186,10 +182,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">k_phi_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diff_cov</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">F_0</span><span class="o">**</span><span class="mi">2</span></div>
 
 
-
-<div class="viewcode-block" id="noiseprofile.get_noises">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.get_noises">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_noises</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="noiseprofile.get_noises"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.get_noises">[docs]</a>    <span class="k">def</span> <span class="nf">get_noises</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the different noises</span>
 <span class="sd">        </span>
 <span class="sd">        .. admonition:: Warning!</span>
@@ -227,10 +220,7 @@
             <span class="n">sigma_phi_d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_phi</span> <span class="o">*</span> <span class="n">Fs</span>
             <span class="k">return</span> <span class="n">sigma_phot_d</span><span class="p">,</span> <span class="n">sigma_phi_d</span></div>
 
-
-<div class="viewcode-block" id="noiseprofile.diff_noise_floor_dit">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.diff_noise_floor_dit">[docs]</a>
-    <span class="k">def</span> <span class="nf">diff_noise_floor_dit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="noiseprofile.diff_noise_floor_dit"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.diff_noise_floor_dit">[docs]</a>    <span class="k">def</span> <span class="nf">diff_noise_floor_dit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the compound noise floor</span>
 <span class="sd">        WARNING: if matrix is True, then the result is</span>
 <span class="sd">        a covariance matrix (beware of variances on diagonal)</span>
@@ -262,11 +252,8 @@
                                    <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">sigma_phot_d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>\
                                    <span class="o">+</span> <span class="n">Sigma_phi_d</span>
             <span class="k">return</span> <span class="n">cov_tot_diff</span></div>
-
         
-<div class="viewcode-block" id="noiseprofile.plot_noise_sources">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.plot_noise_sources">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot_noise_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wls</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">starmags</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+<div class="viewcode-block" id="noiseprofile.plot_noise_sources"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.plot_noise_sources">[docs]</a>    <span class="k">def</span> <span class="nf">plot_noise_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wls</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">starmags</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
                           <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">legend_font</span><span class="o">=</span><span class="s2">&quot;x-small&quot;</span><span class="p">,</span>
                           <span class="n">ymin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">n_dits</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         
@@ -307,11 +294,8 @@
         <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">fig</span></div>
-
     
-<div class="viewcode-block" id="noiseprofile.summary">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.summary">[docs]</a>
-    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="noiseprofile.summary"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.noiseprofile.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n_pix = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mynpix</span><span class="p">,</span> <span class="s2">&quot;# The number of pixels used per spectral channel&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;t_dit_0 = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span><span class="p">,</span> <span class="s2">&quot;# The reference exposure time used in MC simulations&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eta = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">,</span> <span class="s2">&quot;# The quantum efficiency of the detector&quot;</span><span class="p">)</span>
@@ -319,17 +303,11 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;k_phi = &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_phi_m</span><span class="p">,</span> <span class="s2">&quot;# The instrumental error coefficient&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_d = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_d</span><span class="si">}</span><span class="s2"> [ph/s] the static output&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_dark_current = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_dark_current</span><span class="si">}</span><span class="s2"> [e-/s] the dark current&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_enc_bg = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_enc_bg</span><span class="si">}</span><span class="s2"> [e-/s] the enclosure background&quot;</span><span class="p">)</span></div>
-</div>
-
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; s_enc_bg = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">s_enc_bg</span><span class="si">}</span><span class="s2"> [e-/s] the enclosure background&quot;</span><span class="p">)</span></div></div>
         
 
-<div class="viewcode-block" id="spectral_context">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context">[docs]</a>
-<span class="k">class</span> <span class="nc">spectral_context</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="spectral_context.__init__">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="spectral_context"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context">[docs]</a><span class="k">class</span> <span class="nc">spectral_context</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegafile</span><span class="o">=</span><span class="s2">&quot;config/vega.ini&quot;</span><span class="p">,</span> <span class="n">compensate_chromatic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Spectral context for magnitude considerations</span>
 <span class="sd">        </span>
@@ -368,11 +346,8 @@
         <span class="k">else</span> <span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avega</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
-
         
-<div class="viewcode-block" id="spectral_context.create_vega_config">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.create_vega_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_vega_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tarloc</span><span class="o">=</span><span class="s2">&quot;Kraz&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.create_vega_config"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.create_vega_config">[docs]</a>    <span class="k">def</span> <span class="nf">create_vega_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tarloc</span><span class="o">=</span><span class="s2">&quot;Kraz&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds the config file for a reference observation of Vega</span>
 <span class="sd">        </span>
@@ -398,27 +373,18 @@
         <span class="n">veg_config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;planet_temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;0.&quot;</span><span class="p">)</span>
         <span class="n">veg_config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;n_points&quot;</span><span class="p">,</span> <span class="s2">&quot;7&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">veg_config</span></div>
-
     
-<div class="viewcode-block" id="spectral_context.sflux_from_vegamag">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.sflux_from_vegamag">[docs]</a>
-    <span class="k">def</span> <span class="nf">sflux_from_vegamag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amag</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.sflux_from_vegamag"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.sflux_from_vegamag">[docs]</a>    <span class="k">def</span> <span class="nf">sflux_from_vegamag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amag</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;inverse of vegamag_from_ss()&quot;&quot;&quot;</span>
         <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">amag</span><span class="o">/</span><span class="mf">2.5</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">f</span></div>
-
-<div class="viewcode-block" id="spectral_context.vegamag_from_ss">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.vegamag_from_ss">[docs]</a>
-    <span class="k">def</span> <span class="nf">vegamag_from_ss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flux</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.vegamag_from_ss"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.vegamag_from_ss">[docs]</a>    <span class="k">def</span> <span class="nf">vegamag_from_ss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flux</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;inverse of sflux_form_vegamag()&quot;&quot;&quot;</span>
         <span class="n">amag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">amag</span></div>
-
     
     
-<div class="viewcode-block" id="spectral_context.get_mags_of_sim">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_mags_of_sim">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_mags_of_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.get_mags_of_sim"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_mags_of_sim">[docs]</a>    <span class="k">def</span> <span class="nf">get_mags_of_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Magnitudes of planet and star of a simulator object</span>
 <span class="sd">        </span>
 <span class="sd">        **Arguments:**</span>
@@ -444,10 +410,7 @@
         
         <span class="k">return</span> <span class="n">m_star</span><span class="p">,</span> <span class="n">m_planet</span></div>
 
-
-<div class="viewcode-block" id="spectral_context.get_difmap_flux">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_difmap_flux">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_difmap_flux</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="nb">map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;e-&quot;</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="spectral_context.get_difmap_flux"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_difmap_flux">[docs]</a>    <span class="k">def</span> <span class="nf">get_difmap_flux</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="nb">map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;e-&quot;</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">planet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">single_out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the map in terms of flux of a given planet</span>
@@ -473,11 +436,8 @@
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;ph&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">flux_map</span></div>
 
-
         
-<div class="viewcode-block" id="spectral_context.get_maxmap">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_maxmap">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_maxmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="spectral_context.get_maxmap"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_maxmap">[docs]</a>    <span class="k">def</span> <span class="nf">get_maxmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the maximum of the map</span>
 
 <span class="sd">        **Arguments:**</span>
@@ -494,10 +454,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">adiffmap</span></div>
 
-
-<div class="viewcode-block" id="spectral_context.get_planet_max_signal">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_planet_max_signal">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_planet_max_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">planet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="spectral_context.get_planet_max_signal"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.spectral_context.get_planet_max_signal">[docs]</a>    <span class="k">def</span> <span class="nf">get_planet_max_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">planet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                 <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the differential flux signal ph/s collected</span>
 <span class="sd">        for a given planet</span>
@@ -517,51 +474,30 @@
             <span class="n">planet_signal</span> <span class="o">=</span> <span class="n">amax</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">vigneting_map</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">*</span> <span class="n">planet</span><span class="o">.</span><span class="n">ss</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">planet_signal</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
-</div>
-
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
         
 
-<div class="viewcode-block" id="simplified_context">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context">[docs]</a>
-<span class="k">class</span> <span class="nc">simplified_context</span><span class="p">(</span><span class="n">spectral_context</span><span class="p">):</span>
-<div class="viewcode-block" id="simplified_context.__init__">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mycontext</span><span class="p">):</span> 
+<div class="viewcode-block" id="simplified_context"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context">[docs]</a><span class="k">class</span> <span class="nc">simplified_context</span><span class="p">(</span><span class="n">spectral_context</span><span class="p">):</span>
+<div class="viewcode-block" id="simplified_context.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mycontext</span><span class="p">):</span> 
         <span class="bp">self</span><span class="o">.</span><span class="n">thevegassflux</span> <span class="o">=</span> <span class="n">mycontext</span><span class="o">.</span><span class="n">thevegassflux</span></div>
 
-
-<div class="viewcode-block" id="simplified_context.to_pickle">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context.to_pickle">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_pickle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">apath</span><span class="p">):</span>
+<div class="viewcode-block" id="simplified_context.to_pickle"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.simplified_context.to_pickle">[docs]</a>    <span class="k">def</span> <span class="nf">to_pickle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">apath</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Saving the context to a pickle file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">apath</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">thefile</span><span class="p">:</span>
-            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thefile</span><span class="p">)</span></div>
-</div>
-
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thefile</span><span class="p">)</span></div></div>
         
     
-<div class="viewcode-block" id="mag2F">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.mag2F">[docs]</a>
-<span class="k">def</span> <span class="nf">mag2F</span><span class="p">(</span><span class="n">mag</span><span class="p">):</span>
+<div class="viewcode-block" id="mag2F"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.mag2F">[docs]</a><span class="k">def</span> <span class="nf">mag2F</span><span class="p">(</span><span class="n">mag</span><span class="p">):</span>
     <span class="n">F</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">mag</span><span class="o">/</span><span class="mf">2.5</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">F</span></div>
-
-<div class="viewcode-block" id="F2mag">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.F2mag">[docs]</a>
-<span class="k">def</span> <span class="nf">F2mag</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+<div class="viewcode-block" id="F2mag"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.F2mag">[docs]</a><span class="k">def</span> <span class="nf">F2mag</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
     <span class="n">mag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">F</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">mag</span></div>
 
-
-<div class="viewcode-block" id="BasicETC">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC">[docs]</a>
-<span class="k">class</span> <span class="nc">BasicETC</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="BasicETC.__init__">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicETC"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC">[docs]</a><span class="k">class</span> <span class="nc">BasicETC</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicETC.__init__"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asim</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        * ipeak : []</span>
@@ -610,7 +546,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">contribs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">contribs</span><span class="p">)</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">photon</span><span class="o">/</span><span class="n">units</span><span class="o">.</span><span class="n">s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">contribs_current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">contribs</span></div>
 
-
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">contribs_variance_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The variance rate in e-**2/s&quot;&quot;&quot;</span>
@@ -618,10 +553,16 @@
                         <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">electron</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">units</span><span class="o">.</span><span class="n">s</span>
         <span class="k">return</span> <span class="n">variance_rate</span>
 
-<div class="viewcode-block" id="BasicETC.get_min_exp_time">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.get_min_exp_time">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_min_exp_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">planet_T</span><span class="p">,</span> <span class="n">snr</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">dit_0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="BasicETC.get_min_exp_time"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.get_min_exp_time">[docs]</a>    <span class="k">def</span> <span class="nf">get_min_exp_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">planet_T</span><span class="p">,</span> <span class="n">snr</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">dit_0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Arguments**:</span>
+<span class="sd">        * planet_mag : [Vega mag]</span>
+<span class="sd">        * planet_T   : [K]</span>
+<span class="sd">        * snr        : (3) Signal to noise ratio to reach</span>
+<span class="sd">        * dit_0      : (None) [s]</span>
+<span class="sd">        * verbose    : (False)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">dit_0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dit_0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dit_0</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dit_0</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
@@ -638,10 +579,14 @@
         <span class="k">return</span> <span class="n">at</span><span class="p">,</span> <span class="n">at2</span></div>
 
 
-
-<div class="viewcode-block" id="BasicETC.planet_photons">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.planet_photons">[docs]</a>
-    <span class="k">def</span> <span class="nf">planet_photons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicETC.planet_photons"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.planet_photons">[docs]</a>    <span class="k">def</span> <span class="nf">planet_photons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Arguments**:</span>
+<span class="sd">        * planet_mag : </span>
+<span class="sd">        * dit        : (1.) [s]</span>
+<span class="sd">        * T          T (None) []</span>
+<span class="sd">        * verbose    : (False)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dit</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
             <span class="n">dit</span> <span class="o">=</span> <span class="n">dit</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">s</span>
         <span class="k">if</span> <span class="n">T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -656,12 +601,20 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">dit</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd_planet</span></div>
 
-
-<div class="viewcode-block" id="BasicETC.show_signal_noise">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.show_signal_noise">[docs]</a>
-    <span class="k">def</span> <span class="nf">show_signal_noise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="BasicETC.show_signal_noise"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.BasicETC.show_signal_noise">[docs]</a>    <span class="k">def</span> <span class="nf">show_signal_noise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                         <span class="n">decompose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                         <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Arguments**:</span>
+<span class="sd">        * planet_mag : The magnitude of the planet in the science band (Vega).</span>
+<span class="sd">        * dit        : (1.) The individual detector integration time. Typically</span>
+<span class="sd">          adjusted for different spectral resolutions. [s]</span>
+<span class="sd">        * T          : (None) Temperature [K]</span>
+<span class="sd">        * verbose    : (True)</span>
+<span class="sd">        * decompose  : (True)</span>
+<span class="sd">        * plot       : (True)</span>
+<span class="sd">        * show       : (True)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">planet_photons</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">planet_photons</span><span class="p">(</span><span class="n">planet_mag</span><span class="p">,</span> <span class="n">dit</span><span class="o">=</span><span class="n">dit</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>
                                             <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="n">planet_electrons</span> <span class="o">=</span> <span class="n">planet_photons</span> \
@@ -717,17 +670,13 @@
         <span class="k">if</span> <span class="n">plot</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">show</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">planet_electrons</span><span class="p">,</span> <span class="n">background_sigma</span><span class="p">,</span> <span class="n">afig</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">planet_electrons</span><span class="p">,</span> <span class="n">background_sigma</span></div>
-</div>
-
+            <span class="k">return</span> <span class="n">planet_electrons</span><span class="p">,</span> <span class="n">background_sigma</span></div></div>
         
         
         
             
         
-<div class="viewcode-block" id="contrib2variance">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.contrib2variance">[docs]</a>
-<span class="k">def</span> <span class="nf">contrib2variance</span><span class="p">(</span><span class="n">acontrib</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">units</span><span class="o">.</span><span class="n">electron</span><span class="p">):</span>
+<div class="viewcode-block" id="contrib2variance"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.contrib2variance">[docs]</a><span class="k">def</span> <span class="nf">contrib2variance</span><span class="p">(</span><span class="n">acontrib</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">units</span><span class="o">.</span><span class="n">electron</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Assumes incoming signals proportional to electrons.</span>
 <span class="sd">    Tweaks the unit to a poisson variance (e.g. from e- to e-**2)</span>
@@ -735,14 +684,11 @@
     <span class="n">avar</span> <span class="o">=</span> <span class="n">acontrib</span><span class="o">*</span><span class="n">unit</span>
     <span class="k">return</span> <span class="n">avar</span></div>
 
-
 <span class="c1">##################################</span>
 <span class="c1"># The energy detector test</span>
 <span class="c1">##################################</span>
 
-<div class="viewcode-block" id="pdet_e">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.pdet_e">[docs]</a>
-<span class="k">def</span> <span class="nf">pdet_e</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">rank</span><span class="p">):</span>
+<div class="viewcode-block" id="pdet_e"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.pdet_e">[docs]</a><span class="k">def</span> <span class="nf">pdet_e</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">rank</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the residual of Pdet</span>
 <span class="sd">    </span>
@@ -756,10 +702,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">respdet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ncx2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xsi</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">lamb</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">respdet</span></div>
-
-<div class="viewcode-block" id="residual_pdet_Te">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.residual_pdet_Te">[docs]</a>
-<span class="k">def</span> <span class="nf">residual_pdet_Te</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
+<div class="viewcode-block" id="residual_pdet_Te"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.residual_pdet_Te">[docs]</a><span class="k">def</span> <span class="nf">residual_pdet_Te</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the residual of Pdet</span>
 <span class="sd">    </span>
@@ -774,10 +717,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">respdet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ncx2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xsi</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">lamb</span><span class="p">)</span> <span class="o">-</span> <span class="n">targ</span>
     <span class="k">return</span> <span class="n">respdet</span></div>
-
-<div class="viewcode-block" id="get_sensitivity_Te_old">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Te_old">[docs]</a>
-<span class="k">def</span> <span class="nf">get_sensitivity_Te_old</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
+<div class="viewcode-block" id="get_sensitivity_Te_old"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Te_old">[docs]</a><span class="k">def</span> <span class="nf">get_sensitivity_Te_old</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
                 <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    **Deprecated**</span>
@@ -856,10 +796,7 @@
     <span class="c1">#print(wsig.shape)</span>
     
     <span class="k">return</span> <span class="n">mags</span><span class="p">,</span> <span class="n">fluxs</span><span class="p">,</span> <span class="n">Tes</span></div>
-
-<div class="viewcode-block" id="get_sensitivity_Te">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Te">[docs]</a>
-<span class="k">def</span> <span class="nf">get_sensitivity_Te</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">mod</span><span class="o">=</span><span class="n">np</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
+<div class="viewcode-block" id="get_sensitivity_Te"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Te">[docs]</a><span class="k">def</span> <span class="nf">get_sensitivity_Te</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">mod</span><span class="o">=</span><span class="n">np</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
                 <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Magnitude map at which a companion is detectable for a given map and whitening matrix.</span>
@@ -929,31 +866,22 @@
 
 
 
-
 <span class="c1">##################################</span>
 <span class="c1"># The Neyman-Pearson test</span>
 <span class="c1">##################################</span>
 
 
-<div class="viewcode-block" id="get_Tnp_threshold">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_Tnp_threshold">[docs]</a>
-<span class="k">def</span> <span class="nf">get_Tnp_threshold</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Pfa</span><span class="p">):</span>
+<div class="viewcode-block" id="get_Tnp_threshold"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_Tnp_threshold">[docs]</a><span class="k">def</span> <span class="nf">get_Tnp_threshold</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Pfa</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">xTx</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
         <span class="n">xTx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijklm, ijklm -&gt; lm&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xTx</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">Pfa</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="get_Tnp_threshold_map">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_Tnp_threshold_map">[docs]</a>
-<span class="k">def</span> <span class="nf">get_Tnp_threshold_map</span><span class="p">(</span><span class="n">xTx_map</span><span class="p">,</span> <span class="n">Pfa</span><span class="p">):</span>
+<div class="viewcode-block" id="get_Tnp_threshold_map"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_Tnp_threshold_map">[docs]</a><span class="k">def</span> <span class="nf">get_Tnp_threshold_map</span><span class="p">(</span><span class="n">xTx_map</span><span class="p">,</span> <span class="n">Pfa</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xTx_map</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="c1">#xTx = x.T.dot(x)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xTx_map</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">Pfa</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="residual_pdet_Tnp">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.residual_pdet_Tnp">[docs]</a>
-<span class="k">def</span> <span class="nf">residual_pdet_Tnp</span><span class="p">(</span><span class="n">xTx</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
+<div class="viewcode-block" id="residual_pdet_Tnp"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.residual_pdet_Tnp">[docs]</a><span class="k">def</span> <span class="nf">residual_pdet_Tnp</span><span class="p">(</span><span class="n">xTx</span><span class="p">,</span> <span class="n">xsi</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the residual of Pdet in a NP test.</span>
 <span class="sd">    </span>
@@ -969,10 +897,7 @@
     
     <span class="n">Pdet_Pfa</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">((</span><span class="n">xsi</span> <span class="o">-</span> <span class="n">xTx</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xTx</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">Pdet_Pfa</span> <span class="o">-</span> <span class="n">targ</span></div>
-
-<div class="viewcode-block" id="get_sensitivity_Tnp">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Tnp">[docs]</a>
-<span class="k">def</span> <span class="nf">get_sensitivity_Tnp</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
+<div class="viewcode-block" id="get_sensitivity_Tnp"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Tnp">[docs]</a><span class="k">def</span> <span class="nf">get_sensitivity_Tnp</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
                 <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_tqdm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Magnitude map at which a companion is detectable for a given map and whitening matrix.</span>
@@ -996,7 +921,7 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
         <span class="n">nbkp</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
-        <span class="n">nbkp</span> <span class="o">=</span> <span class="n">W</span>
+        <span class="n">nbkp</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Wrong dimension for post-processing matrix&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
@@ -1033,10 +958,7 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">mag_map</span></div>
 
-
-<div class="viewcode-block" id="get_sensitivity_Tnp_old">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Tnp_old">[docs]</a>
-<span class="k">def</span> <span class="nf">get_sensitivity_Tnp_old</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
+<div class="viewcode-block" id="get_sensitivity_Tnp_old"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_sensitivity_Tnp_old">[docs]</a><span class="k">def</span> <span class="nf">get_sensitivity_Tnp_old</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">pfa</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">pdet</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">postproc_mat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_mag</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
                 <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_tqdm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    **Deprecated**</span>
@@ -1097,12 +1019,9 @@
     <span class="k">return</span> <span class="n">mag_map</span></div>
 
 
-
 <span class="c1">## Tools for interpretation </span>
 
-<div class="viewcode-block" id="correlation_map">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.correlation_map">[docs]</a>
-<span class="k">def</span> <span class="nf">correlation_map</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">maps</span><span class="p">,</span> <span class="n">postproc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_diffobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="correlation_map"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.correlation_map">[docs]</a><span class="k">def</span> <span class="nf">correlation_map</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">maps</span><span class="p">,</span> <span class="n">postproc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_diffobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the raw correlation map of a signal with a map.</span>
 <span class="sd">    </span>
@@ -1155,10 +1074,7 @@
     <span class="k">return</span> <span class="n">cmap1</span><span class="p">,</span> <span class="n">xtx_map</span></div>
 
 
-
-<div class="viewcode-block" id="make_source">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.make_source">[docs]</a>
-<span class="k">def</span> <span class="nf">make_source</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+<div class="viewcode-block" id="make_source"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.make_source">[docs]</a><span class="k">def</span> <span class="nf">make_source</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a source from scratch for purpose of model fitting.</span>
 <span class="sd">    </span>
@@ -1184,10 +1100,7 @@
                                          <span class="n">offset</span><span class="o">=</span><span class="n">planet_offset</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">mysource</span></div>
 
-
-<div class="viewcode-block" id="get_planet_residual">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_planet_residual">[docs]</a>
-<span class="k">def</span> <span class="nf">get_planet_residual</span><span class="p">(</span><span class="n">my_params</span><span class="p">,</span> <span class="n">target_signal</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span> <span class="n">notres</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="get_planet_residual"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.get_planet_residual">[docs]</a><span class="k">def</span> <span class="nf">get_planet_residual</span><span class="p">(</span><span class="n">my_params</span><span class="p">,</span> <span class="n">target_signal</span><span class="p">,</span> <span class="n">asim</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">postproc</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span> <span class="n">notres</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    **arguments:**</span>
 <span class="sd">    </span>
@@ -1230,10 +1143,7 @@
         <span class="n">resvec</span> <span class="o">=</span> <span class="n">wsig</span> <span class="o">-</span> <span class="n">wtarg</span>
         <span class="k">return</span> <span class="n">resvec</span></div>
 
-
-<div class="viewcode-block" id="make_th_exps">
-<a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.make_th_exps">[docs]</a>
-<span class="k">def</span> <span class="nf">make_th_exps</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="make_th_exps"><a class="viewcode-back" href="../../scifysim.analysis.html#scifysim.analysis.make_th_exps">[docs]</a><span class="k">def</span> <span class="nf">make_th_exps</span><span class="p">(</span><span class="n">asim</span><span class="p">,</span> <span class="n">dit</span><span class="p">,</span> <span class="n">interest</span><span class="p">,</span> <span class="n">diffuse</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a model observation of an idealized source of interest.</span>
 <span class="sd">    </span>
@@ -1258,15 +1168,17 @@
         <span class="n">obs</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">asim</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
         <span class="n">injected</span> <span class="o">=</span> <span class="n">asim</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">best_injection</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
         <span class="n">injected</span> <span class="o">=</span> <span class="n">injected</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">asim</span><span class="o">.</span><span class="n">corrector</span><span class="o">.</span><span class="n">get_phasor</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
-        <span class="n">array</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
-        
+        <span class="k">if</span> <span class="n">obs</span><span class="o">.</span><span class="n">observatory_location</span> <span class="o">==</span> <span class="s1">&#39;space&#39;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">()</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">get_projected_array</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">altaz</span><span class="p">,</span> <span class="n">PA</span><span class="o">=</span><span class="n">obs</span><span class="o">.</span><span class="n">PA</span><span class="p">)</span>
         <span class="n">filtered_starlight</span> <span class="o">=</span> <span class="n">diffuse</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_downstream_transmission</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">lambda_science_range</span><span class="p">)</span>
         <span class="n">collected</span> <span class="o">=</span> <span class="n">filtered_starlight</span> <span class="o">*</span> <span class="n">asim</span><span class="o">.</span><span class="n">injector</span><span class="o">.</span><span class="n">collecting</span> <span class="o">*</span> <span class="n">dit</span>
         <span class="c1">#set_trace()</span>
         <span class="n">lights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asim</span><span class="o">.</span><span class="n">combine_light</span><span class="p">(</span><span class="n">interest</span><span class="p">,</span> <span class="n">injected</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">collected</span><span class="p">))</span>
     <span class="n">lights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lights</span></div>
-
 </pre></div>
 
            </div>

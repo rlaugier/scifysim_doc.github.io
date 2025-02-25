@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=88750a54"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -111,7 +111,7 @@
                  <span class="n">keepall</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">n_sources</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
                  <span class="n">infinite_well</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Contains the pixel model of the detector.</span>
 <span class="sd">        Currently it does not implement a system gain (1ADU = 1photoelectron)</span>
 <span class="sd">        </span>
@@ -181,7 +181,7 @@
                         <span class="n">bottom_range</span><span class="o">=</span><span class="mf">2.55e-6</span><span class="p">,</span>
                         <span class="n">top_range</span><span class="o">=</span><span class="mf">5.8e-6</span><span class="p">,</span>
                         <span class="n">n_ch_enclosure</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Arguments:**</span>
 <span class="sd">        * wavelength_range : [m] the channels for which to compute the flux.</span>
 <span class="sd">        </span>
@@ -206,7 +206,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">det_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Cold enclosure&quot;</span><span class="p">,</span> <span class="s2">&quot;Dark current&quot;</span><span class="p">]</span></div>
         
 <div class="viewcode-block" id="integrator.accumulate"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.accumulate">[docs]</a>    <span class="k">def</span> <span class="nf">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Accumulates some signal.</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -229,7 +229,7 @@
             <span class="k">pass</span></div>
 <div class="viewcode-block" id="integrator.get_total"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.get_total">[docs]</a>    <span class="k">def</span> <span class="nf">get_total</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectrograph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_exp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">n_pixsplit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Made a little bit complicated by the ability to simulate CRED1 camera. It is</span>
 <span class="sd">        at this stage that the quantum efficiency ``self.eta`` is taken into account.</span>
 <span class="sd">        </span>
@@ -273,7 +273,7 @@
         <span class="k">return</span> <span class="n">read</span></div>
 
 <div class="viewcode-block" id="integrator.get_static"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.get_static">[docs]</a>    <span class="k">def</span> <span class="nf">get_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Returns**</span>
 <span class="sd">        * total_static: the total value of integrated light from static sources. [ph/dit/ch]</span>
 <span class="sd">        * dark_current: the dark current [e-/dit/pix]</span>
@@ -297,7 +297,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">planetlight</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="integrator.reset"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reset the values of the accumulation of signal in the detector.</span>
 <span class="sd">        </span>
 <span class="sd">        **Values reset:**</span>
@@ -324,7 +324,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">planetlight</span> <span class="o">=</span> <span class="kc">None</span></div>
         
 <div class="viewcode-block" id="integrator.prepare_t_exp_base"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.prepare_t_exp_base">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_t_exp_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes some basic laws regarding exposure times</span>
 <span class="sd">        for the current configuration:</span>
 <span class="sd">        </span>
@@ -369,7 +369,7 @@
                                     <span class="bp">self</span><span class="o">.</span><span class="n">expr_t_max</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">mysubs</span><span class="p">),</span>
                                     <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span></div>
 <div class="viewcode-block" id="integrator.consolidate_metrologic"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.integrator.consolidate_metrologic">[docs]</a>    <span class="k">def</span> <span class="nf">consolidate_metrologic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compiles the results of metrologic exposure. </span>
 <span class="sd">        </span>
 <span class="sd">        **Paramters compiled:**</span>
@@ -404,7 +404,7 @@
 
 <div class="viewcode-block" id="spectrograph"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.spectrograph">[docs]</a><span class="k">class</span> <span class="nc">spectrograph</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="viewcode-block" id="spectrograph.__init__"><a class="viewcode-back" href="../../scifysim.spectrograph.html#scifysim.spectrograph.spectrograph.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aconfig</span><span class="p">,</span> <span class="n">lamb_range</span><span class="p">,</span> <span class="n">n_chan</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This class describres the behaviour of a simple spectrograph.</span>
 <span class="sd">        </span>
 <span class="sd">        </span>

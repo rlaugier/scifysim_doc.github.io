@@ -15,9 +15,9 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5f61e39c"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=88750a54"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -102,13 +102,13 @@
            <div itemprop="articleBody">
              
   <section id="what-you-need-to-know">
-<span id="need-to-know"></span><h1>What you need to know<a class="headerlink" href="#what-you-need-to-know" title="Link to this heading"></a></h1>
+<span id="need-to-know"></span><h1>What you need to know<a class="headerlink" href="#what-you-need-to-know" title="Permalink to this heading"></a></h1>
 <section id="philosophy">
-<h2>Philosophy<a class="headerlink" href="#philosophy" title="Link to this heading"></a></h2>
+<h2>Philosophy<a class="headerlink" href="#philosophy" title="Permalink to this heading"></a></h2>
 <p>SCIFYsim does not have a GUI. You will have to interface with it through the API. You our recommendation is to use <strong>jupyter(lab)</strong> to create <strong>semi-interactive scripts</strong> to run the simulations and plot the data. You can also use <strong>scripts</strong> for a more rigid usage.</p>
 </section>
 <section id="simulator">
-<h2>Simulator<a class="headerlink" href="#simulator" title="Link to this heading"></a></h2>
+<h2>Simulator<a class="headerlink" href="#simulator" title="Permalink to this heading"></a></h2>
 <p>One can use <code class="docutils literal notranslate"><span class="pre">utilities.prepare_all</span></code> as a shortcut to start a new simulator from a config file.</p>
 <p>The simulator object is organized as follows:</p>
 <ul>
@@ -148,12 +148,12 @@ the independent beams:</p>
 </ul>
 </section>
 <section id="simulating-an-exposure">
-<h2>Simulating an exposure<a class="headerlink" href="#simulating-an-exposure" title="Link to this heading"></a></h2>
+<h2>Simulating an exposure<a class="headerlink" href="#simulating-an-exposure" title="Permalink to this heading"></a></h2>
 <p>First you must point the array to the target using the method <code class="docutils literal notranslate"><span class="pre">simulator.point</span></code>. This updates the projection parameters and a few other things.</p>
 <p>Call <code class="docutils literal notranslate"><span class="pre">simulator.make_exposure</span></code> to make record light. This returns an integrator object containing all the parameters of the exposure.</p>
 </section>
 <section id="useful-tools">
-<h2>Useful tools<a class="headerlink" href="#useful-tools" title="Link to this heading"></a></h2>
+<h2>Useful tools<a class="headerlink" href="#useful-tools" title="Permalink to this heading"></a></h2>
 <p>You will find useful tools in the modules:</p>
 <ul class="simple">
 <li><p>scifysim.utilities</p></li>

@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=88750a54"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -122,7 +122,7 @@
 <div class="viewcode-block" id="transmission_emission"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission">[docs]</a><span class="k">class</span> <span class="nc">transmission_emission</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="viewcode-block" id="transmission_emission.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trans_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">285</span><span class="p">,</span>
                  <span class="n">airmass</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">observatory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;noname&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reproduces a basic behaviour in emission-transmission of a medium in the optical</span>
 <span class="sd">        path. Inspired by the geniesim </span>
 <span class="sd">        </span>
@@ -160,7 +160,7 @@
         
         
 <div class="viewcode-block" id="transmission_emission.get_trans_emit"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.get_trans_emit">[docs]</a>    <span class="k">def</span> <span class="nf">get_trans_emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">wl</span><span class="p">,</span> <span class="n">bright</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the transmission or brightness of the object depending on th bright keyword</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -205,7 +205,7 @@
         
         
 <div class="viewcode-block" id="transmission_emission.get_mean_trans_emit"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.get_mean_trans_emit">[docs]</a>    <span class="k">def</span> <span class="nf">get_mean_trans_emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bright</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">n_sub</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Similar begaviour as get_trans_emit() but averages the effect over each spectral channel.</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -238,7 +238,7 @@
         <span class="k">return</span> <span class="n">mean_sky</span></div>
     
 <div class="viewcode-block" id="transmission_emission.get_own_brightness"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.get_own_brightness">[docs]</a>    <span class="k">def</span> <span class="nf">get_own_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Used when chaining different media.</span>
 <span class="sd">        Returns the flux density per solid angle of the object in each wl channel. [ph/m2/sr]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -246,7 +246,7 @@
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="transmission_emission.get_upstream_brightness"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.get_upstream_brightness">[docs]</a>    <span class="k">def</span> <span class="nf">get_upstream_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Used when chaining different media.</span>
 <span class="sd">        Returns the flux density per solid angle of the object in each wl channel [ph/m2/sr],</span>
 <span class="sd">        upstream of the current object (exclusively),</span>
@@ -259,7 +259,7 @@
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="transmission_emission.get_total_brightness"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.get_total_brightness">[docs]</a>    <span class="k">def</span> <span class="nf">get_total_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Used when chaining different media.</span>
 <span class="sd">        Returns the total filtered</span>
 <span class="sd">        flux density per solid angle of the</span>
@@ -269,7 +269,7 @@
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="transmission_emission.get_own_transmission"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.get_own_transmission">[docs]</a>    <span class="k">def</span> <span class="nf">get_own_transmission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Used when chaining different media.</span>
 <span class="sd">        Returns the transmission function of the object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -277,7 +277,7 @@
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="transmission_emission.get_downstream_transmission"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.transmission_emission.get_downstream_transmission">[docs]</a>    <span class="k">def</span> <span class="nf">get_downstream_transmission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Used when chaining different media.</span>
 <span class="sd">        Returns the total of the transmission function of the chain downstream of the object.</span>
 <span class="sd">        </span>
@@ -299,7 +299,7 @@
 <span class="c1">#sky_link = transmission_emission()</span>
 
 <div class="viewcode-block" id="chain"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.chain">[docs]</a><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function helps define which occulting / emitting source</span>
 <span class="sd">    is in front ro behind which. </span>
 <span class="sd">    </span>
@@ -311,12 +311,12 @@
     <span class="n">A</span><span class="o">.</span><span class="n">downstream</span> <span class="o">=</span> <span class="n">B</span>
     <span class="n">B</span><span class="o">.</span><span class="n">upstream</span> <span class="o">=</span> <span class="n">A</span></div>
 <div class="viewcode-block" id="set_source"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.set_source">[docs]</a><span class="k">def</span> <span class="nf">set_source</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Defines A as the first element in the chain.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">A</span><span class="o">.</span><span class="n">upstream</span> <span class="o">=</span> <span class="kc">None</span></div>
 <div class="viewcode-block" id="set_sink"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.set_sink">[docs]</a><span class="k">def</span> <span class="nf">set_sink</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Defines A as the last element in the chain.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">A</span><span class="o">.</span><span class="n">downstream</span> <span class="o">=</span> <span class="kc">None</span></div>
@@ -326,7 +326,7 @@
 <div class="viewcode-block" id="enclosure.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.enclosure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">trans_file</span><span class="o">=</span><span class="s2">&quot;data/hawaii2rg_qe.csv&quot;</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">285</span><span class="p">,</span>
                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;noname&quot;</span><span class="p">,</span>
                 <span class="n">solid_angle</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reproduces a basic behaviour of an enclosure at a given temperature. </span>
 <span class="sd">        Here, self.trans represents the (1-quantum efficiency) as to be</span>
 <span class="sd">        analogous to optics in transmission.</span>
@@ -363,7 +363,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">airmass</span> <span class="o">=</span> <span class="kc">False</span></div>
             
 <div class="viewcode-block" id="enclosure.get_total_emission"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.enclosure.get_total_emission">[docs]</a>    <span class="k">def</span> <span class="nf">get_total_emission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bright</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">n_sub</span><span class="o">=</span><span class="mi">10</span><span class="p">,):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Similar begaviour as get_trans_emit() but averages the effect over each spectral channel.</span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -399,7 +399,7 @@
 
 <div class="viewcode-block" id="_blackbody"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources._blackbody">[docs]</a><span class="k">class</span> <span class="nc">_blackbody</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="viewcode-block" id="_blackbody.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources._blackbody.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="s2">&quot;numexpr&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds the spectral radiance as a function of :math:`T` and :math:`\\nu`, :math:`k`, and :math:`\\lambda`</span>
 <span class="sd">        </span>
 <span class="sd">        Call ``self.get_Bxxx`` to get the function ``B = f(lambda , T)``</span>
@@ -455,7 +455,7 @@
         
         
 <div class="viewcode-block" id="_blackbody.Stefan_Boltzmann"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources._blackbody.Stefan_Boltzmann">[docs]</a>    <span class="k">def</span> <span class="nf">Stefan_Boltzmann</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Quick utility function giving the Stefan-Boltzmann law</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sigma</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">sigma_sb</span><span class="o">.</span><span class="n">value</span>
@@ -467,7 +467,7 @@
 <span class="n">blackbody</span> <span class="o">=</span> <span class="n">_blackbody</span><span class="p">()</span>
 
 <div class="viewcode-block" id="distant_blackbody"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.distant_blackbody">[docs]</a><span class="k">def</span> <span class="nf">distant_blackbody</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the flux density for a distant blackbody</span>
 <span class="sd">    lambda_range : Wavelenght [m]</span>
 <span class="sd">    T      : temperature [K]</span>
@@ -484,7 +484,7 @@
 
 <div class="viewcode-block" id="vega_flux_bin"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.vega_flux_bin">[docs]</a><span class="k">def</span> <span class="nf">vega_flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">VEGA_TEMPERATURE</span><span class="p">,</span>
                         <span class="n">dist</span><span class="o">=</span><span class="n">VEGA_DIST</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">VEGA_RADIUS</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the flux density for Vega</span>
 <span class="sd">    lambda_range : Wavelenght [m]</span>
 <span class="sd">    T      : temperature default 9600. [K]</span>
@@ -507,7 +507,7 @@
     
     
 <div class="viewcode-block" id="mag2flux_bin"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.mag2flux_bin">[docs]</a><span class="k">def</span> <span class="nf">mag2flux_bin</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">mag</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    **Arguments**:</span>
 <span class="sd">    * lambda_range : Wavelength channels [m]</span>
 <span class="sd">    * mag          : Magnitud [vega]</span>
@@ -519,7 +519,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">afd</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="flux_bin2mag"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.flux_bin2mag">[docs]</a><span class="k">def</span> <span class="nf">flux_bin2mag</span><span class="p">(</span><span class="n">lambda_range</span><span class="p">,</span> <span class="n">fd</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    **Arguments**: </span>
 <span class="sd">    * lambda_range : Wavelength channels [m]</span>
 <span class="sd">    * fd           : flux density [ph/s/m^2]</span>
@@ -545,7 +545,7 @@
     <span class="k">return</span> <span class="n">amag</span> </div>
 
 <div class="viewcode-block" id="group"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.group">[docs]</a><span class="k">class</span> <span class="nc">group</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Just a simple object to structure some data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="group.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.group.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -626,7 +626,7 @@
                                              <span class="n">resolved</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">planet_offset</span><span class="p">)</span></div>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">physical_separation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The physical separation between the planet and star (AU)&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The physical separation between the planet and star (AU)&quot;&quot;&quot;</span>
         <span class="n">psep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">planet_separation</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">pc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">psep</span></div>
         
@@ -636,7 +636,7 @@
 <div class="viewcode-block" id="resolved_source.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.resolved_source.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span>
                  <span class="n">angular_res</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">radial_res</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">),</span>
                  <span class="n">build_map</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolved</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * distance             : Distance of the source [pc]</span>
@@ -671,7 +671,7 @@
             
             
 <div class="viewcode-block" id="resolved_source.build_point"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.resolved_source.build_point">[docs]</a>    <span class="k">def</span> <span class="nf">build_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Routine used to construct unresolved source:</span>
 <span class="sd">        </span>
 <span class="sd">        **Creates** ``self.xx``, ``self.yy``, ``self.ds``, ``self.theta`` [rad], ``self.r`` [rad]</span>
@@ -690,7 +690,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_radius</span><span class="o">**</span><span class="mi">2</span><span class="p">]])</span></div>
         
 <div class="viewcode-block" id="resolved_source.build_grid"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.resolved_source.build_grid">[docs]</a>    <span class="k">def</span> <span class="nf">build_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angular_res</span><span class="p">,</span> <span class="n">radial_res</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Routine used to construct resolved source:</span>
 <span class="sd">        </span>
 <span class="sd">        **Creates** self.xx, self.yy, self.ds, self.theta, self.r</span>
@@ -710,7 +710,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">sr</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="c1"># In sr</span></div>
         
 <div class="viewcode-block" id="resolved_source.get_spectrum_map"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.resolved_source.get_spectrum_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_spectrum_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Maps self.total_flux_density</span>
 <span class="sd">        </span>
 <span class="sd">        This **produces** numerical integration over solid angle elements</span>
@@ -719,7 +719,7 @@
         <span class="k">return</span> <span class="n">themap</span></div>
     
 <div class="viewcode-block" id="resolved_source.build_spectrum_map"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.resolved_source.build_spectrum_map">[docs]</a>    <span class="k">def</span> <span class="nf">build_spectrum_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The map is saved in a flat shape</span>
 <span class="sd">        xx_f and yy_f are created to be flat versions of the coordinates.</span>
 <span class="sd">        ss is a total flux (ph/s/m^2) at the entrance of earth atmosphere.</span>
@@ -732,7 +732,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">yy_r</span> <span class="o">=</span> <span class="n">mas2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yy_f</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="resolved_source.distant_blackbody"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.resolved_source.distant_blackbody">[docs]</a>    <span class="k">def</span> <span class="nf">distant_blackbody</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the flux density for a distant blackbody</span>
 <span class="sd">        It is a total in ph/s/m2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -744,7 +744,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">L</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the luminosity (in solar luminosity)</span>
 <span class="sd">        returns the approximate star luminosity based on blackbody</span>
 <span class="sd">        and the Stefan-Boltzman law.</span>
@@ -759,7 +759,7 @@
                  <span class="n">star</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> 
                  <span class="n">angular_res</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">radial_res</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">),</span>
                  <span class="n">build_map</span><span class="o">=</span><span class="kc">True</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **Parameters:**</span>
 <span class="sd">        </span>
 <span class="sd">        * distance             : Distance of the source [pc]</span>
@@ -800,7 +800,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">exozodiacal_disk</span><span class="p">()</span></div>
      
 <div class="viewcode-block" id="exozodi_simple.build_grid"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.build_grid">[docs]</a>    <span class="k">def</span> <span class="nf">build_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angular_res</span><span class="p">,</span> <span class="n">radial_res</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Routine used to construct resolved source:</span>
 <span class="sd">        **Creates** self.xx, self.yy, self.ds, self.theta, self.r</span>
 
@@ -823,7 +823,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ds_sr</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">mas</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">sr</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="c1"># In sr</span></div>
         
 <div class="viewcode-block" id="exozodi_simple.get_spectrum_map"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.get_spectrum_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_spectrum_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Maps self.total_flux_density</span>
 <span class="sd">        </span>
 <span class="sd">        This **produces** numerical integration over solid angle elements</span>
@@ -832,7 +832,7 @@
         <span class="k">return</span> <span class="n">themap</span></div>
     
 <div class="viewcode-block" id="exozodi_simple.build_spectrum_map"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.build_spectrum_map">[docs]</a>    <span class="k">def</span> <span class="nf">build_spectrum_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The map is saved in a flat shape</span>
 <span class="sd">        xx_f and yy_f are created to be flat versions of the coordinates.</span>
 <span class="sd">        ss is a total flux (ph/s/m^2) at the entrance of earth atmosphere.</span>
@@ -846,7 +846,7 @@
         
     
 <div class="viewcode-block" id="exozodi_simple.exozodiacal_disk"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.exozodi_simple.exozodiacal_disk">[docs]</a>    <span class="k">def</span> <span class="nf">exozodiacal_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the emission spectrum of each disk element.</span>
 <span class="sd">        Updates:</span>
 
@@ -878,11 +878,11 @@
 
 
 <div class="viewcode-block" id="source"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.source">[docs]</a><span class="k">class</span> <span class="nc">source</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    DEPRECATED: use resolved_source for all source modelisation purposes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="source.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.source.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ss</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DEPRECATED: use resolved_source for all source modelisation purposes</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xx</span> <span class="o">=</span> <span class="n">xx</span>
@@ -898,7 +898,7 @@
     
 <div class="viewcode-block" id="source.sky_bg"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.source.sky_bg">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">sky_bg</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">injector</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span>  <span class="n">T</span><span class="p">,</span> <span class="n">lamb_range</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DEPRECATED: a transmission_emission object for the sky background</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># First build a grid of coordinates</span>
@@ -927,7 +927,7 @@
         
 <div class="viewcode-block" id="src_extended"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.src_extended">[docs]</a><span class="k">class</span> <span class="nc">src_extended</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="viewcode-block" id="src_extended.__init__"><a class="viewcode-back" href="../../scifysim.sources.html#scifysim.sources.src_extended.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resol</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">fiber_vigneting</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        resol              : Number of elements across</span>
 <span class="sd">        extent             : The extent of the source</span>

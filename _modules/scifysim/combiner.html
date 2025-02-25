@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=88750a54"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -154,7 +154,7 @@
         <span class="c1"># For the chromatic combiners</span>
             
 <div class="viewcode-block" id="combiner.chromatic_matrix"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.chromatic_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">chromatic_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Work in progress. This helps define the chromatic behaviour of the combiner even</span>
 <span class="sd">        when it is define achromatic.</span>
 <span class="sd">        </span>
@@ -183,7 +183,7 @@
         <span class="n">logit</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcn</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="combiner.pseudo_chromatic_matrix"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.pseudo_chromatic_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">pseudo_chromatic_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wl</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Work in progress. This helps define the chromatic behaviour of the combiner even</span>
 <span class="sd">        when it is define achromatic</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -202,7 +202,7 @@
         
         
 <div class="viewcode-block" id="combiner.refresh_array"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.refresh_array">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thearray</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method recomputes a disposable encapsulated function for the give pointing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">thesubs</span> <span class="o">=</span> <span class="p">[]</span>
@@ -232,7 +232,7 @@
         <span class="k">return</span> <span class="n">obj</span></div>
 <div class="viewcode-block" id="combiner.from_config"><a class="viewcode-back" href="../../scifysim.combiner.html#scifysim.combiner.combiner.from_config">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">ph_shifters</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A </span>
 <span class="sd">        </span>
 <span class="sd">        **Parameters:**</span>
@@ -261,7 +261,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">hasph</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">lamb</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">lamb</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;lambda&quot;</span><span class="p">)</span>
         <span class="n">thesubs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">combiner_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;combiner&quot;</span><span class="p">)</span>
         <span class="n">tap_ratio</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;photometric_tap&quot;</span><span class="p">)</span>
